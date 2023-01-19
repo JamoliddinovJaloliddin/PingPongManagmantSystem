@@ -1,11 +1,11 @@
-﻿using PingPongManagmantSystem.DataAccess.Interfaces;
-using PingPongManagmantSystem.Domain.Entities;
+﻿using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces;
 
-namespace PingPongManagmantSystem.DataAccess.Repositorie
+namespace PingPongManagmantSystem.Service.Services
 {
-    public class BarProductRepositorie : IBarProductInterface
+    public class BarProductService : IBarProductService
     {
-        public Task<bool> CreateAsync(BarProduct entity)
+        public Task<bool> CreateAsync(BarProduct barProduct)
         {
             throw new NotImplementedException();
         }
@@ -20,12 +20,12 @@ namespace PingPongManagmantSystem.DataAccess.Repositorie
             throw new NotImplementedException();
         }
 
-        public Task<BarProduct> GetByIdAsync(int id)
+        public Task<User> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(BarProduct entity)
+        public Task<bool> UpdateAsync(BarProduct barProduct)
         {
             throw new NotImplementedException();
         }

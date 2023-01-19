@@ -1,11 +1,11 @@
-﻿using PingPongManagmantSystem.DataAccess.Interfaces;
-using PingPongManagmantSystem.Domain.Entities;
+﻿using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces;
 
-namespace PingPongManagmantSystem.DataAccess.Repositorie
+namespace PingPongManagmantSystem.Service.Services
 {
-    public class UserRepositorie : IUserInterface
+    public class CustomerService : ICustomerService
     {
-        public Task<bool> CreateAsync(User entity)
+        public Task<bool> CreateAsync(Customer customer)
         {
             throw new NotImplementedException();
         }
@@ -15,7 +15,7 @@ namespace PingPongManagmantSystem.DataAccess.Repositorie
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<User>> GetAllAsync()
+        public Task<IEnumerable<Customer>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
@@ -25,7 +25,7 @@ namespace PingPongManagmantSystem.DataAccess.Repositorie
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(User entity)
+        public Task<bool> UpdateAsync(Customer customer)
         {
             throw new NotImplementedException();
         }

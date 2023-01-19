@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PingPongManagmantSystem.Domain\PingPongManagmantSystem.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
