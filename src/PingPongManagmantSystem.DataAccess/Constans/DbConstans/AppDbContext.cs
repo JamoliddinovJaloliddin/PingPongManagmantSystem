@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PingPongManagmantSystem.Domain;
 using PingPongManagmantSystem.Domain.Entities;
-using System.Collections.Generic;
 
 namespace PingPongManagmantSystem.Domain.Constans.DbConstans
 {
