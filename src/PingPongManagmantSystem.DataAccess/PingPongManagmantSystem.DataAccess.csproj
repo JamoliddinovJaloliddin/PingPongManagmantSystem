@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PingPongManagmantSystem.Domain\PingPongManagmantSystem.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
