@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PingPongManagmantSystem.Domain;
 using PingPongManagmantSystem.Domain.Entities;
 using System.Collections.Generic;
 
@@ -16,7 +17,7 @@ namespace PingPongManagmantSystem.Domain.Constans.DbConstans
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source=database.db");
+            optionsBuilder.UseSqlite(@"Data Source=C:\Users\A S U S\Desktop\PingPongManagmantSystem\database\database.db");
             base.OnConfiguring(optionsBuilder);
         }
 
