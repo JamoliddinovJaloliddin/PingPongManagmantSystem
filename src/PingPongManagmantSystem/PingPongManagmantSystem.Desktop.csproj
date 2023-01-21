@@ -8,12 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\" />
     <Folder Include="Styles\" />
     <Folder Include="Themes\" />
+    <Folder Include="Windows\AdminWindow\StatistiksPanel\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
     <PackageReference Include="MaterialDesignColors" Version="2.1.1" />
     <PackageReference Include="MaterialDesignInXamlToolkitAddOns" Version="0.0.6" />
   </ItemGroup>

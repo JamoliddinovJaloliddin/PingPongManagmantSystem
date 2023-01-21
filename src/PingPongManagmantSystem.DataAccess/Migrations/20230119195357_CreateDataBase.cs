@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace PingPongManagmantSystem.Domain.Migrations
+namespace PingPongManagmantSystem.DataAccess.Migrations
 {
-    public partial class Create : Migration
+    public partial class CreateDataBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,8 +48,7 @@ namespace PingPongManagmantSystem.Domain.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Status = table.Column<string>(type: "TEXT", nullable: false),
-                    CheapPrice = table.Column<double>(type: "REAL", nullable: false),
-                    ExpensivePrice = table.Column<double>(type: "REAL", nullable: false)
+                    Percent = table.Column<float>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,7 +65,9 @@ namespace PingPongManagmantSystem.Domain.Migrations
                     TimeCheapFrom = table.Column<string>(type: "TEXT", nullable: false),
                     TimeCheapUpTo = table.Column<string>(type: "TEXT", nullable: false),
                     TimeExpensiveFrom = table.Column<string>(type: "TEXT", nullable: false),
-                    TimeExpensiveUpTo = table.Column<string>(type: "TEXT", nullable: false)
+                    TimeExpensiveUpTo = table.Column<string>(type: "TEXT", nullable: false),
+                    PriceCheap = table.Column<double>(type: "REAL", nullable: false),
+                    PriceExpensive = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {

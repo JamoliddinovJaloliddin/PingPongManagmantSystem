@@ -7,11 +7,11 @@ using PingPongManagmantSystem.Domain.Constans.DbConstans;
 
 #nullable disable
 
-namespace PingPongManagmantSystem.Domain.Migrations
+namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230119132931_Create")]
-    partial class Create
+    [Migration("20230119195357_CreateDataBase")]
+    partial class CreateDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,10 +120,7 @@ namespace PingPongManagmantSystem.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("CheapPrice")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("ExpensivePrice")
+                    b.Property<float>("Percent")
                         .HasColumnType("REAL");
 
                     b.Property<string>("Status")
@@ -140,6 +137,12 @@ namespace PingPongManagmantSystem.Domain.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<double>("PriceCheap")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PriceExpensive")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Status")
                         .IsRequired()

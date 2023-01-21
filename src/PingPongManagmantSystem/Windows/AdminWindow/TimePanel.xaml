@@ -1,0 +1,32 @@
+﻿<Window x:Class="PingPongManagmantSystem.Desktop.Windows.Timepanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows"
+        mc:Ignorable="d"
+        Title="Timepanel" Height="400" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            
+            <TextBox Text="Dan" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
+            <TextBox Text="Gacha" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
+            <TextBox Text="Dan" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
+            <TextBox Text="Gacha" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="300" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border>
+                <TextBlock Text= "10:00 dan 18:00 gacha arzon vaqt"/>
+            </Border>
+            <Border Margin="0 20 0 0">
+                <TextBlock Text="18:00 dan 02:00 gacga qimmat vaqt"/>
+            </Border>
+            <Button Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="O'zgartirish"/>
+        </Grid>
+    </Grid>
+</Window>

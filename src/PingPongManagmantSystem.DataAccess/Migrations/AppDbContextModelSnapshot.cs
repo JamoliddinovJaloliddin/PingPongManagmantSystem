@@ -6,7 +6,7 @@ using PingPongManagmantSystem.Domain.Constans.DbConstans;
 
 #nullable disable
 
-namespace PingPongManagmantSystem.Domain.Migrations
+namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -118,10 +118,7 @@ namespace PingPongManagmantSystem.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("CheapPrice")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("ExpensivePrice")
+                    b.Property<float>("Percent")
                         .HasColumnType("REAL");
 
                     b.Property<string>("Status")
@@ -138,6 +135,12 @@ namespace PingPongManagmantSystem.Domain.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<double>("PriceCheap")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PriceExpensive")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Status")
                         .IsRequired()
