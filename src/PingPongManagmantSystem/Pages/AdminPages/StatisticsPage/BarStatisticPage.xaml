@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BarStatisticPage">
 
-    <Border Background="White">
+    <Border Background="#eff2f7">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -17,9 +17,9 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Height="15">
-                <CheckBox Content="Bar Product"/>
-                <CheckBox Content="Sport Product" Margin="100 0 0 0"/>
-                <ComboBox Width="200" HorizontalAlignment="Right"/>
+                <Button Content="Statistic Product" Click="StatisticPage" Width="100" HorizontalAlignment="Left"/>
+                <Button Content="Sport Product" Margin="100 0 0 0" Click="SportPage" Width="100" HorizontalAlignment="Left"/>
+                <ComboBox Width="200" HorizontalAlignment="Right"/> 
             </Grid>
 
             <Grid Grid.Row="1">

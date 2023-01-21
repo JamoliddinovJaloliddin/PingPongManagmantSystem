@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PingPongManagmantSystem.Desktop.Windows
 {
@@ -22,6 +11,13 @@ namespace PingPongManagmantSystem.Desktop.Windows
         public CustomerPanel()
         {
             InitializeComponent();
+        }
+
+        private void Customer_AddButton(object sender, RoutedEventArgs e)
+        {
+            CustomerAddPanel customerAddPanel = new CustomerAddPanel();
+            customerAddPanel.Show();
+            this.Close();
         }
     }
 }

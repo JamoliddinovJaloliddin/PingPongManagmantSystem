@@ -26,11 +26,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Menu VerticalAlignment="Top" Width="500" Height="30" Background="Transparent">
-                    <MenuItem Header="Mijozlar" BorderThickness="0" Width="auto">
+                    <MenuItem Header="Mijozlar" BorderThickness="0" Width="auto" Click="MenuEmpolye_Button">
                     </MenuItem>
-                    <MenuItem Header="Karta status" BorderThickness="0" Width="auto">
-                    </MenuItem>
-                    <MenuItem Header="Vaqt" BorderThickness="0" Width="auto">
+                    <MenuItem Header="Vaqt" BorderThickness="0" Width="auto" Click="MenuTime_Button">
                     </MenuItem>
                 </Menu>
 
@@ -63,8 +61,9 @@
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
 
                         <!--Menu Buttons -->
-                        <StackPanel DockPanel.Dock="Top">
-                            <Button Style="{StaticResource menuButton}" Background="Red" Foreground="White">
+                        <StackPanel DockPanel.Dock="Top" >
+                            <Button Style="{StaticResource menuButton}" x:Name="userAddButton"  
+                                    Click="Empolyee_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Ishchilar Ro'yhati"/>
@@ -72,21 +71,21 @@
                             </Button>
 
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Style="{StaticResource menuButton}" Click="SpotProduct_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="CarSports" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Spot mahsulotlari"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Style="{StaticResource menuButton}" Click="BarProduct_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="PresentationPlay" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Bar mahsulotlari"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Style="{StaticResource menuButton}" Click="Statistik_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="PresentationPlay" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Statistika"/>
@@ -95,14 +94,14 @@
 
 
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Style="{StaticResource menuButton}" Click="PingPongTable_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="CarSports" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Stollar Ro'yhati"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Style="{StaticResource menuButton}" Click="Cassa_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Cake" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Kassa"/>
@@ -111,7 +110,8 @@
                             
                         </StackPanel>
 
-                        <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
+                        <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom"
+                                DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="Exit_Button">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Chiqish"/>
@@ -131,7 +131,7 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Height="60">
+                <Grid Grid.Row="0" Height="80">
                 </Grid>
 
 
@@ -207,7 +207,7 @@
 
                         </StackPanel>
                     </Border>
-                    <Button Style="{StaticResource addButton}" Margin=" 0 0 0 -40">
+                    <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin=" 0 0 0 -40" Click="UserAdd_Button">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                             <TextBlock Text="Add Member Create" />
@@ -225,6 +225,11 @@
                                            Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
                     </Grid>
                 </Grid>
+                <Border Grid.Row="1" Margin="10">
+                    <Frame x:Name="PagesNavigation" NavigationUIVisibility="Hidden">
+                        <!-- Page Content -->
+                    </Frame>
+                </Border>
             </Grid>
         </Grid>
     </Border>  

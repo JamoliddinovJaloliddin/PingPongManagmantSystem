@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PingPongManagmantSystem.Desktop.Pages
+namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
 {
     /// <summary>
-    /// Interaction logic for CassaPage.xaml
+    /// Interaction logic for UserAddPanel.xaml
     /// </summary>
-    public partial class CassaPage : Page
+    public partial class UserAddPanel : Window
     {
-        public CassaPage()
+        public UserAddPanel()
         {
             InitializeComponent();
         }

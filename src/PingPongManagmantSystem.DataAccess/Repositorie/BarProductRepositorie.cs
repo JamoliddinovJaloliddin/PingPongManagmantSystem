@@ -19,9 +19,9 @@ namespace PingPongManagmantSystem.DataAccess.Repositorie
         {
             try
             {
-                var resault =  _dbSet.Add(entity);
+                var resault = _dbSet.Add(entity);
                 if (resault is null)
-                { 
+                {
                     return false;
                 }
                 return true;

@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Controls;
+using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
+using PingPongManagmantSystem.Desktop.Pages;
+using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 
 namespace PingPongManagmantSystem.Desktop.Windows
 {
@@ -19,6 +13,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
     /// </summary>
     public partial class AdminPanel : Window
     {
+        int count = 1;
         public AdminPanel()
         {
             InitializeComponent();
@@ -43,18 +38,104 @@ namespace PingPongManagmantSystem.Desktop.Windows
                     this.WindowState = WindowState.Maximized;
 
                     IsMaximized = true;
-                }  
+                }
             }
         }
 
 
-        
+
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
                 this.DragMove();
             }
+        }
+
+        private void SpotProduct_Button(object sender, RoutedEventArgs e)
+        {
+            count = 2;
+            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/SportProductPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void BarProduct_Button(object sender, RoutedEventArgs e)
+        {
+            count = 3;
+            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/BarProductpage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Statistik_Button(object sender, RoutedEventArgs e)
+        {
+            count = 4;
+            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Cassa_Button(object sender, RoutedEventArgs e)
+        {
+            count = 5;
+            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/CassaPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Exit_Button(object sender, RoutedEventArgs e)
+        {
+            count = 1;
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+           
+        }
+
+        private void PingPongTable_Button(object sender, RoutedEventArgs e)
+        {
+            count = 6;
+            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/PingPongTablePage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Empolyee_Button(object sender, RoutedEventArgs e)
+        {
+            AdminPanel adminPanel = new AdminPanel();
+            adminPanel.Show();
+            this.Close();
+
+        }
+
+        private void MenuEmpolye_Button(object sender, RoutedEventArgs e)
+        {
+            CustomerPanel customerPanel = new CustomerPanel();
+            customerPanel.Show();
+        }
+
+        private void MenuTime_Button(object sender, RoutedEventArgs e)
+        {
+            Timepanel timepanel = new Timepanel();
+            timepanel.Show();
+        }
+
+        private void UserAdd_Button(object sender, RoutedEventArgs e)
+        {
+            switch (count) { 
+                case 1:
+                    UserAddPanel userAddPanel = new UserAddPanel();
+                    userAddPanel.Show();
+                    break;
+                case 2:
+                    SportProductAddPanel sportProductPage = new SportProductAddPanel();
+                    sportProductPage.Show();
+                    break;
+                case 3:
+                    BarProductAddPanel barProductPage = new BarProductAddPanel();
+                    barProductPage.Show();
+                    break;
+                case 6:
+                    PingPongTableAddPanel pingPongTableAddPanel = new PingPongTableAddPanel();
+                    pingPongTableAddPanel.Show();
+                    break;
+                default:
+                    break;
+            }
+
+
+
         }
     }
 }

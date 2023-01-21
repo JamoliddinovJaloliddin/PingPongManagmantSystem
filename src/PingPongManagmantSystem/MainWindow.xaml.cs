@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using PingPongManagmantSystem.Desktop.Windows;
+using PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PingPongManagmantSystem
@@ -12,13 +14,22 @@ namespace PingPongManagmantSystem
 
         private void btn_Login(object sender, MouseButtonEventArgs e)
         {
-            if (int.Parse(txtpassword.Password.ToString()) > 0)
+            if (int.Parse(txtpassword.Password.ToString()) == 1)
             {
-                MessageBox.Show("Create");
+                AdminPanel adminPanel = new AdminPanel();
+                adminPanel.Show();
+                this.Close();
+            }
+            else if (int.Parse(txtpassword.Password.ToString()) == 2)
+            {
+                CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
+                cassaPanelDesktop.Show();
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Noto'g'ti parol kiritildi");
+                
             }
         }
 
