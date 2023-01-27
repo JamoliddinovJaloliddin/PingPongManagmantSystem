@@ -1,10 +1,15 @@
-﻿using System;
+﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
+using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
+using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.Services;
+using PingPongManagmantSystem.Service.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Controls;
-using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
-using PingPongManagmantSystem.Desktop.Pages;
-using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 
 namespace PingPongManagmantSystem.Desktop.Windows
 {
@@ -14,9 +19,18 @@ namespace PingPongManagmantSystem.Desktop.Windows
     public partial class AdminPanel : Window
     {
         int count = 1;
+        IUserService userService = new UserService();
+        public ObservableCollection<User> cassaDatas = new ObservableCollection<User>();
         public AdminPanel()
         {
             InitializeComponent();
+            RefreshDataAsync();
+        }
+
+        public async Task RefreshDataAsync()
+        {
+            List<UserView> user = (List<UserView>)await userService.GetAllAsync();
+            userDataGrid.ItemsSource = user;
         }
 
 
@@ -82,7 +96,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
-           
+
         }
 
         private void PingPongTable_Button(object sender, RoutedEventArgs e)
@@ -111,31 +125,58 @@ namespace PingPongManagmantSystem.Desktop.Windows
             timepanel.Show();
         }
 
-        private void UserAdd_Button(object sender, RoutedEventArgs e)
+        private async void UserAdd_Button(object sender, RoutedEventArgs e)
         {
-            switch (count) { 
+            switch (count)
+            {
                 case 1:
                     UserAddPanel userAddPanel = new UserAddPanel();
-                    userAddPanel.Show();
+                    userAddPanel.addBut.IsEnabled = true;
+                    userAddPanel.updBut.IsEnabled = false;
+                    userAddPanel.ShowDialog();
                     break;
                 case 2:
                     SportProductAddPanel sportProductPage = new SportProductAddPanel();
-                    sportProductPage.Show();
+                    sportProductPage.ShowDialog();
                     break;
                 case 3:
                     BarProductAddPanel barProductPage = new BarProductAddPanel();
-                    barProductPage.Show();
+                    barProductPage.ShowDialog();
                     break;
                 case 6:
                     PingPongTableAddPanel pingPongTableAddPanel = new PingPongTableAddPanel();
-                    pingPongTableAddPanel.Show();
+                    pingPongTableAddPanel.ShowDialog();
                     break;
                 default:
                     break;
             }
+            await RefreshDataAsync();
+        }
+
+        private async void Add_Button(object sender, RoutedEventArgs e)
+        {
+            UserAddPanel userAddPanel = new UserAddPanel();
+
+            userAddPanel.addBut.IsEnabled = false;
+            userAddPanel.updBut.IsEnabled = true;
 
 
+            var item = (UserView)userDataGrid.SelectedItem;
 
+            userAddPanel.id.Content = item.Id;
+            userAddPanel.name.Text = item.Name;
+            userAddPanel.passportinfo.Text = item.Passport;
+            userAddPanel.password.Text = item.Password;
+            userAddPanel.ShowDialog();
+            await RefreshDataAsync();
+        }
+
+        private async void Delete_Button(object sender, RoutedEventArgs e)
+        {
+            var item = (UserView)userDataGrid.SelectedItem;
+            int res = item.Id;
+            var resault = userService.DeleteAsync(res);
+            await RefreshDataAsync();
         }
     }
 }

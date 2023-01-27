@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.Services;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
 {
@@ -19,9 +10,65 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
     /// </summary>
     public partial class UserAddPanel : Window
     {
+        IUserService userService = new UserService();
+
+
         public UserAddPanel()
         {
             InitializeComponent();
+
         }
+
+        private async void Add_Button(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                User user = new User();
+                user.Name = name.Text.ToString();
+                user.PassportInfo = passportinfo.Text.ToString();
+                user.Password = password.Text.ToString();
+                user.IsAdmin = 0;
+
+                var resault = await userService.CreateAsync(user);
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error catch");
+            }
+        }
+
+        private async void Update_Button(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (name.Text != null && passportinfo.Text != null && password.Text != null)
+                {
+                    User user = new User();
+
+                    user.Id = int.Parse(id.Content.ToString());
+                    user.Name = name.Text;
+                    user.PassportInfo = passportinfo.Text;
+                    user.Password = password.Text;
+                    user.IsAdmin = 0;
+                    var res = await userService.UpdateAsync(user);
+                    if (res)
+                    {
+                        this.Close();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Ma'lumotlarni to'ldiring");
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
     }
 }

@@ -1,5 +1,4 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows;
-using PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow;
 using System.Windows;
 using System.Windows.Input;
 
@@ -12,24 +11,40 @@ namespace PingPongManagmantSystem
             InitializeComponent();
         }
 
-        private void btn_Login(object sender, MouseButtonEventArgs e)
+        private async void btn_Login(object sender, MouseButtonEventArgs e)
         {
-            if (int.Parse(txtpassword.Password.ToString()) == 1)
+
+            try
             {
                 AdminPanel adminPanel = new AdminPanel();
                 adminPanel.Show();
                 this.Close();
+                //IAccountService accountService = new AccountService();
+                //var resault = await accountService.LoginAsync(txtpassword.Password.ToString());
+                //if (resault == false)
+                //{
+                //    MessageBox.Show("Parol noto'g'ri kiritildi");
+                //}
+                //else
+                //{
+                //    var user = await accountService.WindowtAsync(txtpassword.Password.ToString());
+                //    if (user.IsAdmin == 0)
+                //    {
+                //        CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
+                //        cassaPanelDesktop.Show();
+                //        this.Close();
+                //    }
+                //    else if (user.IsAdmin == 1)
+                //    {
+                //        AdminPanel adminPanel = new AdminPanel();
+                //        adminPanel.Show();
+                //        this.Close();
+                //    }
+                //}
             }
-            else if (int.Parse(txtpassword.Password.ToString()) == 2)
+            catch
             {
-                CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
-                cassaPanelDesktop.Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Noto'g'ti parol kiritildi");
-                
+                MessageBox.Show("Xatolik");
             }
         }
 

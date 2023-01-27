@@ -12,13 +12,13 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolTovis"/>
     </Window.Resources>
-        <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <!--Left Menu-->
             <Grid>
                 <Grid.RowDefinitions>
@@ -26,31 +26,31 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Menu VerticalAlignment="Top" Width="500" Height="30" Background="Transparent">
-                    <MenuItem Header="Mijozlar" BorderThickness="0" Width="auto" Click="MenuEmpolye_Button">
-                    </MenuItem>
-                    <MenuItem Header="Vaqt" BorderThickness="0" Width="auto" Click="MenuTime_Button">
-                    </MenuItem>
+                    <Button Content="Mijozlar" BorderThickness="0" Width="auto" Click="MenuEmpolye_Button">
+                    </Button>
+                    <Button Content="Vaqt" BorderThickness="0" Width="auto" Click="MenuTime_Button">
+                    </Button>
                 </Menu>
 
                 <!--Menu Icon-->
                 <Button HorizontalAlignment="Left" Margin="20 28 0 35" Style="{StaticResource topButton}">
- 
+
                 </Button>
 
                 <Border Grid.Row="1" Background="Gray" CornerRadius="0 30 0 10">
-                    
+
                     <DockPanel>
                         <!--Menu Logo-->
-                        
+
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100"
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
-                                   <ImageBrush />
+                                    <ImageBrush />
                                 </Ellipse.Fill>
                             </Ellipse>
                         </Border>
-                        
+
                         <!--Menu Titles-->
                         <TextBlock Text="Admin" Foreground="White" FontSize="22" FontWeight="SemiBold"
                                    DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
@@ -107,7 +107,7 @@
                                     <TextBlock Text="Kassa"/>
                                 </StackPanel>
                             </Button>
-                            
+
                         </StackPanel>
 
                         <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom"
@@ -121,8 +121,8 @@
                     </DockPanel>
                 </Border>
             </Grid>
-            
-            
+
+
             <!--Main Section-->
             <Grid Grid.Column="1" Margin="30 20 20 20">
                 <Grid.RowDefinitions>
@@ -137,7 +137,7 @@
 
 
                 <!--Top Buttons-->
-             <!--   <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc" HorizontalAlignment="Right">
+                <!--   <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc" HorizontalAlignment="Right">
                     <Icon:PackIconMaterial Kind="Cog"/>
                 </Button>
 
@@ -153,19 +153,19 @@
                 <!--Members Datagrid-->
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
-                          Grid.Row="1" x:Name="userDataGrid">
+                          Grid.Row="1" x:Name="userDataGrid" HorizontalAlignment="Right">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Ism" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="PassportRaqam" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Parol" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn  Header="Ism" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="PassportRaqam" Binding="{Binding Passport}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Parol" Binding="{Binding Password}" IsReadOnly="True" Width="*"/>
                         <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridEditdButton}">
+                                        <Button Style="{StaticResource gridEditdButton}" Click="Add_Button">
                                             <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
-                                        <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0">
+                                        <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0" Click="Delete_Button">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
                                     </StackPanel>
@@ -207,7 +207,7 @@
 
                         </StackPanel>
                     </Border>
-                    <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin=" 0 0 0 -40" Click="UserAdd_Button">
+                    <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin="0,32,0,0" Click="UserAdd_Button" Height="36" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                             <TextBlock Text="Add Member Create" />
@@ -232,5 +232,5 @@
                 </Border>
             </Grid>
         </Grid>
-    </Border>  
+    </Border>
 </Window>

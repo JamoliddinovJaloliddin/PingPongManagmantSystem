@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.Domain.Entities;
 
-namespace PingPongManagmantSystem.Domain.Constans.DbConstans
+namespace PingPongManagmantSystem.DataAccess.Constans
 {
     public class AppDbContext : DbContext
     {

@@ -1,4 +1,5 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.ViewModels;
 
 namespace PingPongManagmantSystem.Service.Interfaces
 {
@@ -8,7 +9,7 @@ namespace PingPongManagmantSystem.Service.Interfaces
         Task<bool> UpdateAsync(User user);
         Task<bool> DeleteAsync(int id);
         Task<User> GetByIdAsync(int id);
-        Task<IEnumerable<User>> GetAllAsync();
+        Task<IList<UserView>> GetAllAsync();
 
     }
 }

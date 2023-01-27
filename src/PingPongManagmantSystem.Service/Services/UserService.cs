@@ -1,23 +1,79 @@
-﻿using PingPongManagmantSystem.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PingPongManagmantSystem.DataAccess.Constans;
+using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.ViewModels;
 
 namespace PingPongManagmantSystem.Service.Services
 {
     public class UserService : IUserService
     {
-        public Task<bool> CreateAsync(User user)
+        AppDbContext db = new AppDbContext();
+        public async Task<bool> CreateAsync(User user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                db.Users.Add(user);
+                var res = await db.SaveChangesAsync();
+                if (res > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var user = db.Users.Find(id);
+                db.Users.Remove(user);
+                var resault = await db.SaveChangesAsync();
+                if (resault > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Task<IEnumerable<User>> GetAllAsync()
+        public async Task<IList<UserView>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<UserView> list = new List<UserView>();
+                var resault = db.Users.Where(u => u.IsAdmin == 0).AsNoTracking();
+                foreach (var user in resault)
+                {
+                    UserView userView = new UserView();
+                    userView.Id = user.Id;
+                    userView.Name = user.Name;
+                    userView.Passport = user.PassportInfo;
+                    userView.Password = user.Password;
+                    list.Add(userView);
+                }
+                if (list is not null)
+                {
+                    return list;
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public Task<User> GetByIdAsync(int id)
@@ -25,9 +81,23 @@ namespace PingPongManagmantSystem.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(User user)
+        public async Task<bool> UpdateAsync(User user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                user.IsAdmin = 0;
+                db.Users.Update(user);
+                var res = await db.SaveChangesAsync();
+                if (res > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
