@@ -14,14 +14,15 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Label Content="Status" Margin="10 20"/>
-                <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
+                <TextBox x:Name="status" Text="" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
                 <Label Content="Foizi" Margin="10 70 0 0"/>
-                <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
+                <TextBox x:Name="percest"  Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
+                <Label x:Name="id" Foreground="Transparent" HorizontalAlignment="Left"/>
             </Grid>
 
             <Grid Grid.Row="1">
-                <Button Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish"/>
-                <Button Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish"/>
+                <Button x:Name="add_btn" Click="Add_Btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish"/>
+                <Button x:Name="upd_btn" Click="Upd_Btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish"/>
             </Grid>
         </Grid>
     </Border>

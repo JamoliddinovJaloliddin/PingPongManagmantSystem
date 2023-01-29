@@ -5,28 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows"
         mc:Ignorable="d"
-        Title="Timepanel" Height="400" Width="400">
+        Title="Timepanel" Height="300" Width="230">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            
-            <TextBox Text="Dan" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
-            <TextBox Text="Gacha" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
-            <TextBox Text="Dan" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
-            <TextBox Text="Gacha" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="300" HorizontalAlignment="Right"/>
+            <Label Content="Dan" Margin="10 20 0 0 "/>
+            <TextBox x:Name="dan1" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="170" HorizontalAlignment="Right"/>
+            <Label Content="Gacha" Margin="10 70 0 0 "/>
+            <TextBox x:Name="gacha1" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="170" HorizontalAlignment="Right"/>
+            <Label Content="Dan" Margin="10 120 0 0 "/>
+            <TextBox x:Name="dan2" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="170" HorizontalAlignment="Right"/>
+            <Label Content="Gacha" Margin="10 170 0 0 "/>
+            <TextBox x:Name="gacha2" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="170" HorizontalAlignment="Right"/>
+         
         </Grid>
-
         <Grid Grid.Row="1">
-            <Border>
-                <TextBlock Text= "10:00 dan 18:00 gacha arzon vaqt"/>
-            </Border>
-            <Border Margin="0 20 0 0">
-                <TextBlock Text="18:00 dan 02:00 gacga qimmat vaqt"/>
-            </Border>
-            <Button Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="O'zgartirish"/>
+            <Button Width="210" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"  Content="O'zgartirish" Click="Update_Button"/>
         </Grid>
     </Grid>
 </Window>

@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
         Title="CassaPanelDesktop" Height="720" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="Transparent" AllowsTransparency="True">
-    <Border Background="#eff2f7" CornerRadius="10">
+    <Border Background="WhiteSmoke" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -42,10 +42,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Border Background="Gray" CornerRadius="7" Margin="5 0 2 2" Grid.Column="0">
+                <Border  Background="White" CornerRadius="7" Margin="5 0 2 2" Grid.Column="0">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Margin="0 50 0 0">
-
                             <Border Width="30" Height="30" Padding="3" Background="White" CornerRadius="110"
                                 DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="6 -58 6 0">
                                 <Ellipse>
@@ -54,46 +53,40 @@
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </Border>
-
-                            <Button Style="{StaticResource menuButton}" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="Play" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Vaqt ochish"/>
+                        
+                            <Button x:Name="ply_btn1" Style="{StaticResource menuButton}" Click="Play_Button">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Icon:PackIconMaterial Kind="Play" Style="{StaticResource menuButtonIcon}" Foreground="Gray"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Click="Pause_Button">
+                            <Button x:Name="pause_btn1" Style="{StaticResource menuButton}" Click="Pause_Button">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="To'xtatib turish"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}" Click="Stop_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Stop" Style="{StaticResource menuButtonIcon}" />
-                                    <TextBlock Text="To'xtatish"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}" Click="Transfer_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TransferDown" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="O'tqazish"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}" Click="Bar_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Bar"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
                         <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Hisob"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
@@ -103,7 +96,7 @@
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Margin="0 50 0 0">
 
-                            <Border Width="30" Height="30" Padding="3" Background="White" CornerRadius="110"
+                            <Border  Width="30" Height="30" Padding="3" Background="White" CornerRadius="110"
                                 DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="6 -58 6 0">
                                 <Ellipse>
                                     <Ellipse.Fill>
@@ -111,15 +104,14 @@
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </Border>
-
-                            <Button Style="{StaticResource menuButton}" >
+                            <Label x:Name="label2" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="Transparent"/>
+                            <Button x:Name="ply_btn2" Style="{StaticResource menuButton}" Click="Play_Button">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="Play" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Vaqt ochish"/>
+                                    <Icon:PackIconMaterial Kind="Play" Style="{StaticResource menuButtonIcon}" Foreground="White"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Click="Pause_Button">
+                            <Button x:Name="pause_btn2" Style="{StaticResource menuButton}" Click="Pause_Button">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="To'xtatib turish"/>
@@ -156,7 +148,7 @@
                     </DockPanel>
                 </Border>
 
-                <Border Background="Gray" CornerRadius="15" Margin="5 5 5 5" Grid.Column="2">
+                <Border Background="White" CornerRadius="15" Margin="5 5 5 5" Grid.Column="2">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Margin="0 50 0 0">
 
@@ -336,7 +328,7 @@
                     </DockPanel>
                 </Border>
 
-                <Border Background="Gray" CornerRadius="15" Margin="5 5 5 5" Grid.Column="1">
+                <Border Background="White" CornerRadius="15" Margin="5 5 5 5" Grid.Column="1">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Margin="0 50 0 0">
 
@@ -450,7 +442,7 @@
                     </DockPanel>
                 </Border>
 
-                <Border Background="Gray" CornerRadius="15" Margin="5 5 10 5" Grid.Column="3">
+                <Border Background="White" CornerRadius="15" Margin="5 5 10 5" Grid.Column="3">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Margin="0 50 0 0">
 

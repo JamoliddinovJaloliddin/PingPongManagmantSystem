@@ -1,7 +1,8 @@
-﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
+﻿using PingPongManagmantSystem.Desktop.Pages;
+using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services;
 using PingPongManagmantSystem.Service.ViewModels;
 using System;
@@ -72,7 +73,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/SportProductPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void BarProduct_Button(object sender, RoutedEventArgs e)
+        private async void BarProduct_Button(object sender, RoutedEventArgs e)
         {
             count = 3;
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/BarProductpage.xaml", UriKind.RelativeOrAbsolute));
@@ -127,8 +128,10 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         private async void UserAdd_Button(object sender, RoutedEventArgs e)
         {
+            
             switch (count)
             {
+                
                 case 1:
                     UserAddPanel userAddPanel = new UserAddPanel();
                     userAddPanel.addBut.IsEnabled = true;
@@ -137,20 +140,35 @@ namespace PingPongManagmantSystem.Desktop.Windows
                     break;
                 case 2:
                     SportProductAddPanel sportProductPage = new SportProductAddPanel();
+                    sportProductPage.add_btn.IsEnabled = true;
+                    sportProductPage.upd_btn.IsEnabled = false;
                     sportProductPage.ShowDialog();
                     break;
                 case 3:
                     BarProductAddPanel barProductPage = new BarProductAddPanel();
+                    barProductPage.addbtn.IsEnabled = true;
+                    barProductPage.updbtn.IsEnabled = false;
                     barProductPage.ShowDialog();
                     break;
                 case 6:
                     PingPongTableAddPanel pingPongTableAddPanel = new PingPongTableAddPanel();
+                    pingPongTableAddPanel.add_btn.IsEnabled = true;
+                    pingPongTableAddPanel.upd_btn.IsEnabled = false;
                     pingPongTableAddPanel.ShowDialog();
                     break;
                 default:
                     break;
             }
-            await RefreshDataAsync();
+            if (count == 1)
+            {
+                await RefreshDataAsync();
+            }
+            else if (count == 3)
+            {
+                BarProductpage barProductpage = new BarProductpage();
+                barProductpage.RefreshDataBar();
+            }
+
         }
 
         private async void Add_Button(object sender, RoutedEventArgs e)

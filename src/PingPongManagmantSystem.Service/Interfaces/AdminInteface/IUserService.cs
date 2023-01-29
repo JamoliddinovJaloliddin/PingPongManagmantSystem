@@ -1,7 +1,7 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.ViewModels;
 
-namespace PingPongManagmantSystem.Service.Interfaces
+namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
 {
     public interface IUserService
     {

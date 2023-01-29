@@ -1,11 +1,11 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 
-namespace PingPongManagmantSystem.Service.Services
+namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
-    public class CustomerService : ICustomerService
+    public class CardService : ICardService
     {
-        public Task<bool> CreateAsync(Customer customer)
+        public Task<bool> CreateAsync(Card card)
         {
             throw new NotImplementedException();
         }
@@ -15,7 +15,7 @@ namespace PingPongManagmantSystem.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Customer>> GetAllAsync()
+        public Task<IEnumerable<Card>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
@@ -25,7 +25,7 @@ namespace PingPongManagmantSystem.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(Customer customer)
+        public Task<bool> UpdateAsync(Card card)
         {
             throw new NotImplementedException();
         }

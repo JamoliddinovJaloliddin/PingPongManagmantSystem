@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.ViewModels;
 
-namespace PingPongManagmantSystem.Service.Services
+namespace PingPongManagmantSystem.Service.Services.AdminService
 {
     public class UserService : IUserService
     {

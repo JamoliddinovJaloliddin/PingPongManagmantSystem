@@ -1,4 +1,5 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows;
+using PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,7 +17,8 @@ namespace PingPongManagmantSystem
 
             try
             {
-                AdminPanel adminPanel = new AdminPanel();
+                CassaPanelDesktop adminPanel = new CassaPanelDesktop(); 
+              //  AdminPanel adminPanel = new AdminPanel();
                 adminPanel.Show();
                 this.Close();
                 //IAccountService accountService = new AccountService();

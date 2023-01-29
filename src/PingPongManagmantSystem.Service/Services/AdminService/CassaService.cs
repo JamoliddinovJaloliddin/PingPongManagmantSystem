@@ -1,7 +1,7 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 
-namespace PingPongManagmantSystem.Service.Services
+namespace PingPongManagmantSystem.Service.Services.AdminService
 {
     public class CassaService : ICassaService
     {

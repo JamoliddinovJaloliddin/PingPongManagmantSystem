@@ -12,19 +12,20 @@
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Label Content="Name" Margin="20 20"/>
-            <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
-            <Label Content="Kelgan narxi" Margin="20 70"/>
-            <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
-            <Label Content="Sotuv narxi" Margin="20 120"/>
-            <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
-            <Label Content="Soni" Margin="20 170"/>
-            <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="300" HorizontalAlignment="Right"/>
+            <Label Content="Name" Margin="20 20 0 0"/>
+            <TextBox  x:Name="name" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
+            <Label Content="Kelgan narxi" Margin="20 70 0 0"/>
+            <TextBox x:Name="arrivalPrice" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
+            <Label Content="Sotuv narxi" Margin="20 120 0 0"/>
+            <TextBox  x:Name="salePrice" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
+            <Label Content="Soni" Margin="20 170 0 0"/>
+            <TextBox x:Name="count" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="300" HorizontalAlignment="Right"/>
+            <Label x:Name="id" Content="Id" Background="Transparent" HorizontalAlignment="Left"/>
         </Grid>
 
         <Grid Grid.Row="1">
-            <Button Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish"/>
-            <Button Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish"/>
+            <Button x:Name="add_btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish" Click="Add_Button"/>
+            <Button x:Name="upd_btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish" Click="Update_Button"/>
 
 
         </Grid>

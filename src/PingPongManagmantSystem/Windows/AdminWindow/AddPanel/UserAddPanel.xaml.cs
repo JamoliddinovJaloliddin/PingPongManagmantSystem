@@ -1,5 +1,5 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services;
 using System.Windows;
 

@@ -15,18 +15,19 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Label Content="Name" Margin="10 20"/>
-                <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
+                <TextBox x:Name="name" Text="" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
                 <Label Content="Kelgan narxi" Margin="10 70"/>
-                <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
+                <TextBox x:Name="arrivalPrice" Text="" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
                 <Label Content="Sotuv narxi" Margin="10 120 0 0"/>
-                <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
+                <TextBox x:Name="salePrice" Text="" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
                 <Label Content="Soni" Margin="10 170 0 0"/>
-                <TextBox Text="" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="300" HorizontalAlignment="Right"/>
+                <TextBox x:Name="count" Text="" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="300" HorizontalAlignment="Right"/>
+                <Label x:Name="id" Background="Transparent" HorizontalAlignment="Left"/>
             </Grid>
 
             <Grid Grid.Row="1">
-                <Button Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish"/>
-                <Button Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish"/>
+                <Button x:Name="addbtn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish" Click="Add_Button"/>
+                <Button x:Name="updbtn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish" Click="Update_Button"/>
 
 
             </Grid>

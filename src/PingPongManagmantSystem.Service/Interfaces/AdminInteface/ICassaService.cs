@@ -1,6 +1,6 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
 
-namespace PingPongManagmantSystem.Service.Interfaces
+namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
 {
     public interface ICassaService
     {

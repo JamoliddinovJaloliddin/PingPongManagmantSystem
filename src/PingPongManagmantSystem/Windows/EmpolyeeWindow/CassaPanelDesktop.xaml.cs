@@ -1,4 +1,10 @@
-﻿using System.Windows;
+﻿using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
+using PingPongManagmantSystem.Service.Services;
+using System;
+using System.Reflection.Emit;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 {
@@ -7,9 +13,15 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
     /// </summary>
     public partial class CassaPanelDesktop : Window
     {
+        IDesktopCassaService desktopCassaService = new DesktopCassaService();
         public CassaPanelDesktop()
         {
             InitializeComponent();
+        }
+
+        public async void RefreshData()
+        {
+            
         }
 
         private void Bar_Click(object sender, RoutedEventArgs e)
@@ -30,14 +42,49 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             empolyeeCardRegister.Show();
         }
 
-        private void Play_Button(object sender, RoutedEventArgs e)
+        private async void Play_Button(object sender, RoutedEventArgs e)
         {
+            DesktopCassa cassa = new DesktopCassa();
 
+            if (ply_btn1.IsMouseOver)
+            {
+                ply_btn1.IsEnabled = false;
+                cassa.StolNumber = 1;
+                cassa.Pause = false;
+                cassa.Stop = false;
+                cassa.Busy = true;
+                cassa.BarSum = 0;
+            }
+            else if (ply_btn2.IsMouseOver)
+            {
+                ply_btn2.IsEnabled = false;
+                cassa.StolNumber = 2;
+                cassa.Pause = false;
+                cassa.Stop = false;
+                cassa.Busy = true;
+                cassa.BarSum = 0;
+            }
+            var res = await desktopCassaService.CreateAsync(cassa);
         }
 
-        private void Pause_Button(object sender, RoutedEventArgs e)
+        private async void Pause_Button(object sender, RoutedEventArgs e)
         {
+            DesktopCassa cassa = new DesktopCassa();
 
+            if (pause_btn1.IsMouseOver)
+            {
+                cassa.StolNumber = 1;
+                cassa.Pause = true;
+                cassa.Stop = false;
+                cassa.Busy = true;
+            }
+            else if (pause_btn2.IsMouseOver)
+            {
+                cassa.StolNumber = 2;
+                cassa.Pause = true;
+                cassa.Stop = false;
+                cassa.Busy = true;
+            }
         }
 
         private void Stop_Button(object sender, RoutedEventArgs e)
@@ -69,5 +116,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             mainWindow.Show();
             this.Close();
         }
+
+
     }
 }

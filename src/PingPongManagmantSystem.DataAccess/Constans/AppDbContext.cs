@@ -12,6 +12,9 @@ namespace PingPongManagmantSystem.DataAccess.Constans
         public DbSet<PingPongTable> PingPongTables { get; set; } = default!;
         public DbSet<SportProduct> SportProducts { get; set; } = default!;
         public DbSet<User> Users { get; set; } = default!;
+        public DbSet<Time> Times { get; set; } = default!;
+
+        public DbSet<DesktopCassa> DesktopCassas {get; set;} = default!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

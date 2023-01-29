@@ -1,6 +1,6 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
 
-namespace PingPongManagmantSystem.Service.Interfaces
+namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
 {
     public interface IPingPongTableService
     {
@@ -8,6 +8,6 @@ namespace PingPongManagmantSystem.Service.Interfaces
         Task<bool> UpdateAsync(PingPongTable user);
         Task<bool> DeleteAsync(int id);
         Task<User> GetByIdAsync(int id);
-        Task<IEnumerable<PingPongTable>> GetAllAsync();
+        Task<IList<PingPongTable>> GetAllAsync();
     }
 }

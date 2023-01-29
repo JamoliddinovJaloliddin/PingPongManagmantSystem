@@ -6,7 +6,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
-        Title="EmpolyeeBarProduct" Height="450" Width="800">
+        Title="EmpolyeeBarProduct" Height="450" Width="500">
     <Border CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -21,21 +21,16 @@
             <Grid Grid.Row="1">
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
-                          Grid.Row="1" x:Name="userDataGrid">
+                          Grid.Row="1" x:Name="empolyeProductDataGrid">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Nomi" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Narxi" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Soni" IsReadOnly="True" Width="*"/>
-                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                        <DataGridTextColumn x:Name="name" Header="Nomi" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn x:Name="salePrice" Header="Narxi" Binding="{Binding SalePrice}" IsReadOnly="True" Width="*"/>
+                        <DataGridTemplateColumn Header="Soni" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0">
-                                            <Icon:PackIconMaterial Kind="Minus" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                        <Button Style="{StaticResource gridEditdButton}" Margin="5 0 0 0">
-                                            <Icon:PackIconMaterial Kind="Plus" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
+                                        <TextBox  Width="80" Height="35" Margin="5 0 0 0">
+                                        </TextBox>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

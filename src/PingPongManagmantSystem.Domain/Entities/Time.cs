@@ -1,6 +1,8 @@
-﻿namespace PingPongManagmantSystem.Domain.Entities
+﻿using PingPongManagmantSystem.Domain.Common;
+
+namespace PingPongManagmantSystem.Domain.Entities
 {
-    public class Time
+    public class Time : BaseEntity
     {
         public string TimeCheapFrom { get; set; } = String.Empty;
         public string TimeCheapUpTo { get; set; } = String.Empty;

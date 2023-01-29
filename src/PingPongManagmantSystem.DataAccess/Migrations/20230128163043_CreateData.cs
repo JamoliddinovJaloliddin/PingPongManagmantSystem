@@ -4,7 +4,7 @@
 
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
-    public partial class CreateDatabase : Migration
+    public partial class CreateData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +32,7 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Status = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<double>(type: "REAL", nullable: false),
-                    TimeLimit = table.Column<string>(type: "TEXT", nullable: false)
+                    TimeLimit = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,6 +72,24 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DesktopCassas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    StolNumber = table.Column<byte>(type: "INTEGER", nullable: false),
+                    PlayTime = table.Column<float>(type: "REAL", nullable: false),
+                    Pause = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Stop = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Busy = table.Column<bool>(type: "INTEGER", nullable: false),
+                    BarSum = table.Column<double>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DesktopCassas", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PingPongTables",
                 columns: table => new
                 {
@@ -100,6 +118,22 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SportProducts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Times",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    TimeCheapFrom = table.Column<string>(type: "TEXT", nullable: false),
+                    TimeCheapUpTo = table.Column<string>(type: "TEXT", nullable: false),
+                    TimeExpensiveFrom = table.Column<string>(type: "TEXT", nullable: false),
+                    TimeExpensiveUpTo = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Times", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -134,10 +168,16 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                 name: "Customers");
 
             migrationBuilder.DropTable(
+                name: "DesktopCassas");
+
+            migrationBuilder.DropTable(
                 name: "PingPongTables");
 
             migrationBuilder.DropTable(
                 name: "SportProducts");
+
+            migrationBuilder.DropTable(
+                name: "Times");
 
             migrationBuilder.DropTable(
                 name: "Users");

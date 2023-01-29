@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230121171624_CreateDatabase")]
-    partial class CreateDatabase
+    [Migration("20230128163043_CreateData")]
+    partial class CreateData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,9 +55,8 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TimeLimit")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<double>("TimeLimit")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
@@ -114,6 +113,35 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.DesktopCassa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("BarSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<bool>("Busy")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Pause")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("PlayTime")
+                        .HasColumnType("REAL");
+
+                    b.Property<byte>("StolNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Stop")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DesktopCassas");
+                });
+
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.PingPongTable", b =>
                 {
                     b.Property<int>("Id")
@@ -157,6 +185,33 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SportProducts");
+                });
+
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.Time", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TimeCheapFrom")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TimeCheapUpTo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TimeExpensiveFrom")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TimeExpensiveUpTo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Times");
                 });
 
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.User", b =>
