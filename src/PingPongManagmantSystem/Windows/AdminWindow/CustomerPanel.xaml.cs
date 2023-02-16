@@ -1,8 +1,7 @@
-﻿using Dynamitey.DynamicObjects;
-using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
+﻿using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Services;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Collections.Generic;
 using System.Windows;
 

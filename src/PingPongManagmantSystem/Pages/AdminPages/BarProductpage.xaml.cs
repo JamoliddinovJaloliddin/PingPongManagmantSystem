@@ -1,7 +1,7 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Services;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Collections.Generic;
 using System.Windows.Controls;
 
@@ -40,8 +40,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 RefreshDataBar();
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -54,8 +54,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 RefreshDataBar();
             }
             catch
-            { 
-            
+            {
+
             }
         }
     }

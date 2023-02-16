@@ -2,11 +2,6 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PingPongManagmantSystem.Service.Services.AdminService
 {

@@ -1,8 +1,7 @@
-﻿using Dynamitey.DynamicObjects;
-using PingPongManagmantSystem.Desktop.Windows.AddPanel;
+﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Services;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -44,8 +43,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 await RefreshDataSpor();
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -58,8 +57,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 await RefreshDataSpor();
             }
             catch
-            { 
-            
+            {
+
             }
         }
     }

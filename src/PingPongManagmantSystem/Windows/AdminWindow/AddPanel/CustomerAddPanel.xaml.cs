@@ -1,7 +1,6 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Services;
-using System.Reflection.PortableExecutable;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel

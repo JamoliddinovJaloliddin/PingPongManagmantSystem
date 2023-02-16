@@ -17,10 +17,18 @@ namespace PingPongManagmantSystem
 
             try
             {
-                CassaPanelDesktop adminPanel = new CassaPanelDesktop(); 
-              //  AdminPanel adminPanel = new AdminPanel();
-                adminPanel.Show();
-                this.Close();
+                CassaPanelDesktop adminPanel1 = new CassaPanelDesktop();
+                AdminPanel adminPanel2 = new AdminPanel();
+                if (txtpassword.Password.ToString() == "1")
+                {
+                    adminPanel1.Show();
+                    this.Close();
+                }
+                else
+                {
+                    adminPanel2.Show();
+                    this.Close();
+                }
                 //IAccountService accountService = new AccountService();
                 //var resault = await accountService.LoginAsync(txtpassword.Password.ToString());
                 //if (resault == false)

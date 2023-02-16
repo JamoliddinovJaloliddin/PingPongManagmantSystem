@@ -3,7 +3,7 @@ using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Services;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -128,10 +128,10 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         private async void UserAdd_Button(object sender, RoutedEventArgs e)
         {
-            
+
             switch (count)
             {
-                
+
                 case 1:
                     UserAddPanel userAddPanel = new UserAddPanel();
                     userAddPanel.addBut.IsEnabled = true;

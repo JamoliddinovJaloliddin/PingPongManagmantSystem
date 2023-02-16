@@ -1,7 +1,7 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Services;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Windows.Controls;
 
 namespace PingPongManagmantSystem.Desktop.Pages
@@ -26,8 +26,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 pingPongDataGrid.ItemsSource = item;
             }
             catch
-            { 
-                
+            {
+
             }
         }
 
@@ -37,7 +37,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
             {
                 PingPongTableAddPanel pingPongTable = new PingPongTableAddPanel();
                 pingPongTable.add_btn.IsEnabled = false;
-                pingPongTable.upd_btn.IsEnabled=true;
+                pingPongTable.upd_btn.IsEnabled = true;
 
                 var item = (PingPongTable)pingPongDataGrid.SelectedItem;
 
@@ -49,8 +49,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 RefreshDataPing();
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -63,8 +63,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 RefreshDataPing();
             }
             catch
-            { 
-            
+            {
+
             }
         }
     }

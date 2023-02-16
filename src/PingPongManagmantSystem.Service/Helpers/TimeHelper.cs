@@ -1,9 +1,4 @@
 ﻿using PingPongManagmantSystem.Domain.Constans;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PingPongManagmantSystem.Service.Helpers
 {
@@ -19,7 +14,7 @@ namespace PingPongManagmantSystem.Service.Helpers
         }
 
         public static DateTime GetCurrentServerTimeFloatParse()
-        { 
+        {
             var data = DateTime.UtcNow;
             return data.AddHours(TimeConstans.UTC);
         }

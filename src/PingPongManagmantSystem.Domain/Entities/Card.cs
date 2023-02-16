@@ -6,7 +6,7 @@ namespace PingPongManagmantSystem.Domain.Entities
     {
         public string Status { get; set; } = String.Empty;
         public double Price { get; set; }
-        public double TimeLimit { get; set; } 
+        public double TimeLimit { get; set; }
 
     }
 }

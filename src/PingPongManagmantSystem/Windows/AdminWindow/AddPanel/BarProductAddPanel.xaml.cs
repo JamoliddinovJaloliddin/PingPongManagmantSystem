@@ -1,6 +1,6 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Services;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
@@ -27,7 +27,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
             }
             catch
             {
-                
+
             }
 
         }
@@ -42,9 +42,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                     product.Id = int.Parse(id.Content.ToString());
                     product.Name = name.Text;
                     product.ArrivalPrice = double.Parse(arrivalPrice.Text);
-                    product.SalePrice = double.Parse(arrivalPrice.Text);
+                    product.SalePrice = double.Parse(salePrice.Text);
                     product.Count = int.Parse(count.Text);
-                    var res = await  barProductService.UpdateAsync(product);
+                    var res = await barProductService.UpdateAsync(product);
                     if (res == false)
                     {
                         MessageBox.Show("Error");
@@ -58,8 +58,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
 
             }
             catch
-            { 
-            
+            {
+
             }
         }
     }

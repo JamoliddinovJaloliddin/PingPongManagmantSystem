@@ -1,8 +1,6 @@
-﻿using Dynamitey.DynamicObjects;
-using PingPongManagmantSystem.Domain.Entities;
+﻿using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Services;
-using System.Collections.Generic;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows
@@ -24,7 +22,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             Time res = new Time();
             var rest = await timeService.GetAll();
             foreach (var item in rest)
-            { 
+            {
                 res.TimeCheapUpTo = item.TimeCheapUpTo;
                 res.TimeCheapFrom = item.TimeCheapFrom;
                 res.TimeExpensiveFrom = item.TimeExpensiveFrom;

@@ -1,5 +1,5 @@
 ﻿using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Services;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System.Collections.Generic;
 using System.Windows;
