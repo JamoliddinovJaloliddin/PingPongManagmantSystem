@@ -1,0 +1,44 @@
+﻿<Page x:Class="PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage.BarStatisticPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BarStatisticPage">
+
+    <Border Background="#eff2f7">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Height="15">
+                <Button Content="Statistic Product" Click="StatisticPage" Width="100" HorizontalAlignment="Left"/>
+                <Button Content="Sport Product" Margin="100 0 0 0" Click="SportPage" Width="100" HorizontalAlignment="Left"/>
+                <ComboBox Width="200" HorizontalAlignment="Right"/> 
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
+                          Grid.Row="1" x:Name="userDataGrid">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Sana" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Ismi" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Nomi" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Narxi" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="To'lov turi" IsReadOnly="True" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+
+
+
+        </Grid>
+    </Border>
+</Page>

@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PingPongManagmantSystem.Domain.Constans.DbConstans;
+using PingPongManagmantSystem.DataAccess.Constans;
 
 #nullable disable
 
-namespace PingPongManagmantSystem.Domain.Migrations
+namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -46,14 +46,6 @@ namespace PingPongManagmantSystem.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<double>("Price")
                         .HasColumnType("REAL");
 
@@ -61,9 +53,8 @@ namespace PingPongManagmantSystem.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TimeLimit")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<double>("TimeLimit")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
@@ -79,35 +70,25 @@ namespace PingPongManagmantSystem.Domain.Migrations
                     b.Property<double>("BarProductPrice")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("Card")
-                        .HasColumnType("REAL");
-
                     b.Property<string>("Check")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("NoCard")
-                        .HasColumnType("REAL");
-
                     b.Property<double>("SportProductPrice")
                         .HasColumnType("REAL");
 
+                    b.Property<string>("SumPrice")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<double>("TablePrice")
                         .HasColumnType("REAL");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("VipCard")
-                        .HasColumnType("REAL");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Cassas");
                 });
@@ -118,10 +99,7 @@ namespace PingPongManagmantSystem.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("CheapPrice")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("ExpensivePrice")
+                    b.Property<float>("Percent")
                         .HasColumnType("REAL");
 
                     b.Property<string>("Status")
@@ -133,29 +111,48 @@ namespace PingPongManagmantSystem.Domain.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.DesktopCassa", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("BarSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<bool>("Busy")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Pause")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("PlayTime")
+                        .HasColumnType("REAL");
+
+                    b.Property<byte>("StolNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Stop")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DesktopCassas");
+                });
+
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.PingPongTable", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("PriceCheap")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("PriceExpensive")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TimeCheapFrom")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TimeCheapUpTo")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TimeExpensiveFrom")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TimeExpensiveUpTo")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -188,13 +185,40 @@ namespace PingPongManagmantSystem.Domain.Migrations
                     b.ToTable("SportProducts");
                 });
 
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.Time", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TimeCheapFrom")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TimeCheapUpTo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TimeExpensiveFrom")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TimeExpensiveUpTo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Times");
+                });
+
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsAdmin")
+                    b.Property<int>("IsAdmin")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -212,17 +236,6 @@ namespace PingPongManagmantSystem.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.Cassa", b =>
-                {
-                    b.HasOne("PingPongManagmantSystem.Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

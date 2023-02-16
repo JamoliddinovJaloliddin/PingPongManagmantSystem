@@ -1,0 +1,29 @@
+﻿<Window x:Class="PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel.CustomerAddPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel"
+        mc:Ignorable="d"
+        Title="CustomerAddPanel" Height="200" Width="450">
+    <Border CornerRadius="20" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Label Content="Status" Margin="10 20"/>
+                <TextBox x:Name="status" Text="" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
+                <Label Content="Foizi" Margin="10 70 0 0"/>
+                <TextBox x:Name="percest"  Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
+                <Label x:Name="id" Foreground="Transparent" HorizontalAlignment="Left"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Button x:Name="add_btn" Click="Add_Btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish"/>
+                <Button x:Name="upd_btn" Click="Upd_Btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

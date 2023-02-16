@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PingPongManagmantSystem.Domain;
 using PingPongManagmantSystem.Domain.Entities;
-using System.Collections.Generic;
 
-namespace PingPongManagmantSystem.Domain.Constans.DbConstans
+namespace PingPongManagmantSystem.DataAccess.Constans
 {
     public class AppDbContext : DbContext
     {
@@ -14,6 +12,9 @@ namespace PingPongManagmantSystem.Domain.Constans.DbConstans
         public DbSet<PingPongTable> PingPongTables { get; set; } = default!;
         public DbSet<SportProduct> SportProducts { get; set; } = default!;
         public DbSet<User> Users { get; set; } = default!;
+        public DbSet<Time> Times { get; set; } = default!;
+
+        public DbSet<DesktopCassa> DesktopCassas { get; set; } = default!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
