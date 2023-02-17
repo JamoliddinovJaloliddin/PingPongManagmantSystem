@@ -18,7 +18,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
             if (status.Text != null && priceCheap.Text != null && priceExpires.Text != null)
             {
                 PingPongTable pingPongTable = new PingPongTable();
-                pingPongTable.Status = status.Text;
+                pingPongTable.Number = int.Parse(status.Text);
                 pingPongTable.PriceCheap = double.Parse(priceCheap.Text);
                 pingPongTable.PriceExpensive = double.Parse(priceExpires.Text);
                 await pingPongTableService.CreateAsync(pingPongTable);
@@ -36,7 +36,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
             {
                 PingPongTable pingPongTable = new PingPongTable();
                 pingPongTable.Id = int.Parse(id.Content.ToString());
-                pingPongTable.Status = status.Text;
+                pingPongTable.Number = int.Parse(status.Text);
                 pingPongTable.PriceCheap = double.Parse(priceCheap.Text);
                 pingPongTable.PriceExpensive = double.Parse(priceExpires.Text);
                 await pingPongTableService.UpdateAsync(pingPongTable);

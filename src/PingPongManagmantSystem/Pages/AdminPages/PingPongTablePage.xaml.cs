@@ -42,7 +42,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 var item = (PingPongTable)pingPongDataGrid.SelectedItem;
 
                 pingPongTable.id.Content = item.Id;
-                pingPongTable.status.Text = item.Status;
+                pingPongTable.status.Text = item.Number.ToString();
                 pingPongTable.priceCheap.Text = item.PriceCheap.ToString();
                 pingPongTable.priceExpires.Text = item.PriceExpensive.ToString();
                 pingPongTable.ShowDialog();

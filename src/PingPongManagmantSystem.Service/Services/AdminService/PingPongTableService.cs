@@ -47,12 +47,12 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             try
             {
                 IList<PingPongTable> list = new List<PingPongTable>();
-                var item = appDbContext.PingPongTables.OrderBy(x => x.Status).AsNoTracking();
+                var item = appDbContext.PingPongTables.OrderBy(x => x.Id).AsNoTracking();
                 foreach (var ite in item)
                 {
                     PingPongTable pingPongTable = new PingPongTable();
                     pingPongTable.Id = ite.Id;
-                    pingPongTable.Status = ite.Status;
+                    pingPongTable.Id = ite.Id;
                     pingPongTable.PriceCheap = ite.PriceCheap;
                     pingPongTable.PriceExpensive = ite.PriceExpensive;
                     list.Add(pingPongTable);
