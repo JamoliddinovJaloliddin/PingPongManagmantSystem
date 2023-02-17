@@ -6,17 +6,15 @@ namespace PingPongManagmantSystem.Service.Helpers
     {
         public static float GetCurrentServerTimeParseFloat()
         {
-
-            var res = DateTime.UtcNow.AddHours(TimeConstans.UTC).ToString("H:mm");
+            var res = DateTime.UtcNow.AddHours(TimeConstans.UTC).ToString("HH:mm");
             float data1 = float.Parse(res.Split(":")[0]);
             float data2 = float.Parse(res.Split(":")[1]);
-            return data1 * 100 + data2;
+            return data1 * 3600 + data2 * 60;
         }
 
-        public static DateTime GetCurrentServerTimeFloatParse()
+        public static DateTime GetCurrentServerTime()
         {
-            var data = DateTime.UtcNow;
-            return data.AddHours(TimeConstans.UTC);
+            return DateTime.UtcNow.AddHours(TimeConstans.UTC);
         }
     }
 }

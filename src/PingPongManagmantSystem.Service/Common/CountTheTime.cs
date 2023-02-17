@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
+using PingPongManagmantSystem.Service.Helpers;
 
 namespace PingPongManagmantSystem.Service.Common
 {
@@ -17,6 +18,7 @@ namespace PingPongManagmantSystem.Service.Common
                     number = item.PlayTime;
                     break;
                 }
+                float time = TimeHelper.GetCurrentServerTimeParseFloat();
                 return number;
             }
             catch
