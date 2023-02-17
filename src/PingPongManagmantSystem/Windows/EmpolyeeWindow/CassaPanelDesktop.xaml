@@ -46,41 +46,41 @@
                 <Border  Background="White" CornerRadius="4" Margin="16 8 8 8" Grid.Column="0" BorderBrush="Cyan" BorderThickness="1">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Top" Margin="0 10 0 0">
-                            <Button x:Name="ply_btn1" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5">
+                            <Button x:Name="ply_btn1" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5" >
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                                     <Icon:PackIconMaterial Kind="Play" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn1" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5">
+                            <Button x:Name="pause_btn1" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" />
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="stop_btn1" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5">
+                            <Button x:Name="stop_btn1" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Stop" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="transfer_btn1" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5">
+                            <Button x:Name="transfer_btn1" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TransferDown" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="bar_btn1" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5">
+                            <Button x:Name="bar_btn1" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="calc_btn1" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5">
+                        <Button x:Name="calc_btn1" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
-                                <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">1
+                                <Border x:Name="border_1" Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
+                                <Label x:Name="label_1" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">1
                                 </Label>
                             </StackPanel>
                         </Button>
@@ -96,35 +96,35 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn2" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5">
+                            <Button x:Name="pause_btn2" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" />
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="stop_btn2" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5">
+                            <Button x:Name="stop_btn2" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Stop" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="transfer_btn2" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5">
+                            <Button x:Name="transfer_btn2" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TransferDown" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="bar_btn2" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5">
+                            <Button x:Name="bar_btn2" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="calc_btn2" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5">
+                        <Button x:Name="calc_btn2" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
                                 <Border Width="25" Height="25" Margin="170 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">2
+                                <Label x:Name="label_2" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">2
                                 </Label>
                             </StackPanel>
                         </Button>
@@ -140,35 +140,35 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn3" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5">
+                            <Button x:Name="pause_btn3" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" />
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="stop_btn3" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5">
+                            <Button x:Name="stop_btn3" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Stop" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="transfer_btn3" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5">
+                            <Button x:Name="transfer_btn3" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TransferDown" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="bar_btn3" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5">
+                            <Button x:Name="bar_btn3" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="calc_btn3" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5">
+                        <Button x:Name="calc_btn3" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
                                 <Border Width="25" Height="25" Margin="172 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">3
+                                <Label x:Name="label_3" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">3
                                 </Label>
                             </StackPanel>
                         </Button>
@@ -184,35 +184,35 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn4" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5">
+                            <Button x:Name="pause_btn4" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" />
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="stop_btn4" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5">
+                            <Button x:Name="stop_btn4" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Stop" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="transfer_btn4" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5">
+                            <Button x:Name="transfer_btn4" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TransferDown" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="bar_btn4" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5">
+                            <Button x:Name="bar_btn4" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="calc_btn4" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5">
+                        <Button x:Name="calc_btn4" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
                                 <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">4
+                                <Label x:Name="label_4" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">4
                                 </Label>
                             </StackPanel>
                         </Button>
@@ -238,35 +238,35 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn5" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5">
+                            <Button x:Name="pause_btn5" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" />
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="stop_btn5" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5">
+                            <Button x:Name="stop_btn5" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Stop" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="transfer_btn5" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5">
+                            <Button x:Name="transfer_btn5" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TransferDown" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="bar_btn5" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5">
+                            <Button x:Name="bar_btn5" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="calc_btn5" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5">
+                        <Button x:Name="calc_btn5" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
                                 <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">5
+                                <Label x:Name="label_5" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">5
                                 </Label>
                             </StackPanel>
                         </Button>
@@ -282,35 +282,35 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn6" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5">
+                            <Button x:Name="pause_btn6" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" />
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="stop_btn6" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5">
+                            <Button x:Name="stop_btn6" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Stop" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="transfer_btn6" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5">
+                            <Button x:Name="transfer_btn6" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TransferDown" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="bar_btn6" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5">
+                            <Button x:Name="bar_btn6" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="calc_btn6" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5">
+                        <Button x:Name="calc_btn6" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
                                 <Border Width="25" Height="25" Margin="172 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">6
+                                <Label x:Name="label_6" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">6
                                 </Label>
                             </StackPanel>
                         </Button>
@@ -326,35 +326,35 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn7" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5">
+                            <Button x:Name="pause_btn7" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" />
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="stop_btn7" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5">
+                            <Button x:Name="stop_btn7" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Stop" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="transfer_btn7" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5">
+                            <Button x:Name="transfer_btn7" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TransferDown" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="bar_btn7" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5">
+                            <Button x:Name="bar_btn7" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="calc_btn7" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5">
+                        <Button x:Name="calc_btn7" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
                                 <Border Width="25" Height="25" Margin="172 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">7
+                                <Label x:Name="label_7" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">7
                                 </Label>
                             </StackPanel>
                         </Button>
@@ -370,35 +370,35 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn8" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5">
+                            <Button x:Name="pause_btn8" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" />
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="stop_btn8" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5">
+                            <Button x:Name="stop_btn8" Style="{StaticResource menuButton}" Click="Stop_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Stop" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="transfer_btn8" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5">
+                            <Button x:Name="transfer_btn8" Style="{StaticResource menuButton}" Click="Transfer_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TransferDown" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="bar_btn8" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5">
+                            <Button x:Name="bar_btn8" Style="{StaticResource menuButton}" Click="Bar_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <Button x:Name="calc_btn8" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5">
+                        <Button x:Name="calc_btn8" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
                                 <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">8
+                                <Label x:Name="label_8" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">8
                                 </Label>
                             </StackPanel>
                         </Button>

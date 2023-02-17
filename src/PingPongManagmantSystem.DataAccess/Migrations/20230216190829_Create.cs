@@ -4,7 +4,7 @@
 
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
-    public partial class CreateData : Migration
+    public partial class Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,12 +77,17 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     StolNumber = table.Column<byte>(type: "INTEGER", nullable: false),
                     PlayTime = table.Column<float>(type: "REAL", nullable: false),
+                    Play = table.Column<bool>(type: "INTEGER", nullable: false),
                     Pause = table.Column<bool>(type: "INTEGER", nullable: false),
                     Stop = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Busy = table.Column<bool>(type: "INTEGER", nullable: false),
-                    BarSum = table.Column<double>(type: "REAL", nullable: false)
+                    Transfer = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Calc = table.Column<bool>(type: "INTEGER", nullable: false),
+                    BarSum = table.Column<double>(type: "REAL", nullable: false),
+                    Label = table.Column<string>(type: "TEXT", nullable: false),
+                    AccountBook = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

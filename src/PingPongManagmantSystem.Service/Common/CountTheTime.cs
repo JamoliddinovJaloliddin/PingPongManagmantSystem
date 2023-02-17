@@ -1,0 +1,28 @@
+﻿using Microsoft.EntityFrameworkCore;
+using PingPongManagmantSystem.DataAccess.Constans;
+
+namespace PingPongManagmantSystem.Service.Common
+{
+    public class CountTheTime
+    {
+        AppDbContext _appDbContext = new AppDbContext();
+        public async Task<float> CountTheTimee(byte PlayTaym)
+        {
+            try
+            {
+                float number = 0;
+                var res = await _appDbContext.DesktopCassas.Where(x => x.StolNumber == PlayTaym).AsNoTracking().ToListAsync();
+                foreach (var item in res)
+                {
+                    number = item.PlayTime;
+                    break;
+                }
+                return number;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+    }
+}
