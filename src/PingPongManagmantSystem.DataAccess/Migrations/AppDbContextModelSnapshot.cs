@@ -117,13 +117,24 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AccountBook")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<double>("BarSum")
                         .HasColumnType("REAL");
 
-                    b.Property<bool>("Busy")
+                    b.Property<bool>("Calc")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("Pause")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Play")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("PlayTime")
@@ -133,6 +144,12 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Stop")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Transfer")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

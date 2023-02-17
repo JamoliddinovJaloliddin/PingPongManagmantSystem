@@ -11,8 +11,4 @@
     <ProjectReference Include="..\PingPongManagmantSystem.Domain\PingPongManagmantSystem.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
-
 </Project>

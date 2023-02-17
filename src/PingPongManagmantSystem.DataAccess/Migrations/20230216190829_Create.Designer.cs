@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230128163043_CreateData")]
-    partial class CreateData
+    [Migration("20230216190829_Create")]
+    partial class Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -119,13 +119,24 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AccountBook")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<double>("BarSum")
                         .HasColumnType("REAL");
 
-                    b.Property<bool>("Busy")
+                    b.Property<bool>("Calc")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("Pause")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Play")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("PlayTime")
@@ -135,6 +146,12 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Stop")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Transfer")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

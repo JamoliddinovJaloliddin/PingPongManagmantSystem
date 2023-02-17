@@ -8,32 +8,24 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
     public class DesktopCassaService : IDesktopCassaService
     {
-        private readonly AppDbContext _appDbContext;
-
-        public DesktopCassaService(AppDbContext appDbContext)
-        {
-            _appDbContext = appDbContext;
-        }
-
-        public async Task<bool> CreateAsync(DesktopCassa cassa)
-        {
-            try
-            {
-                float res = TimeHelper.GetCurrentServerTimeParseFloat();
-                cassa.PlayTime = res;
-                _appDbContext.DesktopCassas.Add(cassa);
-                var resault = await _appDbContext.SaveChangesAsync();
-                return resault > 0;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        AppDbContext _appDbContext = new AppDbContext();
 
         public Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<DesktopCassa>> GetAllAsync()
+        {
+            try
+            {
+                var res = await _appDbContext.DesktopCassas.OrderBy(x => x.StolNumber).AsNoTracking().ToListAsync();
+                return res;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public Task<IEnumerable<DesktopCassa>> GetByIdAsync()
@@ -41,14 +33,14 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             throw new NotImplementedException();
         }
 
+
+
         public async Task<bool> UpdateAsync(DesktopCassa cassa)
         {
             try
             {
+                var res = TimeHelper.GetCurrentServerTimeParseFloat();
                 var pingPongtable = _appDbContext.DesktopCassas.Where(x => x.StolNumber == cassa.StolNumber).AsNoTracking();
-
-
-                
                 return false;
             }
             catch
