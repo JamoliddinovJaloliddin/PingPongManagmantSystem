@@ -28,9 +28,22 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             }
         }
 
-        public Task<IEnumerable<DesktopCassa>> GetByIdAsync()
+        public async Task<IEnumerable<DesktopCassa>> GetByIdAsync(byte id)
         {
-            throw new NotImplementedException();
+            try
+            {
+               
+                var resault = (IEnumerable<DesktopCassa>) _appDbContext.DesktopCassas.Where(x => x.StolNumber == id).AsNoTracking();
+                if (resault != null)
+                {
+                    return resault;
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<bool> UpdateAsync(DesktopCassa cassa)
@@ -42,18 +55,19 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 var timePrice = (Time)_appDbContext.Times.AsNoTracking();
                 var pingPongTablePrice = (PingPongTable)_appDbContext.PingPongTables.Where(x => x.Number == cassa.StolNumber).AsNoTracking();
 
-                var resault = 0.0;
+                double resault = 0;
 
-                if (res > float.Parse(timePrice.TimeExpensiveFrom))
+                if (res > timePrice.TimeExpensiveFrom && pingPongTable.PlayTime < timePrice.TimeExpensiveFrom)
                 {
-                    resault = ((pingPongTablePrice.PriceCheap / 3600) * (float.Parse(timePrice.TimeExpensiveFrom) - pingPongTable.PlayTime)
-                    / (pingPongTablePrice.PriceExpensive / 3600)) + (res - float.Parse(timePrice.TimeExpensiveFrom));
+                    resault = (pingPongTablePrice.PriceCheap / 3600) * (timePrice.TimeExpensiveFrom - pingPongTable.PlayTime)
+                    / (pingPongTablePrice.PriceExpensive / 3600) + (res - timePrice.TimeExpensiveFrom);
                 }
                 else
                 {
                     resault = res - pingPongTable.PlayTime;
                 }
 
+                cassa.TimeAccount = resault;
                 cassa.Id = pingPongTable.Id;
                 _appDbContext.DesktopCassas.Update(cassa);
                 return false;

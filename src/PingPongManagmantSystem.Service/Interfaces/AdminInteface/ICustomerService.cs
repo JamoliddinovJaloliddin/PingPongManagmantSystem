@@ -8,5 +8,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
         Task<bool> UpdateAsync(Customer customer);
         Task<bool> DeleteAsync(int id);
         Task<IList<Customer>> GetAllAsync();
+        Task<Customer> GetByIdAsync(string customer);
     }
 }

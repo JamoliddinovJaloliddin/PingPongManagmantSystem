@@ -29,20 +29,20 @@ namespace PingPongManagmantSystem.Desktop.Windows
                 res.TimeExpensiveUpTo = item.TimeExpensiveUpTo;
 
             }
-            dan1.Text = res.TimeCheapFrom;
-            dan2.Text = res.TimeExpensiveFrom;
-            gacha1.Text = res.TimeCheapUpTo;
-            gacha2.Text = res.TimeExpensiveUpTo;
+            dan1.Text = res.TimeCheapFrom.ToString();
+            dan2.Text = res.TimeExpensiveFrom.ToString();
+            gacha1.Text = res.TimeCheapUpTo.ToString();
+            gacha2.Text = res.TimeExpensiveUpTo.ToString()  ;
         }
 
         private async void Update_Button(object sender, RoutedEventArgs e)
         {
             Time time = new Time();
             time.Id = 1;
-            time.TimeCheapFrom = dan1.Text;
-            time.TimeExpensiveFrom = gacha1.Text;
-            time.TimeCheapUpTo = dan2.Text;
-            time.TimeExpensiveUpTo = gacha2.Text;
+            time.TimeCheapFrom = double.Parse(dan1.Text);
+            time.TimeExpensiveFrom = double.Parse(gacha1.Text);
+            time.TimeCheapUpTo = double.Parse(dan2.Text);
+            time.TimeExpensiveUpTo = double.Parse(gacha2.Text);
 
             await timeService.UpdateAsync(time);
         }

@@ -5,5 +5,7 @@
         Naxt,
         Karta,
         VipKarta,
+        Trener_Kattalar,
+        Trener_Kichik
     }
 }

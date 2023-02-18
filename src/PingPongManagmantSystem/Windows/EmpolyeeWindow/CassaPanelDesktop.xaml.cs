@@ -42,9 +42,10 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_1.Visibility = Visibility.Visible;
+
                             }
                             else
-                            { 
+                            {
                                 label_1.Visibility = Visibility.Hidden;
                             }
                             break;
@@ -58,6 +59,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_2.Visibility = Visibility.Visible;
+
                             }
                             else
                             {
@@ -74,6 +76,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_3.Visibility = Visibility.Visible;
+
                             }
                             else
                             {
@@ -90,6 +93,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_4.Visibility = Visibility.Visible;
+
                             }
                             else
                             {
@@ -106,6 +110,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_5.Visibility = Visibility.Visible;
+
                             }
                             else
                             {
@@ -122,6 +127,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_6.Visibility = Visibility.Visible;
+
                             }
                             else
                             {
@@ -138,6 +144,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_7.Visibility = Visibility.Visible;
+
                             }
                             else
                             {
@@ -154,6 +161,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_8.Visibility = Visibility.Visible;
+
                             }
                             else
                             {
@@ -455,8 +463,47 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 
         private void Stop_Button(object sender, RoutedEventArgs e)
         {
-            EmpolyeeStop empolyeeStop = new EmpolyeeStop();
-            empolyeeStop.Show();
+            try
+            {
+                EmpolyeeStop empolyeeStop = new EmpolyeeStop();
+                if (pause_btn1.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 1;
+                }
+                else if (pause_btn2.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 2;
+                }
+                else if (pause_btn3.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 3;
+                }
+                else if (pause_btn4.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 4;
+                }
+                else if (pause_btn5.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 5;
+                }
+                else if (pause_btn6.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 6;
+                }
+                else if (pause_btn7.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 7;
+                }
+                else if (pause_btn8.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 8;
+                }
+                empolyeeStop.Show();
+            }
+            catch
+            {
+
+            }
         }
 
         private void Transfer_Button(object sender, RoutedEventArgs e)
