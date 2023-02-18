@@ -4,9 +4,9 @@ namespace PingPongManagmantSystem.Domain.Entities
 {
     public class Time : BaseEntity
     {
-        public string TimeCheapFrom { get; set; } = String.Empty;
-        public string TimeCheapUpTo { get; set; } = String.Empty;
-        public string TimeExpensiveFrom { get; set; } = String.Empty;
-        public string TimeExpensiveUpTo { get; set; } = String.Empty;
+        public double TimeCheapFrom { get; set; }
+        public double TimeCheapUpTo { get; set; }
+        public double TimeExpensiveFrom { get; set; }
+        public double TimeExpensiveUpTo { get; set; }
     }
 }

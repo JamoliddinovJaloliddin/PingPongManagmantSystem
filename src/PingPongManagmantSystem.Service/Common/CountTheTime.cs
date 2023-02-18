@@ -7,18 +7,17 @@ namespace PingPongManagmantSystem.Service.Common
     public class CountTheTime
     {
         AppDbContext _appDbContext = new AppDbContext();
-        public async Task<float> CountTheTimee(byte PlayTaym)
+        public async Task<double> CountTheTimee(byte PlayTaym)
         {
             try
             {
-                float number = 0;
+                double number = 0;
                 var res = await _appDbContext.DesktopCassas.Where(x => x.StolNumber == PlayTaym).AsNoTracking().ToListAsync();
                 foreach (var item in res)
                 {
                     number = item.PlayTime;
                     break;
                 }
-                float time = TimeHelper.GetCurrentServerTimeParseFloat();
                 return number;
             }
             catch

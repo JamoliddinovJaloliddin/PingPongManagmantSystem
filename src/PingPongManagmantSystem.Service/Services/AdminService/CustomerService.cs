@@ -46,9 +46,16 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             return null;
         }
 
-        public Task<User> GetByIdAsync(int id)
+        public  async Task<Customer> GetByIdAsync(string customer)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return (Customer) appDbContext.Customers.Where(x => x.Status == customer).AsNoTracking();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<bool> UpdateAsync(Customer customer)
