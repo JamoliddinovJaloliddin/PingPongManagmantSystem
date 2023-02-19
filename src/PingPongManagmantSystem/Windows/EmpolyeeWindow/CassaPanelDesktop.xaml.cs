@@ -221,6 +221,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     cassa.Transfer = true;
                     cassa.Calc = true;
                     cassa.Label = false;
+                    cassa.Bar = true;
                     cassa.TimeAccount = 0;
                     cassa.BarSum = 0;
                     cassa.AccountBook = "";
@@ -237,6 +238,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     cassa.StolNumber = 2;
                     cassa.Pause = true;
                     cassa.Stop = true;
+                    cassa.Bar = true;
                     cassa.UserId = GlobalVariable.UserId;
                     cassa.Play = false;
                     cassa.Transfer = true;
@@ -261,6 +263,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     cassa.Stop = true;
                     cassa.UserId = GlobalVariable.UserId;
                     cassa.Play = false;
+                    cassa.Bar = true;
                     cassa.Transfer = true;
                     cassa.Calc = true;
                     cassa.Label = true;
@@ -282,6 +285,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     cassa.Stop = true;
                     cassa.UserId = GlobalVariable.UserId;
                     cassa.Play = false;
+                    cassa.Bar = true;
                     cassa.Transfer = true;
                     cassa.Calc = true;
                     cassa.Label = false;
@@ -300,6 +304,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     label_1.Visibility = Visibility.Collapsed;
                     cassa.StolNumber = 5;
                     cassa.Pause = true;
+                    cassa.Bar = true;
                     cassa.Stop = true;
                     cassa.UserId = GlobalVariable.UserId;
                     cassa.Play = false;
@@ -322,6 +327,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     cassa.StolNumber = 6;
                     cassa.Pause = true;
                     cassa.Stop = true;
+                    cassa.Bar = true;
                     cassa.UserId = GlobalVariable.UserId;
                     cassa.Play = false;
                     cassa.Transfer = true;
@@ -343,6 +349,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     cassa.StolNumber = 7;
                     cassa.Pause = true;
                     cassa.Stop = true;
+                    cassa.Bar = true;
                     cassa.UserId = GlobalVariable.UserId;
                     cassa.Play = false;
                     cassa.Transfer = true;
@@ -367,6 +374,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     cassa.UserId = GlobalVariable.UserId;
                     cassa.Play = false;
                     cassa.Transfer = true;
+                    cassa.Bar = true;
                     cassa.Calc = true;
                     cassa.Label = false;
                     cassa.BarSum = 0;
@@ -466,35 +474,35 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             try
             {
                 EmpolyeeStop empolyeeStop = new EmpolyeeStop();
-                if (pause_btn1.IsMouseOver)
+                if (stop_btn1.IsMouseOver)
                 {
                     empolyeeStop.lb_id.Content = 1;
                 }
-                else if (pause_btn2.IsMouseOver)
+                else if (stop_btn2.IsMouseOver)
                 {
                     empolyeeStop.lb_id.Content = 2;
                 }
-                else if (pause_btn3.IsMouseOver)
+                else if (stop_btn3.IsMouseOver)
                 {
                     empolyeeStop.lb_id.Content = 3;
                 }
-                else if (pause_btn4.IsMouseOver)
+                else if (stop_btn4.IsMouseOver)
                 {
                     empolyeeStop.lb_id.Content = 4;
                 }
-                else if (pause_btn5.IsMouseOver)
+                else if (stop_btn5.IsMouseOver)
                 {
                     empolyeeStop.lb_id.Content = 5;
                 }
-                else if (pause_btn6.IsMouseOver)
+                else if (stop_btn6.IsMouseOver)
                 {
                     empolyeeStop.lb_id.Content = 6;
                 }
-                else if (pause_btn7.IsMouseOver)
+                else if (stop_btn7.IsMouseOver)
                 {
                     empolyeeStop.lb_id.Content = 7;
                 }
-                else if (pause_btn8.IsMouseOver)
+                else if (stop_btn8.IsMouseOver)
                 {
                     empolyeeStop.lb_id.Content = 8;
                 }

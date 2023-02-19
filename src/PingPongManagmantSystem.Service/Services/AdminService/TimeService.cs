@@ -16,12 +16,20 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             return res > 0;
         }
 
-        public async Task<IList<Time>> GetAll()
+        public async Task<Time> GetAll()
         {
             try
             {
-                var res = appDbContext.Times.AsNoTracking().ToList();
-                return res;
+                Time time1 = new Time();
+                var res = await appDbContext.Times.AsNoTracking().ToListAsync();
+                foreach (var time in res)
+                {
+                    time1.TimeCheapUpTo = time.TimeCheapUpTo;
+                    time1.TimeCheapFrom = time.TimeCheapFrom;
+                    time1.TimeExpensiveFrom = time.TimeExpensiveFrom;
+                    time1.TimeExpensiveUpTo = time.TimeExpensiveUpTo;
+                }
+                return time1;
             }
             catch
             {

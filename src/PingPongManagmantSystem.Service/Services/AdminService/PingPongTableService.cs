@@ -66,9 +66,24 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 
         }
 
-        public Task<User> GetByIdAsync(int id)
+        public async Task<PingPongTable> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                PingPongTable pingPongTable = new PingPongTable();
+                var res =  appDbContext.PingPongTables.Where(x => x.Number == id).AsNoTracking();
+                foreach (var item in res)
+                { 
+                    pingPongTable.Number = item.Number;
+                    pingPongTable.PriceCheap = item.PriceCheap;
+                    pingPongTable.PriceExpensive = item.PriceExpensive;
+                }
+                return pingPongTable;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<bool> UpdateAsync(PingPongTable user)

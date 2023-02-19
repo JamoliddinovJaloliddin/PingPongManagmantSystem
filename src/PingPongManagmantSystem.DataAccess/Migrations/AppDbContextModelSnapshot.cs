@@ -46,12 +46,12 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Status")
+                    b.Property<string>("CardNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
 
                     b.Property<double>("TimeLimit")
                         .HasColumnType("REAL");
@@ -142,7 +142,7 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<double>("PlayTime")
                         .HasColumnType("REAL");
 
-                    b.Property<byte>("StolNumber")
+                    b.Property<int>("StolNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Stop")
