@@ -19,20 +19,13 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         public async void RefreshDataTime()
         {
-            Time res = new Time();
-            var rest = await timeService.GetAll();
-            foreach (var item in rest)
-            {
-                res.TimeCheapUpTo = item.TimeCheapUpTo;
-                res.TimeCheapFrom = item.TimeCheapFrom;
-                res.TimeExpensiveFrom = item.TimeExpensiveFrom;
-                res.TimeExpensiveUpTo = item.TimeExpensiveUpTo;
+            
+            var res = await timeService.GetAll();
 
-            }
             dan1.Text = res.TimeCheapFrom.ToString();
             dan2.Text = res.TimeExpensiveFrom.ToString();
             gacha1.Text = res.TimeCheapUpTo.ToString();
-            gacha2.Text = res.TimeExpensiveUpTo.ToString()  ;
+            gacha2.Text = res.TimeExpensiveUpTo.ToString();
         }
 
         private async void Update_Button(object sender, RoutedEventArgs e)

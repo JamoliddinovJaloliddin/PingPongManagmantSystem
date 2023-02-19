@@ -1,10 +1,15 @@
-﻿using PingPongManagmantSystem.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PingPongManagmantSystem.DataAccess.Constans;
+using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
+  
     public class CardService : ICardService
     {
+        AppDbContext appDbContext = new AppDbContext();
+
         public Task<bool> CreateAsync(Card card)
         {
             throw new NotImplementedException();
@@ -20,9 +25,21 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             throw new NotImplementedException();
         }
 
-        public Task<User> GetByIdAsync(int id)
+        public async Task<Card> GetByIdAsync(string customer)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var resault = (Card) appDbContext.Cards.Where(x => x.CardNumber == customer).AsNoTracking();
+                if (resault != null)
+                {
+                    return resault;
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public Task<bool> UpdateAsync(Card card)

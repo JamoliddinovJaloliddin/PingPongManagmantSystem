@@ -4,7 +4,7 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
 {
     public interface ITimeService
     {
-        Task<IList<Time>> GetAll();
+        Task<Time> GetAll();
         Task<bool> UpdateAsync(Time time);
     }
 }

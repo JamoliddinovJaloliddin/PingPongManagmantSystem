@@ -7,7 +7,7 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
         Task<bool> CreateAsync(PingPongTable user);
         Task<bool> UpdateAsync(PingPongTable user);
         Task<bool> DeleteAsync(int id);
-        Task<User> GetByIdAsync(int id);
+        Task<PingPongTable> GetByIdAsync(int id);
         Task<IList<PingPongTable>> GetAllAsync();
     }
 }

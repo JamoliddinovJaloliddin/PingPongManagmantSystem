@@ -46,11 +46,19 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             return null;
         }
 
-        public  async Task<Customer> GetByIdAsync(string customer)
+        public async Task<Customer> GetByIdAsync(string customer)
         {
             try
             {
-                return (Customer) appDbContext.Customers.Where(x => x.Status == customer).AsNoTracking();
+                Customer customerUser = new Customer();
+                
+                var resault = await appDbContext.Customers.Where(x => x.Status == customer).AsNoTracking().ToListAsync();
+                foreach (var res in resault)
+                {
+                    customerUser.Status = res.Status;
+                    customerUser.Percent = res.Percent;
+                }
+                return customerUser;
             }
             catch
             {

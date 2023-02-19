@@ -7,7 +7,7 @@ namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface
         Task<bool> CreateAsync(Card card);
         Task<bool> UpdateAsync(Card card);
         Task<bool> DeleteAsync(int id);
-        Task<User> GetByIdAsync(int id);
+        Task<Card> GetByIdAsync(string customer);
         Task<IEnumerable<Card>> GetAllAsync();
     }
 }

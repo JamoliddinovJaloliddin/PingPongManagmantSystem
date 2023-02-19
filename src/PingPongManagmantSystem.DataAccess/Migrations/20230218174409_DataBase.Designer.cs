@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230216190829_Create")]
-    partial class Create
+    [Migration("20230218174409_DataBase")]
+    partial class DataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,12 +48,12 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Status")
+                    b.Property<string>("CardNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
 
                     b.Property<double>("TimeLimit")
                         .HasColumnType("REAL");
@@ -101,7 +101,7 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<float>("Percent")
+                    b.Property<double>("Percent")
                         .HasColumnType("REAL");
 
                     b.Property<string>("Status")
@@ -123,15 +123,17 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("Bar")
+                        .HasColumnType("INTEGER");
+
                     b.Property<double>("BarSum")
                         .HasColumnType("REAL");
 
                     b.Property<bool>("Calc")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("Label")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Pause")
                         .HasColumnType("INTEGER");
@@ -139,14 +141,17 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<bool>("Play")
                         .HasColumnType("INTEGER");
 
-                    b.Property<float>("PlayTime")
+                    b.Property<double>("PlayTime")
                         .HasColumnType("REAL");
 
-                    b.Property<byte>("StolNumber")
+                    b.Property<int>("StolNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Stop")
                         .HasColumnType("INTEGER");
+
+                    b.Property<double>("TimeAccount")
+                        .HasColumnType("REAL");
 
                     b.Property<bool>("Transfer")
                         .HasColumnType("INTEGER");
@@ -165,15 +170,14 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("INTEGER");
+
                     b.Property<double>("PriceCheap")
                         .HasColumnType("REAL");
 
                     b.Property<double>("PriceExpensive")
                         .HasColumnType("REAL");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -210,21 +214,17 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("TimeCheapFrom")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<double>("TimeCheapFrom")
+                        .HasColumnType("REAL");
 
-                    b.Property<string>("TimeCheapUpTo")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<double>("TimeCheapUpTo")
+                        .HasColumnType("REAL");
 
-                    b.Property<string>("TimeExpensiveFrom")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<double>("TimeExpensiveFrom")
+                        .HasColumnType("REAL");
 
-                    b.Property<string>("TimeExpensiveUpTo")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<double>("TimeExpensiveUpTo")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
