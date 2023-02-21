@@ -52,7 +52,8 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn1" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5" IsEnabled="False"> 
+
+                            <Button x:Name="pause_btn1" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
@@ -96,7 +97,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn2" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5" IsEnabled="False">
+                            <Button x:Name="pause_btn2" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
@@ -140,7 +141,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn3" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5" IsEnabled="False">
+                            <Button x:Name="pause_btn3" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
@@ -184,7 +185,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn4" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5" IsEnabled="False">
+                            <Button x:Name="pause_btn4" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
@@ -238,7 +239,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn5" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5" IsEnabled="False">
+                            <Button x:Name="pause_btn5" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
@@ -282,7 +283,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn6" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5" IsEnabled="False">
+                            <Button x:Name="pause_btn6" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
@@ -326,7 +327,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn7" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5" IsEnabled="False">
+                            <Button x:Name="pause_btn7" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>
@@ -370,7 +371,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="pause_btn8" Style="{StaticResource menuButton}" Click="Play_Button" Margin="5" IsEnabled="False">
+                            <Button x:Name="pause_btn8" Style="{StaticResource menuButton}" Click="Pause_Button" Margin="5" IsEnabled="False">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <Icon:PackIconMaterial Kind="Pause" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15"/>
                                 </StackPanel>

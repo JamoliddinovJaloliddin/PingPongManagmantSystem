@@ -2,7 +2,6 @@
 using PingPongManagmantSystem.Service.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
-using PingPongManagmantSystem.Service.ViewModels;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
@@ -202,266 +201,41 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                GlobalVariable.UserId = 0;
                 DesktopCassa cassa = new DesktopCassa();
-                if (ply_btn1.IsMouseOver && pause_btn1.IsEnabled != true)
+                if (ply_btn1.IsMouseOver)
                 {
-                    ply_btn1.IsEnabled = false;
-                    pause_btn1.IsEnabled = true;
-                    stop_btn1.IsEnabled = true;
-                    transfer_btn1.IsEnabled = true;
-                    bar_btn1.IsEnabled = true;
-                    calc_btn1.IsEnabled = true;
-                    label_1.Visibility = Visibility.Collapsed;
                     cassa.StolNumber = 1;
-                    cassa.Pause = true;
-                    cassa.Stop = true;
-                    cassa.UserId = GlobalVariable.UserId;
-                    cassa.Play = false;
-                    cassa.Transfer = true;
-                    cassa.Calc = true;
-                    cassa.Label = false;
-                    cassa.Bar = true;
-                    cassa.TimeAccount = 0;
-                    cassa.BarSum = 0;
-                    cassa.AccountBook = "";
                 }
-                else if (ply_btn2.IsMouseOver && pause_btn2.IsEnabled != true)
+                else if (ply_btn2.IsMouseOver)
                 {
-                    ply_btn2.IsEnabled = false;
-                    pause_btn2.IsEnabled = true;
-                    stop_btn2.IsEnabled = true;
-                    transfer_btn2.IsEnabled = true;
-                    bar_btn2.IsEnabled = true;
-                    calc_btn2.IsEnabled = true;
-                    label_1.Visibility = Visibility.Collapsed;
                     cassa.StolNumber = 2;
-                    cassa.Pause = true;
-                    cassa.Stop = true;
-                    cassa.Bar = true;
-                    cassa.UserId = GlobalVariable.UserId;
-                    cassa.Play = false;
-                    cassa.Transfer = true;
-                    cassa.Calc = true;
-                    cassa.Label = false;
-                    cassa.BarSum = 0;
-                    cassa.TimeAccount = 0;
-                    cassa.AccountBook = "";
-
                 }
-                else if (ply_btn3.IsMouseOver && pause_btn3.IsEnabled != true)
+                else if (ply_btn3.IsMouseOver)
                 {
-                    ply_btn3.IsEnabled = false;
-                    pause_btn3.IsEnabled = true;
-                    stop_btn3.IsEnabled = true;
-                    transfer_btn3.IsEnabled = true;
-                    bar_btn3.IsEnabled = true;
-                    calc_btn3.IsEnabled = true;
-                    label_1.Visibility = Visibility.Collapsed;
                     cassa.StolNumber = 3;
-                    cassa.Pause = true;
-                    cassa.Stop = true;
-                    cassa.UserId = GlobalVariable.UserId;
-                    cassa.Play = false;
-                    cassa.Bar = true;
-                    cassa.Transfer = true;
-                    cassa.Calc = true;
-                    cassa.Label = true;
-                    cassa.BarSum = 0;
-                    cassa.TimeAccount = 0;
-                    cassa.AccountBook = "";
                 }
-                else if (ply_btn4.IsMouseOver && pause_btn4.IsEnabled != true)
+                else if (ply_btn4.IsMouseOver)
                 {
-                    ply_btn4.IsEnabled = false;
-                    pause_btn4.IsEnabled = true;
-                    stop_btn4.IsEnabled = true;
-                    transfer_btn4.IsEnabled = true;
-                    bar_btn4.IsEnabled = true;
-                    calc_btn4.IsEnabled = true;
-                    label_1.Visibility = Visibility.Collapsed;
                     cassa.StolNumber = 4;
-                    cassa.Pause = true;
-                    cassa.Stop = true;
-                    cassa.UserId = GlobalVariable.UserId;
-                    cassa.Play = false;
-                    cassa.Bar = true;
-                    cassa.Transfer = true;
-                    cassa.Calc = true;
-                    cassa.Label = false;
-                    cassa.BarSum = 0;
-                    cassa.TimeAccount = 0;
-                    cassa.AccountBook = "";
                 }
-                else if (ply_btn5.IsMouseOver && pause_btn5.IsEnabled != true)
+                else if (ply_btn5.IsMouseOver)
                 {
-                    ply_btn5.IsEnabled = false;
-                    pause_btn5.IsEnabled = true;
-                    stop_btn5.IsEnabled = true;
-                    transfer_btn5.IsEnabled = true;
-                    bar_btn5.IsEnabled = true;
-                    calc_btn5.IsEnabled = true;
-                    label_1.Visibility = Visibility.Collapsed;
                     cassa.StolNumber = 5;
-                    cassa.Pause = true;
-                    cassa.Bar = true;
-                    cassa.Stop = true;
-                    cassa.UserId = GlobalVariable.UserId;
-                    cassa.Play = false;
-                    cassa.Transfer = true;
-                    cassa.Calc = true;
-                    cassa.Label = false;
-                    cassa.BarSum = 0;
-                    cassa.TimeAccount = 0;
-                    cassa.AccountBook = "";
                 }
-                else if (ply_btn6.IsMouseOver && pause_btn6.IsEnabled != true)
+                else if (ply_btn6.IsMouseOver)
                 {
-                    ply_btn6.IsEnabled = false;
-                    pause_btn6.IsEnabled = true;
-                    stop_btn6.IsEnabled = true;
-                    transfer_btn6.IsEnabled = true;
-                    bar_btn6.IsEnabled = true;
-                    calc_btn6.IsEnabled = true;
-                    label_1.Visibility = Visibility.Collapsed;
                     cassa.StolNumber = 6;
-                    cassa.Pause = true;
-                    cassa.Stop = true;
-                    cassa.Bar = true;
-                    cassa.UserId = GlobalVariable.UserId;
-                    cassa.Play = false;
-                    cassa.Transfer = true;
-                    cassa.Calc = true;
-                    cassa.Label = false;
-                    cassa.BarSum = 0;
-                    cassa.TimeAccount = 0;
-                    cassa.AccountBook = "";
                 }
-                else if (ply_btn7.IsMouseOver && pause_btn7.IsEnabled != true)
+                else if (ply_btn7.IsMouseOver)
                 {
-                    ply_btn7.IsEnabled = false;
-                    pause_btn7.IsEnabled = true;
-                    stop_btn7.IsEnabled = true;
-                    transfer_btn7.IsEnabled = true;
-                    bar_btn7.IsEnabled = true;
-                    calc_btn7.IsEnabled = true;
-                    label_1.Visibility = Visibility.Collapsed;
                     cassa.StolNumber = 7;
-                    cassa.Pause = true;
-                    cassa.Stop = true;
-                    cassa.Bar = true;
-                    cassa.UserId = GlobalVariable.UserId;
-                    cassa.Play = false;
-                    cassa.Transfer = true;
-                    cassa.Calc = true;
-                    cassa.Label = false;
-                    cassa.BarSum = 0;
-                    cassa.TimeAccount = 0;
-                    cassa.AccountBook = "";
                 }
-                else if (ply_btn8.IsMouseOver && pause_btn8.IsEnabled != true)
+                else if (ply_btn8.IsMouseOver)
                 {
-                    ply_btn8.IsEnabled = false;
-                    pause_btn8.IsEnabled = true;
-                    stop_btn8.IsEnabled = true;
-                    transfer_btn8.IsEnabled = true;
-                    bar_btn8.IsEnabled = true;
-                    calc_btn8.IsEnabled = true;
-                    label_1.Visibility = Visibility.Collapsed;
                     cassa.StolNumber = 8;
-                    cassa.Pause = true;
-                    cassa.Stop = true;
-                    cassa.UserId = GlobalVariable.UserId;
-                    cassa.Play = false;
-                    cassa.Transfer = true;
-                    cassa.Bar = true;
-                    cassa.Calc = true;
-                    cassa.Label = false;
-                    cassa.BarSum = 0;
-                    cassa.TimeAccount = 0;
-                    cassa.AccountBook = "";
                 }
-
-                var res = await desktopCassaService.UpdateCreateAsync(cassa);
-            }
-            catch
-            {
-                return;
-            }
-        }
-
-        private async void Pause_Button(object sender, RoutedEventArgs e, int number)
-        {
-
-            try
-            {
-                byte number1 = 0;
-                DesktopCassa cassa = new DesktopCassa();
-                if (pause_btn1.IsMouseOver && ply_btn1.IsEnabled == false)
-                {
-                    number1 = 1;
-                    cassa.Pause = true;
-                    cassa.Stop = false;
-                    ply_btn1.IsEnabled = true;
-                    pause_btn1.IsEnabled = false;
-                }
-                if (pause_btn2.IsMouseOver && ply_btn2.IsEnabled == false)
-                {
-                    number1 = 2;
-                    cassa.Pause = true;
-                    cassa.Stop = false;
-                    ply_btn2.IsEnabled = true;
-                    pause_btn2.IsEnabled = false;
-                }
-                else if (pause_btn3.IsMouseOver && ply_btn3.IsEnabled == false)
-                {
-                    number1 = 3;
-                    cassa.Pause = true;
-                    cassa.Stop = false;
-                    ply_btn3.IsEnabled = true;
-                    pause_btn3.IsEnabled = false;
-                }
-                else if (pause_btn4.IsMouseOver && ply_btn4.IsEnabled != true)
-                {
-                    number1 = 4;
-                    cassa.Pause = true;
-                    cassa.Stop = false;
-                    ply_btn4.IsEnabled = true;
-                    pause_btn4.IsEnabled = false;
-                }
-                else if (pause_btn5.IsMouseOver && ply_btn5.IsEnabled != true)
-                {
-                    number1 = 5;
-                    cassa.Pause = true;
-                    cassa.Stop = false;
-                    ply_btn5.IsEnabled = true;
-                    pause_btn5.IsEnabled = false;
-                }
-                else if (pause_btn6.IsMouseOver && ply_btn5.IsEnabled != true)
-                {
-                    number1 = 6;
-                    cassa.Pause = true;
-                    cassa.Stop = false;
-                    ply_btn6.IsEnabled = true;
-                    pause_btn6.IsEnabled = false;
-                }
-                else if (pause_btn7.IsMouseOver && ply_btn7.IsEnabled != true)
-                {
-                    number1 = 7;
-                    cassa.Pause = true;
-                    cassa.Stop = false;
-                    ply_btn7.IsEnabled = true;
-                    pause_btn7.IsEnabled = false;
-                }
-                else if (pause_btn8.IsMouseOver && ply_btn8.IsEnabled != true)
-                {
-                    number1 = 8;
-                    cassa.Pause = true;
-                    cassa.Stop = false;
-                    ply_btn8.IsEnabled = true;
-                    pause_btn8.IsEnabled = false;
-                }
-                var res = await desktopCassaService.UpdateAsync(cassa);
+                var res = await desktopCassaService.CreateAsync(cassa);
+                Button_Inspection();
             }
             catch
             {
@@ -474,6 +248,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             try
             {
                 EmpolyeeStop empolyeeStop = new EmpolyeeStop();
+                empolyeeStop.lbl_stop.Content = "Stop";
                 if (stop_btn1.IsMouseOver)
                 {
                     empolyeeStop.lb_id.Content = 1;
@@ -506,7 +281,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 {
                     empolyeeStop.lb_id.Content = 8;
                 }
-                empolyeeStop.Show();
+                empolyeeStop.ShowDialog();
+                Button_Inspection();
             }
             catch
             {
@@ -516,8 +292,45 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 
         private void Transfer_Button(object sender, RoutedEventArgs e)
         {
+            int number = 0;
             EmpolyeeTransferTable empolyeeTransferTable = new EmpolyeeTransferTable();
-            empolyeeTransferTable.Show();
+            EmpolyeeStop empolyeeStop = new EmpolyeeStop();
+            empolyeeStop.lbl_stop.Content = "Transfer";
+            if (transfer_btn1.IsMouseOver)
+            {
+                empolyeeTransferTable.id.Content = 1;
+            }
+            else if (transfer_btn2.IsMouseOver)
+            {
+                empolyeeTransferTable.id.Content = 2;
+            }
+            else if (transfer_btn3.IsMouseOver)
+            {
+                empolyeeTransferTable.id.Content = 3;
+            }
+            else if (transfer_btn4.IsMouseOver)
+            {
+                empolyeeTransferTable.id.Content = 4;
+            }
+            else if (transfer_btn5.IsMouseOver)
+            {
+                empolyeeTransferTable.id.Content = 5;
+            }
+            else if (transfer_btn6.IsMouseOver)
+            {
+                empolyeeTransferTable.id.Content = 6;
+            }
+            else if (transfer_btn7.IsMouseOver)
+            {
+                empolyeeTransferTable.id.Content = 7;
+            }
+            else if (transfer_btn8.IsMouseOver)
+            {
+                empolyeeTransferTable.id.Content = 8;
+            }
+            empolyeeStop.ShowDialog();
+            empolyeeTransferTable.ShowDialog();
+            Button_Inspection();
         }
 
         private void Bar_Button(object sender, RoutedEventArgs e)
@@ -538,6 +351,53 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             this.Close();
         }
 
+        private async void Pause_Button(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                byte number1 = 0;
+                DesktopCassa cassa = new DesktopCassa();
+                if (pause_btn1.IsMouseOver)
+                {
+                    number1 = 1;
+                }
+                if (pause_btn2.IsMouseOver)
+                {
+                    number1 = 2;
+                }
+                else if (pause_btn3.IsMouseOver)
+                {
+                    number1 = 3;
+                }
+                else if (pause_btn4.IsMouseOver)
+                {
+                    number1 = 4;
+                }
+                else if (pause_btn5.IsMouseOver)
+                {
+                    number1 = 5;
+                }
+                else if (pause_btn6.IsMouseOver)
+                {
+                    number1 = 6;
+                }
+                else if (pause_btn7.IsMouseOver)
+                {
+                    number1 = 7;
+                }
+                else if (pause_btn8.IsMouseOver)
+                {
+                    number1 = 8;
+                }
+                cassa.StolNumber = number1;
+                var res = await desktopCassaService.UpdateAsync(cassa);
+                Button_Inspection();
 
+            }
+            catch
+            {
+                return;
+            }
+        }
     }
 }

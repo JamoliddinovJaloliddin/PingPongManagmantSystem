@@ -5,7 +5,7 @@ using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
-  
+
     public class CardService : ICardService
     {
         AppDbContext appDbContext = new AppDbContext();
@@ -29,7 +29,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
-                var resault = (Card) appDbContext.Cards.Where(x => x.CardNumber == customer).AsNoTracking();
+                var resault = (Card)appDbContext.Cards.Where(x => x.CardNumber == customer).AsNoTracking();
                 if (resault != null)
                 {
                     return resault;

@@ -16,9 +16,10 @@
                 
             </Grid>
             <Grid Grid.Row="1">
+                <Label x:Name="id" Content="" Margin="0 -20" Visibility="Collapsed"/>
                 <Label Content="Stol raqami" Margin="10 20"/>
-                <TextBox Text="" Height="20" VerticalAlignment="Top" Margin="90 20 10 0" Width="150" HorizontalAlignment="Left"/>
-                <Button Width="120" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 -10 15 0" Content="Qo'shish"/>
+                <ComboBox x:Name="combo_trn" Text="" Height="15" VerticalAlignment="Top" Margin="90 20 10 0" Width="150" HorizontalAlignment="Left"/>
+                <Button Click="Transfer_button" Width="120" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 -10 15 0" Content="Qo'shish"/>
             </Grid>
         </Grid>
     </Border>

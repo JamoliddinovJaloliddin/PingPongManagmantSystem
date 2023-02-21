@@ -19,7 +19,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         public async void RefreshDataTime()
         {
-            
+
             var res = await timeService.GetAll();
 
             dan1.Text = res.TimeCheapFrom.ToString();

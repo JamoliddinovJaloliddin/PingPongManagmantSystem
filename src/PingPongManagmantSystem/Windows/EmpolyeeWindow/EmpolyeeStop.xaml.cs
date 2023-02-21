@@ -1,5 +1,4 @@
-﻿using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Common.Enums;
+﻿using PingPongManagmantSystem.Service.Common.Enums;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminService;
@@ -12,7 +11,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
     {
         ICustomerService customerService = new CustomerService();
         IEmpolyeeStopService empolyeeStop = new EmpolyeeStopService();
+        IDesktopCassaService desktopCassaService = new DesktopCassaService();
         CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
+        EmpolyeeTransferTable transferTable = new EmpolyeeTransferTable();
 
         public EmpolyeeStop()
         {
@@ -48,76 +49,39 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-             
-                var customer = cb_client.Text.ToString();
-                if (customer == Payment.VipKarta.ToString())
+                if (lbl_stop.Content.ToString() == "Stop")
                 {
-                    customer = txt_vipCart.Text.ToString();
-                    var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer);
-                    if (resault.Resault)
+                    var customer = cb_client.Text.ToString();
+                    if (customer == Payment.VipKarta.ToString())
                     {
-                        switch (byte.Parse(lb_id.Content.ToString()))
-                        {
-                            case 1:
-                                DesktopCassaService cassaService = new DesktopCassaService();
-                                DesktopCassa desktopCassa = new DesktopCassa();
-                               
-                                desktopCassa.Play = true;
-                                desktopCassa.StolNumber = 1;
-                                var res =  await  cassaService.UpdateAsync(desktopCassa);
-                                cassaPanelDesktop.ply_btn1.IsEnabled = true;
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            case 4:
-                                break;
-                            case 5:
-                                break;
-                            case 6:
-                                break;
-                            case 7:
-                                break;
-                            case 8:
-                                break;
-                            default:
-                                break;
-                        }
+                        customer = txt_vipCart.Text.ToString();
+                        var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer);
+                        var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()));
+                        MessageBox.Show(resault.Text);
+                    }
+                    else
+                    {
+                        var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer);
+                        var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()));
+                        MessageBox.Show(resault.Text);
                     }
                 }
-                else
+                else if (lbl_stop.Content.ToString() == "Transfer")
                 {
-                    var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer);
-                    if (resault.Resault)
+                    var customer = cb_client.Text.ToString();
+                    if (customer == Payment.VipKarta.ToString())
                     {
-                        switch (byte.Parse(lb_id.Content.ToString()))
-                        {
-                            case 1:
-                                DesktopCassaService cassaService = new DesktopCassaService();
-                                DesktopCassa desktopCassa = new DesktopCassa();
+                        customer = txt_vipCart.Text.ToString();
+                        var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer);
+                        transferTable.ShowDialog();
+                        var res = empolyeeStop.TransferCreateAsync(int.Parse(lb_id.Content.ToString()), resault.cassa);
+                    }
+                    else
+                    {
+                        var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer);
+                        transferTable.ShowDialog();
+                        var res = empolyeeStop.TransferCreateAsync(int.Parse(lb_id.Content.ToString()), resault.cassa);
 
-                                desktopCassa.StolNumber = 1;
-                                var res = await cassaService.UpdateAsync(desktopCassa);
-                                cassaPanelDesktop.Button_Inspection();
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            case 4:
-                                break;
-                            case 5:
-                                break;
-                            case 6:
-                                break;
-                            case 7:
-                                break;
-                            case 8:
-                                break;
-                            default:
-                                break;
-                        }
                     }
                 }
                 this.Close();
