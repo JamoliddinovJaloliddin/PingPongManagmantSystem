@@ -1,6 +1,6 @@
-﻿using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
+﻿using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
+using PingPongManagmantSystem.Service.ViewModels;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
@@ -31,10 +31,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                EmpolyeeStop empolyeeStop = new EmpolyeeStop();
                 if (combo_trn.Text != null)
                 {
-                    empolyeeStop.lb_id.Content = combo_trn.Text;
+                    GlobalVariable.TransferId = int.Parse(combo_trn.Text.ToString());
                     this.Close();
                 }
             }

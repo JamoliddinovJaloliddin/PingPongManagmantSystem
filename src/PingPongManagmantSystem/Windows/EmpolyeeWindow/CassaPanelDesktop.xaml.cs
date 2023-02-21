@@ -2,6 +2,7 @@
 using PingPongManagmantSystem.Service.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
+using PingPongManagmantSystem.Service.ViewModels;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
@@ -293,43 +294,49 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         private void Transfer_Button(object sender, RoutedEventArgs e)
         {
             int number = 0;
-            EmpolyeeTransferTable empolyeeTransferTable = new EmpolyeeTransferTable();
             EmpolyeeStop empolyeeStop = new EmpolyeeStop();
             empolyeeStop.lbl_stop.Content = "Transfer";
             if (transfer_btn1.IsMouseOver)
             {
-                empolyeeTransferTable.id.Content = 1;
+                empolyeeStop.lb_id.Content = 1;
+                GlobalVariable.StopId = 1;
             }
             else if (transfer_btn2.IsMouseOver)
             {
-                empolyeeTransferTable.id.Content = 2;
+                empolyeeStop.lb_id.Content = 2;
+                GlobalVariable.StopId = 2;
             }
             else if (transfer_btn3.IsMouseOver)
             {
-                empolyeeTransferTable.id.Content = 3;
+                empolyeeStop.lb_id.Content = 3;
+                GlobalVariable.StopId = 3;
             }
             else if (transfer_btn4.IsMouseOver)
             {
-                empolyeeTransferTable.id.Content = 4;
+                empolyeeStop.lb_id.Content = 4;
+                GlobalVariable.StopId = 4;
             }
             else if (transfer_btn5.IsMouseOver)
             {
-                empolyeeTransferTable.id.Content = 5;
+                empolyeeStop.lb_id.Content = 5;
+                GlobalVariable.StopId = 5;
             }
             else if (transfer_btn6.IsMouseOver)
             {
-                empolyeeTransferTable.id.Content = 6;
+                empolyeeStop.lb_id.Content = 6;
+                GlobalVariable.StopId = 6;
             }
             else if (transfer_btn7.IsMouseOver)
             {
-                empolyeeTransferTable.id.Content = 7;
+                empolyeeStop.lb_id.Content = 7;
+                GlobalVariable.StopId = 7;
             }
             else if (transfer_btn8.IsMouseOver)
             {
-                empolyeeTransferTable.id.Content = 8;
+                empolyeeStop.lb_id.Content = 8;
+                GlobalVariable.StopId = 8;
             }
             empolyeeStop.ShowDialog();
-            empolyeeTransferTable.ShowDialog();
             Button_Inspection();
         }
 

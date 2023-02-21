@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230218174409_DataBase")]
-    partial class DataBase
+    [Migration("20230221074714_CreateDataBase5")]
+    partial class CreateDataBase5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -156,6 +156,9 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<bool>("Transfer")
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("TransferSum")
+                        .HasColumnType("REAL");
+
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
@@ -229,6 +232,20 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Times");
+                });
+
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.Transfer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Transfers");
                 });
 
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.User", b =>

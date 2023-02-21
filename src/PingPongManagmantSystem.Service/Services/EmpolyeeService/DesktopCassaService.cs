@@ -81,6 +81,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         desktopCassa.UserId = item.UserId;
                         desktopCassa.Play = item.Play;
                         desktopCassa.Pause = item.Pause;
+                        desktopCassa.TransferSum = item.TransferSum;
                     }
                     return desktopCassa;
                 }
