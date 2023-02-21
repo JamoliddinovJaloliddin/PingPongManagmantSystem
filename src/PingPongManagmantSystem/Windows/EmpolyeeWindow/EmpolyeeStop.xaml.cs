@@ -3,6 +3,8 @@ using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
+using PingPongManagmantSystem.Service.ViewModels;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
@@ -13,15 +15,15 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         IEmpolyeeStopService empolyeeStop = new EmpolyeeStopService();
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
         CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
-        EmpolyeeTransferTable transferTable = new EmpolyeeTransferTable();
+
 
         public EmpolyeeStop()
         {
             InitializeComponent();
-            RefreshData_ComboBox();
+            _ = RefreshData_ComboBox();
         }
 
-        public async void RefreshData_ComboBox()
+        public async Task<int> RefreshData_ComboBox()
         {
             try
             {
@@ -33,10 +35,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 cb_typePrice.Items.Add(Payment.Naxt);
                 cb_typePrice.Items.Add(Payment.VipKarta);
                 cb_typePrice.Items.Add(Payment.Karta);
+                return 1;
             }
             catch
             {
-
+                return 1;
             }
         }
 
@@ -68,19 +71,23 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 }
                 else if (lbl_stop.Content.ToString() == "Transfer")
                 {
+                    EmpolyeeTransferTable transferTable = new EmpolyeeTransferTable();
                     var customer = cb_client.Text.ToString();
                     if (customer == Payment.VipKarta.ToString())
                     {
                         customer = txt_vipCart.Text.ToString();
                         var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer);
                         transferTable.ShowDialog();
+                        this.Close();
                         var res = empolyeeStop.TransferCreateAsync(int.Parse(lb_id.Content.ToString()), resault.cassa);
                     }
                     else
                     {
                         var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer);
+                        this.Close();
                         transferTable.ShowDialog();
-                        var res = empolyeeStop.TransferCreateAsync(int.Parse(lb_id.Content.ToString()), resault.cassa);
+                        var res = empolyeeStop.TransferCreateAsync(GlobalVariable.TransferId, resault.cassa);
+
 
                     }
                 }

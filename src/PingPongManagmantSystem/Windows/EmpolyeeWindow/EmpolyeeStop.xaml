@@ -14,7 +14,7 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Height="20">
-                <Label x:Name="lb_id" Visibility="Collapsed">
+                <Label x:Name="lb_id" Visibility="Collapsed" Content="">
                 </Label>
                 <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
 

@@ -154,8 +154,8 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<bool>("Transfer")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TransferSum")
-                        .HasColumnType("INTEGER");
+                    b.Property<double>("TransferSum")
+                        .HasColumnType("REAL");
 
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
@@ -238,13 +238,7 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Number")
-                        .HasColumnType("INTEGER");
-
                     b.Property<double>("Price")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("Time")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");

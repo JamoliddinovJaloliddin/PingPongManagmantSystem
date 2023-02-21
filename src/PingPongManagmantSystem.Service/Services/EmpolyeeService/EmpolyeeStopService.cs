@@ -10,7 +10,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
     public class EmpolyeeStopService : IEmpolyeeStopService
     {
-        private readonly AppDbContext appDbContext;
+        AppDbContext appDbContext = new AppDbContext();
         ICustomerService customerService = new CustomerService();
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
         IPingPongTableService pingPongTableService = new PingPongTableService();
@@ -209,8 +209,43 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
+                var resaultId = await desktopCassaService.GetByIdAsync(id);
+                resaultId.Id = id;
+                resaultId.Play = false;
+                resaultId.Pause = true;
+                resaultId.Stop = true;
+                resaultId.Label = false;
+                resaultId.Transfer = true;
+                resaultId.Bar = true;
+                resaultId.Calc = true;
+                resaultId.AccountBook = cassa.AccountBook;
+                resaultId.BarSum = cassa.BarSum;
+                resaultId.TransferSum = cassa.TransferSum;
+                resaultId.TimeAccount = 0;
+                resaultId.UserId = cassa.UserId;
+                resaultId.PlayTime = TimeHelper.GetCurrentServerTimeParseFloat();
+                appDbContext.DesktopCassas.Update(resaultId);
+                var resa = await appDbContext.SaveChangesAsync();
 
-                return false;
+
+                cassa.Id = cassa.Id;
+                cassa.Play = true;
+                cassa.Pause = false;
+                cassa.Stop = false;
+                cassa.Transfer = false;
+                cassa.Bar = false;
+                cassa.Calc = false;
+                cassa.Label = true;
+                cassa.BarSum = 0;
+                cassa.AccountBook = "";
+                cassa.PlayTime = 0;
+                cassa.TimeAccount = 0;
+                cassa.UserId = 0;
+                cassa.TransferSum = 0;
+
+                appDbContext.DesktopCassas.Update(cassa);
+                var res = await appDbContext.SaveChangesAsync();
+                return resa > 0;
             }
             catch
             {
