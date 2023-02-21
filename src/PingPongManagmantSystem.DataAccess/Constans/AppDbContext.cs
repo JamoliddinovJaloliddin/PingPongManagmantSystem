@@ -15,6 +15,7 @@ namespace PingPongManagmantSystem.DataAccess.Constans
         public DbSet<Time> Times { get; set; } = default!;
 
         public DbSet<DesktopCassa> DesktopCassas { get; set; } = default!;
+        public DbSet<Transfer> Transfers { get; set; } = default!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

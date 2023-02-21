@@ -1,7 +1,10 @@
-﻿namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface
+﻿using PingPongManagmantSystem.Domain.Entities;
+
+namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface
 {
     public interface IEmpolyeeStopService
     {
-        public Task<(bool Resault, string Text)> TotalPrice(byte tableNumbe, string customer);
+        public Task<(bool Resault, string Text, DesktopCassa cassa)> TotalPrice(int tableNumbe, string customer);
+        Task<bool> TransferCreateAsync(int id, DesktopCassa cassa);
     }
 }

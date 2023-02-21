@@ -71,9 +71,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             try
             {
                 PingPongTable pingPongTable = new PingPongTable();
-                var res =  appDbContext.PingPongTables.Where(x => x.Number == id).AsNoTracking();
+                var res = appDbContext.PingPongTables.Where(x => x.Number == id).AsNoTracking();
                 foreach (var item in res)
-                { 
+                {
                     pingPongTable.Number = item.Number;
                     pingPongTable.PriceCheap = item.PriceCheap;
                     pingPongTable.PriceExpensive = item.PriceExpensive;
