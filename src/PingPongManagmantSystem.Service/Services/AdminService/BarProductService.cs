@@ -60,6 +60,8 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                         barProduct.Count = bar.Count;
                         barProducts.Add(barProduct);
                     }
+
+                    await _appDbContext.SaveChangesAsync();
                     return barProducts;
                 }
                 else

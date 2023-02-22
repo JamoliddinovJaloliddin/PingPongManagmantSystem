@@ -8,5 +8,7 @@
         public static string AccountBook { get; set; } = "";
         public static int TransferId { get; set; }
         public static int StopId { get; set; }
+
+        public static int RefreshGrid { get; set; }
     }
 }

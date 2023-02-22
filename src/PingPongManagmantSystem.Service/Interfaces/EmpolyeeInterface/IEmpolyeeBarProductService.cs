@@ -1,9 +1,11 @@
-﻿using PingPongManagmantSystem.Service.ViewModels;
+﻿using PingPongManagmantSystem.Domain.Entities;
 
 namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface
 {
     public interface IEmpolyeeBarProductService
     {
-        Task<IList<BarView>> GetAllAsync();
+        Task<IList<BarCount>> GetAllAsync();
+        Task<IList<BarCount>> GetAllBarCountAsync();
+        Task<bool> CreateAsync(int number, BarCount barCount);
     }
 }

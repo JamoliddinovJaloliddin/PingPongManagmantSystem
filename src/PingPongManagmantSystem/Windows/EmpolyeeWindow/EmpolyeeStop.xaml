@@ -32,8 +32,7 @@
             </Grid>
 
             <Grid Grid.Row="2" Height="50">
-                <Button Width="200" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" Content="Hisob" Click="Account_button"/>
-                <Button Width="200" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 10 0" Content="O'zgartirish" Click="Update_button"/>
+                <Button Width="428" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" Content="Hisob" Click="Account_button"/>
             </Grid>
         </Grid>
     </Border>
