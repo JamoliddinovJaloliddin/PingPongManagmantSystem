@@ -3,14 +3,11 @@ using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 {
-    /// <summary>
-    /// Interaction logic for EmpolyeeBarProduct.xaml
-    /// </summary>
+
     public partial class EmpolyeeBarProduct : Window
     {
         IEmpolyeeBarProductService barProductService = new EmpolyeeBarProductService();
@@ -23,24 +20,27 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             RefreshDataBar();
         }
 
-        public async Task RefreshDataBar()
+        public async void RefreshDataBar()
         {
             try
             {
-                countNumber += 1;
-                if (countNumber == 1)
+                if (countNumber == 0)
                 {
-                    List<BarView> item = (List<BarView>)await barProductService.GetAllAsync();
+                    List<BarCount> item = (List<BarCount>)await barProductService.GetAllAsync();
                     empolyeProductDataGrid.ItemsSource = item;
+                    countNumber++;
+
                 }
                 else
                 {
-
+                    List<BarCount> item = (List<BarCount>)await barProductService.GetAllBarCountAsync();
+                    empolyeProductDataGrid.ItemsSource = item;
                 }
+
             }
             catch
             {
-                MessageBox.Show("Error Bar");
+                MessageBox.Show("Error");
             }
         }
 
@@ -48,9 +48,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                var item = (BarProduct)empolyeProductDataGrid.SelectedItem;
+                var item = (BarView)empolyeProductDataGrid.SelectedItem;
 
-                MessageBox.Show(item.SalePrice.ToString());
+                MessageBox.Show(item.Price.ToString());
                 MessageBox.Show(sumPrice.ToString());
             }
             catch
@@ -59,14 +59,18 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private async void Add_Button(object sender, RoutedEventArgs e)
+        private void Add_Button(object sender, RoutedEventArgs e)
         {
-
+            var resault = (BarCount)empolyeProductDataGrid.SelectedItem;
+            barProductService.CreateAsync(1, resault);
+            RefreshDataBar();
         }
 
         private void Delete_Button(object sender, RoutedEventArgs e)
         {
-
+            var resault = (BarCount)empolyeProductDataGrid.SelectedItem;
+            barProductService.CreateAsync(2, resault);
+            RefreshDataBar();
         }
     }
 }

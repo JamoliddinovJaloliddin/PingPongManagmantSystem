@@ -10,13 +10,34 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230221074714_CreateDataBase5")]
-    partial class CreateDataBase5
+    [Migration("20230221125328_CreateData")]
+    partial class CreateData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.13");
+
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.BarCount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BarCounts");
+                });
 
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.BarProduct", b =>
                 {

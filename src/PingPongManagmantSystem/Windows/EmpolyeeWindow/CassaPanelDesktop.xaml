@@ -1,10 +1,11 @@
-﻿<Window x:Class="PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow.CassaPanelDesktop"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow.CassaPanelDesktop"
         mc:Ignorable="d"
         Title="CassaPanelDesktop" Height="720" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None"   Background="Transparent"  AllowsTransparency="True">
     <Border Background="#A5BCC4" CornerRadius="6">
@@ -17,21 +18,14 @@
 
             <Grid Grid.Row="0" Height="25">
                 <Menu VerticalAlignment="Top" Width="500" Height="30" Background="Transparent" HorizontalAlignment="Left">
-                    <MenuItem Header="Bar Mahsuloti" BorderThickness="0" Width="auto" Click="Bar_Click">
-                    </MenuItem>
-                    <MenuItem Header="Sport Mahsuloti" BorderThickness="0" Width="auto" Click="Sport_Click">
-                    </MenuItem>
-                    <MenuItem Header="Karta Registratsiya" BorderThickness="0" Width="auto" Click="Card_Click">
-                    </MenuItem>
+                    <MenuItem Header="Bar Mahsuloti" BorderThickness="0" Width="auto" Click="Bar_Click"/>
+                    <MenuItem Header="Sport Mahsuloti" BorderThickness="0" Width="auto" Click="Sport_Click"/>
+                    <MenuItem Header="Karta Registratsiya" BorderThickness="0" Width="auto" Click="Card_Click"/>
                 </Menu>
 
-                
-                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
-                    
-                </Button>
-                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Blue" Margin="0 0 30 0">
 
-                </Button>
+                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button"/>
+                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Blue" Margin="0 0 30 0"/>
 
             </Grid>
 
@@ -80,9 +74,8 @@
                         <Button x:Name="calc_btn1" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
-                                <Border x:Name="border_1" Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label x:Name="label_1" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">1
-                                </Label>
+                                <Border x:Name="border_1" Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"/>
+                                <Label x:Name="label_1" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF" Content="1"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
@@ -124,9 +117,8 @@
                         <Button x:Name="calc_btn2" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
-                                <Border Width="25" Height="25" Margin="170 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label x:Name="label_2" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">2
-                                </Label>
+                                <Border Width="25" Height="25" Margin="170 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"/>
+                                <Label x:Name="label_2" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF" Content="2"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
@@ -168,9 +160,8 @@
                         <Button x:Name="calc_btn3" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
-                                <Border Width="25" Height="25" Margin="172 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label x:Name="label_3" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">3
-                                </Label>
+                                <Border Width="25" Height="25" Margin="172 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"/>
+                                <Label x:Name="label_3" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF" Content="3"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
@@ -212,9 +203,8 @@
                         <Button x:Name="calc_btn4" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
-                                <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label x:Name="label_4" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">4
-                                </Label>
+                                <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"/>
+                                <Label x:Name="label_4" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF" Content="4"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
@@ -266,9 +256,8 @@
                         <Button x:Name="calc_btn5" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
-                                <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label x:Name="label_5" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">5
-                                </Label>
+                                <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"/>
+                                <Label x:Name="label_5" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF" Content="5"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
@@ -310,9 +299,8 @@
                         <Button x:Name="calc_btn6" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
-                                <Border Width="25" Height="25" Margin="172 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label x:Name="label_6" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">6
-                                </Label>
+                                <Border Width="25" Height="25" Margin="172 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"/>
+                                <Label x:Name="label_6" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF" Content="6"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
@@ -354,9 +342,8 @@
                         <Button x:Name="calc_btn7" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
-                                <Border Width="25" Height="25" Margin="172 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label x:Name="label_7" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">7
-                                </Label>
+                                <Border Width="25" Height="25" Margin="172 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"/>
+                                <Label x:Name="label_7" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF" Content="7"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
@@ -398,15 +385,15 @@
                         <Button x:Name="calc_btn8" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" Click="Calculator_Butoon" Margin="5" IsEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
                                 <Icon:PackIconMaterial Kind="Calculator" Style="{StaticResource menuButtonIcon}" Foreground="#44C9FF" Width="15" Height="15" Margin="10"/>
-                                <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"></Border>
-                                <Label x:Name="label_8" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF">8
-                                </Label>
+                                <Border Width="25" Height="25" Margin="163 0 0 0" CornerRadius="70" BorderThickness="2" BorderBrush="#44C9FF"/>
+                                <Label x:Name="label_8" HorizontalAlignment="Right" Margin="-25 2 4 0" FontSize="15" Foreground="#44C9FF" Content="8"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
                 </Border>
 
             </Grid>
+            
         </Grid>
-     </Border>
+    </Border>
 </Window>

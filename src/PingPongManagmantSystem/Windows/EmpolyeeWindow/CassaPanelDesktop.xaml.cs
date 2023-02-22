@@ -343,6 +343,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         private void Bar_Button(object sender, RoutedEventArgs e)
         {
             EmpolyeeBarProduct product = new EmpolyeeBarProduct();
+            GlobalVariable.RefreshGrid = 1;
             product.Show();
         }
 

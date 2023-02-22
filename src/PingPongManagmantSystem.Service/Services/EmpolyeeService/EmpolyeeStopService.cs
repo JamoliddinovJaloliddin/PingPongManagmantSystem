@@ -106,7 +106,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         pingPongTable.TransferSum = totalSum;
                         accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
                     }
-
                     else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
                         pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0 && TimeStop <= 0 && TimeStop <= secondExpenciveUpTo)
                     {
@@ -190,6 +189,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                             pingPongTable.TimeAccount = TimeStop - pingPongTable.PlayTime;
                             accountBook += $"Vaqt: {pingPongTable.TimeAccount} \n Summa: {totalSum} so'm";
                         }
+
                     }
                     else
                     {

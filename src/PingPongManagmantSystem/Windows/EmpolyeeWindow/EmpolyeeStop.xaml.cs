@@ -120,6 +120,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 {
                     txt_vipCart.IsEnabled = true;
                 }
+                else
+                {
+                    txt_vipCart.Text = "";
+                    txt_vipCart.IsEnabled = false;
+                }
             }
             catch
             {
