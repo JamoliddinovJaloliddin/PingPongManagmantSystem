@@ -1,4 +1,4 @@
-﻿namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface
+﻿namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface.ButtonService
 {
     public interface IEmpolyeeTransferService
     {

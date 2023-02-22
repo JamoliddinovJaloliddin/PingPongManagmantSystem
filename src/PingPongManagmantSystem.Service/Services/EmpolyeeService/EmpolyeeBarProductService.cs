@@ -13,23 +13,25 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         AppDbContext _appDbContext = new AppDbContext();
         BarProductService barProduct = new BarProductService();
         ITrackingDetech<BarCount> trackingDetech = new TrackingDetech<BarCount>();
-        
+        ITrackingDetech<BarProduct> trackingDetechet = new TrackingDetech<BarProduct>();
+        IDesktopCassaService desktopCassaService = new DesktopCassaService();
+
         int count = 0;
 
         public async Task<bool> CreateAsync(int number, BarCount barCount)
         {
             try
             {
-                var resault = (BarCount) await _appDbContext.BarCounts.FirstOrDefaultAsync(x => x.Name == barCount.Name);
+                var resault = (BarCount)await _appDbContext.BarCounts.FirstOrDefaultAsync(x => x.Name == barCount.Name);
                 if (resault != null)
                 {
-                   trackingDetech.TrackingDeteched(resault);
+                    trackingDetech.TrackingDeteched(resault);
                 }
-              
-             
+
+
                 if (number == 1)
                 {
-                   resault.Count++;
+                    resault.Count++;
                     _appDbContext.BarCounts.Update(resault);
                 }
                 else if (number == 2)
@@ -40,7 +42,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         _appDbContext.BarCounts.Update(resault);
                     }
                 }
-                var res =  await _appDbContext.SaveChangesAsync();
+                var res = await _appDbContext.SaveChangesAsync();
                 return res > 0;
             }
             catch
@@ -51,14 +53,66 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 
 
 
+        public async Task<bool> DeleteAsync(int id, string account, double sum)
+        {
+            try
+            {
+                var barCount = await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
+                foreach (var bar in barCount)
+                {
+                    var res = (BarCount)await _appDbContext.BarCounts.FirstOrDefaultAsync(x => x.Name == bar.Name);
+                    trackingDetech.TrackingDeteched(res);
+                    res.Count = 0;
 
+                    _appDbContext.BarCounts.Update(res);
+
+                }
+
+                if (account != "NotButton")
+                {
+                    var barUser = (DesktopCassa)await desktopCassaService.GetByIdAsync(id);
+                    barUser.AccountBook += $"{account}";
+                    barUser.BarSum += sum;
+                    _appDbContext.DesktopCassas.Update(barUser);
+                }
+                var resa = await _appDbContext.SaveChangesAsync();
+                return resa > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteBarProductAsync(Dictionary<string, int> keyValuePairs)
+        {
+            try
+            {
+                foreach (var product in keyValuePairs)
+                {
+                    var res = await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
+                    if (res is not null)
+                    {
+                        trackingDetechet.TrackingDeteched(res);
+                        res.Count -= product.Value;
+                        _appDbContext.BarProducts.Update(res);
+                    }
+                }
+                await _appDbContext.SaveChangesAsync();
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public async Task<IList<BarCount>> GetAllAsync()
         {
             try
             {
                 IList<BarCount> barProducts = new List<BarCount>();
-                var barPro = await _appDbContext.BarProducts.AsNoTracking().ToListAsync();
+                var barPro = await _appDbContext.BarProducts.OrderBy(x => x.Name).AsNoTracking().ToListAsync();
                 foreach (var item in barPro)
                 {
                     var res = await _appDbContext.BarCounts.FirstOrDefaultAsync(x => x.Name == item.Name);
@@ -72,7 +126,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         await _appDbContext.SaveChangesAsync();
                     }
                 }
-                var barCounts = await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
+                var barCounts = await _appDbContext.BarCounts.OrderBy(x => x.Name).AsNoTracking().ToListAsync();
                 foreach (var item in barCounts)
                 {
                     BarCount barCount = new BarCount();
@@ -82,7 +136,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     barCount.Price = item.Price;
                     barProducts.Add(barCount);
                 }
-
                 return barProducts;
             }
             catch

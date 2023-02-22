@@ -1,7 +1,6 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
-using PingPongManagmantSystem.Service.ViewModels;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -11,8 +10,10 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
     public partial class EmpolyeeBarProduct : Window
     {
         IEmpolyeeBarProductService barProductService = new EmpolyeeBarProductService();
+        Dictionary<string, int> keyValuePairs = new Dictionary<string, int>();
         double sumPrice = 0;
         int countNumber = 0;
+        string accountBook = "";
 
         public EmpolyeeBarProduct()
         {
@@ -48,10 +49,43 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                var item = (BarView)empolyeProductDataGrid.SelectedItem;
+                foreach (BarCount bar in empolyeProductDataGrid.Items)
+                {
+                    sumPrice += bar.Price * bar.Count;
+                    accountBook += $"{bar.Name}  {bar.Price}   {bar.Count}   {bar.Price * bar.Count}\n";
+                    keyValuePairs.Add(key: bar.Name, value: bar.Count);
+                }
+                bool res = false;
+                if (gridBar_lbl.Content.ToString() == "Button")
+                {
+                    res = await barProductService.DeleteAsync(int.Parse(grid_lbl.Content.ToString()), accountBook, sumPrice);
+                    this.Close();
+                }
+                else
+                {
+                    string word = "NotButton";
+                    res = await barProductService.DeleteAsync(1, word, sumPrice);
+                    this.Close();
+                    MessageBox.Show($"{accountBook} \nUmumiy: {sumPrice}");
+                }
 
-                MessageBox.Show(item.Price.ToString());
-                MessageBox.Show(sumPrice.ToString());
+                if (res)
+                {
+                    var resault = await barProductService.DeleteBarProductAsync(keyValuePairs);
+                    if (resault)
+                    {
+                        keyValuePairs.Clear();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Xatolik");
+                }
+
+                sumPrice = 0;
+                countNumber = 0;
+                accountBook = "";
+                keyValuePairs.Clear();
             }
             catch
             {
@@ -71,6 +105,18 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             var resault = (BarCount)empolyeProductDataGrid.SelectedItem;
             barProductService.CreateAsync(2, resault);
             RefreshDataBar();
+        }
+
+        private void Exit_Button(object sender, RoutedEventArgs e)
+        {
+
+            foreach (BarCount bar in empolyeProductDataGrid.Items)
+            {
+                keyValuePairs.Add(key: bar.Name, value: bar.Count);
+            }
+            barProductService.DeleteAsync(1, "NotButton", 2);
+            keyValuePairs.Clear();
+            this.Close();
         }
     }
 }

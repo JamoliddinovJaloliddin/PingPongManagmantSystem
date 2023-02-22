@@ -2,9 +2,10 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
+using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface.ButtonService;
 using PingPongManagmantSystem.Service.Services.AdminService;
 
-namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
+namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 {
     public class EmpolyeeTransferService : IEmpolyeeTransferService
     {
