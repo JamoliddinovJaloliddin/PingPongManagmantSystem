@@ -6,7 +6,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
-        Title="EmpolyeeBarProduct" Height="500" Width="500">
+        Title="EmpolyeeBarProduct" Height="500" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Border CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -16,6 +16,9 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
+                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
+
+                </Button>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -45,8 +48,11 @@
             </Grid>
 
             <Grid Grid.Row="1" Height="70" Margin="-10,369,10,10">
-                <Button x:Name="btnSum" Click="Sum" Width="450" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 13 0" Content="Hisob" Background="Chocolate"/>
+                <Button x:Name="btnSum" Click="Sum" Width="547" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 13 0" Content="Hisob" Background="Chocolate"/>
+                <Label x:Name="grid_lbl" Content="asassa" Margin="0 50 0 0" Visibility="Collapsed"/>
+                <Label x:Name="gridBar_lbl" Content="asas" Margin="480 0 0 0" Visibility="Collapsed"/>
             </Grid>
+            
         </Grid>
     </Border>
 </Window>

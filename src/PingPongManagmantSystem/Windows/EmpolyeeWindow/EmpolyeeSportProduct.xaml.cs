@@ -10,6 +10,12 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         public EmpolyeeSportProduct()
         {
             InitializeComponent();
+            GridRefresh();
+        }
+
+        public void GridRefresh()
+        {
+
         }
     }
 }

@@ -4,9 +4,10 @@ using PingPongManagmantSystem.Service.Common.Enums;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
+using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface.ButtonService;
 using PingPongManagmantSystem.Service.Services.AdminService;
 
-namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
+namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 {
     public class EmpolyeeStopService : IEmpolyeeStopService
     {
@@ -25,12 +26,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 var TimeStop = TimeHelper.GetCurrentServerTimeParseFloat();
                 var timeCheapOrExpencive = await timeService.GetAll();
                 var pingPongTable = await desktopCassaService.GetByIdAsync(tableNumbe);
-                var pingPongTablePrice = (PingPongTable)await pingPongTableService.GetByIdAsync(pingPongTable.StolNumber);
+                var pingPongTablePrice = await pingPongTableService.GetByIdAsync(pingPongTable.StolNumber);
 
-                var secondExpenciveFrom = (timeCheapOrExpencive.TimeExpensiveFrom * 3600 / 100);
-                var secondExpenciveUpTo = (timeCheapOrExpencive.TimeExpensiveUpTo * 3600 / 100);
-                var secondCheapFrom = (timeCheapOrExpencive.TimeCheapFrom * 3600 / 100);
-                var secondCheapUpTo = (timeCheapOrExpencive.TimeCheapUpTo * 3600 / 100);
+                var secondExpenciveFrom = timeCheapOrExpencive.TimeExpensiveFrom * 3600 / 100;
+                var secondExpenciveUpTo = timeCheapOrExpencive.TimeExpensiveUpTo * 3600 / 100;
+                var secondCheapFrom = timeCheapOrExpencive.TimeCheapFrom * 3600 / 100;
+                var secondCheapUpTo = timeCheapOrExpencive.TimeCheapUpTo * 3600 / 100;
 
                 string accountBook = "";
                 double totalSum = 0;
@@ -39,7 +40,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 {
                     if (TimeStop > secondCheapFrom && secondCheapUpTo > TimeStop && pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0)
                     {
-                        totalSum = (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100) * (pingPongTable.TimeAccount / 3600) + pingPongTable.BarSum + pingPongTable.TransferSum;
+                        totalSum = pingPongTablePrice.PriceCheap * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600) + pingPongTable.BarSum + pingPongTable.TransferSum;
                         pingPongTable.TimeAccount = pingPongTable.TimeAccount / 3600;
                         var time = pingPongTable.TimeAccount / 60;
                         if (time > 60)
@@ -52,7 +53,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 
                     else if (TimeStop > secondCheapFrom && secondCheapUpTo > TimeStop && pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0)
                     {
-                        var secondCheap = (((TimeStop - pingPongTable.PlayTime) / 3600) * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100));
+                        var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                         totalSum = secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                         var time = (TimeStop - pingPongTable.PlayTime) / 60;
                         if (time > 60)
@@ -65,9 +66,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 
                     else if (TimeStop > secondCheapFrom && secondCheapUpTo > TimeStop && pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0)
                     {
-                        var secondCheap = (((TimeStop - pingPongTable.PlayTime) / 3600) * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100));
+                        var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                         totalSum = secondCheap + pingPongTable.BarSum;
-                        totalSum = (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100) * (pingPongTable.TimeAccount / 3600) + pingPongTable.TransferSum;
+                        totalSum = pingPongTablePrice.PriceCheap * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600) + pingPongTable.TransferSum;
                         var time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) / 60;
                         if (time > 60)
                         {
@@ -81,7 +82,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
                         pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0 && TimeStop <= 0 && TimeStop < secondExpenciveUpTo)
                     {
-                        totalSum = (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100) * (pingPongTable.TimeAccount / 3600)
+                        totalSum = pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600)
                             + pingPongTable.BarSum + pingPongTable.TransferSum;
                         pingPongTable.TimeAccount = pingPongTable.TimeAccount / 3600;
                         var time = pingPongTable.TimeAccount / 60;
@@ -96,7 +97,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     else if (pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
                         pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0 && TimeStop <= 0 && TimeStop <= secondExpenciveUpTo)
                     {
-                        var secondCheap = (((TimeStop - pingPongTable.PlayTime) / 3600) * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100));
+                        var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
                         totalSum = secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                         var time = (TimeStop - pingPongTable.PlayTime) / 60;
                         if (time > 60)
@@ -109,9 +110,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
                         pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0 && TimeStop <= 0 && TimeStop <= secondExpenciveUpTo)
                     {
-                        var secondCheap = (((TimeStop - pingPongTable.PlayTime) / 3600) * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100));
+                        var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
                         totalSum = secondCheap + pingPongTable.BarSum;
-                        totalSum = (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100) * (pingPongTable.TimeAccount / 3600) + pingPongTable.TransferSum;
+                        totalSum = pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600) + pingPongTable.TransferSum;
                         var time = (TimeStop - pingPongTable.PlayTime) / 60;
                         if (time > 60)
                         {
@@ -140,7 +141,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 }
                 else if (customerPercent.Status == Payment.VipKarta.ToString())
                 {
-                    var vipKart = (Card)await cardService.GetByIdAsync(customer);
+                    var vipKart = await cardService.GetByIdAsync(customer);
                     if (vipKart != null)
                     {
                         if (pingPongTable.TimeAccount == 0)

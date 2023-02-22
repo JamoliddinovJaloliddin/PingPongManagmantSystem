@@ -18,11 +18,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             Button_Inspection();
         }
 
-        public async void RefreshData()
-        {
-
-        }
-
         public async void Button_Inspection()
         {
             try
@@ -183,13 +178,16 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         private void Bar_Click(object sender, RoutedEventArgs e)
         {
             EmpolyeeBarProduct product = new EmpolyeeBarProduct();
-            product.Show();
+            product.ShowDialog();
+            Button_Inspection();
         }
 
         private void Sport_Click(object sender, RoutedEventArgs e)
         {
             EmpolyeeSportProduct product = new EmpolyeeSportProduct();
-            product.Show();
+            product.ShowDialog();
+            Button_Inspection();
+
         }
 
         private void Card_Click(object sender, RoutedEventArgs e)
@@ -343,8 +341,48 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         private void Bar_Button(object sender, RoutedEventArgs e)
         {
             EmpolyeeBarProduct product = new EmpolyeeBarProduct();
-            GlobalVariable.RefreshGrid = 1;
-            product.Show();
+            if (bar_btn1.IsMouseOver)
+            {
+                product.grid_lbl.Content = 1;
+                product.gridBar_lbl.Content = "Button";
+            }
+            else if (bar_btn2.IsMouseOver)
+            {
+                product.grid_lbl.Content = 2;
+                product.gridBar_lbl.Content = "Button";
+            }
+            else if (bar_btn3.IsMouseOver)
+            {
+                product.grid_lbl.Content = 3;
+                product.gridBar_lbl.Content = "Button";
+            }
+            else if (bar_btn4.IsMouseOver)
+            {
+                product.grid_lbl.Content = 4;
+                product.gridBar_lbl.Content = "Button";
+            }
+            else if (bar_btn5.IsMouseOver)
+            {
+                product.grid_lbl.Content = 5;
+                product.gridBar_lbl.Content = "Button";
+            }
+            else if (bar_btn6.IsMouseOver)
+            {
+                product.grid_lbl.Content = 6;
+                product.gridBar_lbl.Content = "Button";
+            }
+            else if (bar_btn7.IsMouseOver)
+            {
+                product.grid_lbl.Content = 7;
+                product.gridBar_lbl.Content = "Button";
+            }
+            else if (bar_btn8.IsMouseOver)
+            {
+                product.grid_lbl.Content = 8;
+                product.gridBar_lbl.Content = "Button";
+            }
+            product.ShowDialog();
+            Button_Inspection();
         }
 
         private void Calculator_Butoon(object sender, RoutedEventArgs e)
@@ -400,7 +438,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 cassa.StolNumber = number1;
                 var res = await desktopCassaService.UpdateAsync(cassa);
                 Button_Inspection();
-
             }
             catch
             {
