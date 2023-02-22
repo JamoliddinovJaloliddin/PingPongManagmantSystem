@@ -385,9 +385,43 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             Button_Inspection();
         }
 
-        private void Calculator_Butoon(object sender, RoutedEventArgs e)
+        private async void Calculator_Butoon(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("");
+            int number = 0;
+            if (calc_btn1.IsMouseOver)
+            {
+                number = 1;
+            }
+            else if (calc_btn2.IsMouseOver)
+            {
+                number = 2;
+            }
+            else if (calc_btn3.IsMouseOver)
+            {
+                number = 3;
+            }
+            else if (calc_btn4.IsMouseOver)
+            {
+                number = 4;
+            }
+            else if (calc_btn5.IsMouseOver)
+            {
+                number = 5;
+            }
+            else if (calc_btn6.IsMouseOver)
+            {
+                number = 6;
+            }
+            else if (calc_btn7.IsMouseOver)
+            {
+                number = 7;
+            }
+            else if (calc_btn8.IsMouseOver)
+            {
+                number = 8;
+            }
+            var resault = await desktopCassaService.GetAllAccountBookAsync(number);
+            MessageBox.Show(resault);
         }
 
         private void Exit_Button(object sender, RoutedEventArgs e)

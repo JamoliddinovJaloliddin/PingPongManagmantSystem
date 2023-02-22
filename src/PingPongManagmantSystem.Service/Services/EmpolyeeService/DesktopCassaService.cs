@@ -151,5 +151,21 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             }
         }
 
+        public async Task<string> GetAllAccountBookAsync(int number)
+        {
+            try
+            {
+                var timeStop = (double)TimeHelper.GetCurrentServerTimeParseFloat();
+               
+                var resault = await _appDbContext.DesktopCassas.FirstOrDefaultAsync(x => x.StolNumber == number);
+                string accountBook = $"Vaqt: {resault.TimeAccount + ((timeStop - resault.PlayTime)) / 60}";
+
+                return accountBook;
+            }
+            catch
+            {
+                return "";
+            }
+        }
     }
 }
