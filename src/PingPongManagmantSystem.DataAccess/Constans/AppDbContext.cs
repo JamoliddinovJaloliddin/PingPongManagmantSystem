@@ -17,6 +17,7 @@ namespace PingPongManagmantSystem.DataAccess.Constans
         public DbSet<DesktopCassa> DesktopCassas { get; set; } = default!;
         public DbSet<Transfer> Transfers { get; set; } = default!;
         public DbSet<BarCount> BarCounts { get; set; } = default!;
+        public DbSet<SportCount> SportCounts { get; set; } = default!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

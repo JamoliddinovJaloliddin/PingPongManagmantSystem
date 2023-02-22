@@ -38,8 +38,11 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 {
                     if (resault.Count > 0)
                     {
-                        resault.Count -= 1;
-                        _appDbContext.BarCounts.Update(resault);
+                        if (resault.Count > 0)
+                        {
+                            resault.Count -= 1;
+                            _appDbContext.BarCounts.Update(resault);
+                        }
                     }
                 }
                 var res = await _appDbContext.SaveChangesAsync();

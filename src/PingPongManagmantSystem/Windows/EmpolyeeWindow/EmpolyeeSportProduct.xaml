@@ -6,7 +6,7 @@
          xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
-        Title="EmpolyeeSportProduct" Height="450" Width="800">
+        Title="EmpolyeeSportProduct" Height="450" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Border CornerRadius="10">
         <Grid>
         <Grid.RowDefinitions>
@@ -16,24 +16,27 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-        </Grid>
+                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
+
+                </Button>
+            </Grid>
 
         <Grid Grid.Row="1">
             <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
-                          Grid.Row="1" x:Name="userDataGrid">
+                          Grid.Row="1" x:Name="sportDataGrid">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nomi" IsReadOnly="True" Width="*"/>
-                    <DataGridTextColumn Header="Narxi" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Soni" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Nomi" IsReadOnly="True" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="Narxi" IsReadOnly="True" Binding="{Binding Price}" Width="*"/>
+                        <DataGridTextColumn Header="Soni" IsReadOnly="True" Binding="{Binding Count}" Width="*" />
                         <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0">
+                                    <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0" Click="Delete_Button">
                                         <Icon:PackIconMaterial Kind="Minus" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button Style="{StaticResource gridEditdButton}" Margin="5 0 0 0">
+                                    <Button Style="{StaticResource gridEditdButton}" Margin="5 0 0 0" Click="Add_Button">
                                         <Icon:PackIconMaterial Kind="Plus" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                     </StackPanel>
@@ -45,9 +48,8 @@
         </Grid>
 
         <Grid Grid.Row="1" Height="50" Margin="-10,369,10,10">
-                <Button Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Hisob" Background="Chocolate"/>
-                <TextBlock Width="200" Height="30" HorizontalAlignment="Right" Margin="0 0 250 0"/>
-        </Grid>
+                <Button Click="Buy_Button" Width="535" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Hisob" Background="Chocolate"/>
+            </Grid>
     </Grid>
     </Border>
 </Window>

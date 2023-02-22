@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230221125328_CreateData")]
-    partial class CreateData
+    [Migration("20230222123307_CreateDatabase1")]
+    partial class CreateDatabase1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
