@@ -10,9 +10,23 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
     {
         AppDbContext appDbContext = new AppDbContext();
 
-        public Task<bool> CreateAsync(Card card)
+        public async Task<bool> CreateAsync(Card card)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var res = await appDbContext.Cards.FirstOrDefaultAsync(x => x.CardNumber == card.CardNumber);
+                if (res is not null)
+                {
+                    return false;
+                }
+                appDbContext.Cards.Add(card);
+                var resault = await appDbContext.SaveChangesAsync();
+                return resault > 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public Task<bool> DeleteAsync(int id)
@@ -29,10 +43,10 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
-                var resault = (Card)appDbContext.Cards.Where(x => x.CardNumber == customer).AsNoTracking();
+                var resault = await appDbContext.Cards.Where(x => x.CardNumber == customer).AsNoTracking().ToListAsync();
                 if (resault != null)
                 {
-                    return resault;
+                    return (Card)resault;
                 }
                 return null;
             }

@@ -10,5 +10,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface
         Task<bool> CreateAsync(DesktopCassa cassa);
         Task<DesktopCassa> GetByIdAsync(int id);
         Task<IEnumerable<DesktopCassa>> GetAllAsync();
+        Task<string> GetAllAccountBookAsync(int number);
     }
 }

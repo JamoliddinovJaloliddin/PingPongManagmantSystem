@@ -39,7 +39,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 return res > 0;
             }
             catch
-            { 
+            {
                 return false;
             }
         }
@@ -108,7 +108,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         sportCount.Name = product.Name;
                         sportCount.Price = product.SalePrice;
                         sportCount.Count = 0;
-                        
+
                         appDbContext.SportCounts.Add(sportCount);
                         await appDbContext.SaveChangesAsync();
                     }
@@ -138,9 +138,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 List<SportCount> sportProducts = new List<SportCount>();
-                var resault =  await appDbContext.SportCounts.AsNoTracking().ToListAsync();
+                var resault = await appDbContext.SportCounts.AsNoTracking().ToListAsync();
                 foreach (var item in resault)
-                { 
+                {
                     SportCount sportProduct = new SportCount();
                     sportProduct.Count = item.Count;
                     sportProduct.Price = item.Count;

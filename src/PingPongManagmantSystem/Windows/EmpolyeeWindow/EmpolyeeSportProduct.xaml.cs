@@ -1,7 +1,5 @@
-﻿using Dynamitey.DynamicObjects;
-using PingPongManagmantSystem.Domain.Entities;
+﻿using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
-using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using System.Collections.Generic;
 using System.Windows;
@@ -25,7 +23,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             GridRefresh();
         }
 
-        public  async void GridRefresh()
+        public async void GridRefresh()
         {
             if (countNumber == 0)
             {
@@ -34,7 +32,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 countNumber++;
             }
             else
-            { 
+            {
                 List<SportCount> sportCounts = (List<SportCount>)await sportService.GetAllAsync();
                 sportDataGrid.ItemsSource = sportCounts;
             }
@@ -64,8 +62,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 keyValuePairs.Clear();
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -78,8 +76,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 GridRefresh();
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -92,8 +90,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 GridRefresh();
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
