@@ -156,7 +156,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 var timeStop = (double)TimeHelper.GetCurrentServerTimeParseFloat();
-               
+
                 var resault = await _appDbContext.DesktopCassas.FirstOrDefaultAsync(x => x.StolNumber == number);
                 string accountBook = $"Vaqt: {resault.TimeAccount + ((timeStop - resault.PlayTime)) / 60}";
 

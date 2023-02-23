@@ -10,5 +10,6 @@ namespace PingPongManagmantSystem.Domain.Entities
         public double TablePrice { get; set; }
         public string SumPrice { get; set; } = String.Empty;
         public string Check { get; set; } = String.Empty;
+        public string TypeOfPrice { get; set; } = String.Empty;
     }
 }
