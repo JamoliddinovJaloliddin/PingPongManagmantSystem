@@ -4,13 +4,13 @@
 
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
-    public partial class CreateDataBase4 : Migration
+    public partial class CreateDataBase5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Phone",
-                table: "Cards",
+                name: "typeOfPrice",
+                table: "Cassas",
                 type: "TEXT",
                 nullable: false,
                 defaultValue: "");
@@ -19,8 +19,8 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Phone",
-                table: "Cards");
+                name: "typeOfPrice",
+                table: "Cassas");
         }
     }
 }

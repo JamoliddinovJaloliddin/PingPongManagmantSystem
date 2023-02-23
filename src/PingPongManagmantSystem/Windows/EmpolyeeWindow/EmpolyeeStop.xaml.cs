@@ -60,13 +60,13 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     if (customer == Payment.VipKarta.ToString())
                     {
                         customer = txt_vipCart.Text.ToString();
-                        var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer);
+                        var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
                         var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()));
                         MessageBox.Show(resault.Text);
                     }
                     else
                     {
-                        var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer);
+                        var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
                         var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()));
                         MessageBox.Show(resault.Text);
                     }
@@ -78,14 +78,14 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     if (customer == Payment.VipKarta.ToString())
                     {
                         customer = txt_vipCart.Text.ToString();
-                        var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer);
+                        var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
                         transferTable.ShowDialog();
                         this.Close();
                         var res = empolyeeStop.TransferCreateAsync(int.Parse(lb_id.Content.ToString()), resault.cassa);
                     }
                     else
                     {
-                        var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer);
+                        var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
                         this.Close();
                         transferTable.ShowDialog();
                         var res = empolyeeStop.TransferCreateAsync(GlobalVariable.TransferId, resault.cassa);

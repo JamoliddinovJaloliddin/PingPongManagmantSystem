@@ -8,8 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Styles\" />
-    <Folder Include="Themes\" />
+    <Compile Remove="Styles\**" />
+    <Compile Remove="Themes\**" />
+    <EmbeddedResource Remove="Styles\**" />
+    <EmbeddedResource Remove="Themes\**" />
+    <None Remove="Styles\**" />
+    <None Remove="Themes\**" />
+    <Page Remove="Styles\**" />
+    <Page Remove="Themes\**" />
   </ItemGroup>
 
   <ItemGroup>

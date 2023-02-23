@@ -16,18 +16,15 @@
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
                           Grid.Row="1" x:Name="pingPongDataGrid">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Status}" Header="Status" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Number}" Header="Raqam" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding PriceCheap}" Header="Arzon Vaqt" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding PriceExpensive}" Header="Qimmat Narx" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                <DataGridTemplateColumn Header="O" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Style="{StaticResource gridEditdButton}" Click="Update_Button">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                </Button>
-                                <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0" Click="Delete_Button">
-                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>
                         </DataTemplate>

@@ -4,7 +4,7 @@ namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface.ButtonSer
 {
     public interface IEmpolyeeStopService
     {
-        public Task<(bool Resault, string Text, DesktopCassa cassa)> TotalPrice(int tableNumbe, string customer);
+        public Task<(bool Resault, string Text, DesktopCassa cassa)> TotalPrice(int tableNumbe, string customer, string typeOfPey);
         Task<bool> TransferCreateAsync(int id, DesktopCassa cassa);
     }
 }

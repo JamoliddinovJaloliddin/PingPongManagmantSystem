@@ -52,7 +52,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 {
                     PingPongTable pingPongTable = new PingPongTable();
                     pingPongTable.Id = ite.Id;
-                    pingPongTable.Id = ite.Id;
+                    pingPongTable.Number = ite.Number;
                     pingPongTable.PriceCheap = ite.PriceCheap;
                     pingPongTable.PriceExpensive = ite.PriceExpensive;
                     list.Add(pingPongTable);

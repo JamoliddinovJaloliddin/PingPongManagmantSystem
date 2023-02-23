@@ -1,4 +1,5 @@
-﻿using PingPongManagmantSystem.DataAccess.Constans;
+﻿using Microsoft.EntityFrameworkCore;
+using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Enums;
 using PingPongManagmantSystem.Service.Helpers;
@@ -18,7 +19,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
         ITimeService timeService = new TimeService();
         ICardService cardService = new CardService();
 
-        public async Task<(bool Resault, string Text, DesktopCassa cassa)> TotalPrice(int tableNumbe, string customer)
+        public async Task<(bool Resault, string Text, DesktopCassa cassa)> TotalPrice(int tableNumbe, string customer, string typeOfPey)
         {
             try
             {
@@ -198,6 +199,23 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     }
 
                 }
+
+                var userEmpolyee = await appDbContext.Users.FirstOrDefaultAsync(x => x.Id == 1);
+                if (userEmpolyee is not null)
+                {
+                    Cassa cassa = new Cassa();
+                    cassa.UserName = userEmpolyee.Name;
+                    cassa.BarProductPrice = pingPongTable.BarSum;
+                    cassa.SportProductPrice += 0;
+                    cassa.SumPrice = totalSum.ToString();
+                    cassa.TablePrice = totalSum - pingPongTable.BarSum;
+                    cassa.Check = accountBook;
+                    cassa.TypeOfPrice = typeOfPey;
+
+                    appDbContext.Cassas.Add(cassa);
+                    var resault = await appDbContext.SaveChangesAsync();
+                }
+
                 return (Resault: true, Text: accountBook, cassa: pingPongTable);
             }
             catch
