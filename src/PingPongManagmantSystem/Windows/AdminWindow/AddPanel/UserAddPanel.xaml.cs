@@ -23,18 +23,25 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
         {
             try
             {
-                User user = new User();
-                user.Name = name.Text.ToString();
-                user.PassportInfo = passportinfo.Text.ToString();
-                user.Password = password.Text.ToString();
-                user.IsAdmin = 0;
+                if (name.Text != "" && passportinfo.Text != "" && password.Text != "")
+                {
+                    User user = new User();
+                    user.Name = name.Text.ToString();
+                    user.PassportInfo = passportinfo.Text.ToString();
+                    user.Password = password.Text.ToString();
+                    user.IsAdmin = 0;
 
-                var resault = await userService.CreateAsync(user);
-                this.Close();
+                    var resault = await userService.CreateAsync(user);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ma'lumot kiritnig");
+                }
             }
             catch
             {
-                MessageBox.Show("Error catch");
+                MessageBox.Show("Error");
             }
         }
 
@@ -42,7 +49,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
         {
             try
             {
-                if (name.Text != null && passportinfo.Text != null && password.Text != null)
+                if (name.Text != "" && passportinfo.Text != "" && password.Text != "")
                 {
                     User user = new User();
 
@@ -56,7 +63,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                     {
                         this.Close();
                     }
-
                 }
                 else
                 {
@@ -68,7 +74,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
 
             }
         }
-
-
+        private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

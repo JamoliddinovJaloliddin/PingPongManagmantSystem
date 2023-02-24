@@ -5,28 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.AddPanel"
         mc:Ignorable="d"
-        Title="PingPongTableAddPanel" Height="450" Width="450">
+        Title="PingPongTableAddPanel" Height="250" Width="450" WindowStartupLocation="CenterScreen" WindowStyle="None" >
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
             <RowDefinition Height="*" />
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Label Content="Status" Margin="20 20"/>
+        <Grid Grid.Row="1" Margin="0 0 0 0">
+            <Label Content="Status" Margin="20 20 "/>
             <TextBox x:Name="status" Text="" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" IsEnabled="False" HorizontalAlignment="Right"/>
             <Label Content="Arzon narx" Margin="20 70"/>
             <TextBox x:Name="priceCheap" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
-            <Label Content="Qimmat narxi" Margin="20 120"/>
+            <Label Content="Qimmat narxi" Margin="20 90"/>
             <TextBox  x:Name="priceExpires" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
             <Label x:Name="id" Content="id" Foreground="Transparent" HorizontalAlignment="Left"/>
-    
         </Grid>
 
-        <Grid Grid.Row="1">
-            <Button x:Name="add_btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish" Click="Add_Button"/>
-            <Button x:Name="upd_btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish" Click="Update_Button"/>
-
-
+        <Grid Grid.Row="2">
+            <Button x:Name="upd_btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0" Content="O'zgartirish" Click="Update_Button"/>
         </Grid>
     </Grid>
 </Window>

@@ -16,7 +16,13 @@ namespace PingPongManagmantSystem.Desktop.Windows
     public partial class AdminPanel : Window
     {
         int count = 1;
+        CustomerPanel customerPanel;
+        SportProductPage sportProductPage;
+        BarProductpage barProductpage;
+        
         IUserService userService = new UserService();
+        ICustomerService customerService = new CustomerService();
+    
         public ObservableCollection<User> cassaDatas = new ObservableCollection<User>();
         private bool IsMaximized = false;
 
@@ -30,7 +36,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
-                List<UserView> user = (List<UserView>)await userService.GetAllAsync();
+                List<UserView> user = (List<UserView>)await userService.GetAllAsync("");
                 userDataGrid.ItemsSource = user;
             }
             catch
@@ -202,7 +208,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-        private void UserAdd_Button(object sender, RoutedEventArgs e)
+        private async void UserAdd_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -228,7 +234,6 @@ namespace PingPongManagmantSystem.Desktop.Windows
                         break;
                     case 6:
                         PingPongTableAddPanel pingPongTableAddPanel = new PingPongTableAddPanel();
-                        pingPongTableAddPanel.add_btn.IsEnabled = true;
                         pingPongTableAddPanel.upd_btn.IsEnabled = false;
                         pingPongTableAddPanel.ShowDialog();
                         break;
@@ -239,9 +244,12 @@ namespace PingPongManagmantSystem.Desktop.Windows
                 {
                     RefreshDataAsync();
                 }
+                else if (count == 2)
+                {
+                   sportProductPage.RefreshDataSpor();
+                }
                 else if (count == 3)
                 {
-                    BarProductpage barProductpage = new BarProductpage();
                     barProductpage.RefreshDataBar();
                 }
             }

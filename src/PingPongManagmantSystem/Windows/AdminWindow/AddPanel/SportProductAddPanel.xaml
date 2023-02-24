@@ -5,29 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.AddPanel"
         mc:Ignorable="d"
-        Title="SportProductAddPanel" Height="450" Width="400">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="60" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Label Content="Name" Margin="20 20 0 0"/>
-            <TextBox  x:Name="name" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
-            <Label Content="Kelgan narxi" Margin="20 70 0 0"/>
-            <TextBox x:Name="arrivalPrice" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
-            <Label Content="Sotuv narxi" Margin="20 120 0 0"/>
-            <TextBox  x:Name="salePrice" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
-            <Label Content="Soni" Margin="20 170 0 0"/>
-            <TextBox x:Name="count" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="300" HorizontalAlignment="Right"/>
-            <Label x:Name="id" Content="Id" Background="Transparent" HorizontalAlignment="Left"/>
+        Title="SportProductAddPanel" Height="380" Width="420" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Border CornerRadius="3" Background="AliceBlue">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#3E5B7D">
+                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 -30 5 0" MouseDown="Exit_Button" BorderThickness="0">
+                    <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Label Content="Name" Margin="20 20 0 0"/>
+                <TextBox  x:Name="name" Height="30" VerticalAlignment="Top" Margin="0 20 20 0" Width="300" HorizontalAlignment="Right"/>
+                <Label Content="Kelgan narxi" Margin="20 70 0 0"/>
+                <TextBox x:Name="arrivalPrice" Height="30" VerticalAlignment="Top" Margin="0 70 20 0" Width="300" HorizontalAlignment="Right"/>
+                <Label Content="Sotuv narxi" Margin="20 120 0 0"/>
+                <TextBox  x:Name="salePrice" Height="30" VerticalAlignment="Top" Margin="0 120 20 0" Width="300" HorizontalAlignment="Right"/>
+                <Label Content="Soni" Margin="20 170 0 0"/>
+                <TextBox x:Name="count" Height="30" VerticalAlignment="Top" Margin="0 170 20 0" Width="300" HorizontalAlignment="Right"/>
+                <Label x:Name="id" Content="Id" Background="Transparent" HorizontalAlignment="Left" Visibility="Collapsed"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Button  x:Name="add_btn" Width="380" Height="27" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 15 0 0" Content="Qo'shish"  Click="Add_Button"/>
+                <Button  x:Name="upd_btn" Width="380" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 15" Content="O'zgartirish"  Click="Update_Button"/>
+            </Grid>
         </Grid>
-
-        <Grid Grid.Row="1">
-            <Button x:Name="add_btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish" Click="Add_Button"/>
-            <Button x:Name="upd_btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish" Click="Update_Button"/>
-
-
-        </Grid>
-    </Grid>
+    </Border>
 </Window>

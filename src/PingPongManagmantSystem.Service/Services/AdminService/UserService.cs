@@ -49,20 +49,36 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
         }
 
-        public async Task<IList<UserView>> GetAllAsync()
+        public async Task<IList<UserView>> GetAllAsync(string search)
         {
             try
             {
                 List<UserView> list = new List<UserView>();
-                var resault = db.Users.Where(u => u.IsAdmin == 0).AsNoTracking();
-                foreach (var user in resault)
+                if (search == "")
                 {
-                    UserView userView = new UserView();
-                    userView.Id = user.Id;
-                    userView.Name = user.Name;
-                    userView.Passport = user.PassportInfo;
-                    userView.Password = user.Password;
-                    list.Add(userView);
+                    var resault = db.Users.Where(u => u.IsAdmin == 0).AsNoTracking();
+                    foreach (var user in resault)
+                    {
+                        UserView userView = new UserView();
+                        userView.Id = user.Id;
+                        userView.Name = user.Name;
+                        userView.Passport = user.PassportInfo;
+                        userView.Password = user.Password;
+                        list.Add(userView);
+                    }
+                }
+                else
+                {
+                    var resault = db.Users.Where(u => u.IsAdmin == 0 && u.Name.Contains(search) || u.PassportInfo.Contains(search) || u.Password.Contains(search)).AsNoTracking();
+                    foreach (var user in resault)
+                    {
+                        UserView userView = new UserView();
+                        userView.Id = user.Id;
+                        userView.Name = user.Name;
+                        userView.Passport = user.PassportInfo;
+                        userView.Password = user.Password;
+                        list.Add(userView);
+                    }
                 }
                 if (list is not null)
                 {

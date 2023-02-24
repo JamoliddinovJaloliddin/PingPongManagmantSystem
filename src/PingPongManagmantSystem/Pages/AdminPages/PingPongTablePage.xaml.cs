@@ -36,7 +36,6 @@ namespace PingPongManagmantSystem.Desktop.Pages
             try
             {
                 PingPongTableAddPanel pingPongTable = new PingPongTableAddPanel();
-                pingPongTable.add_btn.IsEnabled = false;
                 pingPongTable.upd_btn.IsEnabled = true;
 
                 var item = (PingPongTable)pingPongDataGrid.SelectedItem;

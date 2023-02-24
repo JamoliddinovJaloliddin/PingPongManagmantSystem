@@ -19,8 +19,15 @@ namespace PingPongManagmantSystem.Desktop.Pages
 
         public async Task RefreshDataSpor()
         {
-            List<SportProduct> sportProduct = (List<SportProduct>)await sportProductService.GetAllAsync();
-            sportrDataGrid.ItemsSource = sportProduct;
+            try
+            {
+                List<SportProduct> sportProduct = (List<SportProduct>)await sportProductService.GetAllAsync();
+                sportrDataGrid.ItemsSource = sportProduct;
+            }
+            catch
+            { 
+            
+            }
         }
 
 
@@ -28,6 +35,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
+                
                 SportProductAddPanel sportProduct = new SportProductAddPanel();
                 sportProduct.add_btn.IsEnabled = false;
                 sportProduct.upd_btn.IsEnabled = true;
