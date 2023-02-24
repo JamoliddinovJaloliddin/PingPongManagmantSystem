@@ -29,7 +29,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                var customer = await customerService.GetAllAsync();
+                string search = "";
+                var customer = await customerService.GetAllAsync(search);
                 foreach (var item in customer)
                 {
                     cb_client.Items.Add(item.Status);

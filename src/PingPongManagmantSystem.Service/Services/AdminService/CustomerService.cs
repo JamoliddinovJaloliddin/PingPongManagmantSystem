@@ -27,22 +27,43 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             return false;
         }
 
-        public async Task<IList<Customer>> GetAllAsync()
+        public async Task<IList<Customer>> GetAllAsync(string search)
         {
             IList<Customer> customers = new List<Customer>();
-            var resault = appDbContext.Customers.OrderBy(x => x.Status).AsNoTracking();
-            if (resault is not null)
+            if (search == "")
             {
-                foreach (var res in resault)
+                var resault = appDbContext.Customers.OrderBy(x => x.Status).AsNoTracking();
+
+                if (resault is not null)
                 {
-                    Customer customer = new Customer();
-                    customer.Id = res.Id;
-                    customer.Status = res.Status;
-                    customer.Percent = res.Percent;
-                    customers.Add(customer);
+                    foreach (var res in resault)
+                    {
+                        Customer customer = new Customer();
+                        customer.Id = res.Id;
+                        customer.Status = res.Status;
+                        customer.Percent = res.Percent;
+                        customers.Add(customer);
+                    }
+                    return customers;
                 }
-                return customers;
             }
+            else
+            {
+                var resault = appDbContext.Customers.Where(x => x.Status.Contains(search)).OrderBy(x => x.Status).AsNoTracking();
+                if (resault is not null)
+                {
+                    foreach (var res in resault)
+                    {
+                        Customer customer = new Customer();
+                        customer.Id = res.Id;
+                        customer.Status = res.Status;
+                        customer.Percent = res.Percent;
+                        customers.Add(customer);
+                    }
+                    return customers;
+                }
+            }
+
             return null;
         }
 

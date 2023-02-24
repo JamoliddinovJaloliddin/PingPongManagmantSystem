@@ -21,7 +21,8 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         public async void RefreshDataCustomer()
         {
-            List<Customer> cutomers = (List<Customer>)await customer.GetAllAsync();
+            string search = "";
+            List<Customer> cutomers = (List<Customer>)await customer.GetAllAsync(search);
             customerDataGrid.ItemsSource = cutomers;
         }
 

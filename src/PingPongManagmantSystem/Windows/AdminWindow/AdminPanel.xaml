@@ -12,10 +12,10 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolTovis"/>
     </Window.Resources>
-    <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border Background="AliceBlue" CornerRadius="6" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -25,70 +25,53 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Menu VerticalAlignment="Top" Width="500" Height="30" Background="Transparent">
-                    <Button Content="Mijozlar" BorderThickness="0" Width="auto" Click="MenuEmpolye_Button">
-                    </Button>
-                    <Button Content="Vaqt" BorderThickness="0" Width="auto" Click="MenuTime_Button">
-                    </Button>
-                </Menu>
 
-                <!--Menu Icon-->
-                <Button HorizontalAlignment="Left" Margin="20 28 0 35" Style="{StaticResource topButton}">
-
-                </Button>
-
-                <Border Grid.Row="1" Background="Gray" CornerRadius="0 30 0 10">
+                <Border Grid.Row="1" Background="#3E5B7D" CornerRadius="6 0 0 6">
 
                     <DockPanel>
                         <!--Menu Logo-->
 
-                        <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100"
-                                DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
-                            <Ellipse>
-                                <Ellipse.Fill>
-                                    <ImageBrush />
-                                </Ellipse.Fill>
-                            </Ellipse>
-                        </Border>
 
+                        <Border Width="40" Height="40" Padding="3" Background="White" CornerRadius="7" 
+                                DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="30">
+                            <Image Source="/Images/xPro.png"/>
+                        </Border>
                         <!--Menu Titles-->
-                        <TextBlock Text="Admin" Foreground="White" FontSize="22" FontWeight="SemiBold"
-                                   DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
-                        <TextBlock Text="XPro" Foreground="Aqua" FontSize="14" FontWeight="SemiBold"
-                                   DockPanel.Dock="Top" TextAlignment="Center"/>
+                        <TextBlock Text="Admin" Foreground="#CDBAFF" FontSize="20" FontWeight="SemiBold"
+                                   DockPanel.Dock="Top" TextAlignment="Center" Margin="10 -55 0 10" Height="45"/>
 
                         <!--Menu Separator-->
-                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
+                        <Separator Margin="25 0 25 25" DockPanel.Dock="Top" Height="0.8" Foreground="#CDBAFF" />
 
                         <!--Menu Buttons -->
                         <StackPanel DockPanel.Dock="Top" >
                             <Button Style="{StaticResource menuButton}" x:Name="userAddButton"  
                                     Click="Empolyee_Button">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Ishchilar Ro'yhati"/>
+                                    <Icon:PackIconMaterial Kind="HumanMale" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Ishchilar Ro'yhati" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
 
                             <Button Style="{StaticResource menuButton}" Click="SpotProduct_Button">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CarSports" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Spot mahsulotlari"/>
+                                    <Icon:PackIconMaterial Kind="BaseballBat" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Spot mahsulotlari" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}" Click="BarProduct_Button">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="PresentationPlay" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Bar mahsulotlari"/>
+                                    <Icon:PackIconMaterial  Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Bar mahsulotlari" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}" Click="Statistik_Button">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="PresentationPlay" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Statistika"/>
+                                    <Icon:PackIconMaterial Kind="PercentOutline" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Statistika" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
@@ -96,25 +79,40 @@
 
                             <Button Style="{StaticResource menuButton}" Click="PingPongTable_Button">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CarSports" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Stollar Ro'yhati"/>
+                                    <Icon:PackIconMaterial Kind="Table" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Stollar Ro'yhati" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}" Click="Cassa_Button">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="Cake" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Kassa"/>
+                                    <Icon:PackIconMaterial Kind="CashRegister"  Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Kassa" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
+                            <Button Style="{StaticResource menuButton}"   
+                                     Click="MenuTime_Button">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="ClockTimeTen" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Vaqt" Foreground="#CDBAFF"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource menuButton}"  
+                                    Click="MenuEmpolye_Button">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="HumanMale" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Mijozlar" Foreground="#CDBAFF"/>
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
 
                         <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom"
                                 DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="Exit_Button">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Chiqish"/>
+                                <TextBlock Text="Chiqish" Foreground="#CDBAFF"/>
                             </StackPanel>
                         </Button>
 
@@ -126,29 +124,23 @@
             <!--Main Section-->
             <Grid Grid.Column="1" Margin="30 20 20 20">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="50" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Height="80">
+                <Grid Grid.Row="0">
+                    
                 </Grid>
 
+                <Grid Grid.Row="0">
+                    <Grid Width="400"  HorizontalAlignment="Left" Margin=" 0 0 0 0">
+                        <TextBox x:Name="txtSearch"   Style="{StaticResource textBoxSearch}" />
 
-
-                <!--Top Buttons-->
-                <!--   <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc" HorizontalAlignment="Right">
-                    <Icon:PackIconMaterial Kind="Cog"/>
-                </Button>
-
-                <Button Style="{StaticResource topButton}" Margin="0 0 55 0" Background="#dcdcdc" HorizontalAlignment="Right">
-                    <Icon:PackIconMaterial Kind="Bell"/>
-                </Button> -->
-
-                <!--Add Buttons-->
-
-
-
+                        <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
+                                           Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
+                    </Grid>
+                </Grid>
 
                 <!--Members Datagrid-->
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
@@ -158,11 +150,11 @@
                         <DataGridTextColumn  Header="Ism" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="PassportRaqam" Binding="{Binding Passport}" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Parol" Binding="{Binding Password}" IsReadOnly="True" Width="*"/>
-                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridEditdButton}" Click="Add_Button">
+                                        <Button  Style="{StaticResource gridEditdButton}" Click="Add_Button">
                                             <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
                                         <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0" Click="Delete_Button">
@@ -177,10 +169,10 @@
 
                 <!--Pagination Section-->
                 <Grid Grid.Row="2" Height="60">
-                    <Border HorizontalAlignment="Center"  BorderBrush="#dee4ec" BorderThickness="1" CornerRadius="5" 
-                        Padding="5" Background="White" Margin="150 30 10 -10" >
+                    <Border  HorizontalAlignment="Left"  BorderBrush="#dee4ec" BorderThickness="1" CornerRadius="5" 
+                        Padding="5" Background="White" Margin="0 20 10 0" >
 
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" >
                             <Button Style="{StaticResource paginationButton}">
                                 <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
 
@@ -207,25 +199,14 @@
 
                         </StackPanel>
                     </Border>
-                    <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin="0,32,0,0" Click="UserAdd_Button" Height="36" VerticalAlignment="Top">
+                    <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin="0 22 0 0" Click="UserAdd_Button" Height="36" VerticalAlignment="Top">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
-                            <TextBlock Text="Add Member Create" />
+                            <TextBlock Text="Yangi yaratish" Foreground="#CDBAFF"/>
                         </StackPanel>
                     </Button>
-
-                    <Grid Width="300" HorizontalAlignment="Left" Margin=" 0 0 0 -40">
-                        <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6"
-                               IsHitTestVisible="False"  Panel.ZIndex="1" Text="Search here ..."
-                               Visibility="{Binding ElementName=txtSearch, Converter={StaticResource BoolTovis} }"/>
-
-                        <TextBox x:Name="txtSearch"  Style="{StaticResource textBoxSearch}"/>
-
-                        <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
-                                           Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
-                    </Grid>
                 </Grid>
-                <Border Grid.Row="1" Margin="10">
+                <Border Grid.Row="1">
                     <Frame x:Name="PagesNavigation" NavigationUIVisibility="Hidden">
                         <!-- Page Content -->
                     </Frame>

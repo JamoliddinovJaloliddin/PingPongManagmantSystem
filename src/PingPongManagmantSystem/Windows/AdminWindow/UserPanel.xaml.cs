@@ -21,7 +21,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
         public async void Click()
         {
 
-            List<UserView> user = (List<UserView>)await userService.GetAllAsync();
+            List<UserView> user = (List<UserView>)await userService.GetAllAsync("");
             userDataGrid.ItemsSource = user;
         }
 

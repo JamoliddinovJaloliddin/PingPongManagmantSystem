@@ -20,7 +20,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
         {
             try
             {
-                if (name.Text != null && arrivalPrice.Text != null && salePrice.Text != null && count.Text != null)
+                if (name.Text != "" && arrivalPrice.Text != "" && salePrice.Text != "" && count.Text != "")
                 {
                     SportProduct sportProduct = new SportProduct();
                     sportProduct.Name = name.Text;
@@ -32,12 +32,12 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                 }
                 else
                 {
-                    MessageBox.Show("To'ldirilmagan qator");
+                    MessageBox.Show("Ma'lumot kiriting");
                 }
             }
             catch
             {
-
+                MessageBox.Show("Xatolik");
             }
         }
 
@@ -45,7 +45,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
         {
             try
             {
-                if (name.Text != null && arrivalPrice.Text != null && salePrice.Text != null && count.Text != null)
+                if (name.Text != "" && arrivalPrice.Text != "" && salePrice.Text != "" && count.Text != "")
                 {
                     SportProduct sportProduct = new SportProduct();
                     sportProduct.Id = int.Parse(id.Content.ToString());
@@ -58,13 +58,18 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                 }
                 else
                 {
-                    MessageBox.Show("To'ldirilmagan qator");
+                    MessageBox.Show("Ma'lumot kiriting");
                 }
             }
             catch
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Xatolik");
             }
+        }
+
+        private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
         }
     }
 }

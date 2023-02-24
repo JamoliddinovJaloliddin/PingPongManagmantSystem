@@ -9,7 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SportProductPage">
 
-    <Grid Background="#eff2f7">
+    <Grid Background="AliceBlue">
         <!--Members Datagrid-->
         <DataGrid x:Name="sportrDataGrid" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
@@ -19,7 +19,7 @@
                 <DataGridTextColumn Binding="{Binding ArrivalPrice}" Header="Kelgan narxi" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding SalePrice}" Header="Sotiladigan narxi" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Count}" Header="Soni" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
