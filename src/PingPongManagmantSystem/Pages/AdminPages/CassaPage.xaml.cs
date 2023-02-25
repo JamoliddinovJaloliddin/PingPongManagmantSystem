@@ -23,8 +23,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 cassaDataGrid.ItemsSource = res;
             }
             catch
-            { 
-            
+            {
+
             }
         }
 

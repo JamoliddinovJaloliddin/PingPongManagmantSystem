@@ -2,6 +2,8 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
+using PingPongManagmantSystem.Service.Interfaces.Common;
+using PingPongManagmantSystem.Service.Services.Common;
 
 namespace PingPongManagmantSystem.Service.Services.AdminService
 {
@@ -9,11 +11,20 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
     public class TimeService : ITimeService
     {
         AppDbContext appDbContext = new AppDbContext();
+        ITrackingDetech<Time> trackingDetech = new TrackingDetech<Time>();
         public async Task<bool> UpdateAsync(Time time)
         {
-            appDbContext.Times.Update(time);
-            var res = await appDbContext.SaveChangesAsync();
-            return res > 0;
+            try
+            {
+                trackingDetech.TrackingDeteched(time);
+                appDbContext.Times.Update(time);
+                var res = await appDbContext.SaveChangesAsync();
+                return res > 0;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<Time> GetAll()

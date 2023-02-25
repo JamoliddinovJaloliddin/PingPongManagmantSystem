@@ -25,8 +25,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 sportrDataGrid.ItemsSource = sportProduct;
             }
             catch
-            { 
-            
+            {
+
             }
         }
 
@@ -35,7 +35,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                
+
                 SportProductAddPanel sportProduct = new SportProductAddPanel();
                 sportProduct.add_btn.IsEnabled = false;
                 sportProduct.upd_btn.IsEnabled = true;

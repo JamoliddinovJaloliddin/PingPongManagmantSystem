@@ -5,24 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel"
         mc:Ignorable="d"
-        Title="CustomerAddPanel" Height="200" Width="450" WindowStartupLocation="CenterOwner">
+        Title="CustomerAddPanel" Height="280" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Border CornerRadius="20" >
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="60" />
+                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Label Content="Status" Margin="10 20"/>
-                <TextBox x:Name="status" Text="" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
-                <Label Content="Foizi" Margin="10 70 0 0"/>
-                <TextBox x:Name="percest"  Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
-                <Label x:Name="id" Foreground="Transparent" HorizontalAlignment="Left"/>
+            <Grid Grid.Row="0" >
+                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 6 0" MouseDown="Exit_Button" BorderThickness="0">
+                    <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <Label Content="Status" Margin="16 6 6 6"/>
+                        <TextBox x:Name="status" Text="" Height="30" Width="260" HorizontalAlignment="Center"/>
+                        <Label Content="Foizi" Margin="16 6 6 6"/>
+                        <TextBox x:Name="percest"  Height="30" Width="260" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </DockPanel>
+                <Label x:Name="id" Visibility="Collapsed" Foreground="Transparent" HorizontalAlignment="Left"/>
             </Grid>
 
-            <Grid Grid.Row="1">
-                <Button x:Name="add_btn" Click="Add_Btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Qo'shish"/>
-                <Button x:Name="upd_btn" Click="Upd_Btn" Width="150" Height="35" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 20 0" Content="O'zgartirish"/>
+            <Grid Grid.Row="2">
+                <Button x:Name="add_btn" Click="Add_Btn" Width="260" Height="27" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 15 0 0" Content="Qo'shish"/>
+                <Button x:Name="upd_btn" Click="Upd_Btn" Width="260" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 15" Content="O'zgartirish"/>
             </Grid>
         </Grid>
     </Border>

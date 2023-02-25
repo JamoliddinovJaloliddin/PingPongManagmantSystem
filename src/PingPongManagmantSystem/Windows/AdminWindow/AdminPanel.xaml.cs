@@ -19,18 +19,34 @@ namespace PingPongManagmantSystem.Desktop.Windows
         CustomerPanel customerPanel;
         SportProductPage sportProductPage;
         BarProductpage barProductpage;
-        
+
         IUserService userService = new UserService();
         ICustomerService customerService = new CustomerService();
-    
+
         public ObservableCollection<User> cassaDatas = new ObservableCollection<User>();
         private bool IsMaximized = false;
 
         public AdminPanel()
         {
+
             InitializeComponent();
+            AdminWindow();
             RefreshDataAsync();
+
         }
+
+        public void AdminWindow()
+        {
+            if (GlobalVariable.AdminWindow == "bar")
+            {
+                PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/BarStatisticPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            else if (GlobalVariable.AdminWindow == "sport")
+            {
+                PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/SportStatisticPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+        }
+
 
         public async void RefreshDataAsync()
         {
@@ -94,6 +110,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             {
                 count = 2;
                 PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/SportProductPage.xaml", UriKind.RelativeOrAbsolute));
+
             }
             catch
             {
@@ -244,11 +261,11 @@ namespace PingPongManagmantSystem.Desktop.Windows
                 }
                 else if (count == 2)
                 {
-                   
+
                 }
                 else if (count == 3)
                 {
-                    
+
                 }
             }
             catch

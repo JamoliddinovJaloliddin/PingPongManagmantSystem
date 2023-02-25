@@ -6,7 +6,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel"
         mc:Ignorable="d"
-        Title="UserPanel" Height="450" Width="800">
+        Title="UserPanel" Height="450" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
@@ -15,7 +15,7 @@
                 <DataGridTextColumn  Header="Ism" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="PassportRaqam" Binding="{Binding Passport}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Parol" Binding="{Binding Password}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
