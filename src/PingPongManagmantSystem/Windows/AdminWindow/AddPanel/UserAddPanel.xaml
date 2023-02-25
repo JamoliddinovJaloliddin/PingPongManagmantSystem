@@ -6,34 +6,38 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel"
         mc:Ignorable="d"
-        Title="UserAddPanel" Height="340" Width="400" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="WhiteSmoke">
-    <Border CornerRadius="3" Background="AliceBlue">
+        Title="UserAddPanel" Height="340" Width="300" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="WhiteSmoke">
+    <Border CornerRadius="3" Background="White">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/> 
+                <RowDefinition Height="20"/> 
                 <RowDefinition Height="*" />
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="#3E5B7D">
-                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 -30 5 0" MouseDown="Exit_Button" BorderThickness="0">
+            <Grid Grid.Row="0" >
+                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 3 0" MouseDown="Exit_Button" BorderThickness="0">
                     <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
                 </Border>
             </Grid>
 
             <Grid Grid.Row="1">
-                <Label Content="Ism" Margin="10 20"/>
-                <TextBox x:Name="name" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
-                <Label Content="Passport" Margin="10 70 0 0"/>
-                <TextBox x:Name="passportinfo" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
-                <Label Content="Parol" Margin="10 120 0 0"/>
-                <TextBox x:Name="password" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <Label Content="Ism" Margin="16 6 6 6"/>
+                        <TextBox x:Name="name" Height="30"  Margin="0" Width="260"/>
+                        <Label Content="Passport" Margin="16 6 6 6"/>
+                        <TextBox x:Name="passportinfo" Height="30" Margin="0" Width="260" />
+                        <Label Content="Parol" Margin="16 6 6 6"/>
+                        <TextBox x:Name="password" Height="30"  Margin="0" Width="260" />
+                    </StackPanel>
+                </DockPanel>
                 <Label x:Name="id" Background="Transparent" HorizontalAlignment="Left" Visibility="Collapsed"/>
             </Grid>
 
             <Grid Grid.Row="2">
                     
-                <Button  x:Name="addBut" Width="360" Height="27" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 15 0 0" Content="Qo'shish"  Click="Add_Button"/>
-                <Button  x:Name="updBut" Width="360" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 15" Content="O'zgartirish"  Click="Update_Button"/>
+                <Button  x:Name="addBut" Width="260" Height="27" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 15 0 0" Content="Qo'shish"  Click="Add_Button"/>
+                <Button  x:Name="updBut" Width="260" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 15" Content="O'zgartirish"  Click="Update_Button"/>
             </Grid>
         </Grid>
     </Border>

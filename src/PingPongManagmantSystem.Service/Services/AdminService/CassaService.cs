@@ -14,9 +14,23 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var cassa = await appDbContext.Cassas.FirstOrDefaultAsync(x => x.Id == id);
+                if (cassa is not null)
+                { 
+                    appDbContext.Cassas.Remove(cassa);
+                    await appDbContext.SaveChangesAsync();
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<List<Cassa>> GetAllAsync()
@@ -48,9 +62,21 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 
         }
 
-        public Task<User> GetByIdAsync(int id)
+        public async Task<string> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var resault = await appDbContext.Cassas.FirstOrDefaultAsync(x => x.Id == id);
+                if (resault is not null)
+                {
+                    return resault.Check;
+                }
+                return "Ma'lumot yo'q";
+            }
+            catch
+            {
+                return "";
+            }
         }
 
         public Task<bool> UpdateAsync(Cassa cassa)

@@ -6,9 +6,6 @@ using System.Windows.Controls;
 
 namespace PingPongManagmantSystem.Desktop.Pages
 {
-    /// <summary>
-    /// Interaction logic for CassaPage.xaml
-    /// </summary>
     public partial class CassaPage : Page
     {
         ICassaService cassa = new CassaService();
@@ -20,8 +17,15 @@ namespace PingPongManagmantSystem.Desktop.Pages
 
         public async void Refresh_Page()
         {
-            var res = await cassa.GetAllAsync();
-            cassaDataGrid.ItemsSource = res;
+            try
+            {
+                var res = await cassa.GetAllAsync();
+                cassaDataGrid.ItemsSource = res;
+            }
+            catch
+            { 
+            
+            }
         }
 
         private async void Check_Button(object sender, System.Windows.RoutedEventArgs e)
@@ -29,7 +33,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
             try
             {
                 var resault = (Cassa)cassaDataGrid.SelectedItem;
-                
+                var check = await cassa.GetByIdAsync(resault.Id);
+                MessageBox.Show(check);
             }
             catch
             {
@@ -37,11 +42,13 @@ namespace PingPongManagmantSystem.Desktop.Pages
             }
         }
 
-        private void Delete_Button(object sender, System.Windows.RoutedEventArgs e)
+        private async void Delete_Button(object sender, System.Windows.RoutedEventArgs e)
         {
             try
             {
-
+                var resault = (Cassa)cassaDataGrid.SelectedItem;
+                var res = await cassa.DeleteAsync(resault.Id);
+                Refresh_Page();
             }
             catch
             {

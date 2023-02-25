@@ -36,12 +36,12 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                 }
                 else
                 {
-                    MessageBox.Show("Ma'lumot kiritnig");
+                    MessageBox.Show("Ma'lumotlar to'liq kiritilmadi");
                 }
             }
             catch
             {
-                MessageBox.Show("Error");
+                MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
         }
 
@@ -66,12 +66,12 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                 }
                 else
                 {
-                    MessageBox.Show("Ma'lumotlarni to'ldiring");
+                    MessageBox.Show("Ma'lumotlar to'liq kiritilmadi");
                 }
             }
             catch
             {
-
+                MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
         }
         private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
