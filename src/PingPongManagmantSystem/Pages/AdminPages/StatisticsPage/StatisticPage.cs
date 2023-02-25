@@ -1,6 +1,7 @@
-﻿using PingPongManagmantSystem.Service.ViewModels;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace PingPongManagmantSystem.Desktop.Pages
 {
@@ -15,17 +16,44 @@ namespace PingPongManagmantSystem.Desktop.Pages
 
         private void Day_Button(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                NavigationService nav = NavigationService.GetNavigationService(this);
+                day_Name.IsChecked = true;
+                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
 
+            }
         }
 
         private void Bar_Button(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                NavigationService nav = NavigationService.GetNavigationService(this);
 
+                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/BarStatisticPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
+
+            }
         }
 
         private void Sport_Button(object sender, RoutedEventArgs e)
         {
-            GlobalVariable.AdminWindow = "sport";
+            try
+            {
+                NavigationService nav = NavigationService.GetNavigationService(this);
+
+                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/SportStatisticPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
+
+            }
         }
     }
 }

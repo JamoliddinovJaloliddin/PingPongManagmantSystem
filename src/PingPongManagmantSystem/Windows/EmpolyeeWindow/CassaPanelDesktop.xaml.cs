@@ -4,6 +4,7 @@ using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 {
@@ -11,7 +12,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
     {
         private readonly IDesktopCassaService desktopCassaService = new DesktopCassaService();
         private readonly CountTheTime countTheTime;
-
+        private bool IsMaximized = false;
         public CassaPanelDesktop()
         {
             InitializeComponent();
@@ -476,6 +477,32 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             catch
             {
                 return;
+            }
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (e.ClickCount == 2)
+                {
+                    if (IsMaximized)
+                    {
+                        this.WindowState = WindowState.Normal;
+                        this.Width = 1080;
+                        this.Height = 720;
+                        IsMaximized = false;
+                    }
+                    else
+                    {
+                        this.WindowState = WindowState.Maximized;
+                        IsMaximized = true;
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error");
             }
         }
     }

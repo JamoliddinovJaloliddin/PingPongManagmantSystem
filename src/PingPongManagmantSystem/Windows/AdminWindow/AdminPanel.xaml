@@ -109,7 +109,7 @@
                         </StackPanel>
 
                         <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom"
-                                DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="Exit_Button">
+                                DockPanel.Dock="Bottom" Margin="5 0 15 20" Click="Exit_Button">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Chiqish" Foreground="#CDBAFF"/>
