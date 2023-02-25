@@ -10,7 +10,7 @@
       Title="PingPongTablePage">
 
 
-    <Grid Background="#eff2f7">
+    <Grid Background="White">
         <!--Members Datagrid-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
@@ -19,7 +19,7 @@
                 <DataGridTextColumn Binding="{Binding Number}" Header="Raqam" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding PriceCheap}" Header="Arzon Vaqt" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding PriceExpensive}" Header="Qimmat Narx" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="O" IsReadOnly="True" Width="auto">
+                <DataGridTemplateColumn Header="--" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

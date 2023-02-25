@@ -18,14 +18,22 @@ namespace PingPongManagmantSystem.Desktop.Pages
 
         public async void RefreshDataBar()
         {
-            List<BarProduct> barProducts = (List<BarProduct>)await barProductService.GetAllAsync();
-            barDataGrid.ItemsSource = barProducts;
+            try
+            {
+                List<BarProduct> barProducts = (List<BarProduct>)await barProductService.GetAllAsync();
+                barDataGrid.ItemsSource = barProducts;
+            }
+            catch
+            { 
+            
+            }
         }
 
         private async void Update_Button(object sender, System.Windows.RoutedEventArgs e)
         {
             try
             {
+
                 BarProductAddPanel barProductAddPanel = new BarProductAddPanel();
                 barProductAddPanel.addbtn.IsEnabled = false;
                 barProductAddPanel.updbtn.IsEnabled = true;

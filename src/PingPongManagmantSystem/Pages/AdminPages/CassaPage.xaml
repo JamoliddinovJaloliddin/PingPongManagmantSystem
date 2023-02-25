@@ -9,7 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CassaPage">
 
-    <Grid Background="#eff2f7">
+    <Grid Background="White">
         <!--Members Datagrid-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
@@ -20,7 +20,7 @@
                 <DataGridTextColumn Binding="{Binding TablePrice}" Header="Stol" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding SumPrice}" Header="To'lov turi" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Use}" Header="Umumiy" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

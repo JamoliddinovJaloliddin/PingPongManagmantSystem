@@ -9,7 +9,7 @@
       d:DesignHeight="510" d:DesignWidth="810"
       Title="BarProductpage">
 
-    <Grid Background="#eff2f7">
+    <Grid Background="White">
         <!--Members Datagrid-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
@@ -19,7 +19,7 @@
                 <DataGridTextColumn Header="Kelgan narxi" Binding="{Binding ArrivalPrice}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Sotuv narxi" Binding="{Binding SalePrice}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Soni" Binding="{Binding Count}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

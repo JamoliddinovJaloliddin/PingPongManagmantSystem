@@ -32,12 +32,12 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                 }
                 else
                 {
-                    MessageBox.Show("Ma'lumot kiriting");
+                    MessageBox.Show("Ma'lumotlar to'liq kiritilmadi");
                 }
             }
             catch
             {
-                MessageBox.Show("Xatolik");
+                MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
         }
 
@@ -58,12 +58,12 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                 }
                 else
                 {
-                    MessageBox.Show("Ma'lumot kiriting");
+                    MessageBox.Show("Ma'lumotlar to'liq kiritilmadi");
                 }
             }
             catch
             {
-                MessageBox.Show("Xatolik");
+                MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
         }
 

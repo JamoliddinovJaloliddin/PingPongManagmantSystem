@@ -233,9 +233,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
                         barProductPage.ShowDialog();
                         break;
                     case 6:
-                        PingPongTableAddPanel pingPongTableAddPanel = new PingPongTableAddPanel();
-                        pingPongTableAddPanel.upd_btn.IsEnabled = false;
-                        pingPongTableAddPanel.ShowDialog();
+
                         break;
                     default:
                         break;
@@ -246,11 +244,11 @@ namespace PingPongManagmantSystem.Desktop.Windows
                 }
                 else if (count == 2)
                 {
-                   sportProductPage.RefreshDataSpor();
+                   
                 }
                 else if (count == 3)
                 {
-                    barProductpage.RefreshDataBar();
+                    
                 }
             }
             catch

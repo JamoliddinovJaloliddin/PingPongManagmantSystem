@@ -12,7 +12,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolTovis"/>
     </Window.Resources>
-    <Border Background="AliceBlue" CornerRadius="6" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border Background="White" CornerRadius="6" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
@@ -32,7 +32,7 @@
                         <!--Menu Logo-->
 
 
-                        <Border Width="40" Height="40" Padding="3" Background="White" CornerRadius="7" 
+                        <Border Width="40" Height="40" Padding="0" Background="White" CornerRadius="7" 
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="30">
                             <Image Source="/Images/xPro.png"/>
                         </Border>

@@ -17,17 +17,24 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
         {
             try
             {
-                BarProduct product = new BarProduct();
-                product.Name = name.Text;
-                product.ArrivalPrice = double.Parse(arrivalPrice.Text);
-                product.SalePrice = double.Parse(salePrice.Text);
-                product.Count = int.Parse(count.Text);
-                await barProductService.CreateAsync(product);
-                this.Close();
+                if (name.Text != "" && arrivalPrice.Text != "" && salePrice.Text != "" && count.Text != "")
+                {
+                    BarProduct product = new BarProduct();
+                    product.Name = name.Text;
+                    product.ArrivalPrice = double.Parse(arrivalPrice.Text);
+                    product.SalePrice = double.Parse(salePrice.Text);
+                    product.Count = int.Parse(count.Text);
+                    await barProductService.CreateAsync(product);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ma'lumotlar to'liq kiritilmadi");
+                }
             }
             catch
             {
-
+                MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
 
         }
@@ -36,7 +43,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
         {
             try
             {
-                if (name.Text != null && arrivalPrice.Text != null && salePrice.Text != null && count.Text != null)
+                if (name.Text != "" && arrivalPrice.Text != "" && salePrice.Text != "" && count.Text != "")
                 {
                     BarProduct product = new BarProduct();
                     product.Id = int.Parse(id.Content.ToString());
@@ -53,14 +60,19 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                 }
                 else
                 {
-                    MessageBox.Show("To'ldirilmagan qator mavjud");
+                    MessageBox.Show("Ma'lumotlar to'liq kiritilmadi");
                 }
 
             }
             catch
             {
-
+                MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
+        }
+
+        private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
         }
     }
 }
