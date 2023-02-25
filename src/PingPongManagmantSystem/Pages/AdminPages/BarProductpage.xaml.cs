@@ -24,8 +24,8 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 barDataGrid.ItemsSource = barProducts;
             }
             catch
-            { 
-            
+            {
+
             }
         }
 

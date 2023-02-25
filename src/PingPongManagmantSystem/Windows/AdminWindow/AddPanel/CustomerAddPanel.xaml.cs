@@ -5,9 +5,6 @@ using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
 {
-    /// <summary>
-    /// Interaction logic for CustomerAddPanel.xaml
-    /// </summary>
     public partial class CustomerAddPanel : Window
     {
         ICustomerService customerService = new CustomerService();
@@ -18,35 +15,58 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
 
         private async void Add_Btn(object sender, RoutedEventArgs e)
         {
-            if (status.Text != null && percest.Text != null)
+            try
             {
-                Customer customer = new Customer();
-                customer.Status = status.Text;
-                customer.Percent = float.Parse(percest.Text.ToString());
-                await customerService.CreateAsync(customer);
-                this.Close();
+                if (status.Text != "" && percest.Text != "")
+                {
+                    Customer customer = new Customer();
+                    customer.Status = status.Text;
+                    customer.Percent = float.Parse(percest.Text.ToString());
+                    await customerService.CreateAsync(customer);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ma'lumotlar to'liq kiritilmadi");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("To'ldirilmagan qator");
+                MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
         }
 
         private async void Upd_Btn(object sender, RoutedEventArgs e)
         {
-            if (status.Text != null && percest.Text != null)
+            try
             {
-                Customer customer = new Customer();
-                customer.Id = int.Parse(id.Content.ToString());
-                customer.Status = status.Text;
-                customer.Percent = float.Parse(percest.Text.ToString());
-                await customerService.UpdateAsync(customer);
-                this.Close();
+                if (status.Text != "" && percest.Text != "")
+                {
+                    Customer customer = new Customer();
+                    customer.Id = int.Parse(id.Content.ToString());
+                    customer.Status = status.Text;
+                    customer.Percent = float.Parse(percest.Text.ToString());
+                    await customerService.UpdateAsync(customer);
+                    this.Close();
+                    CustomerPanel customerPanel = new CustomerPanel();
+                    customerPanel.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Ma'lumotlar to'liq kiritilmadi");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("To'ldirilmagan qator");
+                MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
+        }
+
+        private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
+            CustomerPanel customerPanel = new CustomerPanel();
+            customerPanel.Show();
         }
     }
 }

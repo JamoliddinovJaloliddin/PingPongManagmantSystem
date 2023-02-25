@@ -10,5 +10,6 @@
         public static int StopId { get; set; }
 
         public static int RefreshGrid { get; set; }
+        public static string AdminWindow { get; set; } = String.Empty;
     }
 }

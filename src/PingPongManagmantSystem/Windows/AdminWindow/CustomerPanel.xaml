@@ -7,18 +7,21 @@
         
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows"
         mc:Ignorable="d"
-        Title="CustomerPanel" Height="450" Width="450">
+        Title="CustomerPanel" Height="450" Width="450" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolTovis"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Height="15">
+            <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 3 0" MouseDown="Exit_Button" BorderThickness="0">
+                <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+            </Border>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -28,7 +31,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="status" Binding="{Binding Status}" Header="Status" IsReadOnly="True" Width="*"/>
                     <DataGridTextColumn x:Name="percent" Binding="{Binding Percent}" Header="Foiz" IsReadOnly="True" Width="*"/>
-                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -47,10 +50,10 @@
         </Grid>
 
         <Grid Grid.Row="2" Height="60">
-            <Button Style="{StaticResource addButton}" Margin=" 0 0 0 -10" Click="Customer_AddButton">
+            <Button Style="{StaticResource addButton}" Margin=" 0 0 20 10" Width="170" Click="Customer_AddButton">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
-                    <TextBlock Text="Add Member Create" />
+                    <TextBlock Text="Yangi yaratish" />
                 </StackPanel>
             </Button>
 

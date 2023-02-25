@@ -20,7 +20,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             {
                 var cassa = await appDbContext.Cassas.FirstOrDefaultAsync(x => x.Id == id);
                 if (cassa is not null)
-                { 
+                {
                     appDbContext.Cassas.Remove(cassa);
                     await appDbContext.SaveChangesAsync();
                 }
@@ -41,7 +41,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 var cassaPage = await appDbContext.Cassas.AsNoTracking().ToListAsync();
                 Cassa cassa = new Cassa();
                 foreach (var item in cassaPage)
-                { 
+                {
                     cassa.Id = item.Id;
                     cassa.SumPrice = item.SumPrice;
                     cassa.SportProductPrice = item.SportProductPrice;

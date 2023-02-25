@@ -7,9 +7,6 @@ using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows
 {
-    /// <summary>
-    /// Interaction logic for CustomerPanel.xaml
-    /// </summary>
     public partial class CustomerPanel : Window
     {
         ICustomerService customer = new CustomerService();
@@ -21,39 +18,74 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         public async void RefreshDataCustomer()
         {
-            string search = "";
-            List<Customer> cutomers = (List<Customer>)await customer.GetAllAsync(search);
-            customerDataGrid.ItemsSource = cutomers;
+            try
+            {
+                string search = "";
+                List<Customer> cutomers = (List<Customer>)await customer.GetAllAsync(search);
+                customerDataGrid.ItemsSource = cutomers;
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void Customer_AddButton(object sender, RoutedEventArgs e)
         {
-            CustomerAddPanel customerAddPanel = new CustomerAddPanel();
-            customerAddPanel.add_btn.IsEnabled = true;
-            customerAddPanel.upd_btn.IsEnabled = false;
-            customerAddPanel.ShowDialog();
-            RefreshDataCustomer();
+            try
+            {
+                CustomerAddPanel customerAddPanel = new CustomerAddPanel();
+                customerAddPanel.add_btn.IsEnabled = true;
+                customerAddPanel.upd_btn.IsEnabled = false;
+                //customerAddPanel.ShowDialog();
+                //RefreshDataCustomer();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void Update_Button(object sender, RoutedEventArgs e)
         {
-            CustomerAddPanel customerPanel = new CustomerAddPanel();
-            customerPanel.add_btn.IsEnabled = false;
-            customerPanel.upd_btn.IsEnabled = true;
+            try
+            {
 
-            var cutomers = (Customer)customerDataGrid.SelectedItem;
-            customerPanel.id.Content = cutomers.Id;
-            customerPanel.status.Text = cutomers.Status;
-            customerPanel.percest.Text = cutomers.Percent.ToString();
-            customerPanel.ShowDialog();
-            RefreshDataCustomer();
+                CustomerAddPanel customerPanel = new CustomerAddPanel();
+                customerPanel.add_btn.IsEnabled = false;
+                customerPanel.upd_btn.IsEnabled = true;
+
+                var cutomers = (Customer)customerDataGrid.SelectedItem;
+                customerPanel.id.Content = cutomers.Id;
+                customerPanel.status.Text = cutomers.Status;
+                customerPanel.percest.Text = cutomers.Percent.ToString();
+                customerPanel.status.IsEnabled = false;
+                this.Close();
+                customerPanel.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private async void Delete_Button(object sender, RoutedEventArgs e)
         {
-            var item = (Customer)customerDataGrid.SelectedItem;
-            await customer.DeleteAsync(item.Id);
-            RefreshDataCustomer();
+            try
+            {
+                //var item = (Customer)customerDataGrid.SelectedItem;
+                //await customer.DeleteAsync(item.Id);
+                //RefreshDataCustomer();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
         }
     }
 }

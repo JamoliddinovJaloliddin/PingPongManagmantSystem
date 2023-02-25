@@ -5,25 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows"
         mc:Ignorable="d"
-        Title="Timepanel" Height="300" Width="230">
+        Title="Timepanel" Height="360" Width="250" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Label Content="Dan" Margin="10 20 0 0 "/>
-            <TextBox x:Name="dan1" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="170" HorizontalAlignment="Right"/>
-            <Label Content="Gacha" Margin="10 70 0 0 "/>
-            <TextBox x:Name="gacha1" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="170" HorizontalAlignment="Right"/>
-            <Label Content="Dan" Margin="10 120 0 0 "/>
-            <TextBox x:Name="dan2" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="170" HorizontalAlignment="Right"/>
-            <Label Content="Gacha" Margin="10 170 0 0 "/>
-            <TextBox x:Name="gacha2" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="170" HorizontalAlignment="Right"/>
-         
+        <Grid Grid.Row="0" >
+            <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 3 0" MouseDown="Exit_Button" BorderThickness="0">
+                <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+            </Border>
         </Grid>
         <Grid Grid.Row="1">
-            <Button Width="210" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"  Content="O'zgartirish" Click="Update_Button"/>
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top">
+                <Label Content="Dan - Skidka" Margin="16 6 6 6"/>
+            <TextBox x:Name="dan1" Height="30" Width="210" HorizontalAlignment="Center"/>
+            <Label Content="Gacha" Margin="16 6 6 6"/>
+            <TextBox x:Name="gacha1" Height="30" Width="210" HorizontalAlignment="Center"/>
+            <Label Content="Dan - Standart" Margin="16 6 6 6"/>
+            <TextBox x:Name="dan2" Height="30" Width="210" HorizontalAlignment="Center"/>
+            <Label Content="Gacha" Margin="16 6 6 6"/>
+            <TextBox x:Name="gacha2" Height="30"  Width="210" HorizontalAlignment="Center"/>
+        </StackPanel>
+            </DockPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button Width="210" HorizontalAlignment="Center" VerticalAlignment="Center" Height="27"  Content="O'zgartirish" Click="Update_Button"/>
         </Grid>
     </Grid>
 </Window>

@@ -18,8 +18,9 @@
                 <DataGridTextColumn Binding="{Binding UserName}" Header="Admin" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding BarProductPrice}" Header="Bar" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Binding="{Binding TablePrice}" Header="Stol" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Binding="{Binding SumPrice}" Header="To'lov turi" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Use}" Header="Umumiy" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Binding="{Binding TypeOfPrice}" Header="To'lov turi" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Binding="{Binding SumPrice}" Header="Umumiy" IsReadOnly="True" Width="*"/>
+
                 <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

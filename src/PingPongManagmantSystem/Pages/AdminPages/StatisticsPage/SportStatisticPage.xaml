@@ -12,15 +12,17 @@
     <Border Background="#eff2f7">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Height="15">
-                <Button Content="Bar Product" Click="BarProductPage" Width="100" HorizontalAlignment="Left"/>
-                <Button Content="Statistic Product" Margin="100 0 0 0" Click="StatisticProductPage" Width="100" HorizontalAlignment="Left"/>
-                <ComboBox Width="200" HorizontalAlignment="Right"/>
+            <Grid Grid.Row="0">
+                <TabPanel VerticalAlignment="Center" Margin="15 0 0 0">
+                    <RadioButton x:Name="day_Name" Content="Kunlik     " FontSize="13"  Click="Day_Button"/>
+                    <RadioButton Content="Bar     " FontSize="13" Click="Bar_Button"/>
+                    <RadioButton Content="Sport" FontSize="13" Click="Sport_Button"/>
+                </TabPanel>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -36,10 +38,6 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-
-
-
-
         </Grid>
     </Border>
 </Page>
