@@ -1,5 +1,4 @@
-﻿using PingPongManagmantSystem.Desktop.Pages;
-using PingPongManagmantSystem.Desktop.Windows.AddPanel;
+﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
@@ -16,9 +15,6 @@ namespace PingPongManagmantSystem.Desktop.Windows
     public partial class AdminPanel : Window
     {
         int count = 1;
-        CustomerPanel customerPanel;
-        SportProductPage sportProductPage;
-        BarProductpage barProductpage;
 
         IUserService userService = new UserService();
         ICustomerService customerService = new CustomerService();
@@ -28,25 +24,9 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         public AdminPanel()
         {
-
             InitializeComponent();
-            AdminWindow();
             RefreshDataAsync();
-
         }
-
-        public void AdminWindow()
-        {
-            if (GlobalVariable.AdminWindow == "bar")
-            {
-                PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/BarStatisticPage.xaml", UriKind.RelativeOrAbsolute));
-            }
-            else if (GlobalVariable.AdminWindow == "sport")
-            {
-                PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/SportStatisticPage.xaml", UriKind.RelativeOrAbsolute));
-            }
-        }
-
 
         public async void RefreshDataAsync()
         {
@@ -72,13 +52,11 @@ namespace PingPongManagmantSystem.Desktop.Windows
                         this.WindowState = WindowState.Normal;
                         this.Width = 1080;
                         this.Height = 720;
-
                         IsMaximized = false;
                     }
                     else
                     {
                         this.WindowState = WindowState.Maximized;
-
                         IsMaximized = true;
                     }
                 }

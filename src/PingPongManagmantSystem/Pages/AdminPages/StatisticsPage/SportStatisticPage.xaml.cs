@@ -1,30 +1,57 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
 {
-    /// <summary>
-    /// Interaction logic for SportStatisticPage.xaml
-    /// </summary>
     public partial class SportStatisticPage : Page
     {
         public SportStatisticPage()
         {
             InitializeComponent();
+            sport_Name.IsChecked = true;
         }
 
         private void Day_Button(object sender, System.Windows.RoutedEventArgs e)
         {
+            try
+            {
+                NavigationService nav = NavigationService.GetNavigationService(this);
 
+                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
+
+            }
         }
 
         private void Bar_Button(object sender, System.Windows.RoutedEventArgs e)
         {
+            try
+            {
+                NavigationService nav = NavigationService.GetNavigationService(this);
 
+                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/BarStatisticPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
+
+            }
         }
 
         private void Sport_Button(object sender, System.Windows.RoutedEventArgs e)
         {
+            try
+            {
+                NavigationService nav = NavigationService.GetNavigationService(this);
 
+                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/SportStatisticPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
+
+            }
         }
     }
 }

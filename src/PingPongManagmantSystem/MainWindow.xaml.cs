@@ -12,14 +12,18 @@ namespace PingPongManagmantSystem
             InitializeComponent();
         }
 
-        private async void btn_Login(object sender, MouseButtonEventArgs e)
+        private void Exit_Button(object sender, MouseButtonEventArgs e)
         {
+            this.Close();
+        }
 
+        private void btn_Login(object sender, RoutedEventArgs e)
+        {
             try
             {
                 CassaPanelDesktop adminPanel1 = new CassaPanelDesktop();
                 AdminPanel adminPanel2 = new AdminPanel();
-                if (txtpassword.Password.ToString() == "1")
+                if (txtpassoword.Password.ToString() == "1")
                 {
                     adminPanel1.Show();
                     this.Close();
@@ -56,11 +60,6 @@ namespace PingPongManagmantSystem
             {
                 MessageBox.Show("Xatolik");
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

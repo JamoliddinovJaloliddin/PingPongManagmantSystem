@@ -23,8 +23,8 @@
             <Grid Grid.Row="0">
                 <TabPanel VerticalAlignment="Center" Margin="15 0 0 0">
                     <RadioButton x:Name="day_Name" Content="Kunlik     " FontSize="13"  Click="Day_Button"/>
-                    <RadioButton Content="Bar     " FontSize="13" Click="Bar_Button"/>
-                    <RadioButton Content="Sport" FontSize="13" Click="Sport_Button"/>
+                    <RadioButton x:Name="bar_Name" Content="Bar     " FontSize="13" Click="Bar_Button"/>
+                    <RadioButton x:Name="sport_Name" Content="Sport" FontSize="13" Click="Sport_Button"/>
                 </TabPanel>
             </Grid>
 
@@ -40,6 +40,7 @@
                         <DataGridTextColumn Header="Naxt" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Karta" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Vip karta" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Umumiy" IsReadOnly="True" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

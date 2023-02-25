@@ -5,48 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem"
         mc:Ignorable="d"
-          Title="Login" Height="250" Width="350"
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#404258">
-    <Border Background="#404258" Opacity="0.8" CornerRadius="10">
-        <StackPanel
-               Margin="30">
+          Title="Login" Height="170" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Border CornerRadius="5">
+        <Grid Background="#3E5B7D">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <Border CornerRadius="2" Height="15" Width="15"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 6 4 1" MouseDown="Exit_Button" BorderThickness="0">
+                    <Label Content="X" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#CDBAFF" Margin="-9 -7.5 -9 0"/>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1">
+                <DockPanel>
+                    <StackPanel  DockPanel.Dock="Top">
+                        <Label Content="Parol" Margin="16 6 6 6" Foreground="#CDBAFF"/>
+                        <Border Width="266" Height="30" CornerRadius="4" Background="White">
+                            <PasswordBox BorderThickness="0" x:Name="txtpassoword" Height="27" Width="260" HorizontalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </DockPanel>
+                <Label x:Name="id" Visibility="Collapsed" Foreground="Transparent" HorizontalAlignment="Left"/>
+            </Grid>
 
-            <Button Content="X&#xD;&#xA;" Width="18" RenderTransformOrigin="7.935,-6.527" Click="Button_Click"
-                    HorizontalAlignment="Right" Height="20"/>
-
-            <Label Content="Password"
-                   Margin="0 10 0 0"
-                   FontSize="16"
-                   Foreground="LightGray"
-                   FontWeight="SemiBold"
-                   />
-
-            <Border Height="30"
-                Background="#6B728E"
-                CornerRadius="6"
-                Margin="0 5 0 0 ">
-                <PasswordBox x:Name="txtpassword"
-                     Margin="5 0"
-                     Background="#6B728E"
-                     Foreground="White"
-                     BorderThickness="0"
-                     VerticalAlignment="Center"
-                     />
-            </Border>
-
-            <Border x:Name="btnLogin"
-                    CornerRadius="6"
-                    Margin="0 40 0 0"
-                    Height="30"
-                    Background="DarkGray"
-                    Mouse.MouseDown="btn_Login">
-                <Label
-                    Foreground="White"
-                    VerticalAlignment="Center"
-                    Content="Login"
-                    FontWeight="Bold"
-                    FontSize="16"/>
-            </Border>
-        </StackPanel>
+            <Grid Grid.Row="2">
+                <Button x:Name="add_btn" Click="btn_Login" Width="266" Height="27" VerticalAlignment="Center"  HorizontalAlignment="Center" Margin="0 5 0 0" Content=""/>
+            </Grid>
+        </Grid>
     </Border>
 </Window>
+
+

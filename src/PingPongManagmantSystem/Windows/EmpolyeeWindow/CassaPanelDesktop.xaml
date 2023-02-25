@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow.CassaPanelDesktop"
         mc:Ignorable="d"
-        Title="CassaPanelDesktop" Height="720" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None"   Background="Transparent"  AllowsTransparency="True">
-    <Border Background="#A5BCC4" CornerRadius="6">
+        Title="CassaPanelDesktop"  Height="720" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None"   Background="Transparent"  AllowsTransparency="True">
+    <Border Background="#3E5B7D" CornerRadius="6" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -18,14 +18,12 @@
 
             <Grid Grid.Row="0" Height="25">
                 <Menu VerticalAlignment="Top" Width="500" Height="30" Background="Transparent" HorizontalAlignment="Left">
-                    <MenuItem Header="Bar Mahsuloti" BorderThickness="0" Width="auto" Click="Bar_Click"/>
-                    <MenuItem Header="Sport Mahsuloti" BorderThickness="0" Width="auto" Click="Sport_Click"/>
-                    <MenuItem Header="Karta Registratsiya" BorderThickness="0" Width="auto" Click="Card_Click"/>
+                    <MenuItem Header="Bar Mahsuloti" BorderThickness="0" Width="auto" Click="Bar_Click" Background="Transparent" Foreground="#CDBAFF"/>
+                    <MenuItem Header="Sport Mahsuloti" BorderThickness="0" Width="auto" Click="Sport_Click" Background="Transparent" Foreground="#CDBAFF"/>
+                    <MenuItem Header="Karta Registratsiya" BorderThickness="0" Width="auto" Click="Card_Click" Background="Transparent" Foreground="#CDBAFF"/>
                 </Menu>
 
 
-                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button"/>
-                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Blue" Margin="0 0 30 0"/>
 
             </Grid>
 
