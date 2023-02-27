@@ -56,7 +56,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 
 
 
-        public async Task<bool> DeleteAsync(int id, string account, double sum)
+        public async Task<bool> DeleteBarCountAsync(int id, string account, double sum)
         {
             try
             {

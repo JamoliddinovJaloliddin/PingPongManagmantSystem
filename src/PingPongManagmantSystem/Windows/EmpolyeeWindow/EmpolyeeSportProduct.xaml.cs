@@ -1,14 +1,12 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 {
-    /// <summary>
-    /// Interaction logic for EmpolyeeSportProduct.xaml
-    /// </summary>
     public partial class EmpolyeeSportProduct : Window
     {
         IEmpolyeeSportProductService sportService = new EmpolyeeSportProductService();
@@ -25,16 +23,23 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 
         public async void GridRefresh()
         {
-            if (countNumber == 0)
+            try
             {
-                List<SportCount> resault = (List<SportCount>)await sportService.GetAllAsync();
-                sportDataGrid.ItemsSource = resault;
-                countNumber++;
+                if (countNumber == 0)
+                {
+                    List<SportCount> resault = (List<SportCount>)await sportService.GetAllAsync();
+                    sportDataGrid.ItemsSource = resault;
+                    countNumber++;
+                }
+                else
+                {
+                    List<SportCount> sportCounts = (List<SportCount>)await sportService.GetAllAsync();
+                    sportDataGrid.ItemsSource = sportCounts;
+                }
             }
-            else
+            catch
             {
-                List<SportCount> sportCounts = (List<SportCount>)await sportService.GetAllAsync();
-                sportDataGrid.ItemsSource = sportCounts;
+                MessageBox.Show("Error");
             }
         }
 
@@ -44,26 +49,33 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             {
                 foreach (SportCount bar in sportDataGrid.Items)
                 {
-                    sumPrice += bar.Price * bar.Count;
-                    accountBook += $"{bar.Name}  {bar.Price}   {bar.Count}   {bar.Price * bar.Count}\n";
-                    keyValuePairs.Add(key: bar.Name, value: bar.Count);
-                }
+                    if (bar.Count > 0)
+                    {
+                        sumPrice += bar.Price * bar.Count;
 
-                var res = await sportService.DeleteProductAsync(keyValuePairs);
-                if (res)
-                {
-                    var sportCount = await sportService.DeleteCountAsync();
+                        accountBook += (String.Format("{0, -20}{1,-20}{2, -20}{3,-20}\n\n", bar.Name, bar.Price, bar.Count, bar.Count * bar.Price));
+                        keyValuePairs.Add(key: bar.Name, value: bar.Count);
+                    }
                 }
-                this.Close();
-                MessageBox.Show($"{accountBook} \nUmumiy: {sumPrice}");
-                sumPrice = 0;
-                countNumber = 0;
-                accountBook = "";
-                keyValuePairs.Clear();
+                if (keyValuePairs.Count > 0)
+                { 
+                    var res = await sportService.DeleteProductAsync(keyValuePairs);
+                    if (res)
+                    {
+                        var sportCount = await sportService.DeleteCountAsync();
+                    }
+                    this.Close();
+                    await sportService.DeleteCountAsync();
+                    MessageBox.Show($"{accountBook} \nUmumiy:   {sumPrice}");
+                    sumPrice = 0;
+                    countNumber = 0;
+                    accountBook = "";
+                    keyValuePairs.Clear();
+                }
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -77,7 +89,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -91,19 +103,22 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
         private void Exit_Button(object sender, RoutedEventArgs e)
         {
-            foreach (BarCount bar in sportDataGrid.Items)
+            try
             {
-                keyValuePairs.Add(key: bar.Name, value: bar.Count);
+                    sportService.DeleteCountAsync();
+                    keyValuePairs.Clear();
+                this.Close();
             }
-            sportService.DeleteCountAsync();
-            keyValuePairs.Clear();
-            this.Close();
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }

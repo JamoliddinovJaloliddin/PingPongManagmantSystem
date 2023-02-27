@@ -39,89 +39,90 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 
                 if (customerPercent.Status != "VipKarta" && customer != Payment.Trener_Kattalar.ToString() || customer != Payment.Trener_Kichik.ToString())
                 {
-                    if (TimeStop > secondCheapFrom && secondCheapUpTo > TimeStop && pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0)
-                    {
-                        totalSum = pingPongTablePrice.PriceCheap * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600) + pingPongTable.BarSum + pingPongTable.TransferSum;
-                        pingPongTable.TimeAccount = pingPongTable.TimeAccount / 3600;
-                        var time = pingPongTable.TimeAccount / 60;
-                        if (time > 60)
-                        {
-                            time = time * 60 / 3600;
-                        }
-                        pingPongTable.TransferSum = totalSum;
-                        accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
-                    }
+                   
+                    //if (TimeStop > secondCheapFrom && secondCheapUpTo > TimeStop && pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0)
+                    //{
+                    //    totalSum = pingPongTablePrice.PriceCheap * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600) + pingPongTable.BarSum + pingPongTable.TransferSum;
+                    //    pingPongTable.TimeAccount = pingPongTable.TimeAccount / 3600;
+                    //    var time = pingPongTable.TimeAccount / 60;
+                    //    if (time > 60)
+                    //    {
+                    //        time = time * 60 / 3600;
+                    //    }
+                    //    pingPongTable.TransferSum = totalSum;
+                    //    accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
+                    //}
 
-                    else if (TimeStop > secondCheapFrom && secondCheapUpTo > TimeStop && pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0)
-                    {
-                        var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
-                        totalSum = secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
-                        var time = (TimeStop - pingPongTable.PlayTime) / 60;
-                        if (time > 60)
-                        {
-                            time = time * 60 / 3600;
-                        }
-                        pingPongTable.TransferSum += totalSum;
-                        accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
-                    }
+                    //else if (TimeStop > secondCheapFrom && secondCheapUpTo > TimeStop && pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0)
+                    //{
+                    //    var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
+                    //    totalSum = secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
+                    //    var time = (TimeStop - pingPongTable.PlayTime) / 60;
+                    //    if (time > 60)
+                    //    {
+                    //        time = time * 60 / 3600;
+                    //    }
+                    //    pingPongTable.TransferSum += totalSum;
+                    //    accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
+                    //}
 
-                    else if (TimeStop > secondCheapFrom && secondCheapUpTo > TimeStop && pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0)
-                    {
-                        var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
-                        totalSum = secondCheap + pingPongTable.BarSum;
-                        totalSum = pingPongTablePrice.PriceCheap * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600) + pingPongTable.TransferSum;
-                        var time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) / 60;
-                        if (time > 60)
-                        {
-                            time = time * 60 / 3600;
-                        }
-                        pingPongTable.TransferSum = totalSum;
-                        accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
-                    }
+                    //else if (TimeStop > secondCheapFrom && secondCheapUpTo > TimeStop && pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0)
+                    //{
+                    //    var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
+                    //    totalSum = secondCheap + pingPongTable.BarSum;
+                    //    totalSum = pingPongTablePrice.PriceCheap * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600) + pingPongTable.TransferSum;
+                    //    var time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) / 60;
+                    //    if (time > 60)
+                    //    {
+                    //        time = time * 60 / 3600;
+                    //    }
+                    //    pingPongTable.TransferSum = totalSum;
+                    //    accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
+                    //}
 
 
-                    if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
-                        pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0 && TimeStop <= 0 && TimeStop < secondExpenciveUpTo)
-                    {
-                        totalSum = pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600)
-                            + pingPongTable.BarSum + pingPongTable.TransferSum;
-                        pingPongTable.TimeAccount = pingPongTable.TimeAccount / 3600;
-                        var time = pingPongTable.TimeAccount / 60;
-                        if (time > 60)
-                        {
-                            time = time * 60 / 3600;
-                        }
-                        pingPongTable.TransferSum = totalSum;
-                        accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
-                    }
+                    //if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
+                    //    pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0 && TimeStop <= 0 && TimeStop < secondExpenciveUpTo)
+                    //{
+                    //    totalSum = pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600)
+                    //        + pingPongTable.BarSum + pingPongTable.TransferSum;
+                    //    pingPongTable.TimeAccount = pingPongTable.TimeAccount / 3600;
+                    //    var time = pingPongTable.TimeAccount / 60;
+                    //    if (time > 60)
+                    //    {
+                    //        time = time * 60 / 3600;
+                    //    }
+                    //    pingPongTable.TransferSum = totalSum;
+                    //    accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
+                    //}
 
-                    else if (pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
-                        pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0 && TimeStop <= 0 && TimeStop <= secondExpenciveUpTo)
-                    {
-                        var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
-                        totalSum = secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
-                        var time = (TimeStop - pingPongTable.PlayTime) / 60;
-                        if (time > 60)
-                        {
-                            time = time * 60 / 3600;
-                        }
-                        pingPongTable.TransferSum = totalSum;
-                        accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
-                    }
-                    else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
-                        pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0 && TimeStop <= 0 && TimeStop <= secondExpenciveUpTo)
-                    {
-                        var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
-                        totalSum = secondCheap + pingPongTable.BarSum;
-                        totalSum = pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600) + pingPongTable.TransferSum;
-                        var time = (TimeStop - pingPongTable.PlayTime) / 60;
-                        if (time > 60)
-                        {
-                            time = time * 60 / 3600;
-                        }
-                        pingPongTable.TransferSum = totalSum;
-                        accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
-                    }
+                    //else if (pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
+                    //    pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0 && TimeStop <= 0 && TimeStop <= secondExpenciveUpTo)
+                    //{
+                    //    var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
+                    //    totalSum = secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
+                    //    var time = (TimeStop - pingPongTable.PlayTime) / 60;
+                    //    if (time > 60)
+                    //    {
+                    //        time = time * 60 / 3600;
+                    //    }
+                    //    pingPongTable.TransferSum = totalSum;
+                    //    accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
+                    //}
+                    //else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0 && secondExpenciveFrom <= TimeStop && TimeStop <= 86400 ||
+                    //    pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0 && TimeStop <= 0 && TimeStop <= secondExpenciveUpTo)
+                    //{
+                    //    var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
+                    //    totalSum = secondCheap + pingPongTable.BarSum;
+                    //    totalSum = pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100 * (pingPongTable.TimeAccount / 3600) + pingPongTable.TransferSum;
+                    //    var time = (TimeStop - pingPongTable.PlayTime) / 60;
+                    //    if (time > 60)
+                    //    {
+                    //        time = time * 60 / 3600;
+                    //    }
+                    //    pingPongTable.TransferSum = totalSum;
+                    //    accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
+                    //}
                 }
 
                 else if (customerPercent.Status == Payment.Trener_Kattalar.ToString())

@@ -83,9 +83,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         appDbContext.SportProducts.Update(res);
                     }
                 }
-                await appDbContext.SaveChangesAsync();
+                var resault =  await appDbContext.SaveChangesAsync();
 
-                return false;
+                return resault > 0;
             }
             catch
             {

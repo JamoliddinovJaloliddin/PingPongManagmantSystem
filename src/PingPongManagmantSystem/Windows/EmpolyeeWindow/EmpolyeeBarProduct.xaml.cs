@@ -49,74 +49,95 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                foreach (BarCount bar in empolyeProductDataGrid.Items)
+                if (empolyeProductDataGrid.SelectedItems.Count > 0)
                 {
-                    sumPrice += bar.Price * bar.Count;
-                    accountBook += $"{bar.Name}  {bar.Price}   {bar.Count}   {bar.Price * bar.Count}\n";
-                    keyValuePairs.Add(key: bar.Name, value: bar.Count);
-                }
-                bool res = false;
-                if (gridBar_lbl.Content.ToString() == "Button")
-                {
-                    res = await barProductService.DeleteAsync(int.Parse(grid_lbl.Content.ToString()), accountBook, sumPrice);
-                    this.Close();
-                }
-                else
-                {
-                    string word = "NotButton";
-                    res = await barProductService.DeleteAsync(1, word, sumPrice);
-                    this.Close();
-                    MessageBox.Show($"{accountBook} \nUmumiy: {sumPrice}");
-                }
-
-                if (res)
-                {
-                    var resault = await barProductService.DeleteBarProductAsync(keyValuePairs);
-                    if (resault)
+                    foreach (BarCount bar in empolyeProductDataGrid.Items)
                     {
-                        keyValuePairs.Clear();
+                        if (bar.Count > 0)
+                        {
+                            sumPrice += bar.Price * bar.Count;
+                            accountBook += $"{bar.Name}  {bar.Price}   {bar.Count}   {bar.Price * bar.Count}\n";
+                            keyValuePairs.Add(key: bar.Name, value: bar.Count);
+                        }
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Xatolik");
-                }
+                    bool res = false;
+                    if (gridBar_lbl.Content.ToString() == "Button")
+                    {
+                        res = await barProductService.DeleteBarCountAsync(int.Parse(grid_lbl.Content.ToString()), accountBook, sumPrice);
+                        this.Close();
+                    }
+                    else
+                    {
+                        string word = "NotButton";
+                        res = await barProductService.DeleteBarCountAsync(1, word, sumPrice);
+                        this.Close();
+                        MessageBox.Show($"{accountBook} \nUmumiy: {sumPrice}");
+                    }
 
-                sumPrice = 0;
-                countNumber = 0;
-                accountBook = "";
-                keyValuePairs.Clear();
+                    if (res)
+                    {
+                        var resault = await barProductService.DeleteBarProductAsync(keyValuePairs);
+                        if (resault)
+                        {
+                            keyValuePairs.Clear();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xatolik");
+                    }
+
+                    sumPrice = 0;
+                    countNumber = 0;
+                    accountBook = "";
+                    keyValuePairs.Clear();
+                }
             }
             catch
             {
-                MessageBox.Show("Error Button");
+                MessageBox.Show("Error");
             }
         }
 
         private void Add_Button(object sender, RoutedEventArgs e)
         {
-            var resault = (BarCount)empolyeProductDataGrid.SelectedItem;
-            barProductService.CreateAsync(1, resault);
-            RefreshDataBar();
+            try
+            {
+                var resault = (BarCount)empolyeProductDataGrid.SelectedItem;
+                barProductService.CreateAsync(1, resault);
+                RefreshDataBar();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void Delete_Button(object sender, RoutedEventArgs e)
         {
-            var resault = (BarCount)empolyeProductDataGrid.SelectedItem;
-            barProductService.CreateAsync(2, resault);
-            RefreshDataBar();
+            try
+            {
+                var resault = (BarCount)empolyeProductDataGrid.SelectedItem;
+                barProductService.CreateAsync(2, resault);
+                RefreshDataBar();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void Exit_Button(object sender, RoutedEventArgs e)
         {
-
-            foreach (BarCount bar in empolyeProductDataGrid.Items)
+            try
             {
-                keyValuePairs.Add(key: bar.Name, value: bar.Count);
+                barProductService.DeleteBarCountAsync(1, "NotButton", 2);
+                this.Close();
             }
-            barProductService.DeleteAsync(1, "NotButton", 2);
-            keyValuePairs.Clear();
-            this.Close();
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }

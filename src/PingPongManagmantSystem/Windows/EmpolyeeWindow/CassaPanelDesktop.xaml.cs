@@ -5,6 +5,7 @@ using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 {
@@ -26,6 +27,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 var res = await desktopCassaService.GetAllAsync();
                 foreach (var item in res)
                 {
+
                     switch (item.StolNumber)
                     {
                         case 1:
@@ -38,11 +40,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_1.Visibility = Visibility.Visible;
-
+                                border1.Background = new SolidColorBrush(Colors.White);
                             }
                             else
                             {
-                                label_1.Visibility = Visibility.Hidden;
+                                border1.Background = new SolidColorBrush(Colors.LightBlue);
                             }
                             break;
                         case 2:
@@ -55,11 +57,12 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_2.Visibility = Visibility.Visible;
+                                border2.Background = new SolidColorBrush(Colors.White);
 
                             }
                             else
                             {
-                                label_2.Visibility = Visibility.Hidden;
+                                border2.Background = new SolidColorBrush(Colors.LightBlue);
                             }
                             break;
                         case 3:
@@ -72,11 +75,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_3.Visibility = Visibility.Visible;
-
+                                border3.Background = new SolidColorBrush(Colors.White);
                             }
                             else
                             {
-                                label_3.Visibility = Visibility.Hidden;
+                                border3.Background = new SolidColorBrush(Colors.LightBlue);
                             }
                             break;
                         case 4:
@@ -89,11 +92,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_4.Visibility = Visibility.Visible;
-
+                                border4.Background = new SolidColorBrush(Colors.White);
                             }
                             else
                             {
-                                label_4.Visibility = Visibility.Hidden;
+                                border4.Background = new SolidColorBrush(Colors.LightBlue);
                             }
                             break;
                         case 5:
@@ -106,11 +109,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_5.Visibility = Visibility.Visible;
-
+                                border5.Background = new SolidColorBrush(Colors.White);
                             }
                             else
                             {
-                                label_5.Visibility = Visibility.Hidden;
+                                border5.Background = new SolidColorBrush(Colors.LightBlue);
                             }
                             break;
                         case 6:
@@ -123,11 +126,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_6.Visibility = Visibility.Visible;
-
+                                border6.Background = new SolidColorBrush(Colors.White);
                             }
                             else
                             {
-                                label_6.Visibility = Visibility.Hidden;
+                                border6.Background = new SolidColorBrush(Colors.LightBlue);
                             }
                             break;
                         case 7:
@@ -140,11 +143,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_7.Visibility = Visibility.Visible;
-
+                                border7.Background = new SolidColorBrush(Colors.White);
                             }
                             else
                             {
-                                label_7.Visibility = Visibility.Hidden;
+                                border7.Background = new SolidColorBrush(Colors.LightBlue);
                             }
                             break;
                         case 8:
@@ -157,11 +160,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (item.Label == true)
                             {
                                 label_8.Visibility = Visibility.Visible;
-
+                                border8.Background = new SolidColorBrush(Colors.White);
                             }
                             else
                             {
-                                label_8.Visibility = Visibility.Hidden;
+                                border8.Background = new SolidColorBrush(Colors.LightBlue);
                             }
                             break;
                         default:
@@ -202,6 +205,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             try
             {
                 DesktopCassa cassa = new DesktopCassa();
+
+
                 if (ply_btn1.IsMouseOver)
                 {
                     cassa.StolNumber = 1;
@@ -342,6 +347,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         private void Bar_Button(object sender, RoutedEventArgs e)
         {
             EmpolyeeBarProduct product = new EmpolyeeBarProduct();
+
+
+
             if (bar_btn1.IsMouseOver)
             {
                 product.grid_lbl.Content = 1;
@@ -499,6 +507,21 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                         IsMaximized = true;
                     }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                GlobalVariable.UserId = 0;
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
             }
             catch
             {

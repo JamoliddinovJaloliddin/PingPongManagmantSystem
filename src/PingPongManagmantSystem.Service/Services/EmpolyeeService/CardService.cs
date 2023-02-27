@@ -15,7 +15,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 var res = await appDbContext.Cards.FirstOrDefaultAsync(x => x.CardNumber == card.CardNumber);
-                if (res is not null)
+                if (res is not null && res.CardNumber == card.CardNumber)
                 {
                     return false;
                 }
