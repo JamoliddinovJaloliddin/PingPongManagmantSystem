@@ -5,37 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
-        Title="EmpolyeeCardRegister" Height="360" Width="400" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="EmpolyeeCardRegister" Height="450" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Border>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="60" />
+                <RowDefinition Height="80" />
             </Grid.RowDefinitions>
-            <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
-
-            </Button>
             <Grid Grid.Row="0">
-            </Grid >
-                <Grid Grid.Row="1">
-                <Label Content="Password" Margin="20 20 0 0"/>
-                <TextBox x:Name="password_card" Height="30" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
-                <Label Content="Limit" Margin="20 70 0 0"/>
-                <TextBox x:Name="limit_card" Height="30" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right"/>
-                <Label Content="Narxi" Margin="20 120 0 0"/>
-                <TextBox x:Name="price_card" Height="30" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
-                <Label Content="Telefon" Margin="20 170 0 0"/>
-                <TextBox x:Name="phone_card" Height="30" VerticalAlignment="Top" Margin="0 170 10 0" Width="300" HorizontalAlignment="Right"/>
-                <Label Content="To'lov turi" Margin="20 220 0 0"/>
-                <ComboBox x:Name="combo_card" Height="30" VerticalAlignment="Top" Margin="0 220 10 0" Width="300" HorizontalAlignment="Right">
-                    <ComboBoxItem Content="Naxt"/>
-                    <ComboBoxItem Content="Karta"/>
-                </ComboBox>
-            </Grid>
+                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
 
+                </Button>
+            </Grid >
+
+            <Grid Grid.Row="1">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <Label Content="Password" Margin="14 6 6 6"/>
+                        <TextBox x:Name="password_card" Height="30" Width="260" HorizontalAlignment="Center"/>
+                        <Label Content="Limit" Margin="14 6 6 6"/>
+                        <TextBox x:Name="limit_card" Height="30"  Width="260" HorizontalAlignment="Center"/>
+                        <Label Content="Narxi" Margin="14 6 6 6"/>
+                        <TextBox x:Name="price_card" Height="30" Width="260" HorizontalAlignment="Center"/>
+                        <Label Content="Telefon" Margin="14 6 6 6"/>
+                        <TextBox x:Name="phone_card" Height="30" Width="260" HorizontalAlignment="Center"/>
+                        <Label Content="To'lov turi" Margin="14 6 6 6"/>
+                        <ComboBox x:Name="combo_card" Height="28"  Width="260" HorizontalAlignment="Center">
+                            <ComboBoxItem Content="Naxt"/>
+                            <ComboBoxItem Content="Karta"/>
+                        </ComboBox>
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
             <Grid Grid.Row="2">
-                <Button x:Name="add_btn" Click="Add_Button" Width="360" Height="34" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Qo'shish"/>
+                <Button x:Name="add_btn" Click="Add_Button" Width="260" Height="27" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Qo'shish"/>
             </Grid>
         </Grid>
     </Border>

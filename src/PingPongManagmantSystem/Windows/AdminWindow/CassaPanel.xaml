@@ -31,7 +31,7 @@
                     <DataGridTextColumn Header="Stol tennisi" IsReadOnly="True" Width="*"/>
                     <DataGridTextColumn Header="O'pshi summa" IsReadOnly="True" Width="*"/>
                     <DataGridTextColumn Header="To'lov turi" IsReadOnly="True" Width="*"/>
-                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
