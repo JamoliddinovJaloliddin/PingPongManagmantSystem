@@ -5,21 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
-        Title="EmpolyeeTransferTable" Height="100" Width="400">
+        Title="EmpolyeeTransferTable" Height="170" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Border>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Height="15">
-                
+                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 4 0" Click="Exit_Button">
+
+                </Button>
             </Grid>
             <Grid Grid.Row="1">
-                <Label x:Name="id" Content="" Margin="0 -20" Visibility="Collapsed"/>
-                <Label Content="Stol raqami" Margin="10 20"/>
-                <ComboBox x:Name="combo_trn" Text="" Height="15" VerticalAlignment="Top" Margin="90 20 10 0" Width="150" HorizontalAlignment="Left"/>
-                <Button Click="Transfer_button" Width="120" Height="20" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 -10 15 0" Content="Qo'shish"/>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <Label x:Name="lb_id" Visibility="Collapsed"/>
+                        <Label Content="Stol raqami" Margin="16 6 6 6"/>
+                        <ComboBox x:Name="combo_trn" Text="" Height="27" VerticalAlignment="Top"  Width="260" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Button Click="Transfer_button" Margin="0" Width="260" Height="27" VerticalAlignment="Center" HorizontalAlignment="Center"  Content="Qo'shish"/>
             </Grid>
         </Grid>
     </Border>

@@ -22,10 +22,10 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         public EmpolyeeStop()
         {
             InitializeComponent();
-            _ = RefreshData_ComboBox();
+            RefreshData_ComboBox();
         }
 
-        public async Task<int> RefreshData_ComboBox()
+        public async void RefreshData_ComboBox()
         {
             try
             {
@@ -38,11 +38,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 cb_typePrice.Items.Add(Payment.Naxt);
                 cb_typePrice.Items.Add(Payment.VipKarta);
                 cb_typePrice.Items.Add(Payment.Karta);
-                return 1;
+               
             }
             catch
             {
-                return 1;
+                MessageBox.Show("Error");
             }
         }
 
@@ -98,21 +98,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
-        }
-
-        private void Update_button(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch
-            {
-
-            }
-
         }
 
         private void btn_txt(object sender, DependencyPropertyChangedEventArgs e)
@@ -131,7 +118,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
             catch
             {
-
+                MessageBox.Show("Errpr");
             }
         }
     }

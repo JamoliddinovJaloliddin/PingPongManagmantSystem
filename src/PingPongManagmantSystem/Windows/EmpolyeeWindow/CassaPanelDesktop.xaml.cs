@@ -204,42 +204,40 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                DesktopCassa cassa = new DesktopCassa();
-
-
+                int StolNumber = 0;
                 if (ply_btn1.IsMouseOver)
                 {
-                    cassa.StolNumber = 1;
+                    StolNumber = 1;
                 }
                 else if (ply_btn2.IsMouseOver)
                 {
-                    cassa.StolNumber = 2;
+                    StolNumber = 2;
                 }
                 else if (ply_btn3.IsMouseOver)
                 {
-                    cassa.StolNumber = 3;
+                    StolNumber = 3;
                 }
                 else if (ply_btn4.IsMouseOver)
                 {
-                    cassa.StolNumber = 4;
+                    StolNumber = 4;
                 }
                 else if (ply_btn5.IsMouseOver)
                 {
-                    cassa.StolNumber = 5;
+                    StolNumber = 5;
                 }
                 else if (ply_btn6.IsMouseOver)
                 {
-                    cassa.StolNumber = 6;
+                    StolNumber = 6;
                 }
                 else if (ply_btn7.IsMouseOver)
                 {
-                    cassa.StolNumber = 7;
+                    StolNumber = 7;
                 }
                 else if (ply_btn8.IsMouseOver)
                 {
-                    cassa.StolNumber = 8;
+                    StolNumber = 8;
                 }
-                var res = await desktopCassaService.CreateAsync(cassa);
+                var res = await desktopCassaService.CreateAsync(StolNumber);
                 Button_Inspection();
             }
             catch
@@ -445,7 +443,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             try
             {
                 byte number1 = 0;
-                DesktopCassa cassa = new DesktopCassa();
                 if (pause_btn1.IsMouseOver)
                 {
                     number1 = 1;
@@ -478,8 +475,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 {
                     number1 = 8;
                 }
-                cassa.StolNumber = number1;
-                var res = await desktopCassaService.UpdateAsync(cassa);
+                var res = await desktopCassaService.UpdateAsync(number1);
                 Button_Inspection();
             }
             catch

@@ -3,8 +3,10 @@ using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
+using PingPongManagmantSystem.Service.Interfaces.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminService;
+using PingPongManagmantSystem.Service.Services.Common;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
@@ -14,6 +16,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         ITimeService timeService = new TimeService();
         IPingPongTableService pingPongTableService = new PingPongTableService();
         ICustomerService customerService = new CustomerService();
+        ITrackingDetech<DesktopCassa> trackingDetech = new TrackingDetech<DesktopCassa>();
 
         public async Task<bool> DeleteAsync(int id)
         {
@@ -83,6 +86,8 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         desktopCassa.Pause = item.Pause;
                         desktopCassa.TransferSum = item.TransferSum;
                     }
+
+                    
                     return desktopCassa;
                 }
                 return null;
@@ -93,14 +98,16 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             }
         }
 
-        public async Task<bool> UpdateAsync(DesktopCassa cassa)
+        public async Task<bool> UpdateAsync(int StolNumber)
         {
             try
             {
                 var res = TimeHelper.GetCurrentServerTimeParseFloat();
-                var pingPongTable = (DesktopCassa)await GetByIdAsync(cassa.StolNumber);
+                var pingPongTable = (DesktopCassa)await GetByIdAsync(StolNumber);
+                //trackingDetech.TrackingDeteched(pingPongTable);
+                _appDbContext.Entry(pingPongTable).State = EntityState.Detached;
                 var timePrice = (Time)await timeService.GetAll();
-                var pingPongTablePrice = (PingPongTable)await pingPongTableService.GetByIdAsync(cassa.StolNumber);
+                var pingPongTablePrice = (PingPongTable)await pingPongTableService.GetByIdAsync(StolNumber);
                 double resault = 0;
 
                 if (res > timePrice.TimeExpensiveFrom * 3600 / 100 && pingPongTable.PlayTime < timePrice.TimeExpensiveFrom * 3600 / 100)
@@ -112,12 +119,13 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 {
                     resault = res - pingPongTable.PlayTime;
                 }
-                cassa = pingPongTable;
-                cassa.TimeAccount += resault;
-                cassa.Pause = false;
-                cassa.Play = true;
-                cassa.PlayTime = 0;
-                _appDbContext.DesktopCassas.Update(cassa);
+                pingPongTable.Id = StolNumber;
+                pingPongTable.StolNumber = StolNumber;
+                pingPongTable.TimeAccount += resault;
+                pingPongTable.Pause = false;
+                pingPongTable.Play = true;
+                pingPongTable.PlayTime = 0;           
+                _appDbContext.DesktopCassas.Update(pingPongTable);
                 var rs = await _appDbContext.SaveChangesAsync();
                 return rs > 0;
             }
@@ -127,21 +135,37 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             }
         }
 
-        public async Task<bool> CreateAsync(DesktopCassa cassa)
+        public async Task<bool> CreateAsync(int StolNumber)
         {
             try
             {
-                var res = (DesktopCassa)await GetByIdAsync(cassa.StolNumber);
-                cassa = res;
-                cassa.Pause = true;
-                cassa.Stop = true;
-                cassa.Bar = true;
-                cassa.Play = false;
-                cassa.Transfer = true;
-                cassa.Calc = true;
-                cassa.Label = false;
-                cassa.PlayTime = TimeHelper.GetCurrentServerTimeParseFloat();
-                _appDbContext.DesktopCassas.Update(cassa);
+                var res = (DesktopCassa)await GetByIdAsync(StolNumber);
+
+
+                if (res.Stop != true  &&  res.Pause != true && res.Play == true)
+                {
+                   // trackingDetech.TrackingDeteched(res);
+                   _appDbContext.Entry(res).State = EntityState.Detached;
+                    res.Pause = true;
+                    res.Stop = true;
+                    res.Bar = true;
+                    res.Play = false;
+                    res.Transfer = true;
+                    res.Calc = true;
+                    res.Label = false;
+                    res.PlayTime = TimeHelper.GetCurrentServerTimeParseFloat();
+                    _appDbContext.DesktopCassas.Update(res);
+                }
+                else if (res.Stop == true && res.Pause == false && res.Play == true)
+                {
+                    _appDbContext.Entry(res).State = EntityState.Detached;
+                    res.PlayTime = TimeHelper.GetCurrentServerTimeParseFloat();
+                    res.Id = StolNumber;
+                    res.Play = false;
+                    res.Pause = true;
+                    _appDbContext.Entry(res).State = EntityState.Detached;
+                    _appDbContext.DesktopCassas.Update(res);
+                }
                 var resault = await _appDbContext.SaveChangesAsync();
                 return resault > 0;
             }

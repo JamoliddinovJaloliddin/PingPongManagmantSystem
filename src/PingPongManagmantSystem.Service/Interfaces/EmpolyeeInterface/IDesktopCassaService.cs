@@ -6,8 +6,8 @@ namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface
     {
 
         Task<bool> DeleteAsync(int id);
-        Task<bool> UpdateAsync(DesktopCassa cassa);
-        Task<bool> CreateAsync(DesktopCassa cassa);
+        Task<bool> UpdateAsync(int StolNumber);
+        Task<bool> CreateAsync(int StolNumber);
         Task<DesktopCassa> GetByIdAsync(int id);
         Task<IEnumerable<DesktopCassa>> GetAllAsync();
         Task<string> GetAllAccountBookAsync(int number);

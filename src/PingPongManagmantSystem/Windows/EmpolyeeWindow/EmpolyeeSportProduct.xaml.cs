@@ -58,7 +58,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     }
                 }
                 if (keyValuePairs.Count > 0)
-                { 
+                {
                     var res = await sportService.DeleteProductAsync(keyValuePairs);
                     if (res)
                     {
@@ -111,8 +111,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                    sportService.DeleteCountAsync();
-                    keyValuePairs.Clear();
+                sportService.DeleteCountAsync();
+                keyValuePairs.Clear();
                 this.Close();
             }
             catch
