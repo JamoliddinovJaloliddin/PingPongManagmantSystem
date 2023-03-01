@@ -45,5 +45,10 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
 
         }
+
+        private void Exit_Button(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

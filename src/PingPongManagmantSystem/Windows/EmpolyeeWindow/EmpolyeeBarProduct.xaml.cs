@@ -49,7 +49,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                if (empolyeProductDataGrid.SelectedItems.Count > 0)
+                if (empolyeProductDataGrid.Items.Count > 0)
                 {
                     foreach (BarCount bar in empolyeProductDataGrid.Items)
                     {

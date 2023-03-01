@@ -5,34 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
-        Title="EmpolyeeStop" Height="250" Width="450" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#A5BCC4">
-    <Border CornerRadius="3" Background="#A5BCC4">
-        <Grid Background="#A5BCC4">
+        Title="EmpolyeeStop" Height="300" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="White">
+    <Border CornerRadius="3" Background="White">
+        <Grid Background="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Height="20">
                 <Label x:Name="lb_id" Visibility="Collapsed" Content="">
                 </Label>
-                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
+                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 4 0" Click="Exit_Button">
 
                 </Button>
             </Grid>
 
             <Grid Grid.Row="1">
-                <Label x:Name="lbl_stop" Content="" Margin="10 -20 0 0" Visibility="Collapsed"/>
-                <Label Content="Klent turi" Margin="10 20 0 0"/>
-                <ComboBox  x:Name="cb_client" Height="25" VerticalAlignment="Top" Margin="0 20 10 0" Width="300" HorizontalAlignment="Right"/>
-                <Label Content="To'lov turi" Margin="10 70 0 0"/>
-                <ComboBox x:Name="cb_typePrice" Height="25" VerticalAlignment="Top" Margin="0 70 10 0" Width="300" HorizontalAlignment="Right" IsMouseCapturedChanged="btn_txt"/>
-                <Label Content="Vip karta" Margin="10 120 0 0"/>
-                <TextBox IsEnabled="False" x:Name="txt_vipCart" Height="25" VerticalAlignment="Top" Margin="0 120 10 0" Width="300" HorizontalAlignment="Right"/>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <Label x:Name="lbl_stop" Content="" Margin="0" Visibility="Collapsed"/>
+                        <Label Content="Klent turi" Margin="16 6 6 6"/>
+                        <ComboBox  x:Name="cb_client" Height="25" VerticalAlignment="Top"  Width="260" HorizontalAlignment="Center"/>
+                        <Label Content="To'lov turi" Margin="16 6 6 6"/>
+                        <ComboBox x:Name="cb_typePrice" Height="25" VerticalAlignment="Top"  Width="260" HorizontalAlignment="Center" IsMouseCapturedChanged="btn_txt"/>
+                        <Label Content="Vip karta" Margin="16 6 6 6"/>
+                        <TextBox IsEnabled="False" x:Name="txt_vipCart" Height="30" VerticalAlignment="Top" Width="260" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </DockPanel>
             </Grid>
 
-            <Grid Grid.Row="2" Height="50">
-                <Button Width="428" Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 10 0" Content="Hisob" Click="Account_button"/>
+            <Grid Grid.Row="2">
+                <Button Width="260" Height="27" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Content="Hisob" Click="Account_button"/>
             </Grid>
         </Grid>
     </Border>

@@ -53,7 +53,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 {
                     foreach (var item in resault)
                     {
-                        var res = (SportCount)await appDbContext.SportCounts.FirstOrDefaultAsync(x => x.Name == item.Name);
+                        var res = (SportCount) await appDbContext.SportCounts.FirstOrDefaultAsync(x => x.Name == item.Name);
                         trackingDetech.TrackingDeteched(res);
                         res.Count = 0;
                         appDbContext.SportCounts.Update(res);
@@ -83,7 +83,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         appDbContext.SportProducts.Update(res);
                     }
                 }
-                var resault =  await appDbContext.SaveChangesAsync();
+                var resault = await appDbContext.SaveChangesAsync();
 
                 return resault > 0;
             }
