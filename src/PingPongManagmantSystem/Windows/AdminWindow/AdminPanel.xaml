@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
         mc:Ignorable="d"
         Title="AdminPanel" Height="720" Width="1080" WindowStartupLocation="CenterScreen"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent">
@@ -124,51 +125,51 @@
             <!--Main Section-->
             <Grid Grid.Column="1" Margin="30 20 20 20">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="60" />
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
-                    
-                </Grid>
 
                 <Grid Grid.Row="0">
-                    <Grid Width="400"  HorizontalAlignment="Left" Margin=" 0 0 0 0">
-                        <TextBox x:Name="txtSearch"   Style="{StaticResource textBoxSearch}" />
-
-                        <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid Width="400"  HorizontalAlignment="Left" Margin=" 0 0 0 0">
+                            <TextBox TextChanged="Search"  Style="{StaticResource textBoxSearch}" x:Name="tb"/>
+                            <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
                                            Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
+                        </Grid>
                     </Grid>
-                </Grid>
 
-                <!--Members Datagrid-->
-                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
+                    <!--Members Datagrid-->
+                    <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
                           Grid.Row="1" x:Name="userDataGrid" HorizontalAlignment="Right">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn  Header="Ism" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="PassportRaqam" Binding="{Binding Passport}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Parol" Binding="{Binding Password}" IsReadOnly="True" Width="*"/>
-                        <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto" >
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button  Style="{StaticResource gridEditdButton}" Click="Add_Button">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                        <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0" Click="Delete_Button">
-                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="Ism" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="PassportRaqam" Binding="{Binding Passport}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Parol" Binding="{Binding Password}" IsReadOnly="True" Width="*"/>
+                            <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button  Style="{StaticResource gridEditdButton}" Click="Add_Button">
+                                                <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                            </Button>
+                                            <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0" Click="Delete_Button">
+                                                <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
                 <!--Pagination Section-->
-                <Grid Grid.Row="2" Height="60">
+                <Grid Grid.Row="1">
                     <Border  HorizontalAlignment="Left"  BorderBrush="#dee4ec" BorderThickness="1" CornerRadius="5" 
                         Padding="5" Background="White" Margin="0 20 10 0" >
 
@@ -206,7 +207,7 @@
                         </StackPanel>
                     </Button>
                 </Grid>
-                <Border Grid.Row="1">
+                <Border Grid.Row="0">
                     <Frame x:Name="PagesNavigation" NavigationUIVisibility="Hidden">
                         <!-- Page Content -->
                     </Frame>

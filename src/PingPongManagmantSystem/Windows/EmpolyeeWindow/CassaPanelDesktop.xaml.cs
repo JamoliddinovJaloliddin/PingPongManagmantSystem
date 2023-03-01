@@ -1,5 +1,4 @@
-﻿using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Common;
+﻿using PingPongManagmantSystem.Service.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using PingPongManagmantSystem.Service.ViewModels;

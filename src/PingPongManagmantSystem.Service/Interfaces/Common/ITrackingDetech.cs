@@ -1,6 +1,4 @@
-﻿using PingPongManagmantSystem.Domain.Common;
-
-namespace PingPongManagmantSystem.Service.Interfaces.Common
+﻿namespace PingPongManagmantSystem.Service.Interfaces.Common
 {
     public interface ITrackingDetech<T>
     {

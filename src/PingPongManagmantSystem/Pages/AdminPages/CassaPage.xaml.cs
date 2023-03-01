@@ -19,12 +19,12 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                var res = await cassa.GetAllAsync();
+                var res = await cassa.GetAllAsync("");
                 cassaDataGrid.ItemsSource = res;
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -49,6 +49,19 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 var resault = (Cassa)cassaDataGrid.SelectedItem;
                 var res = await cassa.DeleteAsync(resault.Id);
                 Refresh_Page();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private async void Search(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                var res = await cassa.GetAllAsync(tb.Text.ToString());
+                cassaDataGrid.ItemsSource = res;
             }
             catch
             {

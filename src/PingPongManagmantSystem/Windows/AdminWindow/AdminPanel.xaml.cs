@@ -290,5 +290,19 @@ namespace PingPongManagmantSystem.Desktop.Windows
                 MessageBox.Show("Error");
             }
         }
+
+
+        private async void Search(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                List<UserView> user = (List<UserView>)await userService.GetAllAsync(tb.Text.ToString());
+                userDataGrid.ItemsSource = user;
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
     }
 }

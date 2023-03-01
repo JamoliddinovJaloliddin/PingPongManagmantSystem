@@ -19,6 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\xPro.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetProjects.WpfToolkit.Input" Version="6.1.94" />
     <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
     <PackageReference Include="MaterialDesignColors" Version="2.1.1" />
     <PackageReference Include="MaterialDesignInXamlToolkitAddOns" Version="0.0.6" />
@@ -31,6 +36,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PingPongManagmantSystem.Service\PingPongManagmantSystem.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\xPro.png" />
   </ItemGroup>
 
 </Project>
