@@ -53,7 +53,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 {
                     foreach (var item in resault)
                     {
-                        var res = (SportCount) await appDbContext.SportCounts.FirstOrDefaultAsync(x => x.Name == item.Name);
+                        var res = (SportCount)await appDbContext.SportCounts.FirstOrDefaultAsync(x => x.Name == item.Name);
                         trackingDetech.TrackingDeteched(res);
                         res.Count = 0;
                         appDbContext.SportCounts.Update(res);

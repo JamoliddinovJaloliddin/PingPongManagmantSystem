@@ -46,7 +46,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     if (TimeStop > secondExpenciveFrom && pingPongTable.PlayTime < secondCheapUpTo &&
                         pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0)
                     {
-                        var secondCheapExpencive = (secondCheapUpTo - pingPongTable.PlayTime) / 3600 * 
+                        var secondCheapExpencive = (secondCheapUpTo - pingPongTable.PlayTime) / 3600 *
                             (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                         secondCheapExpencive += (TimeStop - secondExpenciveFrom) / 3600 *
                             (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
@@ -271,8 +271,8 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                     vipKart.TimeLimit -= second / 3600;
                                 }
                                 else
-                                { 
-                                    second -=vipKart.TimeLimit;
+                                {
+                                    second -= vipKart.TimeLimit;
                                     vipKart.TimeLimit = 0;
                                 }
                                 if (vipKart.TimeLimit > 0)

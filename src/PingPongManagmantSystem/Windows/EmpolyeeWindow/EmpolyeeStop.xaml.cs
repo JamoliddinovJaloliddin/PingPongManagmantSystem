@@ -6,7 +6,6 @@ using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService;
 using PingPongManagmantSystem.Service.ViewModels;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
@@ -38,7 +37,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 cb_typePrice.Items.Add(Payment.Naxt);
                 cb_typePrice.Items.Add(Payment.VipKarta);
                 cb_typePrice.Items.Add(Payment.Karta);
-               
+
             }
             catch
             {

@@ -64,30 +64,27 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 DesktopCassa desktopCassa = new DesktopCassa();
+                _appDbContext.Entry(desktopCassa).State = EntityState.Detached;
 
-                var resault = await _appDbContext.DesktopCassas.Where(x => x.StolNumber == id).AsNoTracking().ToListAsync();
-                if (resault != null)
+                var result = await _appDbContext.DesktopCassas.FirstOrDefaultAsync(x => x.StolNumber == id);
+                if (result != null)
                 {
-                    foreach (var item in resault)
-                    {
-                        desktopCassa.Id = item.Id;
-                        desktopCassa.StolNumber = item.StolNumber;
-                        desktopCassa.BarSum = item.BarSum;
-                        desktopCassa.PlayTime = item.PlayTime;
-                        desktopCassa.TimeAccount = item.TimeAccount;
-                        desktopCassa.Stop = item.Stop;
-                        desktopCassa.Label = item.Label;
-                        desktopCassa.Bar = item.Bar;
-                        desktopCassa.Transfer = item.Transfer;
-                        desktopCassa.AccountBook = item.AccountBook;
-                        desktopCassa.Calc = item.Calc;
-                        desktopCassa.UserId = item.UserId;
-                        desktopCassa.Play = item.Play;
-                        desktopCassa.Pause = item.Pause;
-                        desktopCassa.TransferSum = item.TransferSum;
-                    }
-
-                    
+                    _appDbContext.Entry(result).State = EntityState.Detached;
+                    desktopCassa.Id = result.Id;
+                    desktopCassa.StolNumber = result.StolNumber;
+                    desktopCassa.BarSum = result.BarSum;
+                    desktopCassa.PlayTime = result.PlayTime;
+                    desktopCassa.TimeAccount = result.TimeAccount;
+                    desktopCassa.Stop = result.Stop;
+                    desktopCassa.Label = result.Label;
+                    desktopCassa.Bar = result.Bar;
+                    desktopCassa.Transfer = result.Transfer;
+                    desktopCassa.AccountBook = result.AccountBook;
+                    desktopCassa.Calc = result.Calc;
+                    desktopCassa.UserId = result.UserId;
+                    desktopCassa.Play = result.Play;
+                    desktopCassa.Pause = result.Pause;
+                    desktopCassa.TransferSum = result.TransferSum;
                     return desktopCassa;
                 }
                 return null;
@@ -124,12 +121,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 pingPongTable.TimeAccount += resault;
                 pingPongTable.Pause = false;
                 pingPongTable.Play = true;
-                pingPongTable.PlayTime = 0;           
+                pingPongTable.PlayTime = 0;
                 _appDbContext.DesktopCassas.Update(pingPongTable);
                 var rs = await _appDbContext.SaveChangesAsync();
                 return rs > 0;
             }
-            catch
+            catch (Exception error)
             {
                 return false;
             }
@@ -142,10 +139,10 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 var res = (DesktopCassa)await GetByIdAsync(StolNumber);
 
 
-                if (res.Stop != true  &&  res.Pause != true && res.Play == true)
+                if (res.Stop != true && res.Pause != true && res.Play == true)
                 {
-                   // trackingDetech.TrackingDeteched(res);
-                   _appDbContext.Entry(res).State = EntityState.Detached;
+                    // trackingDetech.TrackingDeteched(res);
+                    _appDbContext.Entry(res).State = EntityState.Detached;
                     res.Pause = true;
                     res.Stop = true;
                     res.Bar = true;

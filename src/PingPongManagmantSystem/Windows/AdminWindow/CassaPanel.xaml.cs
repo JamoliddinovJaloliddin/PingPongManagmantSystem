@@ -11,5 +11,10 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             InitializeComponent();
         }
+
+        private void Search(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            MessageBox.Show("Error");
+        }
     }
 }

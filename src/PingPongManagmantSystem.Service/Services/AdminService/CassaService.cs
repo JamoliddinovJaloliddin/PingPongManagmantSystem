@@ -33,26 +33,57 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
         }
 
-        public async Task<List<Cassa>> GetAllAsync()
+        public async Task<List<Cassa>> GetAllAsync(string search)
         {
             try
             {
                 List<Cassa> cassas = new List<Cassa>();
-                var cassaPage = await appDbContext.Cassas.AsNoTracking().ToListAsync();
-                Cassa cassa = new Cassa();
-                foreach (var item in cassaPage)
+                if (search == "")
                 {
-                    cassa.Id = item.Id;
-                    cassa.SumPrice = item.SumPrice;
-                    cassa.SportProductPrice = item.SportProductPrice;
-                    cassa.BarProductPrice = item.BarProductPrice;
-                    cassa.TypeOfPrice = item.TypeOfPrice;
-                    cassa.TablePrice = item.TablePrice;
-                    cassa.Check = item.Check;
-                    cassa.UserName = item.UserName;
-                    cassas.Add(cassa);
+                    var cassaPage = await appDbContext.Cassas.AsNoTracking().ToListAsync();
+                    Cassa cassa = new Cassa();
+                    foreach (var item in cassaPage)
+                    {
+                        cassa.Id = item.Id;
+                        cassa.SumPrice = item.SumPrice;
+                        cassa.SportProductPrice = item.SportProductPrice;
+                        cassa.BarProductPrice = item.BarProductPrice;
+                        cassa.TypeOfPrice = item.TypeOfPrice;
+                        cassa.TablePrice = item.TablePrice;
+                        cassa.Check = item.Check;
+                        cassa.UserName = item.UserName;
+                        cassas.Add(cassa);
+                    }
+                }
+                else
+                {
+
+                    var cassaPage = await appDbContext.Cassas.Where(x => 
+                       x.SumPrice.Contains(search.ToLower())
+                    || x.TypeOfPrice.Contains(search.ToLower())
+                    || x.BarProductPrice.ToString().Contains(search)
+                    || x.SportProductPrice.ToString().Contains(search)
+                    || x.TypeOfPrice.Contains(search.ToLower())
+                    || x.TablePrice.ToString().Contains(search)
+                    || x.UserName.Contains(search.ToLower())
+                    )
+                        .OrderBy(x => x.Id).AsNoTracking().ToListAsync();
+                    Cassa cassa = new Cassa();
+                    foreach (var item in cassaPage)
+                    {
+                        cassa.Id = item.Id;
+                        cassa.SumPrice = item.SumPrice;
+                        cassa.SportProductPrice = item.SportProductPrice;
+                        cassa.BarProductPrice = item.BarProductPrice;
+                        cassa.TypeOfPrice = item.TypeOfPrice;
+                        cassa.TablePrice = item.TablePrice;
+                        cassa.Check = item.Check;
+                        cassa.UserName = item.UserName;
+                        cassas.Add(cassa);
+                    }
                 }
                 return cassas;
+
             }
             catch
             {
