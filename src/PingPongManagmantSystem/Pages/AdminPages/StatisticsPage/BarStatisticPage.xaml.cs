@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
@@ -24,7 +25,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -38,7 +39,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -52,7 +53,19 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
             }
             catch
             {
+                MessageBox.Show("Error");
+            }
+        }
 
+        private void Search(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch
+            {
+                MessageBox.Show("Error");
             }
         }
     }

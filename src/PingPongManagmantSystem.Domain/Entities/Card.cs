@@ -9,6 +9,7 @@ namespace PingPongManagmantSystem.Domain.Entities
         public double TimeLimit { get; set; }
         public string Payment { get; set; } = String.Empty;
         public string Phone { get; set; } = String.Empty;
+        public DateTime DateTime { get; set; }
 
         public static implicit operator Card(List<Card> v)
         {

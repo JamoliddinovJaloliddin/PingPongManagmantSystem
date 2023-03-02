@@ -93,6 +93,14 @@
                             </Button>
 
                             <Button Style="{StaticResource menuButton}"   
+                                     Click="Card_Button">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="CardBulleted" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="VipKarta" Foreground="#CDBAFF"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource menuButton}"   
                                      Click="MenuTime_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="ClockTimeTen" Style="{StaticResource menuButtonIcon}"/>
