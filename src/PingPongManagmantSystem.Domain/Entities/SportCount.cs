@@ -4,8 +4,8 @@ namespace PingPongManagmantSystem.Domain.Entities
 {
     public class SportCount : BaseEntity
     {
-        public string Name { get; set; } = String.Empty;
-        public double Price { get; set; }
-        public int Count { get; set; }
+        public string Name { get; set; } = "";
+        public double Price { get; set; } = 0;
+        public int Count { get; set; } = 0;
     }
 }

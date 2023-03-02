@@ -18,11 +18,15 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         ICustomerService customerService = new CustomerService();
         ITrackingDetech<DesktopCassa> trackingDetech = new TrackingDetech<DesktopCassa>();
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id, double totalSum)
         {
             try
             {
+                Cassa cassa = new Cassa();
+                _appDbContext.Entry<Cassa>(cassa).State = EntityState.Detached;
+
                 var pingPongTable = (DesktopCassa)await GetByIdAsync(id);
+                
                 pingPongTable.Play = true;
                 pingPongTable.Pause = false;
                 pingPongTable.Stop = false;

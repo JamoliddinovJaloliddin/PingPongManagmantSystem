@@ -4,7 +4,7 @@ namespace PingPongManagmantSystem.Domain.Entities
 {
     public class DesktopCassa : BaseEntity
     {
-        public int UserId { get; set; }
+        public int UserId { get; set; } 
         public int StolNumber { get; set; }
         public double PlayTime { get; set; }
         public bool Play { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces;
 
 namespace PingPongManagmantSystem.Service.Services
@@ -27,8 +28,12 @@ namespace PingPongManagmantSystem.Service.Services
 
         public async Task<User> WindowtAsync(string count)
         {
-            //var user = await _appDbContext.Users.FindAsync(count);
-            User user = null;
+            Cassa cassa = new Cassa();
+            _appDbContext.Entry<Cassa>(cassa).State = EntityState.Detached;
+            var data = DayHelper.GetCurrentServerDay();
+            
+
+            var user = await _appDbContext.Users.FindAsync(count);
             return user;
         }
     }

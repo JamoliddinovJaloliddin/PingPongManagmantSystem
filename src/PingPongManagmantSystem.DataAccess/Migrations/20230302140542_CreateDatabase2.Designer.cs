@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230302071851_CreateDataBase")]
-    partial class CreateDataBase
+    [Migration("20230302140542_CreateDatabase2")]
+    partial class CreateDatabase2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,10 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("DateTime")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -70,6 +74,10 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DateTime")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -102,6 +110,10 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("Check")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DateTime")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -252,6 +264,10 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
 
                     b.Property<int>("Count")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("DateTime")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()

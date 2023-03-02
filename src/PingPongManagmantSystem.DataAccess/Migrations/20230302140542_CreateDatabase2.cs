@@ -4,22 +4,23 @@
 
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
-    public partial class CreateDataBase : Migration
+    public partial class CreateDatabase2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "typeOfPrice",
+            migrationBuilder.AddColumn<string>(
+                name: "DateTime",
                 table: "Cassas",
-                newName: "TypeOfPrice");
+                type: "TEXT",
+                nullable: false,
+                defaultValue: "");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "TypeOfPrice",
-                table: "Cassas",
-                newName: "typeOfPrice");
+            migrationBuilder.DropColumn(
+                name: "DateTime",
+                table: "Cassas");
         }
     }
 }
