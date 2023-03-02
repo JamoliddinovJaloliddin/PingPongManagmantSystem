@@ -25,9 +25,11 @@
             </Grid>
             <Grid Grid.Row="1" >
                 <TabPanel VerticalAlignment="Center" Margin="15 0 0 0">
-                    <RadioButton x:Name="day_Name" Content="Kunlik     " FontSize="13"  Click="Day_Button"/>
+                    <RadioButton x:Name="day_Name" Content="Zal     " FontSize="13"  Click="Day_Button"/>
                     <RadioButton x:Name="bar_Name" Content="Bar     " FontSize="13" Click="Bar_Button"/>
-                    <RadioButton x:Name="sport_Name" Content="Sport" FontSize="13" Click="Sport_Button"/>
+                    <RadioButton x:Name="sport_Name" Content="Sport   " FontSize="13" Click="Sport_Button"/>
+                    <RadioButton x:Name="empolyee_Name" Content="Ishchi" FontSize="13" Click="Empolyee_Button"/>
+                    
                 </TabPanel>
             </Grid>
 
@@ -36,11 +38,11 @@
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
                           Grid.Row="1" x:Name="userDataGrid">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Sotuv soni" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Naxt" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Karta" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Umumiy" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Sana" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Ismi" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Nomi" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Narxi" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="To'lov turi" IsReadOnly="True" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

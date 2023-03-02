@@ -41,9 +41,11 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 if (search == "")
                 {
                     var cassaPage = await appDbContext.Cassas.AsNoTracking().ToListAsync();
-                    Cassa cassa = new Cassa();
+                   
                     foreach (var item in cassaPage)
                     {
+                        Cassa cassa = new Cassa();
+                        appDbContext.Entry<Cassa>(cassa).State = EntityState.Detached;
                         cassa.Id = item.Id;
                         cassa.SumPrice = item.SumPrice;
                         cassa.SportProductPrice = item.SportProductPrice;
@@ -52,6 +54,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                         cassa.TablePrice = item.TablePrice;
                         cassa.Check = item.Check;
                         cassa.UserName = item.UserName;
+                        cassa.DateTime = item.DateTime;
                         cassas.Add(cassa);
                     }
                 }

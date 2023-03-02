@@ -1,27 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
 {
     /// <summary>
-    /// Interaction logic for StatisticPage.xaml
+    /// Interaction logic for EmpolyeeStatisticPage.xaml
     /// </summary>
-    public partial class StatisticPage : Page
+    public partial class EmpolyeeStatisticPage : Page
     {
-        public StatisticPage()
+        public EmpolyeeStatisticPage()
         {
             InitializeComponent();
-            day_Name.IsChecked = true;
+            empolyee_Name.IsChecked = true;
         }
 
-        private void Day_Button(object sender, RoutedEventArgs e)
+        private void Day_Button(object sender, System.Windows.RoutedEventArgs e)
         {
             try
             {
                 NavigationService nav = NavigationService.GetNavigationService(this);
-                day_Name.IsChecked = true;
+
                 nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
             }
             catch
@@ -30,7 +40,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
             }
         }
 
-        private void Bar_Button(object sender, RoutedEventArgs e)
+        private void Bar_Button(object sender, System.Windows.RoutedEventArgs e)
         {
             try
             {
@@ -44,7 +54,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
             }
         }
 
-        private void Sport_Button(object sender, RoutedEventArgs e)
+        private void Sport_Button(object sender, System.Windows.RoutedEventArgs e)
         {
             try
             {

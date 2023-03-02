@@ -28,12 +28,8 @@ namespace PingPongManagmantSystem.Service.Services
 
         public async Task<User> WindowtAsync(string count)
         {
-            Cassa cassa = new Cassa();
-            _appDbContext.Entry<Cassa>(cassa).State = EntityState.Detached;
-            var data = DayHelper.GetCurrentServerDay();
             
-
-            var user = await _appDbContext.Users.FindAsync(count);
+            var user = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Password == count);
             return user;
         }
     }
