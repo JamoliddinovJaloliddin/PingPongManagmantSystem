@@ -61,13 +61,13 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     {
                         customer = txt_vipCart.Text.ToString();
                         var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
-                        var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()));
+                        var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()), resault.totalSum);
                         MessageBox.Show(resault.Text);
                     }
                     else
                     {
                         var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
-                        var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()));
+                        var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()), resault.totalSum);
                         MessageBox.Show(resault.Text);
                     }
                 }

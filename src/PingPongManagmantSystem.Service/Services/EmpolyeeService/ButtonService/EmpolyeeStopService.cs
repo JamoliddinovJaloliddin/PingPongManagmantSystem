@@ -19,7 +19,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
         ITimeService timeService = new TimeService();
         ICardService cardService = new CardService();
 
-        public async Task<(bool Resault, string Text, DesktopCassa cassa)> TotalPrice(int tableNumbe, string customer, string typeOfPey)
+        public async Task<(bool Resault, string Text, DesktopCassa cassa, double totalSum)> TotalPrice(int tableNumbe, string customer, string typeOfPey)
         {
             try
             {
@@ -297,12 +297,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                         }
                         else
                         {
-                            return (Resault: false, Text: "Bu karta raqami mavjum emas", cassa: null);
+                            return (Resault: false, Text: "Bu karta raqami mavjum emas", cassa: null, totalSum);
                         }
                     }
                     else
                     {
-                        return (Resault: false, Text: "Hosbingiz 0", cassa: null);
+                        return (Resault: false, Text: "Hosbingiz 0", cassa: null, totalSum);
                     }
 
                 }
@@ -323,11 +323,11 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     var resault = await appDbContext.SaveChangesAsync();
                 }
 
-                return (Resault: true, Text: accountBook, cassa: pingPongTable);
+                return (Resault: true, Text: accountBook, cassa: pingPongTable, totalSum: totalSum);
             }
             catch
             {
-                return (Resault: false, Text: "", cassa: null);
+                return (Resault: false, Text: "", cassa: null, totalSum: 0);
             }
         }
 

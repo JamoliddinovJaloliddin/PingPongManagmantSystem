@@ -4,12 +4,12 @@ namespace PingPongManagmantSystem.Domain.Entities
 {
     public class Card : BaseEntity
     {
-        public string CardNumber { get; set; } = String.Empty;
-        public double Price { get; set; }
-        public double TimeLimit { get; set; }
-        public string Payment { get; set; } = String.Empty;
-        public string Phone { get; set; } = String.Empty;
-        public DateTime DateTime { get; set; }
+        public string CardNumber { get; set; } = "";
+        public double Price { get; set; } = 0;
+        public double TimeLimit { get; set; } = 0;
+        public string Payment { get; set; } = "";
+        public string Phone { get; set; } = "";
+        public string DateTime { get; set; } = ""; 
 
         public static implicit operator Card(List<Card> v)
         {
@@ -20,6 +20,7 @@ namespace PingPongManagmantSystem.Domain.Entities
                 TimeLimit = v[2].TimeLimit,
                 Payment = v[3].Payment,
                 Phone = v[4].Phone,
+                DateTime = v[5].DateTime
             };
         }
     }
