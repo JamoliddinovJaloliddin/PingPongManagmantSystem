@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage"
+         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BarStatisticPage">
@@ -11,11 +12,18 @@
     <Border Background="White">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0" >
+            <Grid Grid.Row="0">
+                <Grid Width="400"  HorizontalAlignment="Left" Margin=" 15 0 0 0">
+                    <TextBox TextChanged="Search"  Style="{StaticResource textBoxSearch}" x:Name="tb"/>
+                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
+                                           Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" >
                 <TabPanel VerticalAlignment="Center" Margin="15 0 0 0">
                     <RadioButton x:Name="day_Name" Content="Kunlik     " FontSize="13"  Click="Day_Button"/>
                     <RadioButton x:Name="bar_Name" Content="Bar     " FontSize="13" Click="Bar_Button"/>
@@ -23,7 +31,7 @@
                 </TabPanel>
             </Grid>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
                           Grid.Row="1" x:Name="userDataGrid">

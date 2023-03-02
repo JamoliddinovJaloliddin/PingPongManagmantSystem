@@ -163,6 +163,19 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
+        private async void Card_Button(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                count = 7;
+                PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/CardPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
         private void Empolyee_Button(object sender, RoutedEventArgs e)
         {
             try
@@ -182,7 +195,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             try
             {
                 CustomerPanel customerPanel = new CustomerPanel();
-                customerPanel.Show();
+                customerPanel.ShowDialog();
             }
             catch
             {
@@ -304,5 +317,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
                 MessageBox.Show("Error");
             }
         }
+
+
     }
 }

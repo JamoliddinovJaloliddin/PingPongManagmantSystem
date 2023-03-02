@@ -3,11 +3,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
-namespace PingPongManagmantSystem.Desktop.Pages
+namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
 {
+    /// <summary>
+    /// Interaction logic for StatisticPage.xaml
+    /// </summary>
     public partial class StatisticPage : Page
     {
-
         public StatisticPage()
         {
             InitializeComponent();
@@ -24,7 +26,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -38,7 +40,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -52,7 +54,19 @@ namespace PingPongManagmantSystem.Desktop.Pages
             }
             catch
             {
+                MessageBox.Show("Error");
+            }
+        }
 
+        private void Search(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch
+            {
+                MessageBox.Show("Error");
             }
         }
     }

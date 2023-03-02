@@ -1,0 +1,49 @@
+﻿<Page x:Class="PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage.CardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+      xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CardPage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid Width="400"  HorizontalAlignment="Left" Margin=" 0 0 0 0">
+                <TextBox TextChanged="Search"  Style="{StaticResource textBoxSearch}" x:Name="tb"/>
+                <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
+                                           Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
+        <!--Members Datagrid-->
+        <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
+                          Grid.Row="1" x:Name="cardDataGrid" HorizontalAlignment="Right">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Karta raqami" Binding="{Binding CardNumber}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Vaqt" Binding="{Binding TimeLimit}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Narxi" Binding="{Binding Price}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Tolov turi" Binding="{Binding Payment}" IsReadOnly="True" Width="*"/>
+                <DataGridTemplateColumn Header="   --" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0" Click="Delete_Button">
+                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>

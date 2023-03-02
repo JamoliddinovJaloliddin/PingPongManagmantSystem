@@ -8,5 +8,6 @@ namespace PingPongManagmantSystem.Domain.Entities
         public double ArrivalPrice { get; set; }
         public double SalePrice { get; set; }
         public int Count { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }
