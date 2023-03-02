@@ -318,6 +318,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     cassa.TablePrice = totalSum - pingPongTable.BarSum;
                     cassa.Check = accountBook;
                     cassa.TypeOfPrice = typeOfPey;
+                    cassa.DateTime = DayHelper.GetCurrentServerDay();
 
                     appDbContext.Cassas.Add(cassa);
                     var resault = await appDbContext.SaveChangesAsync();

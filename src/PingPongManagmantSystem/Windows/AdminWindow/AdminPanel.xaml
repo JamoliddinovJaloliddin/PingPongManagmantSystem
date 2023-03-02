@@ -50,7 +50,7 @@
                                     Click="Empolyee_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HumanMale" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Ishchilar Ro'yhati" Foreground="#CDBAFF"/>
+                                    <TextBlock Text="Ishchilar" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
@@ -58,14 +58,14 @@
                             <Button Style="{StaticResource menuButton}" Click="SpotProduct_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="BaseballBat" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Spot mahsulotlari" Foreground="#CDBAFF"/>
+                                    <TextBlock Text="Spot" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}" Click="BarProduct_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial  Kind="FoodForkDrink" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Bar mahsulotlari" Foreground="#CDBAFF"/>
+                                    <TextBlock Text="Bar" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
@@ -96,7 +96,7 @@
                                      Click="Card_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="CardBulleted" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="VipKarta" Foreground="#CDBAFF"/>
+                                    <TextBlock Text="Vip karta" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 

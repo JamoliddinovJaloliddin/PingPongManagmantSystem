@@ -55,6 +55,20 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
             }
         }
 
+        private void Empolyee_Button(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NavigationService nav = NavigationService.GetNavigationService(this);
+
+                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/EmpolyeeStatisticPage.xaml", UriKind.RelativeOrAbsolute));
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
         private void Search(object sender, TextChangedEventArgs e)
         {
             try
@@ -66,5 +80,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
                 MessageBox.Show("Error");
             }
         }
+
+
     }
 }

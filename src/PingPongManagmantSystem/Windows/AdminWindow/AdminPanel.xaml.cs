@@ -26,10 +26,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             InitializeComponent();
             RefreshDataAsync();
-            string time = DateTime.UtcNow.ToString("MM");
-            MessageBox.Show(time);
-            time = DateTime.UtcNow.ToString("yyyy");
-            MessageBox.Show(time);
+
         }
 
         public async void RefreshDataAsync()
@@ -143,10 +140,12 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
+                
                 count = 1;
                 MainWindow mainWindow = new MainWindow();
-                mainWindow.ShowDialog();
                 this.Close();
+                mainWindow.ShowDialog();
+               
             }
             catch
             {

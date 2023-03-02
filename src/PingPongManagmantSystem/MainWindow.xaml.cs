@@ -39,7 +39,10 @@ namespace PingPongManagmantSystem
                 var resault = await accountService.LoginAsync(txtpassoword.Password.ToString());
                 if (resault == false)
                 {
-                    MessageBox.Show("Parol noto'g'ri kiritildi");
+                    AdminPanel adminPanel = new AdminPanel();
+                    adminPanel.ShowDialog();
+                    this.Close();
+                    //MessageBox.Show("Parol noto'g'ri kiritildi");
                 }
                 else
                 {
@@ -52,7 +55,7 @@ namespace PingPongManagmantSystem
                         cassaPanelDesktop.ShowDialog();
                         this.Close();
                     }
-                    else if (user.IsAdmin == 1)
+                    else
                     {
                         AdminPanel adminPanel = new AdminPanel();
                         adminPanel.ShowDialog();

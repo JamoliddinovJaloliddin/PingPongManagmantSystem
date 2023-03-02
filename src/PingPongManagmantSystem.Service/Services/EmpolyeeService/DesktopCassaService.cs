@@ -47,7 +47,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             {
                 return false;
             }
-
         }
 
         public async Task<IEnumerable<DesktopCassa>> GetAllAsync()
@@ -105,7 +104,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             {
                 var res = TimeHelper.GetCurrentServerTimeParseFloat();
                 var pingPongTable = (DesktopCassa)await GetByIdAsync(StolNumber);
-                //trackingDetech.TrackingDeteched(pingPongTable);
                 _appDbContext.Entry(pingPongTable).State = EntityState.Detached;
                 var timePrice = (Time)await timeService.GetAll();
                 var pingPongTablePrice = (PingPongTable)await pingPongTableService.GetByIdAsync(StolNumber);
@@ -130,7 +128,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 var rs = await _appDbContext.SaveChangesAsync();
                 return rs > 0;
             }
-            catch (Exception error)
+            catch
             {
                 return false;
             }
@@ -145,7 +143,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 
                 if (res.Stop != true && res.Pause != true && res.Play == true)
                 {
-                    // trackingDetech.TrackingDeteched(res);
+                   
                     _appDbContext.Entry(res).State = EntityState.Detached;
                     res.Pause = true;
                     res.Stop = true;
