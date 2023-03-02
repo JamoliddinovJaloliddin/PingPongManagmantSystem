@@ -4,6 +4,7 @@ using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace PingPongManagmantSystem.Desktop.Pages
@@ -21,12 +22,12 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                List<SportProduct> sportProduct = (List<SportProduct>)await sportProductService.GetAllAsync();
+                List<SportProduct> sportProduct = (List<SportProduct>)await sportProductService.GetAllAsync("");
                 sportrDataGrid.ItemsSource = sportProduct;
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -52,7 +53,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -66,7 +67,20 @@ namespace PingPongManagmantSystem.Desktop.Pages
             }
             catch
             {
+                MessageBox.Show("Error");
+            }
+        }
 
+        private async void Search(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                List<SportProduct> sportProduct = (List<SportProduct>)await sportProductService.GetAllAsync(tb.Text.ToString().ToLower());
+                sportrDataGrid.ItemsSource = sportProduct;
+            }
+            catch
+            {
+                MessageBox.Show("Error");
             }
         }
     }

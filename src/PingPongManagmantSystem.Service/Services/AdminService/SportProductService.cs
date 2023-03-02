@@ -41,25 +41,50 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
         }
 
-        public async Task<IList<SportProduct>> GetAllAsync()
+        public async Task<IList<SportProduct>> GetAllAsync(string search)
         {
             try
             {
                 IList<SportProduct> spotProduct = new List<SportProduct>();
-                var sportPro = _appDbContext.SportProducts.OrderBy(x => x.Name).AsNoTracking();
-                if (sportPro is not null)
+                if (search == "")
                 {
-                    foreach (var sport in sportPro)
+                    var sportPro = _appDbContext.SportProducts.OrderBy(x => x.Name).AsNoTracking();
+                    if (sportPro is not null)
                     {
-                        SportProduct sportProduct = new SportProduct();
-                        sportProduct.Id = sport.Id;
-                        sportProduct.Name = sport.Name;
-                        sportProduct.ArrivalPrice = sport.ArrivalPrice;
-                        sportProduct.SalePrice = sport.SalePrice;
-                        sportProduct.Count = sport.Count;
-                        spotProduct.Add(sportProduct);
+                        foreach (var sport in sportPro)
+                        {
+                            SportProduct sportProduct = new SportProduct();
+                            sportProduct.Id = sport.Id;
+                            sportProduct.Name = sport.Name;
+                            sportProduct.ArrivalPrice = sport.ArrivalPrice;
+                            sportProduct.SalePrice = sport.SalePrice;
+                            sportProduct.Count = sport.Count;
+                            spotProduct.Add(sportProduct);
+                        }
+                        return spotProduct;
                     }
-                    return spotProduct;
+                }
+                else
+                {
+                    var sportPro = _appDbContext.SportProducts.Where(x => x.Name.ToLower().Contains(search.ToLower())
+                    || x.ArrivalPrice.ToString().Contains(search)
+                    || x.SalePrice.ToString().Contains(search)
+                    || x.Count.ToString().Contains(search)
+                    ).OrderBy(x => x.Name).AsNoTracking();
+                    if (sportPro is not null)
+                    {
+                        foreach (var sport in sportPro)
+                        {
+                            SportProduct sportProduct = new SportProduct();
+                            sportProduct.Id = sport.Id;
+                            sportProduct.Name = sport.Name;
+                            sportProduct.ArrivalPrice = sport.ArrivalPrice;
+                            sportProduct.SalePrice = sport.SalePrice;
+                            sportProduct.Count = sport.Count;
+                            spotProduct.Add(sportProduct);
+                        }
+                        return spotProduct;
+                    }
                 }
                 return null;
             }

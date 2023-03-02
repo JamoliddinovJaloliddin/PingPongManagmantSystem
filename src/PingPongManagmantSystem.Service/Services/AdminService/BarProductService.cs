@@ -42,32 +42,52 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 
         }
 
-        public async Task<IList<BarProduct>> GetAllAsync()
+        public async Task<IList<BarProduct>> GetAllAsync(string search)
         {
             try
             {
                 IList<BarProduct> barProducts = new List<BarProduct>();
-                var barPro = _appDbContext.BarProducts.OrderBy(x => x.Name).AsNoTracking();
-                if (barPro is not null)
+                if (search == "")
                 {
-                    foreach (var bar in barPro)
+                    var barPro = _appDbContext.BarProducts.OrderBy(x => x.Name).AsNoTracking();
+                    if (barPro is not null)
                     {
-                        BarProduct barProduct = new BarProduct();
-                        barProduct.Id = bar.Id;
-                        barProduct.Name = bar.Name;
-                        barProduct.ArrivalPrice = bar.ArrivalPrice;
-                        barProduct.SalePrice = bar.SalePrice;
-                        barProduct.Count = bar.Count;
-                        barProducts.Add(barProduct);
+                        foreach (var bar in barPro)
+                        {
+                            BarProduct barProduct = new BarProduct();
+                            barProduct.Id = bar.Id;
+                            barProduct.Name = bar.Name;
+                            barProduct.ArrivalPrice = bar.ArrivalPrice;
+                            barProduct.SalePrice = bar.SalePrice;
+                            barProduct.Count = bar.Count;
+                            barProducts.Add(barProduct);
+                        }
+                        return barProducts;
                     }
-
-                    await _appDbContext.SaveChangesAsync();
-                    return barProducts;
                 }
                 else
                 {
-                    return null;
+                    var barPro = _appDbContext.BarProducts.Where(x => x.Name.ToLower().Contains(search)
+                    || x.ArrivalPrice.ToString().Contains(search)
+                    || x.SalePrice.ToString().Contains(search)
+                    || x.Count.ToString().Contains(search)
+                    ).OrderBy(x => x.Name).AsNoTracking();
+                    if (barPro is not null)
+                    {
+                        foreach (var bar in barPro)
+                        {
+                            BarProduct barProduct = new BarProduct();
+                            barProduct.Id = bar.Id;
+                            barProduct.Name = bar.Name;
+                            barProduct.ArrivalPrice = bar.ArrivalPrice;
+                            barProduct.SalePrice = bar.SalePrice;
+                            barProduct.Count = bar.Count;
+                            barProducts.Add(barProduct);
+                        }
+                        return barProducts;
+                    }
                 }
+                return null;
             }
             catch
             {
