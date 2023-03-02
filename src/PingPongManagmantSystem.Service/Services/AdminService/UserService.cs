@@ -69,8 +69,8 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 }
                 else
                 {
-                    var resault = db.Users.Where(u => u.IsAdmin == 0 && u.Name.Contains(search.ToString()) 
-                    || u.PassportInfo.Contains(search.ToString()) 
+                    var resault = db.Users.Where(u => u.IsAdmin == 0 && u.Name.Contains(search.ToString())
+                    || u.PassportInfo.Contains(search.ToString())
                     || u.Password.Contains(search.ToString())).AsNoTracking();
                     foreach (var user in resault)
                     {

@@ -8,6 +8,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
         Task<bool> UpdateAsync(BarProduct barProduct);
         Task<bool> DeleteAsync(int id);
         Task<User> GetByIdAsync(int id);
-        Task<IList<BarProduct>> GetAllAsync();
+        Task<IList<BarProduct>> GetAllAsync(string search);
     }
 }

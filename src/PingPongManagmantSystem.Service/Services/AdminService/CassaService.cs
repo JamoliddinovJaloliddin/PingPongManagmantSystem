@@ -58,7 +58,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 else
                 {
 
-                    var cassaPage = await appDbContext.Cassas.Where(x => 
+                    var cassaPage = await appDbContext.Cassas.Where(x =>
                        x.SumPrice.Contains(search.ToLower())
                     || x.TypeOfPrice.Contains(search.ToLower())
                     || x.BarProductPrice.ToString().Contains(search)

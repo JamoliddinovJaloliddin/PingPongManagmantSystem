@@ -2,6 +2,7 @@
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace PingPongManagmantSystem.Desktop.Pages
@@ -19,12 +20,12 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                var item = await pingPongTableService.GetAllAsync();
+                var item = await pingPongTableService.GetAllAsync("");
                 pingPongDataGrid.ItemsSource = item;
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -46,7 +47,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
         }
 
@@ -60,7 +61,20 @@ namespace PingPongManagmantSystem.Desktop.Pages
             }
             catch
             {
+                MessageBox.Show("Error");
+            }
+        }
 
+        private async void Search(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                var item = await pingPongTableService.GetAllAsync(tb.Text.ToString().ToLower());
+                pingPongDataGrid.ItemsSource = item;
+            }
+            catch
+            {
+                MessageBox.Show("Error");
             }
         }
     }

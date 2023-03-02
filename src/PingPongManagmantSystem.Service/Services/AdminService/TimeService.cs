@@ -32,6 +32,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             try
             {
                 Time time1 = new Time();
+                appDbContext.Entry<Time>(time1).State = EntityState.Detached;
                 var res = await appDbContext.Times.AsNoTracking().ToListAsync();
                 foreach (var time in res)
                 {

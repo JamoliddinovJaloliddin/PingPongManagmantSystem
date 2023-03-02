@@ -42,20 +42,39 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
         }
 
-        public async Task<IList<PingPongTable>> GetAllAsync()
+        public async Task<IList<PingPongTable>> GetAllAsync(string search)
         {
             try
             {
                 IList<PingPongTable> list = new List<PingPongTable>();
-                var item = appDbContext.PingPongTables.OrderBy(x => x.Id).AsNoTracking();
-                foreach (var ite in item)
+                if (search == "")
                 {
-                    PingPongTable pingPongTable = new PingPongTable();
-                    pingPongTable.Id = ite.Id;
-                    pingPongTable.Number = ite.Number;
-                    pingPongTable.PriceCheap = ite.PriceCheap;
-                    pingPongTable.PriceExpensive = ite.PriceExpensive;
-                    list.Add(pingPongTable);
+                    var item = appDbContext.PingPongTables.OrderBy(x => x.Id).AsNoTracking();
+                    foreach (var ite in item)
+                    {
+                        PingPongTable pingPongTable = new PingPongTable();
+                        pingPongTable.Id = ite.Id;
+                        pingPongTable.Number = ite.Number;
+                        pingPongTable.PriceCheap = ite.PriceCheap;
+                        pingPongTable.PriceExpensive = ite.PriceExpensive;
+                        list.Add(pingPongTable);
+                    }
+                }
+                else
+                {
+                    var item = appDbContext.PingPongTables.Where(x => x.Number.ToString().Contains(search)
+                    || x.PriceCheap.ToString().Contains(search)
+                    || x.PriceExpensive.ToString().Contains(search)
+                    ).OrderBy(x => x.Id).AsNoTracking();
+                    foreach (var ite in item)
+                    {
+                        PingPongTable pingPongTable = new PingPongTable();
+                        pingPongTable.Id = ite.Id;
+                        pingPongTable.Number = ite.Number;
+                        pingPongTable.PriceCheap = ite.PriceCheap;
+                        pingPongTable.PriceExpensive = ite.PriceExpensive;
+                        list.Add(pingPongTable);
+                    }
                 }
                 return list;
             }

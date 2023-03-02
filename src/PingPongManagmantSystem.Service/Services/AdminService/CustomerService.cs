@@ -49,7 +49,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
             else
             {
-                var resault = appDbContext.Customers.Where(x => x.Status.Contains(search) ).OrderBy(x => x.Status).AsNoTracking();
+                var resault = appDbContext.Customers.Where(x => x.Status.Contains(search)).OrderBy(x => x.Status).AsNoTracking();
                 if (resault is not null)
                 {
                     foreach (var res in resault)
