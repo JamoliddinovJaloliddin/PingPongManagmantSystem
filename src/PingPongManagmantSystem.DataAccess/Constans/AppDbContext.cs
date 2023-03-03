@@ -21,7 +21,7 @@ namespace PingPongManagmantSystem.DataAccess.Constans
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(@"Data Source=C:\Users\A S U S\Desktop\PingPongManagmantSystem\database\database.db");
-            base.OnConfiguring(optionsBuilder);
+            base.OnConfiguring(optionsBuilder/*.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)*/);
         }
     }
 }

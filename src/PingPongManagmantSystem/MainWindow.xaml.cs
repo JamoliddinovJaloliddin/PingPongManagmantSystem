@@ -1,7 +1,9 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows;
 using PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow;
 using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services;
+using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 using System.Windows;
 using System.Windows.Input;
 
@@ -9,6 +11,7 @@ namespace PingPongManagmantSystem
 {
     public partial class MainWindow : Window
     {
+        ITableStatisticService tableStatisticService = new TableStatisticService();
         public MainWindow()
         {
             InitializeComponent();
@@ -50,12 +53,11 @@ namespace PingPongManagmantSystem
                     var user = await accountService.WindowtAsync(txtpassoword.Password.ToString());
                     if (user.IsAdmin == 0)
                     {
-                        Cassa cassa = new Cassa();
-
                         CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
+                        var result = await tableStatisticService.CreateAsync();
+                        MessageBox.Show(resault.ToString());
                         this.Close();
                         cassaPanelDesktop.ShowDialog();
-
                     }
                     else
                     {

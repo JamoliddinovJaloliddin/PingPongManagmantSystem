@@ -10,7 +10,7 @@ namespace PingPongManagmantSystem.Domain.Entities
         public double BarSum { get; set; }
         public double NumberOfSaleBar { get; set; }
         public double SportSum { get; set; }
-        public double SportOfSaleSport { get; set; }
+        public double NumberOfSaleSport { get; set; }
         public double TableSum { get; set; }
         public string PaymentType { get; set; } = String.Empty;
         public double CardTime { get; set; }
