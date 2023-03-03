@@ -11,7 +11,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
     public class TimeService : ITimeService
     {
         AppDbContext appDbContext = new AppDbContext();
-        ITrackingDetech<Time> trackingDetech = new TrackingDetech<Time>();
+        ITrackingDetech trackingDetech = new TrackingDetech();
         public async Task<bool> UpdateAsync(Time time)
         {
             try

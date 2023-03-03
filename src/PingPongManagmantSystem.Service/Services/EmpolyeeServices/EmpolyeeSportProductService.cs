@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
+using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 using PingPongManagmantSystem.Service.Services.Common;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
@@ -10,8 +12,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
     public class EmpolyeeSportProductService : IEmpolyeeSportProductService
     {
         AppDbContext appDbContext = new AppDbContext();
-        ITrackingDetech<SportCount> trackingDetech = new TrackingDetech<SportCount>();
-        ITrackingDetech<SportProduct> trackingDeteched = new TrackingDetech<SportProduct>();
+        ITableStatisticService tableStatisticService = new TableStatisticService();
+        ITrackingDetech trackingDetech = new TrackingDetech();
+
 
         public async Task<bool> CreateAsync(int id, SportCount sportCount)
         {
@@ -78,7 +81,10 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     var res = await appDbContext.SportProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
                     if (res is not null)
                     {
-                        trackingDeteched.TrackingDeteched(res);
+                        var result = await tableStatisticService.UpdateProductAsync(keyValuePairs);
+
+
+                        trackingDetech.TrackingDeteched(res);
                         res.Count -= product.Value;
                         appDbContext.SportProducts.Update(res);
                     }

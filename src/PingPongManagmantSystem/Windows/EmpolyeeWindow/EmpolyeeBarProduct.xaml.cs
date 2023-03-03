@@ -37,7 +37,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     List<BarCount> item = (List<BarCount>)await barProductService.GetAllBarCountAsync();
                     empolyeProductDataGrid.ItemsSource = item;
                 }
-
             }
             catch
             {

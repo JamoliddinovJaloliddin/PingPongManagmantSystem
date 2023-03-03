@@ -16,7 +16,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         ITimeService timeService = new TimeService();
         IPingPongTableService pingPongTableService = new PingPongTableService();
         ICustomerService customerService = new CustomerService();
-        ITrackingDetech<DesktopCassa> trackingDetech = new TrackingDetech<DesktopCassa>();
+        ITrackingDetech trackingDetech = new TrackingDetech();
 
         public async Task<bool> DeleteAsync(int id, double totalSum)
         {

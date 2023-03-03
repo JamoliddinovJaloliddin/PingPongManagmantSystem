@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
-using PingPongManagmantSystem.Service.Services.AdminService;
+using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 using PingPongManagmantSystem.Service.Services.Common;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
@@ -11,10 +12,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
     public class EmpolyeeBarProductService : IEmpolyeeBarProductService
     {
         AppDbContext _appDbContext = new AppDbContext();
-        BarProductService barProduct = new BarProductService();
-        ITrackingDetech<BarCount> trackingDetech = new TrackingDetech<BarCount>();
-        ITrackingDetech<BarProduct> trackingDetechet = new TrackingDetech<BarProduct>();
+        ITrackingDetech trackingDetech = new TrackingDetech();
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
+        ITableStatisticService tableStatisticService = new TableStatisticService();
 
         int count = 0;
 
@@ -47,64 +47,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 }
                 var res = await _appDbContext.SaveChangesAsync();
                 return res > 0;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-
-
-        public async Task<bool> DeleteBarCountAsync(int id, string account, double sum)
-        {
-            try
-            {
-                var barCount = await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
-                foreach (var bar in barCount)
-                {
-                    var res = (BarCount)await _appDbContext.BarCounts.FirstOrDefaultAsync(x => x.Name == bar.Name);
-                    trackingDetech.TrackingDeteched(res);
-                    res.Count = 0;
-
-                    _appDbContext.BarCounts.Update(res);
-
-                }
-
-                if (account != "NotButton")
-                {
-                    var barUser = (DesktopCassa)await desktopCassaService.GetByIdAsync(id);
-                    barUser.AccountBook += $"{account}";
-                    barUser.BarSum += sum;
-                    _appDbContext.DesktopCassas.Update(barUser);
-                }
-                var resa = await _appDbContext.SaveChangesAsync();
-                return resa > 0;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public async Task<bool> DeleteBarProductAsync(Dictionary<string, int> keyValuePairs)
-        {
-            try
-            {
-
-
-                foreach (var product in keyValuePairs)
-                {
-                    var res = await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
-                    if (res is not null)
-                    {
-                        trackingDetechet.TrackingDeteched(res);
-                        res.Count -= product.Value;
-                        _appDbContext.BarProducts.Update(res);
-                    }
-                }
-                await _appDbContext.SaveChangesAsync();
-                return false;
             }
             catch
             {
@@ -177,5 +119,66 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         }
 
 
+
+        public async Task<bool> DeleteBarCountAsync(int id, string account, double sum)
+        {
+            try
+            {
+                var barCount = await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
+                foreach (var bar in barCount)
+                {
+                    var res = (BarCount)await _appDbContext.BarCounts.FirstOrDefaultAsync(x => x.Name == bar.Name);
+                    trackingDetech.TrackingDeteched(res);
+                    res.Count = 0;
+
+                    _appDbContext.BarCounts.Update(res);
+                }
+
+                if (account != "NotButton")
+                {
+                    var barUser = (DesktopCassa)await desktopCassaService.GetByIdAsync(id);
+                    barUser.AccountBook += $"{account}";
+                    barUser.BarSum += sum;
+                    _appDbContext.DesktopCassas.Update(barUser);
+                }
+                var resa = await _appDbContext.SaveChangesAsync();
+                return resa > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteBarProductAsync(Dictionary<string, int> keyValuePairs)
+        {
+            try
+            {
+                foreach (var product in keyValuePairs)
+                {
+                    var barProduct = await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
+
+                    if (barProduct is not null)
+                    {
+                        var result = tableStatisticService.UpdateBarAsync(keyValuePairs);
+
+
+                        trackingDetech.TrackingDeteched(barProduct);
+                        barProduct.Count -= product.Value;
+                        _appDbContext.BarProducts.Update(barProduct);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                await _appDbContext.SaveChangesAsync();
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
