@@ -81,7 +81,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     var res = await appDbContext.SportProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
                     if (res is not null)
                     {
-                        var result = await tableStatisticService.UpdateProductAsync(keyValuePairs);
+                        //var result = await tableStatisticService.UpdateProductAsync(keyValuePairs);
 
 
                         trackingDetech.TrackingDeteched(res);

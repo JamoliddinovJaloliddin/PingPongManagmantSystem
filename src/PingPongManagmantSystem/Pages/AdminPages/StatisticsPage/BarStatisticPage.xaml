@@ -39,10 +39,19 @@
                           Grid.Row="1" x:Name="userDataGrid">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Sotuv soni" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Naxt" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Karta" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Umumiy" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Summa" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Sana" IsReadOnly="True" Width="*"/>
+                        <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Click="Check_Button" Style="{StaticResource gridEditdButton}" Margin="5 0 0 0">
+                                            <Icon:PackIconMaterial Kind="CheckOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

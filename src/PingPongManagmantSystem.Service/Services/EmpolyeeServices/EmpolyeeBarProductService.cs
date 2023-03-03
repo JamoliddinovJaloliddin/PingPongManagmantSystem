@@ -160,7 +160,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 
                     if (barProduct is not null)
                     {
-                        var result = tableStatisticService.UpdateBarAsync(keyValuePairs);
+                        //var result = tableStatisticService.UpdateBarAsync(keyValuePairs);
 
 
                         trackingDetech.TrackingDeteched(barProduct);

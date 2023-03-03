@@ -54,11 +54,6 @@ namespace PingPongManagmantSystem.Service.Services.Common
             _appDbContext.Entry<SportProduct>(entity!).State = EntityState.Detached;
         }
 
-        public void TrackingDeteched(Statistic entity)
-        {
-            _appDbContext.Entry<Statistic>(entity!).State = EntityState.Detached;
-        }
-
         public void TrackingDeteched(Time entity)
         {
             _appDbContext.Entry<Time>(entity!).State = EntityState.Detached;

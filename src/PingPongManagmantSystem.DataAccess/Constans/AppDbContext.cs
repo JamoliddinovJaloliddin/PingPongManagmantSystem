@@ -17,7 +17,6 @@ namespace PingPongManagmantSystem.DataAccess.Constans
         public DbSet<Transfer> Transfers { get; set; } = default!;
         public DbSet<BarCount> BarCounts { get; set; } = default!;
         public DbSet<SportCount> SportCounts { get; set; } = default!;
-        public DbSet<Statistic> Statistics { get; set; } = default!;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(@"Data Source=C:\Users\A S U S\Desktop\PingPongManagmantSystem\database\database.db");

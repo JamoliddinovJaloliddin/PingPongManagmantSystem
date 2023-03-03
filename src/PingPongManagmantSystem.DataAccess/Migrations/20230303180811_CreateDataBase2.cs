@@ -4,9 +4,15 @@
 
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
-    public partial class CreateDatabase1 : Migration
+    public partial class CreateDataBase2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Statistics");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "Statistics",
@@ -14,15 +20,15 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    DateTime = table.Column<string>(type: "TEXT", nullable: false),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
                     BarSum = table.Column<double>(type: "REAL", nullable: false),
-                    NumberOfSaleBar = table.Column<double>(type: "REAL", nullable: false),
-                    SportSum = table.Column<double>(type: "REAL", nullable: false),
-                    SportOfSaleSport = table.Column<double>(type: "REAL", nullable: false),
-                    TableSum = table.Column<double>(type: "REAL", nullable: false),
-                    PaymentType = table.Column<string>(type: "TEXT", nullable: false),
                     CardTime = table.Column<double>(type: "REAL", nullable: false),
+                    DateTime = table.Column<string>(type: "TEXT", nullable: false),
+                    NumberOfSaleBar = table.Column<double>(type: "REAL", nullable: false),
+                    PaymentType = table.Column<string>(type: "TEXT", nullable: false),
+                    SportOfSaleSport = table.Column<double>(type: "REAL", nullable: false),
+                    SportSum = table.Column<double>(type: "REAL", nullable: false),
+                    TableSum = table.Column<double>(type: "REAL", nullable: false),
                     TotalSum = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
@@ -40,12 +46,6 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                 name: "IX_Statistics_UserId",
                 table: "Statistics",
                 column: "UserId");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Statistics");
         }
     }
 }

@@ -83,5 +83,9 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
             }
         }
 
+        private void Check_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
