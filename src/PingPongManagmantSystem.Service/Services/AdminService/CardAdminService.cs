@@ -38,7 +38,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                     var cards = await appDbContext.Cards.OrderBy(x => x.Id).AsNoTracking().ToListAsync();
                     if (cards is not null)
                     {
-                    
+
                         foreach (var item in cards)
                         {
                             Card card = new Card();

@@ -1,12 +1,10 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
-using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -18,15 +16,12 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         IUserService userService = new UserService();
         ICustomerService customerService = new CustomerService();
-
-        public ObservableCollection<User> cassaDatas = new ObservableCollection<User>();
         private bool IsMaximized = false;
 
         public AdminPanel()
         {
             InitializeComponent();
             RefreshDataAsync();
-
         }
 
         public async void RefreshDataAsync()
@@ -140,12 +135,12 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
-                
+
                 count = 1;
                 MainWindow mainWindow = new MainWindow();
                 this.Close();
                 mainWindow.ShowDialog();
-               
+
             }
             catch
             {
@@ -183,9 +178,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
-                AdminPanel adminPanel = new AdminPanel();
-                adminPanel.ShowDialog();
-                this.Close();
+
             }
             catch
             {

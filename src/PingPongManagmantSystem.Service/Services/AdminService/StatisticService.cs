@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
@@ -20,8 +19,8 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 
                 }
                 else
-                { 
-                
+                {
+
                 }
                 return null;
             }
@@ -43,8 +42,8 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                     appDbContext.Entry<BarProduct>(barProduct).State = EntityState.Detached;
                 }
                 else
-                { 
-                
+                {
+
                 }
                 return null;
             }
@@ -64,8 +63,8 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 
                 }
                 else
-                { 
-                   
+                {
+
                 }
                 return null;
             }

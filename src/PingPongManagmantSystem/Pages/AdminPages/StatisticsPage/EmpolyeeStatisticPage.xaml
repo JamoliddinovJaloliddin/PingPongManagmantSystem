@@ -43,7 +43,6 @@
                         <DataGridTextColumn Header="Sport" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Stol" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Vip karta" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Umumiy" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Sana" IsReadOnly="True" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>

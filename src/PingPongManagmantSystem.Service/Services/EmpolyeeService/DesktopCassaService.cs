@@ -26,7 +26,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 _appDbContext.Entry<Cassa>(cassa).State = EntityState.Detached;
 
                 var pingPongTable = (DesktopCassa)await GetByIdAsync(id);
-                
+
                 pingPongTable.Play = true;
                 pingPongTable.Pause = false;
                 pingPongTable.Stop = false;
@@ -143,7 +143,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 
                 if (res.Stop != true && res.Pause != true && res.Play == true)
                 {
-                   
+
                     _appDbContext.Entry(res).State = EntityState.Detached;
                     res.Pause = true;
                     res.Stop = true;
