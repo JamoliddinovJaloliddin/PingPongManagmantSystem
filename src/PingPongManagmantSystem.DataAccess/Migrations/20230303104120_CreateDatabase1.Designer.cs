@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230302140542_CreateDatabase2")]
-    partial class CreateDatabase2
+    [Migration("20230303104120_CreateDatabase1")]
+    partial class CreateDatabase1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -281,6 +281,51 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.ToTable("SportProducts");
                 });
 
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.Statistic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("BarSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("CardTime")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("DateTime")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("NumberOfSaleBar")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("PaymentType")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("SportOfSaleSport")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("SportSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TableSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TotalSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Statistics");
+                });
+
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.Time", b =>
                 {
                     b.Property<int>("Id")
@@ -342,6 +387,17 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.Statistic", b =>
+                {
+                    b.HasOne("PingPongManagmantSystem.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
