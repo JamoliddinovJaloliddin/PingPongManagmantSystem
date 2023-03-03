@@ -178,7 +178,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
-
+                this.UpdateLayout();
             }
             catch
             {

@@ -91,6 +91,8 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
+
+
                 foreach (var product in keyValuePairs)
                 {
                     var res = await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
