@@ -9,7 +9,7 @@ namespace PingPongManagmantSystem.Domain.Entities
         public double TimeLimit { get; set; } = 0;
         public string Payment { get; set; } = "";
         public string Phone { get; set; } = "";
-        public string DateTime { get; set; } = ""; 
+        public string DateTime { get; set; } = "";
 
         public static implicit operator Card(List<Card> v)
         {

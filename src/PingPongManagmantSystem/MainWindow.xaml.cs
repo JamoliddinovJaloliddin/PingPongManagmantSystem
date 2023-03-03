@@ -40,8 +40,9 @@ namespace PingPongManagmantSystem
                 if (resault == false)
                 {
                     AdminPanel adminPanel = new AdminPanel();
-                    adminPanel.ShowDialog();
                     this.Close();
+                    adminPanel.ShowDialog();
+
                     //MessageBox.Show("Parol noto'g'ri kiritildi");
                 }
                 else
@@ -52,14 +53,16 @@ namespace PingPongManagmantSystem
                         Cassa cassa = new Cassa();
 
                         CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
-                        cassaPanelDesktop.ShowDialog();
                         this.Close();
+                        cassaPanelDesktop.ShowDialog();
+
                     }
                     else
                     {
                         AdminPanel adminPanel = new AdminPanel();
-                        adminPanel.ShowDialog();
                         this.Close();
+                        adminPanel.ShowDialog();
+
                     }
                 }
             }

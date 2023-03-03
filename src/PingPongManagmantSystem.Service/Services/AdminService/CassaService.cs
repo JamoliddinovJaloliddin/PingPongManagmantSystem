@@ -41,7 +41,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 if (search == "")
                 {
                     var cassaPage = await appDbContext.Cassas.AsNoTracking().ToListAsync();
-                   
+
                     foreach (var item in cassaPage)
                     {
                         Cassa cassa = new Cassa();

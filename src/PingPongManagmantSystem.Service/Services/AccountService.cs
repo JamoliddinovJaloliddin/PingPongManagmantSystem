@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces;
 
 namespace PingPongManagmantSystem.Service.Services
@@ -28,7 +27,7 @@ namespace PingPongManagmantSystem.Service.Services
 
         public async Task<User> WindowtAsync(string count)
         {
-            
+
             var user = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Password == count);
             return user;
         }
