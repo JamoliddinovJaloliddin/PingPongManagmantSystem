@@ -42,6 +42,8 @@
                         <DataGridTextColumn Header="Bar" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Sport" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Stol" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Naxt" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Karta" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Vip karta" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="Sana" IsReadOnly="True" Width="*"/>
                     </DataGrid.Columns>

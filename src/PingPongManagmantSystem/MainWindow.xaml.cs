@@ -54,7 +54,7 @@ namespace PingPongManagmantSystem
                     if (user.IsAdmin == 0)
                     {
                         CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
-                        var result = await tableStatisticService.CreateAsync();
+
                         MessageBox.Show(resault.ToString());
                         this.Close();
                         cassaPanelDesktop.ShowDialog();

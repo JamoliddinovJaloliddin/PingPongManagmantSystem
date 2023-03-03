@@ -4,9 +4,11 @@ using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Enums;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface.ButtonService;
 using PingPongManagmantSystem.Service.Services.AdminService;
+using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 {
@@ -16,6 +18,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
         ICustomerService customerService = new CustomerService();
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
         IPingPongTableService pingPongTableService = new PingPongTableService();
+        ITableStatisticService tableStatisticService = new TableStatisticService();
         ITimeService timeService = new TimeService();
         ICardService cardService = new CardService();
 
@@ -36,6 +39,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 
                 string accountBook = "";
                 double totalSum = 0;
+                double tablePrice = 0;
                 //NotVipKart, NotTrener
                 if (customerPercent.Status != "VipKarta" && customer != Payment.Trener_Kattalar.ToString() || customer != Payment.Trener_Kichik.ToString())
                 {
@@ -50,6 +54,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                             (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                         secondCheapExpencive += (TimeStop - secondExpenciveFrom) / 3600 *
                             (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
+                        tablePrice += secondCheapExpencive;
                         totalSum += secondExpenciveFrom + pingPongTable.BarSum + pingPongTable.TransferSum;
                         var time = (TimeStop - pingPongTable.PlayTime) / 60;
                         if (time >= 60)
@@ -71,6 +76,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                         if (pingPongTable.TimeAccount == 0)
                         {
                             var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
+                            tablePrice += secondCheap;
                             totalSum = secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                             var time = (TimeStop - pingPongTable.PlayTime) / 60;
                             if (time >= 60)
@@ -87,6 +93,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                         {
                             var secondCheap = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) /
                                 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
+                            tablePrice += secondCheap;
                             totalSum += secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                             var time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) / 60;
                             if (time >= 60)
@@ -99,6 +106,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                         else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0)
                         {
                             var secondCheap = pingPongTable.TimeAccount / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
+                            tablePrice += secondCheap;
                             totalSum += secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                             var time = (TimeStop - pingPongTable.PlayTime) / 60;
                             if (time >= 60)
@@ -119,6 +127,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                         {
                             var secondExpensive = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
                             totalSum += secondExpensive + pingPongTable.BarSum + pingPongTable.TransferSum;
+                            tablePrice += secondExpensive;
                             var time = (TimeStop - pingPongTable.PlayTime) / 60;
                             if (time >= 60)
                             {
@@ -132,6 +141,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                             var secondExpensive = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) /
                                 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
                             totalSum += secondExpensive + pingPongTable.BarSum + pingPongTable.TransferSum;
+                            tablePrice += secondExpensive;
                             var time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) / 60;
                             if (time >= 60)
                             {
@@ -144,6 +154,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                         {
                             var secondCheap = pingPongTable.TimeAccount / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
                             totalSum += secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
+                            tablePrice += secondCheap;
                             var time = (TimeStop - pingPongTable.PlayTime) / 60;
                             if (time >= 60)
                             {
@@ -162,6 +173,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                 else if (customerPercent.Status == Payment.Trener_Kattalar.ToString())
                 {
                     totalSum = customerPercent.Percent + pingPongTable.BarSum;
+                    tablePrice += customerPercent.Percent;
                     pingPongTable.TimeAccount += TimeStop - pingPongTable.PlayTime;
                     pingPongTable.TimeAccount = pingPongTable.TimeAccount / 60;
                     if (pingPongTable.TimeAccount >= 60)
@@ -180,6 +192,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                 else if (customerPercent.Status == Payment.Trener_Kichik.ToString())
                 {
                     totalSum = customerPercent.Percent + pingPongTable.BarSum;
+                    tablePrice += customerPercent.Percent;
                     pingPongTable.TimeAccount = (TimeStop - pingPongTable.PlayTime) / 60;
                     if (pingPongTable.TimeAccount >= 60)
                     {
@@ -320,14 +333,21 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     cassa.TypeOfPrice = typeOfPey;
                     cassa.DateTime = DayHelper.GetCurrentServerDay();
 
+                    //var result = await tableStatisticService.UpdateTableAsync(tablePrice);
+
                     appDbContext.Cassas.Add(cassa);
                     var resault = await appDbContext.SaveChangesAsync();
                 }
+
+                accountBook = "";
+                totalSum = 0;
+                tablePrice = 0;
 
                 return (Resault: true, Text: accountBook, cassa: pingPongTable, totalSum: totalSum);
             }
             catch
             {
+
                 return (Resault: false, Text: "", cassa: null, totalSum: 0);
             }
         }
