@@ -12,7 +12,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
-                await _appDbContext.BarProducts.AddAsync(barProduct);
+                _appDbContext.BarProducts.Add(barProduct);
                 var resault = await _appDbContext.SaveChangesAsync();
                 return resault > 0;
             }

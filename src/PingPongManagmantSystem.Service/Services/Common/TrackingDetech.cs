@@ -12,16 +12,17 @@ namespace PingPongManagmantSystem.Service.Services.Common
         public void TrackingDeteched(BarCount entity)
         {
             _appDbContext.Entry<BarCount>(entity!).State = EntityState.Detached;
+            string ef = _appDbContext.Entry(entity).State.ToString();
         }
 
         public void TrackingDeteched(BarProduct entity)
         {
-            _appDbContext.Entry<BarProduct>(entity!).State = EntityState.Detached;
+            _appDbContext.Entry(entity!).State = EntityState.Detached;
         }
 
         public void TrackingDeteched(Card entity)
         {
-            _appDbContext.Entry<Card>(entity!).State = EntityState.Detached;
+            _appDbContext.Entry(entity!).State = EntityState.Detached;
         }
 
         public void TrackingDeteched(Cassa entity)
@@ -67,6 +68,21 @@ namespace PingPongManagmantSystem.Service.Services.Common
         public void TrackingDeteched(User entity)
         {
             _appDbContext.Entry<User>(entity!).State = EntityState.Detached;
+        }
+
+        public void TrackingDeteched(BarStatistic entity)
+        {
+            _appDbContext.Entry<BarStatistic>(entity!).State = EntityState.Detached;
+        }
+
+        public void TrackingDeteched(SportStatistic entity)
+        {
+            _appDbContext.Entry<SportStatistic>(entity!).State = EntityState.Detached;
+        }
+
+        public void TrackingDeteched(TableStatistic entity)
+        {
+            _appDbContext.Entry<TableStatistic>(entity!).State = EntityState.Detached;
         }
     }
 }

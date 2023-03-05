@@ -8,6 +8,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface
         Task<IList<BarCount>> GetAllBarCountAsync();
         Task<bool> CreateAsync(int number, BarCount barCount);
         Task<bool> DeleteBarCountAsync(int id, string account, double sum);
-        Task<bool> DeleteBarProductAsync(Dictionary<string, int> keyValuePairs);
+        Task<bool> DeleteBarProductAsync(Dictionary<string, int> keyValuePairs, string paymentType);
     }
 }
