@@ -5,5 +5,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrv
     public interface IBarStatisticService
     {
         Task<IList<BarStatisticView>> GetAllBarStatistic(string search);
+        Task<bool> UpdateAsync(Dictionary<string, int> keyValuePairs, string paymentType);
     }
 }

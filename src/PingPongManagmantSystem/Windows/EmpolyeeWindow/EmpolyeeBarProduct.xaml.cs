@@ -1,5 +1,9 @@
-﻿using PingPongManagmantSystem.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PingPongManagmantSystem.DataAccess.Constans;
+using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
+using PingPongManagmantSystem.Service.Services.Common;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using System.Collections.Generic;
 using System.Windows;
@@ -10,7 +14,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
     public partial class EmpolyeeBarProduct : Window
     {
         IEmpolyeeBarProductService barProductService = new EmpolyeeBarProductService();
+        ITrackingDetech trackingDetech = new TrackingDetech();
         Dictionary<string, int> keyValuePairs = new Dictionary<string, int>();
+        AppDbContext appDbContext = new AppDbContext();
         double sumPrice = 0;
         int countNumber = 0;
         string accountBook = "";
@@ -28,6 +34,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 if (countNumber == 0)
                 {
                     List<BarCount> item = (List<BarCount>)await barProductService.GetAllAsync();
+                  
                     empolyeProductDataGrid.ItemsSource = item;
                     countNumber++;
 
@@ -48,10 +55,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                if (empolyeProductDataGrid.Items.Count > 0)
+                if (empolyeProductDataGrid.Items.Count > 0 && combo_CardCash.Text == "Naxt" || combo_CardCash.Text == "Karta")
                 {
                     foreach (BarCount bar in empolyeProductDataGrid.Items)
                     {
+                     
                         if (bar.Count > 0)
                         {
                             sumPrice += bar.Price * bar.Count;
@@ -75,7 +83,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 
                     if (res)
                     {
-                        var resault = await barProductService.DeleteBarProductAsync(keyValuePairs);
+                        var resault = await barProductService.DeleteBarProductAsync(keyValuePairs, combo_CardCash.Text);
                         if (resault)
                         {
                             keyValuePairs.Clear();
@@ -103,6 +111,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             try
             {
                 var resault = (BarCount)empolyeProductDataGrid.SelectedItem;
+            
                 barProductService.CreateAsync(1, resault);
                 RefreshDataBar();
             }

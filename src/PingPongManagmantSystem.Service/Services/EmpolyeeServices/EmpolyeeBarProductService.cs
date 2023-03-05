@@ -2,6 +2,7 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
+using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
@@ -14,6 +15,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         AppDbContext _appDbContext = new AppDbContext();
         ITrackingDetech trackingDetech = new TrackingDetech();
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
+        IBarStatisticService barStatisticService = new BarStatisticService();
         ITableStatisticService tableStatisticService = new TableStatisticService();
 
         int count = 0;
@@ -22,28 +24,27 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
-                var resault = (BarCount)await _appDbContext.BarCounts.FirstOrDefaultAsync(x => x.Name == barCount.Name);
-                if (resault != null)
-                {
-                    trackingDetech.TrackingDeteched(resault);
-                }
 
+                var countResult = await _appDbContext.BarCounts.FindAsync(barCount.Id);
 
                 if (number == 1)
                 {
-                    resault.Count++;
-                    _appDbContext.BarCounts.Update(resault);
+                    _appDbContext.Entry(countResult).State = EntityState.Detached;
+                    countResult.Count++;
+                    _appDbContext.BarCounts.Update(countResult);
                 }
                 else if (number == 2)
                 {
-                    if (resault.Count > 0)
+
+            
+                    if (barCount.Count > 0)
                     {
-                        if (resault.Count > 0)
-                        {
-                            resault.Count -= 1;
-                            _appDbContext.BarCounts.Update(resault);
-                        }
+                        _appDbContext.Entry(countResult).State = EntityState.Detached;
+                        countResult.Count--;
+                        _appDbContext.BarCounts.Update(countResult);
                     }
+                    
+
                 }
                 var res = await _appDbContext.SaveChangesAsync();
                 return res > 0;
@@ -58,30 +59,30 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
-                IList<BarCount> barProducts = new List<BarCount>();
+                List<BarCount> barProducts = new List<BarCount>();
+            
+               
+
+
                 var barPro = await _appDbContext.BarProducts.OrderBy(x => x.Name).AsNoTracking().ToListAsync();
+               
+                
                 foreach (var item in barPro)
                 {
-                    var res = await _appDbContext.BarCounts.FirstOrDefaultAsync(x => x.Name == item.Name);
-                    if (res is null)
-                    {
-                        BarCount barCount = new BarCount();
-                        barCount.Name = item.Name;
-                        barCount.Count = 0;
-                        barCount.Price = item.SalePrice;
-                        _appDbContext.BarCounts.Add(barCount);
-                        await _appDbContext.SaveChangesAsync();
-                    }
-                }
-                var barCounts = await _appDbContext.BarCounts.OrderBy(x => x.Name).AsNoTracking().ToListAsync();
-                foreach (var item in barCounts)
-                {
                     BarCount barCount = new BarCount();
-                    barCount.Id = item.Id;
-                    barCount.Count = 0;
+
+                    _appDbContext.Entry(barCount).State = EntityState.Detached;
                     barCount.Name = item.Name;
-                    barCount.Price = item.Price;
-                    barProducts.Add(barCount);
+                    barCount.Count = 0;
+                    barCount.Price = item.SalePrice;
+                    _appDbContext.BarCounts.Add(barCount);
+                }
+                var res =  await _appDbContext.SaveChangesAsync();
+
+                var barCountt = await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
+                foreach (var item in barCountt)
+                {
+                    barProducts.Add(item);
                 }
                 return barProducts;
             }
@@ -102,6 +103,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     foreach (var bar in barPro)
                     {
                         BarCount barProduct = new BarCount();
+                        _appDbContext.Entry(barProduct).State = EntityState.Detached;
                         barProduct.Id = bar.Id;
                         barProduct.Name = bar.Name;
                         barProduct.Price = bar.Price;
@@ -124,14 +126,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
-                var barCount = await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
-                foreach (var bar in barCount)
+                var barCount =  await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
+                foreach (var item in barCount)
                 {
-                    var res = (BarCount)await _appDbContext.BarCounts.FirstOrDefaultAsync(x => x.Name == bar.Name);
-                    trackingDetech.TrackingDeteched(res);
-                    res.Count = 0;
-
-                    _appDbContext.BarCounts.Update(res);
+                    var itemCount = (BarCount) await _appDbContext.BarCounts.FindAsync(item.Id);
+                    _appDbContext.Entry(itemCount).State = EntityState.Detached;
+                    _appDbContext.BarCounts.Remove(itemCount);
                 }
 
                 if (account != "NotButton")
@@ -141,6 +141,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     barUser.BarSum += sum;
                     _appDbContext.DesktopCassas.Update(barUser);
                 }
+
                 var resa = await _appDbContext.SaveChangesAsync();
                 return resa > 0;
             }
@@ -150,19 +151,19 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             }
         }
 
-        public async Task<bool> DeleteBarProductAsync(Dictionary<string, int> keyValuePairs)
+        public async Task<bool> DeleteBarProductAsync(Dictionary<string, int> keyValuePairs, string paymentType)
         {
             try
             {
                 foreach (var product in keyValuePairs)
                 {
+
                     var barProduct = await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
+                    var barStatistic = await barStatisticService.UpdateAsync(keyValuePairs, paymentType);
+
 
                     if (barProduct is not null)
                     {
-                        //var result = tableStatisticService.UpdateBarAsync(keyValuePairs);
-
-
                         trackingDetech.TrackingDeteched(barProduct);
                         barProduct.Count -= product.Value;
                         _appDbContext.BarProducts.Update(barProduct);

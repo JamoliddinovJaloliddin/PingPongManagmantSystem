@@ -55,7 +55,7 @@ namespace PingPongManagmantSystem
                     {
                         CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
 
-                        MessageBox.Show(resault.ToString());
+                       
                         this.Close();
                         cassaPanelDesktop.ShowDialog();
                     }

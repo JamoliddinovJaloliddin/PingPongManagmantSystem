@@ -16,5 +16,9 @@ namespace PingPongManagmantSystem.Service.Interfaces.Common
         public void TrackingDeteched(Time entity);
         public void TrackingDeteched(Transfer entity);
         public void TrackingDeteched(User entity);
+        public void TrackingDeteched(BarStatistic entity);
+        public void TrackingDeteched(SportStatistic entity);
+        public void TrackingDeteched(TableStatistic entity);
+
     }
 }
