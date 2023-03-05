@@ -4,6 +4,7 @@ using PingPongManagmantSystem.Service.Interfaces;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
+using PingPongManagmantSystem.Service.ViewModels;
 using System.Windows;
 using System.Windows.Input;
 
@@ -53,9 +54,10 @@ namespace PingPongManagmantSystem
                     var user = await accountService.WindowtAsync(txtpassoword.Password.ToString());
                     if (user.IsAdmin == 0)
                     {
+                        GlobalVariable.UserId = user.Id;
                         CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
 
-                       
+
                         this.Close();
                         cassaPanelDesktop.ShowDialog();
                     }

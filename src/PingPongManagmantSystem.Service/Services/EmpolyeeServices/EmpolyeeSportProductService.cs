@@ -14,28 +14,27 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         AppDbContext appDbContext = new AppDbContext();
         ITableStatisticService tableStatisticService = new TableStatisticService();
         ITrackingDetech trackingDetech = new TrackingDetech();
+        
 
-
-        public async Task<bool> CreateAsync(int id, SportCount sportCount)
+        public async Task<bool> CreateAsync(int number, SportCount sportCount)
         {
             try
             {
-                var resault = (SportCount)await appDbContext.SportCounts.FirstOrDefaultAsync(x => x.Name == sportCount.Name);
-                if (resault != null)
+                var countResult = await appDbContext.SportCounts.FindAsync(sportCount.Id);
+
+                if (number == 1)
                 {
-                    trackingDetech.TrackingDeteched(resault);
-                    if (id == 1)
+                    appDbContext.Entry(countResult).State = EntityState.Detached;
+                    countResult.Count++;
+                    appDbContext.SportCounts.Update(countResult);
+                }
+                else if (number == 2)
+                {
+                    if (sportCount.Count > 0)
                     {
-                        resault.Count++;
-                        appDbContext.SportCounts.Update(resault);
-                    }
-                    else if (id == 2)
-                    {
-                        if (resault.Count > 0)
-                        {
-                            resault.Count--;
-                            appDbContext.SportCounts.Update(resault);
-                        }
+                        appDbContext.Entry(countResult).State = EntityState.Detached;
+                        countResult.Count--;
+                        appDbContext.SportCounts.Update(countResult);
                     }
                 }
                 var res = await appDbContext.SaveChangesAsync();
@@ -47,24 +46,19 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             }
         }
 
-        public async Task<bool> DeleteCountAsync()
+        public async Task<bool> DeleteSportCountAsync()
         {
             try
             {
-                var resault = await appDbContext.SportCounts.AsNoTracking().ToListAsync();
-                if (resault is not null)
+                var sportCount = await appDbContext.SportCounts.AsNoTracking().ToListAsync();
+                foreach (var item in sportCount)
                 {
-                    foreach (var item in resault)
-                    {
-                        var res = (SportCount)await appDbContext.SportCounts.FirstOrDefaultAsync(x => x.Name == item.Name);
-                        trackingDetech.TrackingDeteched(res);
-                        res.Count = 0;
-                        appDbContext.SportCounts.Update(res);
-                    }
+                    var itemCount = (SportCount)await appDbContext.SportCounts.FindAsync(item.Id);
+                    appDbContext.Entry(itemCount).State = EntityState.Detached;
+                    appDbContext.SportCounts.Remove(itemCount);
                 }
-
-                var ress = await appDbContext.SaveChangesAsync();
-                return ress > 0;
+                var resa = await appDbContext.SaveChangesAsync();
+                return resa > 0;
             }
             catch
             {
@@ -72,7 +66,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             }
         }
 
-        public async Task<bool> DeleteProductAsync(Dictionary<string, int> keyValuePairs)
+        public async Task<bool> DeleteSportProductAsync(Dictionary<string, int> keyValuePairs)
         {
             try
             {
@@ -103,35 +97,28 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
-                List<SportCount> products = new List<SportCount>();
-                var resault = await appDbContext.SportProducts.AsNoTracking().ToListAsync();
-                foreach (var product in resault)
+                List<SportCount> sportProducts = new List<SportCount>();
+                
+                var sportPro = await appDbContext.SportProducts.OrderBy(x => x.Name).AsNoTracking().ToListAsync();
+
+                foreach (var item in sportPro)
                 {
-                    var sportPro = await appDbContext.SportCounts.FirstOrDefaultAsync(x => x.Name == product.Name);
-                    if (sportPro is null)
-                    {
-                        SportCount sportCount = new SportCount();
-                        sportCount.Name = product.Name;
-                        sportCount.Price = product.SalePrice;
-                        sportCount.Count = 0;
+                    SportCount sportCount = new SportCount();
 
-                        appDbContext.SportCounts.Add(sportCount);
-                        await appDbContext.SaveChangesAsync();
-                    }
+                    appDbContext.Entry(sportCount).State = EntityState.Detached;
+                    sportCount.Name = item.Name;
+                    sportCount.Count = 0;
+                    sportCount.Price = item.SalePrice;
+                    appDbContext.SportCounts.Add(sportCount);
                 }
+                var res = await appDbContext.SaveChangesAsync();
 
-                var sportProduct = await appDbContext.SportCounts.AsNoTracking().ToListAsync();
-                foreach (var item in sportProduct)
+                var sportCountt = await appDbContext.SportCounts.AsNoTracking().ToListAsync();
+                foreach (var item in sportCountt)
                 {
-                    SportCount sportProduct1 = new SportCount();
-                    sportProduct1.Count = item.Count;
-                    sportProduct1.Name = item.Name;
-                    sportProduct1.Price = item.Price;
-                    products.Add(sportProduct1);
+                    sportProducts.Add(item);
                 }
-                await appDbContext.SaveChangesAsync();
-
-                return sportProduct;
+                return sportProducts;
             }
             catch
             {
@@ -144,16 +131,22 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 List<SportCount> sportProducts = new List<SportCount>();
-                var resault = await appDbContext.SportCounts.AsNoTracking().ToListAsync();
-                foreach (var item in resault)
+                var sportPro = await appDbContext.SportCounts.OrderBy(x => x.Name).AsNoTracking().ToListAsync();
+                if (sportPro is not null)
                 {
-                    SportCount sportProduct = new SportCount();
-                    sportProduct.Count = item.Count;
-                    sportProduct.Price = item.Count;
-                    sportProduct.Name = item.Name;
-                    sportProducts.Add(sportProduct);
+                    foreach (var bar in sportPro)
+                    {
+                        SportCount sportProduct = new SportCount();
+                        appDbContext.Entry(sportProduct).State = EntityState.Detached;
+                        sportProduct.Id = bar.Id;
+                        sportProduct.Name = bar.Name;
+                        sportProduct.Price = bar.Price;
+                        sportProduct.Count = bar.Count;
+                        sportProducts.Add(sportProduct);
+                    }
+                    return sportProducts;
                 }
-                return sportProducts;
+                return null;
             }
             catch
             {

@@ -1,9 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PingPongManagmantSystem.DataAccess.Constans;
+﻿using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Interfaces.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
-using PingPongManagmantSystem.Service.Services.Common;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using System.Collections.Generic;
 using System.Windows;
@@ -14,7 +11,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
     public partial class EmpolyeeBarProduct : Window
     {
         IEmpolyeeBarProductService barProductService = new EmpolyeeBarProductService();
-        ITrackingDetech trackingDetech = new TrackingDetech();
         Dictionary<string, int> keyValuePairs = new Dictionary<string, int>();
         AppDbContext appDbContext = new AppDbContext();
         double sumPrice = 0;
@@ -34,10 +30,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 if (countNumber == 0)
                 {
                     List<BarCount> item = (List<BarCount>)await barProductService.GetAllAsync();
-                  
+
                     empolyeProductDataGrid.ItemsSource = item;
                     countNumber++;
-
                 }
                 else
                 {
@@ -59,7 +54,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 {
                     foreach (BarCount bar in empolyeProductDataGrid.Items)
                     {
-                     
+
                         if (bar.Count > 0)
                         {
                             sumPrice += bar.Price * bar.Count;
@@ -111,7 +106,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             try
             {
                 var resault = (BarCount)empolyeProductDataGrid.SelectedItem;
-            
+
                 barProductService.CreateAsync(1, resault);
                 RefreshDataBar();
             }

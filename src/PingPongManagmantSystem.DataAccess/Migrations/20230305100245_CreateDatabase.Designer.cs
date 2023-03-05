@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230304111421_CreateDateBase")]
-    partial class CreateDateBase
+    [Migration("20230305100245_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -239,6 +239,35 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.ToTable("DesktopCassas");
                 });
 
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.EmpolyeeStatistic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("BarSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("DateTime")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("SportSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TableSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("EmpolyeeStatistics");
+                });
+
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.PingPongTable", b =>
                 {
                     b.Property<int>("Id")
@@ -423,6 +452,17 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.EmpolyeeStatistic", b =>
+                {
+                    b.HasOne("PingPongManagmantSystem.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

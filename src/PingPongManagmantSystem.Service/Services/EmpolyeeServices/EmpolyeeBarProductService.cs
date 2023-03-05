@@ -17,6 +17,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
         IBarStatisticService barStatisticService = new BarStatisticService();
         ITableStatisticService tableStatisticService = new TableStatisticService();
+        IEmpolyeeStatsiticService empolyeeStatsiticService = new EmpolyeeStatisticService();
 
         int count = 0;
 
@@ -35,16 +36,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 }
                 else if (number == 2)
                 {
-
-            
                     if (barCount.Count > 0)
                     {
                         _appDbContext.Entry(countResult).State = EntityState.Detached;
                         countResult.Count--;
                         _appDbContext.BarCounts.Update(countResult);
                     }
-                    
-
                 }
                 var res = await _appDbContext.SaveChangesAsync();
                 return res > 0;
@@ -60,13 +57,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 List<BarCount> barProducts = new List<BarCount>();
-            
-               
-
 
                 var barPro = await _appDbContext.BarProducts.OrderBy(x => x.Name).AsNoTracking().ToListAsync();
-               
-                
+
                 foreach (var item in barPro)
                 {
                     BarCount barCount = new BarCount();
@@ -77,7 +70,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     barCount.Price = item.SalePrice;
                     _appDbContext.BarCounts.Add(barCount);
                 }
-                var res =  await _appDbContext.SaveChangesAsync();
+                var res = await _appDbContext.SaveChangesAsync();
 
                 var barCountt = await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
                 foreach (var item in barCountt)
@@ -121,15 +114,14 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         }
 
 
-
         public async Task<bool> DeleteBarCountAsync(int id, string account, double sum)
         {
             try
             {
-                var barCount =  await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
+                var barCount = await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
                 foreach (var item in barCount)
                 {
-                    var itemCount = (BarCount) await _appDbContext.BarCounts.FindAsync(item.Id);
+                    var itemCount = (BarCount)await _appDbContext.BarCounts.FindAsync(item.Id);
                     _appDbContext.Entry(itemCount).State = EntityState.Detached;
                     _appDbContext.BarCounts.Remove(itemCount);
                 }
@@ -155,17 +147,18 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
+                double totalSum = 0;
+
                 foreach (var product in keyValuePairs)
                 {
-
-                    var barProduct = await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
+                    var barProduct = (BarProduct)await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
                     var barStatistic = await barStatisticService.UpdateAsync(keyValuePairs, paymentType);
-
 
                     if (barProduct is not null)
                     {
-                        trackingDetech.TrackingDeteched(barProduct);
+                        _appDbContext.Entry(barProduct).State = EntityState.Detached;
                         barProduct.Count -= product.Value;
+                        totalSum += product.Value * barProduct.SalePrice;
                         _appDbContext.BarProducts.Update(barProduct);
                     }
                     else
@@ -173,8 +166,13 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         return false;
                     }
                 }
-                await _appDbContext.SaveChangesAsync();
-                return false;
+                var result = await _appDbContext.SaveChangesAsync();
+                if (result > 0)
+                {
+                    var empolyeeStatistic = await empolyeeStatsiticService.CreateAsync(totalSum, paymentType);
+                }
+                totalSum = 0;
+                return result > 0;
             }
             catch
             {
