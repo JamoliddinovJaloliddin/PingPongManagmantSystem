@@ -5,5 +5,7 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrv
     public interface IEmpolyeeStatsiticService
     {
         Task<IList<SportStatisticView>> GetAllSportStatistic(string search);
+
+        Task<bool> CreateAsync(double totalPrice, string paymentType);
     }
 }

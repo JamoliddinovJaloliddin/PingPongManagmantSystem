@@ -7,6 +7,7 @@ using PingPongManagmantSystem.Service.Interfaces.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.Services.Common;
+using PingPongManagmantSystem.Service.ViewModels;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
@@ -38,7 +39,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 pingPongTable.TimeAccount = 0;
                 pingPongTable.PlayTime = 0;
                 pingPongTable.BarSum = 0;
-                pingPongTable.UserId = 0;
+                pingPongTable.UserId = GlobalVariable.UserId;
                 _appDbContext.DesktopCassas.Update(pingPongTable);
                 var resault = await _appDbContext.SaveChangesAsync();
                 return resault > 0;

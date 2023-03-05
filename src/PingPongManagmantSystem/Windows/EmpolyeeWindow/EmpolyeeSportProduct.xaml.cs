@@ -33,7 +33,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 }
                 else
                 {
-                    List<SportCount> sportCounts = (List<SportCount>)await sportService.GetAllAsync();
+                    List<SportCount> sportCounts = (List<SportCount>)await sportService.GetAllSportProductAsync();
                     sportDataGrid.ItemsSource = sportCounts;
                 }
             }
@@ -47,30 +47,33 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                foreach (SportCount bar in sportDataGrid.Items)
+                if (sportDataGrid.Items.Count > 0 && combo_CardCash.Text == "Naxt" || combo_CardCash.Text == "Karta")
                 {
-                    if (bar.Count > 0)
+                    foreach (SportCount bar in sportDataGrid.Items)
                     {
-                        sumPrice += bar.Price * bar.Count;
+                        if (bar.Count > 0)
+                        {
+                            sumPrice += bar.Price * bar.Count;
 
-                        accountBook += (String.Format("{0, -20}{1,-20}{2, -20}{3,-20}\n\n", bar.Name, bar.Price, bar.Count, bar.Count * bar.Price));
-                        keyValuePairs.Add(key: bar.Name, value: bar.Count);
+                            accountBook += (String.Format("{0, -20}{1,-20}{2, -20}{3,-20}\n\n", bar.Name, bar.Price, bar.Count, bar.Count * bar.Price));
+                            keyValuePairs.Add(key: bar.Name, value: bar.Count);
+                        }
                     }
-                }
-                if (keyValuePairs.Count > 0)
-                {
-                    var res = await sportService.DeleteProductAsync(keyValuePairs);
-                    if (res)
+                    if (keyValuePairs.Count > 0)
                     {
-                        var sportCount = await sportService.DeleteCountAsync();
+                        var res = await sportService.DeleteSportProductAsync(keyValuePairs);
+                        if (res)
+                        {
+                            var sportCount = await sportService.DeleteSportCountAsync();
+                        }
+                        this.Close();
+                        await sportService.DeleteSportCountAsync();
+                        MessageBox.Show($"{accountBook} \nUmumiy:   {sumPrice}");
+                        sumPrice = 0;
+                        countNumber = 0;
+                        accountBook = "";
+                        keyValuePairs.Clear();
                     }
-                    this.Close();
-                    await sportService.DeleteCountAsync();
-                    MessageBox.Show($"{accountBook} \nUmumiy:   {sumPrice}");
-                    sumPrice = 0;
-                    countNumber = 0;
-                    accountBook = "";
-                    keyValuePairs.Clear();
                 }
             }
             catch
@@ -111,7 +114,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
-                sportService.DeleteCountAsync();
+                sportService.DeleteSportCountAsync();
                 keyValuePairs.Clear();
                 this.Close();
             }
