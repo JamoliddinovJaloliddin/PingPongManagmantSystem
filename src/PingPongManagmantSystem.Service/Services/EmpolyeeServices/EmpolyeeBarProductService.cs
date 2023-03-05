@@ -36,7 +36,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 }
                 else if (number == 2)
                 {
-                    if (barCount.Count > 0)
+                    if (barCount.Count > 0 && countResult.Count >= barCount.Count && countResult.Count != null)
                     {
                         _appDbContext.Entry(countResult).State = EntityState.Detached;
                         countResult.Count--;
@@ -169,7 +169,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 var result = await _appDbContext.SaveChangesAsync();
                 if (result > 0)
                 {
-                    var empolyeeStatistic = await empolyeeStatsiticService.CreateAsync(totalSum, paymentType);
+                    var empolyeeStatistic = await empolyeeStatsiticService.CreateBarAsync(totalSum, paymentType);
                 }
                 totalSum = 0;
                 return result > 0;

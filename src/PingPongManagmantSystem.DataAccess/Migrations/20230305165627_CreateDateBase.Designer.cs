@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230305100245_CreateDatabase")]
-    partial class CreateDatabase
+    [Migration("20230305165627_CreateDateBase")]
+    partial class CreateDateBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -261,9 +261,10 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.Property<double>("VipCardSum")
+                        .HasColumnType("REAL");
 
-                    b.HasIndex("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("EmpolyeeStatistics");
                 });
@@ -452,17 +453,6 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.EmpolyeeStatistic", b =>
-                {
-                    b.HasOne("PingPongManagmantSystem.Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

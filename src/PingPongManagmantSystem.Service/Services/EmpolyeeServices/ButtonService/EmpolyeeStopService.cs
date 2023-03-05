@@ -40,6 +40,8 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                 string accountBook = "";
                 double totalSum = 0;
                 double tablePrice = 0;
+
+           
                 //NotVipKart, NotTrener
                 if (customerPercent.Status != "VipKarta" && customer != Payment.Trener_Kattalar.ToString() || customer != Payment.Trener_Kichik.ToString())
                 {
@@ -55,6 +57,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                         secondCheapExpencive += (TimeStop - secondExpenciveFrom) / 3600 *
                             (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
                         tablePrice += secondCheapExpencive;
+
                         totalSum += secondExpenciveFrom + pingPongTable.BarSum + pingPongTable.TransferSum;
                         var time = (TimeStop - pingPongTable.PlayTime) / 60;
                         if (time >= 60)
@@ -66,6 +69,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                         {
                             accountBook += $"Vaqt: {time} daqiqa \n Summa: {totalSum} so'm";
                         }
+                        var tableResult = await tableStatisticService.UpdateAsync(secondCheapExpencive, typeOfPey);
                     }
 
 
@@ -77,6 +81,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                         {
                             var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                             tablePrice += secondCheap;
+
                             totalSum = secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                             var time = (TimeStop - pingPongTable.PlayTime) / 60;
                             if (time >= 60)
@@ -88,12 +93,14 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                             {
                                 accountBook += $"Vaqt: {time} daqiqa \n Summa: {totalSum} so'm";
                             }
+                            var tableResult = await tableStatisticService.UpdateAsync(secondCheap, typeOfPey);
                         }
                         else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0)
                         {
                             var secondCheap = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) /
                                 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                             tablePrice += secondCheap;
+
                             totalSum += secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                             var time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) / 60;
                             if (time >= 60)
@@ -102,6 +109,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
                             }
                             accountBook += $"Vaqt: {time} daqiqa \n Summa: {totalSum} so'm";
+                            var tableResult = await tableStatisticService.UpdateAsync(secondCheap, typeOfPey);
                         }
                         else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0)
                         {
@@ -115,6 +123,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 accountBook += $"Vaqt: {time}  \n Summa: {totalSum} so'm";
                             }
                             accountBook += $"Vaqt: {time} daqiqa\n Summa: {totalSum} so'm";
+                            var tableResult = await tableStatisticService.UpdateAsync(secondCheap, typeOfPey);
                         }
                     }
 
@@ -135,6 +144,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 accountBook += $"Vaqt: {time}  \n Summa: {totalSum} so'm";
                             }
                             accountBook += $"Vaqt: {time} daqiqa \n Summa: {totalSum} so'm";
+                            var tableResult = await tableStatisticService.UpdateAsync(secondExpensive, typeOfPey);
                         }
                         else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0)
                         {
@@ -149,10 +159,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 accountBook += $"Vaqt: {time} \n Summa: {totalSum} so'm";
                             }
                             accountBook += $"Vaqt: {time} daqiqa\n Summa: {totalSum} so'm";
+                            var tableResult = await tableStatisticService.UpdateAsync(secondExpensive, typeOfPey);
                         }
                         else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0)
                         {
                             var secondCheap = pingPongTable.TimeAccount / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
+
                             totalSum += secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                             tablePrice += secondCheap;
                             var time = (TimeStop - pingPongTable.PlayTime) / 60;
@@ -164,6 +176,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                             {
                                 accountBook += $"Vaqt: {time} daqiqa \n Summa: {totalSum} so'm";
                             }
+                            var tableResult = await tableStatisticService.UpdateAsync(secondCheap, typeOfPey);
                         }
                     }
                 }
@@ -185,6 +198,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     {
                         accountBook += $"Vaqt: {pingPongTable.TimeAccount} daqiqa \n Summa: {totalSum} so'm";
                     }
+                    var tableResult = await tableStatisticService.UpdateAsync(customerPercent.Percent, typeOfPey);
                 }
 
 
@@ -198,9 +212,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     {
                         pingPongTable.TimeAccount = pingPongTable.TimeAccount / 60;
                         accountBook += $"Vaqt: {pingPongTable.TimeAccount} \n Summa: {totalSum} so'm";
-
                     }
                     accountBook += $"Vaqt: {pingPongTable.TimeAccount} daqiqa \n Summa: {totalSum} so'm";
+                    var tableResult = await tableStatisticService.UpdateAsync(customerPercent.Percent, typeOfPey);
                 }
 
 
@@ -218,6 +232,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 if (vipKart.TimeLimit * 3600 - second > 0)
                                 {
                                     vipKart.TimeLimit = (vipKart.TimeLimit * 3600 - second) / 3600;
+                                    var tableResult = await tableStatisticService.UpdateAsync(second, typeOfPey);
                                 }
                                 else
                                 {
@@ -231,6 +246,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 else
                                 {
                                     totalSum = pingPongTablePrice.PriceExpensive * (second / 3600) + pingPongTable.BarSum;
+                                    var tableResult = await tableStatisticService.UpdateAsync(pingPongTablePrice.PriceExpensive * (second / 3600), "Naxt");
                                 }
                                 pingPongTable.TimeAccount = (TimeStop - pingPongTable.PlayTime) / 60;
                                 if (pingPongTable.TimeAccount >= 60)
@@ -248,6 +264,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 if (vipKart.TimeLimit * 3600 - second > 0)
                                 {
                                     vipKart.TimeLimit -= second / 3600;
+                                    var tableResult = await tableStatisticService.UpdateAsync(second, typeOfPey);
                                 }
                                 else
                                 {
@@ -261,6 +278,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 else
                                 {
                                     totalSum = pingPongTablePrice.PriceExpensive * (second / 3600) + pingPongTable.BarSum;
+                                    var tableResult = await tableStatisticService.UpdateAsync(pingPongTablePrice.PriceExpensive * (second / 3600), "Naxt");
                                 }
                                 pingPongTable.TimeAccount += TimeStop - pingPongTable.PlayTime;
                                 if (pingPongTable.TimeAccount / 60 >= 60)
@@ -282,6 +300,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 if (vipKart.TimeLimit * 3600 - second > 0)
                                 {
                                     vipKart.TimeLimit -= second / 3600;
+                                    var tableResult = await tableStatisticService.UpdateAsync(second, typeOfPey);
                                 }
                                 else
                                 {
@@ -295,6 +314,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                 else
                                 {
                                     totalSum = pingPongTablePrice.PriceExpensive * (second / 3600) + pingPongTable.BarSum;
+                                    var tableResult = await tableStatisticService.UpdateAsync(pingPongTablePrice.PriceExpensive * (second / 3600), "Naxt");
                                 }
                                 if (pingPongTable.TimeAccount / 60 >= 60)
                                 {
@@ -306,7 +326,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                                     accountBook += $"Vaqt: {second} daqiqa \n Summa: {totalSum} so'm";
                                 }
                             }
-
                         }
                         else
                         {
@@ -317,7 +336,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     {
                         return (Resault: false, Text: "Hosbingiz 0", cassa: null, totalSum);
                     }
-
                 }
 
                 var userEmpolyee = await appDbContext.Users.FirstOrDefaultAsync(x => x.Id == 1);
@@ -333,8 +351,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     cassa.TypeOfPrice = typeOfPey;
                     cassa.DateTime = DayHelper.GetCurrentServerDay();
 
-                    //var result = await tableStatisticService.UpdateTableAsync(tablePrice);
-
                     appDbContext.Cassas.Add(cassa);
                     var resault = await appDbContext.SaveChangesAsync();
                 }
@@ -347,7 +363,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
             }
             catch
             {
-
                 return (Resault: false, Text: "", cassa: null, totalSum: 0);
             }
         }

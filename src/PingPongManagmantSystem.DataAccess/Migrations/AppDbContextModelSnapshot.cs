@@ -259,6 +259,9 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("VipCardSum")
+                        .HasColumnType("REAL");
+
                     b.HasKey("Id");
 
                     b.ToTable("EmpolyeeStatistics");

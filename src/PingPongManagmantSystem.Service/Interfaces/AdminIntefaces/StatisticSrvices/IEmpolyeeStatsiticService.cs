@@ -6,6 +6,8 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrv
     {
         Task<IList<SportStatisticView>> GetAllSportStatistic(string search);
 
-        Task<bool> CreateAsync(double totalPrice, string paymentType);
+        Task<bool> CreateBarAsync(double totalPrice, string paymentType);
+        Task<bool> CreateSportAsync(double totalPrice, string paymentType);
+        Task<bool> CreateTableAsync(double totalPrice, string paymentType);
     }
 }

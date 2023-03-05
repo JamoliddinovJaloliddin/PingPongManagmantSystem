@@ -2,10 +2,9 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
-using PingPongManagmantSystem.Service.Interfaces.Common;
+using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
-using PingPongManagmantSystem.Service.Services.Common;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
@@ -13,8 +12,10 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
     {
         AppDbContext appDbContext = new AppDbContext();
         ITableStatisticService tableStatisticService = new TableStatisticService();
-        ITrackingDetech trackingDetech = new TrackingDetech();
-        
+        IEmpolyeeStatsiticService empolyeeStatsiticService = new EmpolyeeStatisticService();
+        ISportStatisticService sportStatisticService = new SportStatisticService();
+
+
 
         public async Task<bool> CreateAsync(int number, SportCount sportCount)
         {
@@ -30,7 +31,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 }
                 else if (number == 2)
                 {
-                    if (sportCount.Count > 0)
+                    if (sportCount.Count > 0 && countResult.Count >= sportCount.Count && countResult.Count != 0)
                     {
                         appDbContext.Entry(countResult).State = EntityState.Detached;
                         countResult.Count--;
@@ -66,25 +67,32 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             }
         }
 
-        public async Task<bool> DeleteSportProductAsync(Dictionary<string, int> keyValuePairs)
+        public async Task<bool> DeleteSportProductAsync(Dictionary<string, int> keyValuePairs, string paymentType)
         {
             try
             {
+                double totalSum = 0;
                 foreach (var product in keyValuePairs)
                 {
                     var res = await appDbContext.SportProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
+
                     if (res is not null)
                     {
-                        //var result = await tableStatisticService.UpdateProductAsync(keyValuePairs);
 
-
-                        trackingDetech.TrackingDeteched(res);
+                        appDbContext.Entry(res).State = EntityState.Detached;
                         res.Count -= product.Value;
+                        totalSum += product.Value * res.SalePrice;
                         appDbContext.SportProducts.Update(res);
                     }
                 }
                 var resault = await appDbContext.SaveChangesAsync();
+                var sportResult = await sportStatisticService.UpdateAsync(keyValuePairs, paymentType);
+                if (resault > 0)
+                {
+                    var empolyeeStatistic = await empolyeeStatsiticService.CreateSportAsync(totalSum, paymentType);
 
+                }
+                totalSum = 0;
                 return resault > 0;
             }
             catch
@@ -98,7 +106,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 List<SportCount> sportProducts = new List<SportCount>();
-                
+
                 var sportPro = await appDbContext.SportProducts.OrderBy(x => x.Name).AsNoTracking().ToListAsync();
 
                 foreach (var item in sportPro)
