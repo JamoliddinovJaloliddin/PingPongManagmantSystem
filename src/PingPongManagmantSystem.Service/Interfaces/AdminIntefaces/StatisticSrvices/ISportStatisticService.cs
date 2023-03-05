@@ -5,5 +5,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrv
     public interface ISportStatisticService
     {
         Task<IList<SportStatisticView>> GetAllSportStatistic(string search);
+        Task<bool> UpdateAsync(Dictionary<string, int> keyValuePair, string paymentType);
     }
 }

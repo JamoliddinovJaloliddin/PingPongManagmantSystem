@@ -61,13 +61,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     }
                     if (keyValuePairs.Count > 0)
                     {
-                        var res = await sportService.DeleteSportProductAsync(keyValuePairs);
-                        if (res)
-                        {
-                            var sportCount = await sportService.DeleteSportCountAsync();
-                        }
+                        var res = await sportService.DeleteSportProductAsync(keyValuePairs, combo_CardCash.Text.ToString());
                         this.Close();
-                        await sportService.DeleteSportCountAsync();
+                        var result = await sportService.DeleteSportCountAsync();
                         MessageBox.Show($"{accountBook} \nUmumiy:   {sumPrice}");
                         sumPrice = 0;
                         countNumber = 0;
@@ -110,11 +106,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Exit_Button(object sender, RoutedEventArgs e)
+        private async void Exit_Button(object sender, RoutedEventArgs e)
         {
             try
             {
-                sportService.DeleteSportCountAsync();
+                var result = await sportService.DeleteSportCountAsync();
                 keyValuePairs.Clear();
                 this.Close();
             }

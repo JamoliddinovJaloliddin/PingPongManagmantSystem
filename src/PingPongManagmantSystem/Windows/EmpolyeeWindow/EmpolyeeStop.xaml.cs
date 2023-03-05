@@ -89,8 +89,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                         this.Close();
                         transferTable.ShowDialog();
                         var res = empolyeeStop.TransferCreateAsync(GlobalVariable.TransferId, resault.cassa);
-
-
                     }
                 }
                 this.Close();
