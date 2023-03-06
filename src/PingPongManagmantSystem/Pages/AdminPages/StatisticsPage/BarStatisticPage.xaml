@@ -36,11 +36,11 @@
             <Grid Grid.Row="2">
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
-                          Grid.Row="1" x:Name="userDataGrid">
+                          Grid.Row="1" x:Name="barStatisticDataGrid">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Sotuv soni" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Summa" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Sana" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding NumberOfSaleBar}" Header="Sotuv soni" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding BarSum}" Header="Summa" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding DateTime}" Header="Sana" IsReadOnly="True" Width="*"/>
                         <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

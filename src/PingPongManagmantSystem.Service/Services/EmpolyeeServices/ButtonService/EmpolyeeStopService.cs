@@ -41,7 +41,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                 double totalSum = 0;
                 double tablePrice = 0;
 
-           
+
                 //NotVipKart, NotTrener
                 if (customerPercent.Status != "VipKarta" && customer != Payment.Trener_Kattalar.ToString() || customer != Payment.Trener_Kichik.ToString())
                 {

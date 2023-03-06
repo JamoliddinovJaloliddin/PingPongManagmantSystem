@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
+using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -6,14 +8,30 @@ using System.Windows.Navigation;
 namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
 {
 
+
     public partial class BarStatisticPage : Page
     {
+        IBarStatisticService barStatisticService = new BarStatisticService();
         public BarStatisticPage()
         {
             InitializeComponent();
             bar_Name.IsChecked = true;
+            Refresh_BarStatistic();
         }
 
+
+        private async void Refresh_BarStatistic()
+        {
+            try
+            {
+                var statisticResult = await barStatisticService.GetAllBarStatistic("");
+                barStatisticDataGrid.ItemsSource = statisticResult;
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
 
         private void Day_Button(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -71,11 +89,12 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
             }
         }
 
-        private void Search(object sender, TextChangedEventArgs e)
+        private async void Search(object sender, TextChangedEventArgs e)
         {
             try
             {
-
+                var statisticResult = await barStatisticService.GetAllBarStatistic(tb.Text.ToString().ToLower());
+                barStatisticDataGrid.ItemsSource = statisticResult;
             }
             catch
             {

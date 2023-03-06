@@ -10,9 +10,48 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
     public class SportStatisticService : ISportStatisticService
     {
         AppDbContext appDbContext = new AppDbContext();
-        public Task<IList<SportStatisticView>> GetAllSportStatistic(string search)
+        public async Task<IList<SportStatisticView>> GetAllSportStatistic(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                IList<SportStatisticView> sportStatisticViews = new List<SportStatisticView>();
+
+                if (search == "")
+                {
+                    var statisticResult = await appDbContext.SportStatistics.OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+
+                    foreach (var statistic in statisticResult)
+                    {
+                        SportStatisticView sportStatisticView = new SportStatisticView();
+
+                        sportStatisticView.SportSum = statistic.SportSum;
+                        sportStatisticView.NumberOfSaleSport = statistic.NumberOfSaleSport;
+                        sportStatisticView.DateTime = statistic.DateTime;
+
+                        sportStatisticViews.Add(sportStatisticView);
+                    }
+                }
+                else
+                {
+                    var statisticResult = await appDbContext.SportStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+
+                    foreach (var statistic in statisticResult)
+                    {
+                        SportStatisticView sportStatisticView = new SportStatisticView();
+
+                        sportStatisticView.SportSum = statistic.SportSum;
+                        sportStatisticView.NumberOfSaleSport = statistic.NumberOfSaleSport;
+                        sportStatisticView.DateTime = statistic.DateTime;
+
+                        sportStatisticViews.Add(sportStatisticView);
+                    }
+                }
+                return sportStatisticViews;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<bool> UpdateAsync(Dictionary<string, int> keyValuePairs, string paymentType)

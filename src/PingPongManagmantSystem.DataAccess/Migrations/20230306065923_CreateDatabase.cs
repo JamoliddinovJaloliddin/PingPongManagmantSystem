@@ -4,12 +4,12 @@
 
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
-    public partial class CreateDateBase : Migration
+    public partial class CreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<double>(
-                name: "VipCardSum",
+                name: "ViCardToSell",
                 table: "EmpolyeeStatistics",
                 type: "REAL",
                 nullable: false,
@@ -19,7 +19,7 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "VipCardSum",
+                name: "ViCardToSell",
                 table: "EmpolyeeStatistics");
         }
     }

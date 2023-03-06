@@ -6,7 +6,6 @@ using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.ViewModels;
 using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
-using System.Runtime.CompilerServices;
 
 namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices
 {
@@ -184,13 +183,64 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             }
         }
 
-        public async Task<IList<SportStatisticView>> GetAllSportStatistic(string search)
+        public async Task<IList<EmpolyeeStatisticView>> GetAllEmpolyeeStatistic(string search)
         {
             try
             {
+                IList<EmpolyeeStatisticView> empolyeeStatisticViews = new List<EmpolyeeStatisticView>();
+
+                if (search == "")
+                {
+                    var statisticResult = await appDbContext.EmpolyeeStatistics.OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+
+                    if (statisticResult is not null)
+                    {
+                        foreach (var statistic in statisticResult)
+                        {
+                            var user = await appDbContext.Users.FindAsync(statistic.UserId);
+                            appDbContext.Entry(user).State = EntityState.Detached;
 
 
-                return null;
+                            EmpolyeeStatisticView empolyeeStatisticView = new EmpolyeeStatisticView();
+                            empolyeeStatisticView.UserName = user.Name;
+                            empolyeeStatisticView.VipCardSum = statistic.VipCardSum;
+                            empolyeeStatisticView.SportSum = statistic.SportSum;
+                            empolyeeStatisticView.BarSum = statistic.BarSum;
+                            empolyeeStatisticView.TableSum = statistic.TableSum;
+                            empolyeeStatisticView.DateTime = statistic.DateTime;
+                            empolyeeStatisticView.ViCardToSell = statistic.ViCardToSell;
+
+                            empolyeeStatisticViews.Add(empolyeeStatisticView);
+                        }
+                    }
+                }
+                else
+                {
+                    var statisticResult = await appDbContext.EmpolyeeStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+
+                    if (statisticResult is not null)
+                    {
+                        foreach (var statistic in statisticResult)
+                        {
+                            var user = await appDbContext.Users.FindAsync(statistic.UserId);
+                            appDbContext.Entry(user).State = EntityState.Detached;
+
+
+                            EmpolyeeStatisticView empolyeeStatisticView = new EmpolyeeStatisticView();
+                            empolyeeStatisticView.UserName = user.Name;
+                            empolyeeStatisticView.VipCardSum = statistic.VipCardSum;
+                            empolyeeStatisticView.SportSum = statistic.SportSum;
+                            empolyeeStatisticView.BarSum = statistic.BarSum;
+                            empolyeeStatisticView.TableSum = statistic.TableSum;
+                            empolyeeStatisticView.DateTime = statistic.DateTime;
+                            empolyeeStatisticView.ViCardToSell = statistic.ViCardToSell;
+
+                            empolyeeStatisticViews.Add(empolyeeStatisticView);
+                        }
+                    }
+                }
+
+                return empolyeeStatisticViews;
             }
             catch
             {
