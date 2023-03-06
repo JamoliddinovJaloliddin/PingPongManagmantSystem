@@ -3,8 +3,6 @@ using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
-using PingPongManagmantSystem.Service.Interfaces.Common;
-using PingPongManagmantSystem.Service.Services.Common;
 using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
 
 namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices
@@ -12,7 +10,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
     public class BarStatisticService : IBarStatisticService
     {
         AppDbContext appDbContext = new AppDbContext();
-        ITrackingDetech trackingDetech = new TrackingDetech();
         public async Task<IList<BarStatisticView>> GetAllBarStatistic(string search)
         {
             try

@@ -3,17 +3,14 @@ using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
-using PingPongManagmantSystem.Service.Interfaces.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
-using PingPongManagmantSystem.Service.Services.Common;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
     public class EmpolyeeBarProductService : IEmpolyeeBarProductService
     {
         AppDbContext _appDbContext = new AppDbContext();
-        ITrackingDetech trackingDetech = new TrackingDetech();
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
         IBarStatisticService barStatisticService = new BarStatisticService();
         ITableStatisticService tableStatisticService = new TableStatisticService();

@@ -3,10 +3,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.Interfaces.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminService;
-using PingPongManagmantSystem.Service.Services.Common;
 using PingPongManagmantSystem.Service.ViewModels;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
@@ -17,7 +15,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         ITimeService timeService = new TimeService();
         IPingPongTableService pingPongTableService = new PingPongTableService();
         ICustomerService customerService = new CustomerService();
-        ITrackingDetech trackingDetech = new TrackingDetech();
+
 
         public async Task<bool> DeleteAsync(int id, double totalSum)
         {
