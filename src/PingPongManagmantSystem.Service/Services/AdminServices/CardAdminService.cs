@@ -36,7 +36,11 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 IList<Card> cardsList = new List<Card>();
                 if (search == "")
                 {
-                    var cards = await appDbContext.Cards.OrderBy(x => x.Id).AsNoTracking().ToListAsync();
+                    var cardss = from car in appDbContext.Cards.OrderBy(x => x.Id)
+                                 select car;
+
+                    var cards = await PagedList<Card>.ToPageListAsync(cardss, @params);
+
                     if (cards is not null)
                     {
 
@@ -57,12 +61,16 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 }
                 else
                 {
-                    var cards = await appDbContext.Cards.Where(x => x.Price.ToString().Contains(search)
+                    var cardss = from car in appDbContext.Cards.Where(x => x.Price.ToString().Contains(search)
                     || x.TimeLimit.ToString().Contains(search)
                     || x.CardNumber.Contains(search.ToLower())
                     || x.Phone.Contains(search.ToLower())
                     || x.Payment.Contains(search.ToLower())
-                    ).OrderBy(x => x.Id).AsNoTracking().ToListAsync();
+                    ).OrderBy(x => x.Id)
+                                 select car;
+
+                    var cards = await PagedList<Card>.ToPageListAsync(cardss, @params);
+
                     if (cards is not null)
                     {
                         foreach (var item in cards)

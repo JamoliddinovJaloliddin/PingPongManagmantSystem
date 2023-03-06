@@ -9,7 +9,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
         Task<bool> CreateAsync(User user);
         Task<bool> UpdateAsync(User user);
         Task<bool> DeleteAsync(int id);
-        Task<User> GetByIdAsync(int id);
         Task<IList<UserView>> GetAllAsync(string search, PaginationParams @params);
 
     }

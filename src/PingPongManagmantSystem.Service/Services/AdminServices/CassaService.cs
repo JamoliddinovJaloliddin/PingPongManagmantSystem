@@ -41,7 +41,10 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 List<Cassa> cassas = new List<Cassa>();
                 if (search == "")
                 {
-                    var cassaPage = await appDbContext.Cassas.AsNoTracking().ToListAsync();
+                    var cassaPages = from cassa in appDbContext.Cassas.OrderBy(x => x.DateTime)
+                                     select cassa;
+
+                    var cassaPage = await PagedList<Cassa>.ToPageListAsync(cassaPages, @params);
 
                     foreach (var item in cassaPage)
                     {
@@ -62,7 +65,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 else
                 {
 
-                    var cassaPage = await appDbContext.Cassas.Where(x =>
+                    var cassaPages = from cass in appDbContext.Cassas.Where(x =>
                        x.SumPrice.Contains(search.ToLower())
                     || x.TypeOfPrice.Contains(search.ToLower())
                     || x.BarProductPrice.ToString().Contains(search)
@@ -70,8 +73,11 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                     || x.TypeOfPrice.Contains(search.ToLower())
                     || x.TablePrice.ToString().Contains(search)
                     || x.UserName.Contains(search.ToLower())
-                    )
-                        .OrderBy(x => x.Id).AsNoTracking().ToListAsync();
+                    ).OrderBy(x => x.Id)
+                                     select cass;
+
+                    var cassaPage = await PagedList<Cassa>.ToPageListAsync(cassaPages, @params);
+
                     Cassa cassa = new Cassa();
                     foreach (var item in cassaPage)
                     {

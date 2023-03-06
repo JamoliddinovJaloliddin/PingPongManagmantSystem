@@ -4,7 +4,6 @@ using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Collections.Generic;
-using System.Drawing.Printing;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows

@@ -23,7 +23,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
         public async void Click()
         {
 
-            List<UserView> user = (List<UserView>)await userService.GetAllAsync("", new PaginationParams (1, pageSize));
+            List<UserView> user = (List<UserView>)await userService.GetAllAsync("", new PaginationParams(1, pageSize));
             userDataGrid.ItemsSource = user;
         }
 

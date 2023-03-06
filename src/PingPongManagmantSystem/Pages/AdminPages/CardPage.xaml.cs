@@ -2,7 +2,6 @@
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
-using System.Drawing.Printing;
 using System.Windows;
 using System.Windows.Controls;
 

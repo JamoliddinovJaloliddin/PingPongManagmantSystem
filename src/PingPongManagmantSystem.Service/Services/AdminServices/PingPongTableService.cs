@@ -50,7 +50,10 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 IList<PingPongTable> list = new List<PingPongTable>();
                 if (search == "")
                 {
-                    var item = appDbContext.PingPongTables.OrderBy(x => x.Id).AsNoTracking();
+                    var itemm = from pingPong in appDbContext.PingPongTables.OrderBy(x => x.Id)
+                                select pingPong;
+                    var item = await PagedList<PingPongTable>.ToPageListAsync(itemm, @params);
+
                     foreach (var ite in item)
                     {
                         PingPongTable pingPongTable = new PingPongTable();
@@ -63,10 +66,13 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 }
                 else
                 {
-                    var item = appDbContext.PingPongTables.Where(x => x.Number.ToString().Contains(search)
+                    var itemm = from pingPong in appDbContext.PingPongTables.Where(x => x.Number.ToString().Contains(search)
                     || x.PriceCheap.ToString().Contains(search)
                     || x.PriceExpensive.ToString().Contains(search)
-                    ).OrderBy(x => x.Id).AsNoTracking();
+                    ).OrderBy(x => x.Id)
+                                select pingPong;
+
+                    var item = await PagedList<PingPongTable>.ToPageListAsync(itemm, @params);
                     foreach (var ite in item)
                     {
                         PingPongTable pingPongTable = new PingPongTable();

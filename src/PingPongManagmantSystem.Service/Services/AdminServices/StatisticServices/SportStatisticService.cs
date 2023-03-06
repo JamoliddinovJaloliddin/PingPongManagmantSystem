@@ -19,7 +19,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
 
                 if (search == "")
                 {
-                    var statisticResult = await appDbContext.SportStatistics.OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    var statisticResults = from statics in appDbContext.SportStatistics.OrderBy(x => x.DateTime)
+                                           select statics;
+                    var statisticResult = await PagedList<SportStatistic>.ToPageListAsync(statisticResults, @params);
 
                     foreach (var statistic in statisticResult)
                     {
@@ -34,7 +36,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
-                    var statisticResult = await appDbContext.SportStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    var statisticResults = from statistic in appDbContext.SportStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime)
+                                           select statistic;
+                    var statisticResult = await PagedList<SportStatistic>.ToPageListAsync(statisticResults, @params);
 
                     foreach (var statistic in statisticResult)
                     {
