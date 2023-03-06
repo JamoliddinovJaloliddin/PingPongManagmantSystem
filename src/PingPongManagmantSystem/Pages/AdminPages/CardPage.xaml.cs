@@ -1,6 +1,8 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
+using System.Drawing.Printing;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,6 +11,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
     public partial class CardPage : Page
     {
         ICardAdminService cardService = new CardAdminService();
+        int pageSize = 15;
         public CardPage()
         {
             InitializeComponent();
@@ -19,7 +22,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
         {
             try
             {
-                var cards = await cardService.GetAllAsync("");
+                var cards = await cardService.GetAllAsync("", new PaginationParams(1, pageSize));
                 cardDataGrid.ItemsSource = cards;
             }
             catch
@@ -32,7 +35,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
         {
             try
             {
-                var cards = await cardService.GetAllAsync(tb.Text.ToString().ToLower());
+                var cards = await cardService.GetAllAsync(tb.Text.ToString().ToLower(), new PaginationParams(1, pageSize));
                 cardDataGrid.ItemsSource = cards;
             }
             catch

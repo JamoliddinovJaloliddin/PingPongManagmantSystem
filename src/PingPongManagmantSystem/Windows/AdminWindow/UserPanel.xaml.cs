@@ -1,4 +1,5 @@
-﻿using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
+﻿using PingPongManagmantSystem.Service.Common.Utils;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
     public partial class UserPanel : Window
     {
         IUserService userService = new UserService();
+        int pageSize = 15;
         public UserPanel()
         {
             InitializeComponent();
@@ -21,7 +23,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
         public async void Click()
         {
 
-            List<UserView> user = (List<UserView>)await userService.GetAllAsync("");
+            List<UserView> user = (List<UserView>)await userService.GetAllAsync("", new PaginationParams (1, pageSize));
             userDataGrid.ItemsSource = user;
         }
 

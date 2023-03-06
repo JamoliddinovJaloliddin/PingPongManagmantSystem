@@ -1,4 +1,5 @@
-﻿using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
+﻿using PingPongManagmantSystem.Service.Common.Utils;
+using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 using System;
 using System.Windows;
@@ -11,6 +12,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
     public partial class EmpolyeeStatisticPage : Page
     {
         IEmpolyeeStatsiticService empolyeeStatsiticService = new EmpolyeeStatisticService();
+        int pageSize = 15;
 
         public EmpolyeeStatisticPage()
         {
@@ -23,7 +25,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
         {
             try
             {
-                var statisticResault = await empolyeeStatsiticService.GetAllEmpolyeeStatistic("");
+                var statisticResault = await empolyeeStatsiticService.GetAllEmpolyeeStatistic("", new PaginationParams(1, pageSize));
                 empolyeeStatisticDataGrid.ItemsSource = statisticResault;
             }
             catch
@@ -92,7 +94,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
         {
             try
             {
-                var statisticResult = await empolyeeStatsiticService.GetAllEmpolyeeStatistic(tb.Text.ToString().ToLower());
+                var statisticResult = await empolyeeStatsiticService.GetAllEmpolyeeStatistic(tb.Text.ToString().ToLower(), new PaginationParams(1, pageSize));
                 empolyeeStatisticDataGrid.ItemsSource = statisticResult;
             }
             catch

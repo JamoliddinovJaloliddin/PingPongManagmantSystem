@@ -2,6 +2,7 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Enums;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
@@ -44,7 +45,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             }
         }
 
-        public async Task<IList<TableStatisticView>> GetAllAsync(string search)
+        public async Task<IList<TableStatisticView>> GetAllAsync(string search, PaginationParams @params)
         {
             try
             {
@@ -52,7 +53,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
 
                 if (search == "")
                 {
-                    var tableStatistic = await appDbContext.TableStatistics.OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    var tableStatistics = from statics in appDbContext.TableStatistics.OrderBy(x => x.DateTime)
+                                          select statics;
+                    var tableStatistic = await PagedList<TableStatistic>.ToPageListAsync((IQueryable<TableStatistic>)tableStatistics, @params);
 
 
                     if (tableStatistic is not null)
@@ -99,8 +102,11 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
-                    var tableStatistic = await appDbContext.TableStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    var tableStatistics = from statiscs  in
+                            appDbContext.TableStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime)
+                            select statiscs;
 
+                    var tableStatistic = await PagedList<TableStatistic>.ToPageListAsync(tableStatistics, @params);
 
                     if (tableStatistic is not null)
                     {
@@ -144,7 +150,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         return null;
                     }
                 }
-                return tableStatisticViews;
+                return  tableStatisticViews;
             }
             catch
             {

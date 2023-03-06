@@ -1,8 +1,10 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,6 +13,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
     public partial class BarProductpage : Page
     {
         IBarProductService barProductService = new BarProductService();
+        int pageSize = 15;
         public BarProductpage()
         {
             InitializeComponent();
@@ -21,7 +24,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                List<BarProduct> barProducts = (List<BarProduct>)await barProductService.GetAllAsync("");
+                List<BarProduct> barProducts = (List<BarProduct>)await barProductService.GetAllAsync("", new PaginationParams(1, pageSize));
                 barDataGrid.ItemsSource = barProducts;
             }
             catch
@@ -72,7 +75,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                List<BarProduct> barProducts = (List<BarProduct>)await barProductService.GetAllAsync(tb.Text.ToString().ToLower());
+                List<BarProduct> barProducts = (List<BarProduct>)await barProductService.GetAllAsync(tb.Text.ToString().ToLower(), new PaginationParams(1, pageSize));
                 barDataGrid.ItemsSource = barProducts;
             }
             catch

@@ -1,5 +1,6 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.ViewModels;
@@ -17,6 +18,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         IUserService userService = new UserService();
         ICustomerService customerService = new CustomerService();
         private bool IsMaximized = false;
+        int pageSize = 15;
 
         public AdminPanel()
         {
@@ -28,7 +30,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
-                List<UserView> user = (List<UserView>)await userService.GetAllAsync("");
+                List<UserView> user = (List<UserView>)await userService.GetAllAsync("", new PaginationParams(1, pageSize));
                 userDataGrid.ItemsSource = user;
             }
             catch
@@ -305,7 +307,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
-                List<UserView> user = (List<UserView>)await userService.GetAllAsync(tb.Text.ToString());
+                List<UserView> user = (List<UserView>)await userService.GetAllAsync(tb.Text.ToString(), new PaginationParams(1, pageSize));
                 userDataGrid.ItemsSource = user;
             }
             catch

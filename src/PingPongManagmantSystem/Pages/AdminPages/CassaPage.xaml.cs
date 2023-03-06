@@ -1,6 +1,8 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
+using System.Drawing.Printing;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,6 +11,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
     public partial class CassaPage : Page
     {
         ICassaService cassa = new CassaService();
+        int pageSize = 15;
         public CassaPage()
         {
             InitializeComponent();
@@ -19,7 +22,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                var res = await cassa.GetAllAsync("");
+                var res = await cassa.GetAllAsync("", new PaginationParams(1, pageSize));
                 cassaDataGrid.ItemsSource = res;
             }
             catch
@@ -60,7 +63,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                var res = await cassa.GetAllAsync(tb.Text.ToString());
+                var res = await cassa.GetAllAsync(tb.Text.ToString(), new PaginationParams(1, pageSize));
                 cassaDataGrid.ItemsSource = res;
             }
             catch

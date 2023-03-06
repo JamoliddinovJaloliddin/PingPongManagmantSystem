@@ -2,6 +2,7 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Enums;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.ViewModels;
@@ -183,7 +184,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             }
         }
 
-        public async Task<IList<EmpolyeeStatisticView>> GetAllEmpolyeeStatistic(string search)
+        public async Task<IList<EmpolyeeStatisticView>> GetAllEmpolyeeStatistic(string search, PaginationParams @params)
         {
             try
             {

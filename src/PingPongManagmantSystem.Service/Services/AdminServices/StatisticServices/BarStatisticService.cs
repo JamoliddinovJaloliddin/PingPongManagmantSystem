@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
@@ -10,7 +11,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
     public class BarStatisticService : IBarStatisticService
     {
         AppDbContext appDbContext = new AppDbContext();
-        public async Task<IList<BarStatisticView>> GetAllBarStatistic(string search)
+        public async Task<IList<BarStatisticView>> GetAllBarStatistic(string search, PaginationParams @params)
         {
             try
             {
