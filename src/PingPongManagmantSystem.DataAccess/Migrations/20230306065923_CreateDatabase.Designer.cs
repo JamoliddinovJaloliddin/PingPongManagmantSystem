@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230305165627_CreateDateBase")]
-    partial class CreateDateBase
+    [Migration("20230306065923_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -260,6 +260,9 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<double>("ViCardToSell")
+                        .HasColumnType("REAL");
 
                     b.Property<double>("VipCardSum")
                         .HasColumnType("REAL");

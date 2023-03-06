@@ -13,9 +13,45 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
     {
         AppDbContext appDbContext = new AppDbContext();
         ITrackingDetech trackingDetech = new TrackingDetech();
-        public Task<IList<BarStatisticView>> GetAllBarStatistic(string search)
+        public async Task<IList<BarStatisticView>> GetAllBarStatistic(string search)
         {
-            throw new NotImplementedException();
+            try
+            {
+                IList<BarStatisticView> barStatisticViews = new List<BarStatisticView>();
+
+                if (search == "")
+                {
+                    var statisticResult = await appDbContext.BarStatistics.OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    foreach (var statistic in statisticResult)
+                    {
+                        BarStatisticView barStatisticView = new BarStatisticView();
+
+
+                        barStatisticView.NumberOfSaleBar = statistic.NumberOfSaleBar;
+                        barStatisticView.DateTime = statistic.DateTime;
+                        barStatisticView.BarSum = statistic.BarSum;
+                        barStatisticViews.Add(barStatisticView);
+                    }
+                }
+                else
+                {
+                    var statisticResult = await appDbContext.BarStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    foreach (var statistic in statisticResult)
+                    {
+                        BarStatisticView barStatisticView = new BarStatisticView();
+
+                        barStatisticView.NumberOfSaleBar = statistic.NumberOfSaleBar;
+                        barStatisticView.DateTime = statistic.DateTime;
+                        barStatisticView.BarSum = statistic.BarSum;
+                        barStatisticViews.Add(barStatisticView);
+                    }
+                }
+                return barStatisticViews;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<bool> UpdateAsync(Dictionary<string, int> keyValuePairs, string paymentType)

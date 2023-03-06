@@ -8,6 +8,7 @@ namespace PingPongManagmantSystem.Domain.Entities
         public string DateTime { get; set; } = String.Empty;
         public double BarSum { get; set; }
         public double VipCardSum { get; set; }
+        public double ViCardToSell { get; set; }
         public double SportSum { get; set; }
         public double TableSum { get; set; }
     }

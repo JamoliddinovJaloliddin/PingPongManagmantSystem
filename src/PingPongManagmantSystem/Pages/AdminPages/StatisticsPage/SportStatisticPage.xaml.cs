@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
+using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -7,10 +9,26 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
 {
     public partial class SportStatisticPage : Page
     {
+        ISportStatisticService sportStatisticService = new SportStatisticService();
+
         public SportStatisticPage()
         {
             InitializeComponent();
             sport_Name.IsChecked = true;
+            Refresh_SportStatistic();
+        }
+
+        private async void Refresh_SportStatistic()
+        {
+            try
+            {
+                var statisticResult = await sportStatisticService.GetAllSportStatistic("");
+                sportStatisticDataGrid.ItemsSource = statisticResult;
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void Day_Button(object sender, System.Windows.RoutedEventArgs e)
@@ -69,11 +87,12 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
             }
         }
 
-        private void Search(object sender, TextChangedEventArgs e)
+        private async void Search(object sender, TextChangedEventArgs e)
         {
             try
             {
-
+                var statisticResult = await sportStatisticService.GetAllSportStatistic(tb.Text.ToString().ToLower());
+                sportStatisticDataGrid.ItemsSource = statisticResult;
             }
             catch
             {

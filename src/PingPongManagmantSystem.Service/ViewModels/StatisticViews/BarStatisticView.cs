@@ -2,8 +2,8 @@
 {
     public class BarStatisticView
     {
-        public string Name { get; set; } = string.Empty;
-        public int Count { get; set; }
-        public DateTime DateTime { get; set; }
+        public double NumberOfSaleBar { get; set; }
+        public double BarSum { get; set; }
+        public string DateTime { get; set; } = String.Empty;
     }
 }

@@ -6,7 +6,6 @@ using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
-using System.Collections.Generic;
 
 namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices
 {
@@ -47,7 +46,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     appDbContext.TableStatistics.Add(tableStatistic);
                 }
                 else
-                { 
+                {
                     var tableStatic = await appDbContext.TableStatistics.FirstOrDefaultAsync(x => x.DateTime == dateDay);
                     appDbContext.Entry(tableStatic).State = EntityState.Detached;
                     if (paymentType == "Naxt")
@@ -74,7 +73,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     var empolyeeStatistic = await empolyeeStatsiticService.CreateTableAsync(totalPrice, paymentType);
                     return empolyeeStatistic;
                 }
-                return false; 
+                return false;
             }
             catch
             {
