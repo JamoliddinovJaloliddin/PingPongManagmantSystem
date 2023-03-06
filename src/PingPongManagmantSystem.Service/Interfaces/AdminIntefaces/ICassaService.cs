@@ -1,4 +1,5 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Utils;
 
 namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
 {
@@ -8,6 +9,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface
         Task<bool> UpdateAsync(Cassa cassa);
         Task<bool> DeleteAsync(int id);
         Task<string> GetByIdAsync(int id);
-        Task<List<Cassa>> GetAllAsync(string search);
+        Task<List<Cassa>> GetAllAsync(string search, PaginationParams @params);
     }
 }

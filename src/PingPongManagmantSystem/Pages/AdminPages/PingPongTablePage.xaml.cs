@@ -1,5 +1,6 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Windows;
@@ -10,6 +11,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
     public partial class PingPongTablePage : Page
     {
         IPingPongTableService pingPongTableService = new PingPongTableService();
+        int pageSize = 15;
         public PingPongTablePage()
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                var item = await pingPongTableService.GetAllAsync("");
+                var item = await pingPongTableService.GetAllAsync("", new PaginationParams(1, pageSize));
                 pingPongDataGrid.ItemsSource = item;
             }
             catch
@@ -69,7 +71,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
         {
             try
             {
-                var item = await pingPongTableService.GetAllAsync(tb.Text.ToString().ToLower());
+                var item = await pingPongTableService.GetAllAsync(tb.Text.ToString().ToLower(), new PaginationParams(1, pageSize));
                 pingPongDataGrid.ItemsSource = item;
             }
             catch

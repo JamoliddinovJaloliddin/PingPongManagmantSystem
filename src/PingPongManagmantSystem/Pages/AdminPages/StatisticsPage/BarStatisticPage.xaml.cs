@@ -1,4 +1,5 @@
-﻿using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
+﻿using PingPongManagmantSystem.Service.Common.Utils;
+using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 using System;
 using System.Windows;
@@ -12,6 +13,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
     public partial class BarStatisticPage : Page
     {
         IBarStatisticService barStatisticService = new BarStatisticService();
+        int pageSize = 15;
         public BarStatisticPage()
         {
             InitializeComponent();
@@ -24,7 +26,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
         {
             try
             {
-                var statisticResult = await barStatisticService.GetAllBarStatistic("");
+                var statisticResult = await barStatisticService.GetAllBarStatistic("", new PaginationParams(1, pageSize));
                 barStatisticDataGrid.ItemsSource = statisticResult;
             }
             catch
@@ -93,7 +95,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
         {
             try
             {
-                var statisticResult = await barStatisticService.GetAllBarStatistic(tb.Text.ToString().ToLower());
+                var statisticResult = await barStatisticService.GetAllBarStatistic(tb.Text.ToString().ToLower(),new PaginationParams(1, pageSize) );
                 barStatisticDataGrid.ItemsSource = statisticResult;
             }
             catch

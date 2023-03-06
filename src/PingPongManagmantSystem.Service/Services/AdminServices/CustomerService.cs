@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 
 namespace PingPongManagmantSystem.Service.Services.AdminService
@@ -27,7 +28,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             return false;
         }
 
-        public async Task<IList<Customer>> GetAllAsync(string search)
+        public async Task<IList<Customer>> GetAllAsync(string search, PaginationParams @params)
         {
             IList<Customer> customers = new List<Customer>();
             if (search == "")

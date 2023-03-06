@@ -1,4 +1,5 @@
 ﻿using PingPongManagmantSystem.Service.Common.Enums;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface.ButtonService;
@@ -15,7 +16,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         ICustomerService customerService = new CustomerService();
         IEmpolyeeStopService empolyeeStop = new EmpolyeeStopService();
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
-        CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
+        int pageSize = 1;
 
 
         public EmpolyeeStop()
@@ -29,7 +30,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             try
             {
                 string search = "";
-                var customer = await customerService.GetAllAsync(search);
+                var customer = await customerService.GetAllAsync(search, new PaginationParams(1, pageSize));
                 foreach (var item in customer)
                 {
                     cb_client.Items.Add(item.Status);

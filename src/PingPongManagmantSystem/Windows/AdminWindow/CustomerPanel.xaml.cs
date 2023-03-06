@@ -1,8 +1,10 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows
@@ -10,6 +12,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
     public partial class CustomerPanel : Window
     {
         ICustomerService customer = new CustomerService();
+        int pageSize = 15;
         public CustomerPanel()
         {
             InitializeComponent();
@@ -21,7 +24,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             try
             {
                 string search = "";
-                List<Customer> cutomers = (List<Customer>)await customer.GetAllAsync(search);
+                List<Customer> cutomers = (List<Customer>)await customer.GetAllAsync(search, new PaginationParams(1, pageSize));
                 customerDataGrid.ItemsSource = cutomers;
             }
             catch
