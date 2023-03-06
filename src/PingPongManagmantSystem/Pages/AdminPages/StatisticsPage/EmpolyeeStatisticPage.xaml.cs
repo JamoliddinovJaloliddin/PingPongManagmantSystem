@@ -7,9 +7,7 @@ using System.Windows.Navigation;
 
 namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
 {
-    /// <summary>
-    /// Interaction logic for EmpolyeeStatisticPage.xaml
-    /// </summary>
+
     public partial class EmpolyeeStatisticPage : Page
     {
         IEmpolyeeStatsiticService empolyeeStatsiticService = new EmpolyeeStatisticService();

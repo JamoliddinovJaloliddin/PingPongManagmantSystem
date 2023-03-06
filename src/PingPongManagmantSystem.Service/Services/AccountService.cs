@@ -2,12 +2,15 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
+using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 
 namespace PingPongManagmantSystem.Service.Services
 {
     public class AccountService : IAccountService
     {
         AppDbContext _appDbContext = new AppDbContext();
+        ITableStatisticService tableStatistic = new TableStatisticService();
         public async Task<bool> LoginAsync(string password)
         {
             try
@@ -27,8 +30,11 @@ namespace PingPongManagmantSystem.Service.Services
 
         public async Task<User> WindowtAsync(string count)
         {
-
             var user = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Password == count);
+            if (user is not null)
+            {
+                var result = await tableStatistic.CreateAsync();
+            }
             return user;
         }
     }

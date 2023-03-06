@@ -37,16 +37,17 @@
             <Grid Grid.Row="2">
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
-                          Grid.Row="1" x:Name="userDataGrid">
+                          Grid.Row="1" x:Name="tableStatisticDataGrid">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Bar" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Sport" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Stol" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Naxt" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Karta" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Vip karta" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Umumiy" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Sana" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding BarSum}"  Header="Bar" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding SportSum}" Header="Sport" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding TableSum}" Header="Stol" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding CardTime}" Header="Stol - Vip karta" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding ViCardToSell}" Header="Vip karta" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Card}" Header="Karta" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Cash}" Header="Naxt" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding TotalSum}" Header="Umumiy" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding DateTime}" Header="Sana" IsReadOnly="True" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

@@ -13,14 +13,147 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
     {
         AppDbContext appDbContext = new AppDbContext();
         IEmpolyeeStatsiticService empolyeeStatsiticService = new EmpolyeeStatisticService();
-        public Task<List<TableStatisticView>> GetAllAsync()
+
+        public async Task<bool> CreateAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                string day = DayHelper.GetCurrentServerDay();
+
+                var dayResult = await appDbContext.TableStatistics.FirstOrDefaultAsync(x => x.DateTime == day);
+
+                if (dayResult is null)
+                {
+                    TableStatistic tableStatistic = new TableStatistic();
+                    tableStatistic.TableSum = 0;
+                    tableStatistic.DateTime = day;
+                    tableStatistic.VipCard = 0;
+                    tableStatistic.Card = 0;
+                    tableStatistic.Card = 0;
+
+                    appDbContext.TableStatistics.Add(tableStatistic);
+
+                    var result = await appDbContext.SaveChangesAsync();
+                    return result > 0;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<IList<TableStatisticView>> GetAllAsync(string search)
+        {
+            try
+            {
+                IList<TableStatisticView> tableStatisticViews = new List<TableStatisticView>();
+
+                if (search == "")
+                {
+                    var tableStatistic = await appDbContext.TableStatistics.OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+
+
+                    if (tableStatistic is not null)
+                    {
+                        foreach (var item in tableStatistic)
+                        {
+                            TableStatisticView tableStatisticView = new TableStatisticView();
+                            tableStatisticView.DateTime = item.DateTime;
+                            tableStatisticView.TotalSum += item.TableSum;
+                            tableStatisticView.TableSum += item.TableSum;
+                            tableStatisticView.CardTime += item.VipCard;
+                            tableStatisticView.Card = item.Card;
+                            tableStatisticView.Cash = item.Cash;
+
+                            var barStatistic = await appDbContext.BarStatistics.FirstOrDefaultAsync(x => x.DateTime == item.DateTime);
+                            if (barStatistic is not null)
+                            {
+                                tableStatisticView.TotalSum += barStatistic.BarSum;
+                                tableStatisticView.BarSum += barStatistic.BarSum;
+                                tableStatisticView.Card = barStatistic.Card;
+                                tableStatisticView.Cash = barStatistic.Cash;
+                            }
+                            var sportStatistic = await appDbContext.SportStatistics.FirstOrDefaultAsync(x => x.DateTime == item.DateTime);
+                            if (sportStatistic is not null)
+                            {
+                                tableStatisticView.TotalSum += sportStatistic.SportSum;
+                                tableStatisticView.SportSum += sportStatistic.SportSum;
+                                tableStatisticView.Card = sportStatistic.Card;
+                                tableStatisticView.Cash = sportStatistic.Cash;
+                            }
+                            var cardStatistic = await appDbContext.Cards.FirstOrDefaultAsync(x => x.DateTime == item.DateTime);
+                            if (cardStatistic is not null)
+                            {
+                                tableStatisticView.TotalSum += cardStatistic.Price;
+                                tableStatisticView.ViCardToSell += cardStatistic.Price;
+                            }
+                            tableStatisticViews.Add(tableStatisticView);
+                        }
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var tableStatistic = await appDbContext.TableStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+
+
+                    if (tableStatistic is not null)
+                    {
+                        foreach (var item in tableStatistic)
+                        {
+                            TableStatisticView tableStatisticView = new TableStatisticView();
+                            tableStatisticView.DateTime = item.DateTime;
+                            tableStatisticView.TotalSum += item.TableSum;
+                            tableStatisticView.TableSum += item.TableSum;
+                            tableStatisticView.CardTime += item.VipCard;
+                            tableStatisticView.Card = item.Card;
+                            tableStatisticView.Cash = item.Cash;
+
+                            var barStatistic = await appDbContext.BarStatistics.FirstOrDefaultAsync(x => x.DateTime == item.DateTime);
+                            if (barStatistic is not null)
+                            {
+                                tableStatisticView.TotalSum += barStatistic.BarSum;
+                                tableStatisticView.BarSum += barStatistic.BarSum;
+                                tableStatisticView.Card = barStatistic.Card;
+                                tableStatisticView.Cash = barStatistic.Cash;
+                            }
+                            var sportStatistic = await appDbContext.SportStatistics.FirstOrDefaultAsync(x => x.DateTime == item.DateTime);
+                            if (sportStatistic is not null)
+                            {
+                                tableStatisticView.TotalSum += sportStatistic.SportSum;
+                                tableStatisticView.SportSum += sportStatistic.SportSum;
+                                tableStatisticView.Card = sportStatistic.Card;
+                                tableStatisticView.Cash = sportStatistic.Cash;
+                            }
+                            var cardStatistic = await appDbContext.Cards.FirstOrDefaultAsync(x => x.DateTime == item.DateTime);
+                            if (cardStatistic is not null)
+                            {
+                                tableStatisticView.TotalSum += cardStatistic.Price;
+                                tableStatisticView.ViCardToSell += cardStatistic.Price;
+                            }
+                            tableStatisticViews.Add(tableStatisticView);
+                        }
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                return tableStatisticViews;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public async Task<bool> UpdateAsync(double totalPrice, string paymentType)
         {
-
             try
             {
                 var dateDay = DayHelper.GetCurrentServerDay();
@@ -63,9 +196,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     }
                     appDbContext.TableStatistics.Update(tableStatic);
                 }
-
-
-
 
                 var result = await appDbContext.SaveChangesAsync();
                 if (result > 0)
