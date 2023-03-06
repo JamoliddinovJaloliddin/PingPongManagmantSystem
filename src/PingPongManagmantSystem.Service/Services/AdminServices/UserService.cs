@@ -57,7 +57,11 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 List<UserView> list = new List<UserView>();
                 if (search == "")
                 {
-                    var resault = db.Users.Where(u => u.IsAdmin == 0).AsNoTracking();
+                    var resaultt = from user in db.Users.Where(u => u.IsAdmin == 0)
+                                   select user;
+
+                    var resault = await PagedList<User>.ToPageListAsync(resaultt, @params);
+
                     foreach (var user in resault)
                     {
                         UserView userView = new UserView();
@@ -70,9 +74,13 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 }
                 else
                 {
-                    var resault = db.Users.Where(u => u.IsAdmin == 0 && u.Name.Contains(search.ToString())
+                    var resaultt = from user in db.Users.Where(u => u.IsAdmin == 0 && u.Name.Contains(search.ToString())
                     || u.PassportInfo.Contains(search.ToString())
-                    || u.Password.Contains(search.ToString())).AsNoTracking();
+                    || u.Password.Contains(search.ToString()))
+                                   select user;
+
+                    var resault = await PagedList<User>.ToPageListAsync(resaultt, @params);
+
                     foreach (var user in resault)
                     {
                         UserView userView = new UserView();
@@ -95,21 +103,20 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
         }
 
-        public Task<User> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<bool> UpdateAsync(User user)
         {
             try
             {
-                user.IsAdmin = 0;
-                db.Users.Update(user);
-                var res = await db.SaveChangesAsync();
-                if (res > 0)
+                var result = db.Users.FirstOrDefaultAsync(x => x.Password == user.Password);
+                if (result is null)
                 {
-                    return true;
+                    user.IsAdmin = 0;
+                    db.Users.Update(user);
+                    var res = await db.SaveChangesAsync();
+                    if (res > 0)
+                    {
+                        return true;
+                    }
                 }
                 return false;
             }

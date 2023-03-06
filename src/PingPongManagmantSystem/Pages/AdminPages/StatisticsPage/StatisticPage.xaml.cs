@@ -28,7 +28,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
         {
             try
             {
-                var statisticResult = await tableStatisticService.GetAllAsync("", new PaginationParams(1,pageSize));
+                var statisticResult = await tableStatisticService.GetAllAsync("", new PaginationParams(1, pageSize));
                 tableStatisticDataGrid.ItemsSource = statisticResult;
             }
             catch
@@ -98,7 +98,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
         {
             try
             {
-                var statisticResult = await tableStatisticService.GetAllAsync(tb.Text.ToString().ToLower(), new PaginationParams(1,pageSize));
+                var statisticResult = await tableStatisticService.GetAllAsync(tb.Text.ToString().ToLower(), new PaginationParams(1, pageSize));
                 tableStatisticDataGrid.ItemsSource = statisticResult;
             }
             catch

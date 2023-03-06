@@ -19,7 +19,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
 
                 if (search == "")
                 {
-                    var statisticResult = await appDbContext.BarStatistics.OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    var statisticResults = from statics in appDbContext.BarStatistics.OrderBy(x => x.DateTime)
+                                           select statics;
+                    var statisticResult = await PagedList<BarStatistic>.ToPageListAsync(statisticResults, @params);
                     foreach (var statistic in statisticResult)
                     {
                         BarStatisticView barStatisticView = new BarStatisticView();
@@ -33,7 +35,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
-                    var statisticResult = await appDbContext.BarStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    var statisticResults = from statics in appDbContext.BarStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime)
+                                           select statics;
+                    var statisticResult = await PagedList<BarStatistic>.ToPageListAsync(statisticResults, @params);
                     foreach (var statistic in statisticResult)
                     {
                         BarStatisticView barStatisticView = new BarStatisticView();

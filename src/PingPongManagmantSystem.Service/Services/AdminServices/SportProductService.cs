@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PingPongManagmantSystem.DataAccess.Constans;
+﻿using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
@@ -49,7 +48,10 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 IList<SportProduct> spotProduct = new List<SportProduct>();
                 if (search == "")
                 {
-                    var sportPro = _appDbContext.SportProducts.OrderBy(x => x.Name).AsNoTracking();
+                    var sportProo = from sport in _appDbContext.SportProducts.OrderBy(x => x.Name)
+                                    select sport;
+                    var sportPro = await PagedList<SportProduct>.ToPageListAsync(sportProo, @params);
+
                     if (sportPro is not null)
                     {
                         foreach (var sport in sportPro)
@@ -67,11 +69,15 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 }
                 else
                 {
-                    var sportPro = _appDbContext.SportProducts.Where(x => x.Name.ToLower().Contains(search.ToLower())
+                    var sportProo = from sport in _appDbContext.SportProducts.Where(x => x.Name.ToLower().Contains(search.ToLower())
                     || x.ArrivalPrice.ToString().Contains(search)
                     || x.SalePrice.ToString().Contains(search)
                     || x.Count.ToString().Contains(search)
-                    ).OrderBy(x => x.Name).AsNoTracking();
+                    ).OrderBy(x => x.Name)
+                                    select sport;
+
+                    var sportPro = await PagedList<SportProduct>.ToPageListAsync(sportProo, @params);
+
                     if (sportPro is not null)
                     {
                         foreach (var sport in sportPro)

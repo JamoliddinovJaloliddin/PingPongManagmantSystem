@@ -55,7 +55,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 {
                     var tableStatistics = from statics in appDbContext.TableStatistics.OrderBy(x => x.DateTime)
                                           select statics;
-                    var tableStatistic = await PagedList<TableStatistic>.ToPageListAsync((IQueryable<TableStatistic>)tableStatistics, @params);
+                    var tableStatistic = await PagedList<TableStatistic>.ToPageListAsync(tableStatistics, @params);
 
 
                     if (tableStatistic is not null)
@@ -102,9 +102,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
-                    var tableStatistics = from statiscs  in
+                    var tableStatistics = from statiscs in
                             appDbContext.TableStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime)
-                            select statiscs;
+                                          select statiscs;
 
                     var tableStatistic = await PagedList<TableStatistic>.ToPageListAsync(tableStatistics, @params);
 
@@ -150,7 +150,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         return null;
                     }
                 }
-                return  tableStatisticViews;
+                return tableStatisticViews;
             }
             catch
             {

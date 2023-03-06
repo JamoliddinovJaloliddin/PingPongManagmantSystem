@@ -33,7 +33,10 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             IList<Customer> customers = new List<Customer>();
             if (search == "")
             {
-                var resault = appDbContext.Customers.OrderBy(x => x.Status).AsNoTracking();
+                var resaultt = from custom in appDbContext.Customers.OrderBy(x => x.Status)
+                               select custom;
+
+                var resault = await PagedList<Customer>.ToPageListAsync(resaultt, @params);
 
                 if (resault is not null)
                 {
@@ -50,7 +53,11 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
             else
             {
-                var resault = appDbContext.Customers.Where(x => x.Status.Contains(search)).OrderBy(x => x.Status).AsNoTracking();
+                var resaultt = from customr in appDbContext.Customers.Where(x => x.Status.Contains(search)).OrderBy(x => x.Status)
+                               select customr;
+
+                var resault = await PagedList<Customer>.ToPageListAsync(resaultt, @params);
+
                 if (resault is not null)
                 {
                     foreach (var res in resault)

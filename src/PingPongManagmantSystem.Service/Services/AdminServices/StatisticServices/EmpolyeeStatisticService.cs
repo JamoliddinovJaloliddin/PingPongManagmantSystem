@@ -192,7 +192,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
 
                 if (search == "")
                 {
-                    var statisticResult = await appDbContext.EmpolyeeStatistics.OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    var statisticResults = from statics in appDbContext.EmpolyeeStatistics.OrderBy(x => x.DateTime)
+                                           select statics;
+                    var statisticResult = await PagedList<EmpolyeeStatistic>.ToPageListAsync(statisticResults, @params);
 
                     if (statisticResult is not null)
                     {
@@ -217,8 +219,10 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
-                    var statisticResult = await appDbContext.EmpolyeeStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
+                    var statisticResults = from statics in appDbContext.EmpolyeeStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime)
+                                           select statics;
 
+                    var statisticResult = await PagedList<EmpolyeeStatistic>.ToPageListAsync(statisticResults, @params);
                     if (statisticResult is not null)
                     {
                         foreach (var statistic in statisticResult)

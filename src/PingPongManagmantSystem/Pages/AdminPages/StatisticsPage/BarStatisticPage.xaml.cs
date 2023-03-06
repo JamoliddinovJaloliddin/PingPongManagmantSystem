@@ -95,7 +95,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
         {
             try
             {
-                var statisticResult = await barStatisticService.GetAllBarStatistic(tb.Text.ToString().ToLower(),new PaginationParams(1, pageSize) );
+                var statisticResult = await barStatisticService.GetAllBarStatistic(tb.Text.ToString().ToLower(), new PaginationParams(1, pageSize));
                 barStatisticDataGrid.ItemsSource = statisticResult;
             }
             catch

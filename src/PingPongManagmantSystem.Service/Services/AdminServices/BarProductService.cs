@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PingPongManagmantSystem.DataAccess.Constans;
+﻿using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
@@ -50,7 +49,10 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 IList<BarProduct> barProducts = new List<BarProduct>();
                 if (search == "")
                 {
-                    var barPro = _appDbContext.BarProducts.OrderBy(x => x.Name).AsNoTracking();
+                    var barPros = from barProo in _appDbContext.BarProducts.OrderBy(x => x.Name)
+                                  select barProo;
+                    var barPro = await PagedList<BarProduct>.ToPageListAsync(barPros, @params);
+
                     if (barPro is not null)
                     {
                         foreach (var bar in barPro)
@@ -68,11 +70,15 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 }
                 else
                 {
-                    var barPro = _appDbContext.BarProducts.Where(x => x.Name.ToLower().Contains(search)
+                    var barPros = from barProo in _appDbContext.BarProducts.Where(x => x.Name.ToLower().Contains(search)
                     || x.ArrivalPrice.ToString().Contains(search)
                     || x.SalePrice.ToString().Contains(search)
                     || x.Count.ToString().Contains(search)
-                    ).OrderBy(x => x.Name).AsNoTracking();
+                    ).OrderBy(x => x.Name)
+                                  select barProo;
+
+                    var barPro = await PagedList<BarProduct>.ToPageListAsync(barPros, @params);
+
                     if (barPro is not null)
                     {
                         foreach (var bar in barPro)
