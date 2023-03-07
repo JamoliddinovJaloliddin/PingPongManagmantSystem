@@ -8,42 +8,77 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CardPage">
-
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
+
         <Grid Grid.Row="0">
-            <Grid Width="400"  HorizontalAlignment="Left" Margin=" 0 0 0 0">
+            <Grid Width="400"  HorizontalAlignment="Left" Margin=" 15 0 0 0">
                 <TextBox TextChanged="Search"  Style="{StaticResource textBoxSearch}" x:Name="tb"/>
                 <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
-                                           Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
+                                            Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
             </Grid>
         </Grid>
-        <!--Members Datagrid-->
-        <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
-                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
-                          Grid.Row="1" x:Name="cardDataGrid" HorizontalAlignment="Right">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Karta raqami" Binding="{Binding CardNumber}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Vaqt" Binding="{Binding TimeLimit}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Narxi" Binding="{Binding Price}" IsReadOnly="True" Width="*"/>
-                <DataGridTextColumn Header="Tolov turi" Binding="{Binding Payment}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header="   --" IsReadOnly="True" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0" Click="Delete_Button">
-                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
 
+        <!--Members Datagrid-->
+        <Grid Grid.Row="1">
+            <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}"
+                              ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
+                              Grid.Row="1" x:Name="cardDataGrid" HorizontalAlignment="Right">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Karta raqami" Binding="{Binding CardNumber}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Vaqt" Binding="{Binding TimeLimit}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Narxi" Binding="{Binding Price}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Tolov turi" Binding="{Binding Payment}" IsReadOnly="True" Width="*"/>
+                    <DataGridTemplateColumn Header="   --" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource gridRemovedButton}" Margin="5 0 0 0" Click="Delete_Button">
+                                        <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}" />
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <!--Pagination Section-->
+        <Grid Grid.Row="2">
+            <Border  HorizontalAlignment="Left"  BorderBrush="#dee4ec" BorderThickness="1" CornerRadius="5" 
+                        Padding="5" Background="White" Margin="0 20 10 0"  VerticalAlignment="Center">
+
+                <StackPanel Orientation="Horizontal" >
+                    <Button Style="{StaticResource paginationButton}" Click="Prewiew_Button">
+                        <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
+
+                    </Button>
+
+                    <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+                    <Button x:Name="button1_Name" Style="{StaticResource paginationButton}" Content="1" Background="#7950f2" Foreground="#ffffff"/>
+                    <Button x:Name="button2_Name" Style="{StaticResource paginationButton}" Content="2"/>
+                    <Button x:Name="button3_Name" Style="{StaticResource paginationButton}" Content="3" />
+
+                    <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
+
+                    <Button Style="{StaticResource paginationButton}" Click="Next_Button">
+                        <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
+                    </Button>
+
+
+                </StackPanel>
+            </Border>
+            <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin="0 22 0 0" Click="UserAdd_Button" Height="36" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                    <TextBlock Text="Yangi yaratish" Foreground="#CDBAFF"/>
+                </StackPanel>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

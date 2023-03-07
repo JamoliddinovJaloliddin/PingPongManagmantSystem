@@ -1,6 +1,7 @@
 ﻿using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
+using PingPongManagmantSystem.Service.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,21 +15,25 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
     public partial class StatisticPage : Page
     {
         ITableStatisticService tableStatisticService = new TableStatisticService();
-        int pageSize = 15;
+        int pageSize = 1;
+     
 
         public StatisticPage()
         {
             InitializeComponent();
             day_Name.IsChecked = true;
             Refresh_TableStatistic();
+            
         }
 
-
-        private async void Refresh_TableStatistic()
+        public  async void Refresh_TableStatistic()
         {
             try
             {
-                var statisticResult = await tableStatisticService.GetAllAsync("", new PaginationParams(1, pageSize));
+
+                int page = (int)(double)GlobalVariable.Page;
+              
+                var statisticResult = await tableStatisticService.GetAllAsync("", new PaginationParams(page, pageSize));
                 tableStatisticDataGrid.ItemsSource = statisticResult;
             }
             catch

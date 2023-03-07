@@ -70,5 +70,20 @@ namespace PingPongManagmantSystem.Desktop.Pages
                 MessageBox.Show("Error");
             }
         }
+
+        private void UserAdd_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Prewiew_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Next_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
