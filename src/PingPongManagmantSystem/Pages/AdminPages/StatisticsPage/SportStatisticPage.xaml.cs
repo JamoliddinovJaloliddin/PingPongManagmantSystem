@@ -13,6 +13,8 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
         ISportStatisticService sportStatisticService = new SportStatisticService();
         int pageSize = 15;
 
+    
+
         public SportStatisticPage()
         {
             InitializeComponent();

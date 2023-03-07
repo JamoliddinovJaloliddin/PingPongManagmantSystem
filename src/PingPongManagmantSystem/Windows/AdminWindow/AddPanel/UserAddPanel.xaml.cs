@@ -52,7 +52,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                 if (name.Text != "" && passportinfo.Text != "" && password.Text != "")
                 {
 
-                    
+
 
                     User user = new User();
 
