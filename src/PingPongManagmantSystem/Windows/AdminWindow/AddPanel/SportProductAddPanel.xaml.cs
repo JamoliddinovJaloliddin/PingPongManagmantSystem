@@ -5,9 +5,6 @@ using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
 {
-    /// <summary>
-    /// Interaction logic for SportProductAddPanel.xaml
-    /// </summary>
     public partial class SportProductAddPanel : Window
     {
         ISportProductService sportProductService = new SportProductService();
@@ -27,8 +24,15 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                     sportProduct.ArrivalPrice = double.Parse(arrivalPrice.Text);
                     sportProduct.SalePrice = double.Parse(salePrice.Text);
                     sportProduct.Count = int.Parse(count.Text);
-                    await sportProductService.CreateAsync(sportProduct);
-                    this.Close();
+                    var result = await sportProductService.CreateAsync(sportProduct);
+                    if (result)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bu nomdagi mahsulot mavjud");
+                    }
                 }
                 else
                 {
@@ -53,8 +57,16 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                     sportProduct.ArrivalPrice = double.Parse(arrivalPrice.Text);
                     sportProduct.SalePrice = double.Parse(salePrice.Text);
                     sportProduct.Count = int.Parse(count.Text.ToString());
-                    await sportProductService.UpdateAsync(sportProduct);
-                    this.Close();
+
+                    var result = await sportProductService.UpdateAsync(sportProduct);
+                    if (result)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bu nomdagi mahsulot mavjud");
+                    }
                 }
                 else
                 {
@@ -69,7 +81,14 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
 
         private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }

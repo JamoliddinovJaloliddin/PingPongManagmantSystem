@@ -1,4 +1,5 @@
-﻿using PingPongManagmantSystem.DataAccess.Constans;
+﻿using Microsoft.EntityFrameworkCore;
+using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
@@ -12,9 +13,14 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
-                await _appDbContext.SportProducts.AddAsync(sportProduct);
-                var resault = await _appDbContext.SaveChangesAsync();
-                return resault > 0;
+                var resultSportProduct = await _appDbContext.SportProducts.FirstOrDefaultAsync(x => x.Name == sportProduct.Name); ;
+                if (resultSportProduct is null)
+                {
+                    await _appDbContext.SportProducts.AddAsync(sportProduct);
+                    var resault = await _appDbContext.SaveChangesAsync();
+                    return resault > 0;
+                }
+                return false;
             }
             catch
             {
@@ -26,7 +32,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
-                var sportProduct = _appDbContext.SportProducts.Find(id);
+                var sportProduct = await _appDbContext.SportProducts.FindAsync(id);
                 if (sportProduct is not null)
                 {
                     _appDbContext.SportProducts.Remove(sportProduct);
@@ -102,18 +108,26 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 
         }
 
-        public Task<User> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<bool> UpdateAsync(SportProduct sportProduct)
         {
             try
             {
-                _appDbContext.SportProducts.Update(sportProduct);
-                var resault = await _appDbContext.SaveChangesAsync();
-                return resault > 0;
+                var resultSport = await _appDbContext.SportProducts.FindAsync(sportProduct.Id);
+                _appDbContext.Entry(resultSport).State = EntityState.Detached;
+
+                if (resultSport is not null)
+                {
+
+                    var resultSports = await _appDbContext.SportProducts.FirstOrDefaultAsync(x => x.Name == sportProduct.Name && x.Id != sportProduct.Id);
+                    if (resultSports is null)
+                    {
+                        sportProduct.Id = resultSport.Id;
+                        _appDbContext.SportProducts.Update(sportProduct);
+                        var resault = await _appDbContext.SaveChangesAsync();
+                        return resault > 0;
+                    }
+                }
+                return false;
             }
             catch
             {

@@ -11,6 +11,7 @@
         public static int NextPage { get; set; }
         public static int Next { get; set; }
         public static int Prewiew { get; set; }
+        public static string Search { get; set; } = String.Empty;
         //public static bool TrueFalse { get; set; }
 
         //public static string AccountBook { get; set; } = "";

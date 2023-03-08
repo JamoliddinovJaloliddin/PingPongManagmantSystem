@@ -24,8 +24,16 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                     product.ArrivalPrice = double.Parse(arrivalPrice.Text);
                     product.SalePrice = double.Parse(salePrice.Text);
                     product.Count = int.Parse(count.Text);
-                    await barProductService.CreateAsync(product);
-                    this.Close();
+
+                    var result = await barProductService.CreateAsync(product);
+                    if (result)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bu nomdagi mahsulot mavjud");
+                    }
                 }
                 else
                 {
@@ -52,11 +60,14 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                     product.SalePrice = double.Parse(salePrice.Text);
                     product.Count = int.Parse(count.Text);
                     var res = await barProductService.UpdateAsync(product);
-                    if (res == false)
+                    if (res)
                     {
-                        MessageBox.Show("Error");
+                        this.Close();
                     }
-                    this.Close();
+                    else
+                    {
+                        MessageBox.Show("Bu nomdagi mahsulot mavjud");
+                    }
                 }
                 else
                 {
@@ -72,7 +83,14 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
 
         private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }
