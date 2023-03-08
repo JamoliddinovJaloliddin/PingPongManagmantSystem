@@ -16,7 +16,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Grid Width="400"  HorizontalAlignment="Left" Margin=" 0 0 0 0">
+            <Grid Width="400"  HorizontalAlignment="Left" Margin=" 15 0 0 0">
                 <TextBox TextChanged="Search"  Style="{StaticResource textBoxSearch}" x:Name="tb"/>
                 <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
                                            Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>

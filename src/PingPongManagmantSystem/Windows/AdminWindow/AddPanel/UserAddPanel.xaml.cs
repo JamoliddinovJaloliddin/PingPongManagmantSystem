@@ -32,7 +32,14 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                     user.IsAdmin = 0;
 
                     var resault = await userService.CreateAsync(user);
-                    this.Close();
+                    if (resault)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Parolni o'zgartiring");
+                    }
                 }
                 else
                 {
@@ -51,9 +58,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
             {
                 if (name.Text != "" && passportinfo.Text != "" && password.Text != "")
                 {
-
-
-
                     User user = new User();
 
                     user.Id = int.Parse(id.Content.ToString());
@@ -66,6 +70,10 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                     {
                         this.Close();
                     }
+                    else
+                    {
+                        MessageBox.Show("Parolni o'zgartiring");
+                    }
                 }
                 else
                 {
@@ -77,9 +85,16 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                 MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
         }
-        private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private async void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }

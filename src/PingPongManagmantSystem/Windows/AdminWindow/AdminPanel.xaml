@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks" 
         xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+        
         mc:Ignorable="d"
         Title="AdminPanel" Height="720" Width="1080" WindowStartupLocation="CenterScreen"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent">
@@ -54,7 +55,7 @@
                             <Button Style="{StaticResource menuButton}" Click="SpotProduct_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="BaseballBat" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Spot" Foreground="#CDBAFF"/>
+                                    <TextBlock Text="Sport" Foreground="#CDBAFF"/>
                                 </StackPanel>
                             </Button>
 
@@ -65,15 +66,21 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Click="Statistik_Button">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="PercentOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Statistika" Foreground="#CDBAFF"/>
-                                </StackPanel>
+                            <Button Style="{StaticResource menuButton}">
+                                <Grid>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Icon:PackIconMaterial Kind="PercentOutline" Style="{StaticResource menuButtonIcon}"/>
+                                    </StackPanel>
+                                    <Menu BorderThickness="0" FontSize="13" Height="40" Padding="50 10 0 0"  Background="Transparent" Foreground="Transparent">
+                                        <MenuItem Header="Statistika" Background="Transparent" Foreground="#CDBAFF">
+                                            <MenuItem Header="Zal" Click="Table_Button"/>
+                                            <MenuItem Header="Bar" Click="Bar_Button"/>
+                                            <MenuItem Header="Sport" Click="Sport_Button"/>
+                                            <MenuItem Header="Ishchi" Click="EmpolyeeStatistic_Button"/>
+                                        </MenuItem>
+                                    </Menu>
+                                </Grid>
                             </Button>
-
-
-
                             <Button Style="{StaticResource menuButton}" Click="PingPongTable_Button">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Table" Style="{StaticResource menuButtonIcon}"/>
@@ -121,6 +128,10 @@
                             </StackPanel>
                         </Button>
 
+                        <ScrollViewer HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <StackPanel x:Name="Menu" Margin="30 0 0 0" />
+                          
+                        </ScrollViewer>
                     </DockPanel>
                 </Border>
             </Grid>
