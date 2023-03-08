@@ -8,7 +8,7 @@ namespace PingPongManagmantSystem.Service.Common
         {
             if (count > 1)
             {
-                GlobalVariable.Pagination = Math.Ceiling(count / 1);
+                GlobalVariable.Pagination = Math.Ceiling(count / 2);
             }
             else
             {

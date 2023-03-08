@@ -1,10 +1,9 @@
 ﻿using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
-using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
+
 
 namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
 {
@@ -17,7 +16,6 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
         public EmpolyeeStatisticPage()
         {
             InitializeComponent();
-            empolyee_Name.IsChecked = true;
             Refresh_EmpolyeeStatistic();
         }
 
@@ -27,62 +25,6 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
             {
                 var statisticResault = await empolyeeStatsiticService.GetAllEmpolyeeStatistic("", new PaginationParams(1, pageSize));
                 empolyeeStatisticDataGrid.ItemsSource = statisticResault;
-            }
-            catch
-            {
-                MessageBox.Show("Error");
-            }
-        }
-
-        private void Day_Button(object sender, System.Windows.RoutedEventArgs e)
-        {
-            try
-            {
-                NavigationService nav = NavigationService.GetNavigationService(this);
-
-                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
-            }
-            catch
-            {
-                MessageBox.Show("Error");
-            }
-        }
-
-        private void Bar_Button(object sender, System.Windows.RoutedEventArgs e)
-        {
-            try
-            {
-                NavigationService nav = NavigationService.GetNavigationService(this);
-
-                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/BarStatisticPage.xaml", UriKind.RelativeOrAbsolute));
-            }
-            catch
-            {
-                MessageBox.Show("Error");
-            }
-        }
-
-        private void Sport_Button(object sender, System.Windows.RoutedEventArgs e)
-        {
-            try
-            {
-                NavigationService nav = NavigationService.GetNavigationService(this);
-
-                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/SportStatisticPage.xaml", UriKind.RelativeOrAbsolute));
-            }
-            catch
-            {
-                MessageBox.Show("Error");
-            }
-        }
-
-        private void Empolyee_Button(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                NavigationService nav = NavigationService.GetNavigationService(this);
-
-                nav.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/EmpolyeeStatisticPage.xaml", UriKind.RelativeOrAbsolute));
             }
             catch
             {
@@ -101,6 +43,21 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
             {
                 MessageBox.Show("Error");
             }
+        }
+
+        private void UserAdd_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Next_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Prewiew_Button(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

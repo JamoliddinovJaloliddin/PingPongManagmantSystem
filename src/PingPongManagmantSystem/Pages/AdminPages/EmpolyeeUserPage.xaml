@@ -68,7 +68,7 @@
 
                     <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
 
-                    <Button Style="{StaticResource paginationButton}" Click="Next_Button">
+                    <Button x:Name="next_button" Style="{StaticResource paginationButton}" Click="Next_Button">
                         <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
                     </Button>
 

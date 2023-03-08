@@ -1,15 +1,9 @@
-﻿using PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage;
-using PingPongManagmantSystem.Desktop.Windows.AddPanel;
-using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
-using PingPongManagmantSystem.Service.Common.Utils;
-using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
+﻿using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace PingPongManagmantSystem.Desktop.Windows
 {
@@ -19,20 +13,25 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         IUserService userService = new UserService();
         ICustomerService customerService = new CustomerService();
-   
+
         private bool IsMaximized = false;
         int pageSize = 15;
-        int pagination = 1;
-        
-        
+
+
 
         public AdminPanel()
         {
-            //GlobalVariable.Page = 1;
             InitializeComponent();
-            //RefreshDataAsync();
+            Page();
             Empolyee_But();
-           
+        }
+
+        private void Page()
+        {
+            GlobalVariable.Page = 1;
+            GlobalVariable.NextPage = 1;
+            GlobalVariable.Next = 0;
+            GlobalVariable.Prewiew = 0;
         }
 
         private async void Empolyee_But()
@@ -40,20 +39,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/EmpolyeeUserPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        public async void RefreshDataAsync()
-        {
 
-
-            //try
-            //{
-            //    List<UserView> user = (List<UserView>)await userService.GetAllAsync("", new PaginationParams(1, pageSize));
-            //    userDataGrid.ItemsSource = user;
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Error");
-            //}
-        }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -102,7 +88,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             {
                 count = 2;
                 PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/SportProductPage.xaml", UriKind.RelativeOrAbsolute));
-               
+
             }
             catch
             {
@@ -127,11 +113,11 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
-                count = 4;
-                PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
-                
+                //count = 4;
+                //PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
 
-              
+
+
             }
             catch
             {
@@ -145,7 +131,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             {
                 count = 5;
                 PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/CassaPage.xaml", UriKind.RelativeOrAbsolute));
-                
+
             }
             catch
             {
@@ -176,7 +162,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             {
                 count = 6;
                 PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/PingPongTablePage.xaml", UriKind.RelativeOrAbsolute));
-               
+
             }
             catch
             {
@@ -190,7 +176,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             {
                 count = 7;
                 PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/CardPage.xaml", UriKind.RelativeOrAbsolute));
-               
+
             }
             catch
             {
@@ -234,6 +220,32 @@ namespace PingPongManagmantSystem.Desktop.Windows
             {
                 MessageBox.Show("Error");
             }
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Table_Button(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Bar_Button(object sender, RoutedEventArgs e)
+        {
+
+            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/BarStatisticPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Sport_Button(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/SportStatisticPage.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void EmpolyeeStatistic_Button(object sender, RoutedEventArgs e)
+        {
+            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/EmpolyeeStatisticPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
         //private async void UserAdd_Button(object sender, RoutedEventArgs e)
@@ -309,34 +321,10 @@ namespace PingPongManagmantSystem.Desktop.Windows
         //    }
         //}
 
-        //private void Delete_Button(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        var item = (UserView)userDataGrid.SelectedItem;
-        //        int res = item.Id;
-        //        var resault = userService.DeleteAsync(res);
-        //        RefreshDataAsync();
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show("Error");
-        //    }
-        //}
 
 
-        //private async void Search(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        List<UserView> user = (List<UserView>)await userService.GetAllAsync(tb.Text.ToString(), new PaginationParams(1, pageSize));
-        //        userDataGrid.ItemsSource = user;
-        //    }
-        //    catch
-        //    {
-        //        MessageBox.Show("Error");
-        //    }
-        //}
+
+
 
         //private void Prewiew_Button(object sender, RoutedEventArgs e)
         //{
@@ -363,7 +351,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         //            pagination++;
         //            Refresh_NextButton();
         //            PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
-                 
+
         //        }
         //    }
         //    catch
@@ -376,10 +364,10 @@ namespace PingPongManagmantSystem.Desktop.Windows
         //{
         //    try
         //    {
-             
+
         //        BrushConverter brushConverter = new BrushConverter();
 
-              
+
 
         //        if (pagination < GlobalVariable.Pagination)
         //        {
@@ -422,7 +410,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         //    try
         //    {
         //        BrushConverter brushConverter = new BrushConverter();
-            
+
 
         //        if (pagination > 1)
         //        {
@@ -436,7 +424,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
         //            button3_Name.Background = new SolidColorBrush(Colors.White);
         //            button3_Name.Foreground = brushConverter.ConvertFromString("#6c7682") as SolidColorBrush;
         //            GlobalVariable.Pagination = pagination;
-                 
+
         //        }
         //        else if (pagination == 1)
         //        {

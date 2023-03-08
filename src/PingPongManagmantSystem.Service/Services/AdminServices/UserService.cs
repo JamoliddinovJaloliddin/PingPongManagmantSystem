@@ -9,21 +9,20 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 {
     public class UserService : IUserService
     {
-        AppDbContext db = new AppDbContext();
+        AppDbContext appDbContext = new AppDbContext();
         public async Task<bool> CreateAsync(User user)
         {
             try
             {
-                db.Users.Add(user);
-                var res = await db.SaveChangesAsync();
-                if (res > 0)
+                var resultUser = await appDbContext.Users.FirstOrDefaultAsync(x => x.Password == user.Password);
+
+                if (resultUser is null)
                 {
-                    return true;
+                    appDbContext.Users.Add(user);
+                    var res = await appDbContext.SaveChangesAsync();
+                    return res > 0;
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
             catch
             {
@@ -35,9 +34,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
-                var user = db.Users.Find(id);
-                db.Users.Remove(user);
-                var resault = await db.SaveChangesAsync();
+                var user = appDbContext.Users.Find(id);
+                appDbContext.Users.Remove(user);
+                var resault = await appDbContext.SaveChangesAsync();
                 if (resault > 0)
                 {
                     return true;
@@ -57,7 +56,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 List<UserView> list = new List<UserView>();
                 if (search == "")
                 {
-                    var resaultt = from user in db.Users.Where(u => u.IsAdmin == 0)
+                    var resaultt = from user in appDbContext.Users.Where(u => u.IsAdmin == 0).OrderBy(u => u.Name)
                                    select user;
 
                     var resault = await PagedList<User>.ToPageListAsync(resaultt, @params);
@@ -74,9 +73,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 }
                 else
                 {
-                    var resaultt = from user in db.Users.Where(u => u.IsAdmin == 0 && u.Name.Contains(search.ToString())
+                    var resaultt = from user in appDbContext.Users.Where(u => u.IsAdmin == 0 && u.Name.ToLower().Contains(search.ToString())
                     || u.PassportInfo.Contains(search.ToString())
-                    || u.Password.Contains(search.ToString()))
+                    || u.Password.Contains(search.ToString())).OrderBy(x => x.Name)
                                    select user;
 
                     var resault = await PagedList<User>.ToPageListAsync(resaultt, @params);
@@ -107,15 +106,23 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
-                var result = db.Users.FirstOrDefaultAsync(x => x.Password == user.Password);
-                if (result is null)
+                var result = await appDbContext.Users.FindAsync(user.Id);
+
+                appDbContext.Entry(result).State = EntityState.Detached;
+
+                if (result is not null)
                 {
-                    user.IsAdmin = 0;
-                    db.Users.Update(user);
-                    var res = await db.SaveChangesAsync();
-                    if (res > 0)
+                    var passwordResult = await appDbContext.Users.FirstOrDefaultAsync(x => x.Password == user.Password && x.Id != user.Id);
+                    if (passwordResult is null)
                     {
-                        return true;
+                        user.Id = result.Id;
+                        user.IsAdmin = 0;
+                        appDbContext.Users.Update(user);
+                        var res = await appDbContext.SaveChangesAsync();
+                        if (res > 0)
+                        {
+                            return true;
+                        }
                     }
                 }
                 return false;
