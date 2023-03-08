@@ -1,4 +1,5 @@
-﻿using PingPongManagmantSystem.DataAccess.Constans;
+﻿using Microsoft.EntityFrameworkCore;
+using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
@@ -12,9 +13,14 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
-                _appDbContext.BarProducts.Add(barProduct);
-                var resault = await _appDbContext.SaveChangesAsync();
-                return resault > 0;
+                var resultBar = await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == barProduct.Name);
+                if (resultBar is null)
+                {
+                    _appDbContext.BarProducts.Add(barProduct);
+                    var resault = await _appDbContext.SaveChangesAsync();
+                    return resault > 0;
+                }
+                return false;
             }
             catch
             {
@@ -102,18 +108,26 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
         }
 
-        public Task<User> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<bool> UpdateAsync(BarProduct barProduct)
         {
             try
             {
-                _appDbContext.BarProducts.Update(barProduct);
-                var resault = await _appDbContext.SaveChangesAsync();
-                return resault > 0;
+                var result = await _appDbContext.BarProducts.FindAsync(barProduct.Id);
+                _appDbContext.Entry(result).State = EntityState.Detached;
+
+                if (result is not null)
+                {
+                    var resultBar = await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == barProduct.Name && x.Id != barProduct.Id);
+
+                    if (resultBar is null)
+                    {
+                        barProduct.Id = result.Id;
+                        _appDbContext.BarProducts.Update(barProduct);
+                        var resault = await _appDbContext.SaveChangesAsync();
+                        return resault > 0;
+                    }
+                }
+                return false;
             }
             catch
             {

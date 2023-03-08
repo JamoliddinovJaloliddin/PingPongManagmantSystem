@@ -5,20 +5,15 @@ using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
 {
-    /// <summary>
-    /// Interaction logic for UserAddPanel.xaml
-    /// </summary>
     public partial class UserAddPanel : Window
     {
         IUserService userService = new UserService();
-
 
         public UserAddPanel()
         {
             InitializeComponent();
 
         }
-
         private async void Add_Button(object sender, RoutedEventArgs e)
         {
             try
@@ -51,7 +46,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                 MessageBox.Show("Ma'lumot noto'g'ri kiritildi");
             }
         }
-
         private async void Update_Button(object sender, RoutedEventArgs e)
         {
             try

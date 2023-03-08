@@ -4,7 +4,6 @@ using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,24 +17,26 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages
         int pageSize = 2;
         int pagination = (int)GlobalVariable.Page;
 
+
         public EmpolyeeUserPage()
         {
             InitializeComponent();
-            var res = RefreshDataAsync();
+            RefreshDataAsync();
             Refresh_Old();
+            tb.Text = GlobalVariable.Search;
         }
 
-        public async Task<int> RefreshDataAsync()
+        public async void RefreshDataAsync()
         {
             try
             {
-                List<UserView> user = (List<UserView>)await userService.GetAllAsync("", new PaginationParams(pagination, pageSize));
+                List<UserView> user = (List<UserView>)await userService.GetAllAsync("", new PaginationParams((int)GlobalVariable.Page, pageSize));
                 userDataGrid.ItemsSource = user;
-                return 1;
+
             }
             catch
             {
-                return 1;
+
                 MessageBox.Show("Error");
             }
         }
@@ -48,7 +49,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages
                 userAddPanel.addBut.IsEnabled = true;
                 userAddPanel.updBut.IsEnabled = false;
                 userAddPanel.ShowDialog();
-                var res = RefreshDataAsync();
+                RefreshDataAsync();
             }
             catch
             {
@@ -60,7 +61,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages
         {
             try
             {
-                List<UserView> user = (List<UserView>)await userService.GetAllAsync(tb.Text.ToLower().ToString(), new PaginationParams(1, pageSize));
+                List<UserView> user = (List<UserView>)await userService.GetAllAsync(tb.Text.ToLower().ToString(), new PaginationParams((int)GlobalVariable.Page, pageSize));
                 userDataGrid.ItemsSource = user;
             }
             catch
@@ -73,6 +74,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages
         {
             try
             {
+                GlobalVariable.Search = tb.Text.ToString();
                 GlobalVariable.Prewiew = 1;
                 GlobalVariable.Next = 0;
                 if (GlobalVariable.NextPage != 1)
@@ -93,6 +95,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages
         {
             try
             {
+                GlobalVariable.Search = tb.Text.ToString();
                 GlobalVariable.Prewiew = 0;
                 GlobalVariable.Next = 1;
                 if (GlobalVariable.NextPage < GlobalVariable.Pagination)
