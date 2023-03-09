@@ -4,19 +4,16 @@ using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Enums;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Helpers;
-using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
-using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.ViewModels;
 using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
-using System.Linq;
 
 namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices
 {
     public class EmpolyeeStatisticService : IEmpolyeeStatsiticService
     {
         AppDbContext appDbContext = new AppDbContext();
-        
+
         public async Task<bool> CreateBarAsync(double totalPrice, string paymentType)
         {
             try
@@ -31,6 +28,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     empolyeeStatistic.UserId = GlobalVariable.UserId;
 
                     appDbContext.EmpolyeeStatistics.Add(empolyeeStatistic);
+                    numberCount++;
                 }
                 else
                 {
@@ -51,6 +49,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         empolyeeStatistic.UserId = GlobalVariable.UserId;
 
                         appDbContext.EmpolyeeStatistics.Add(empolyeeStatistic);
+                        numberCount++;
                     }
                 }
 
@@ -215,12 +214,15 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             try
             {
                 IList<EmpolyeeStatisticView> empolyeeStatisticViews = new List<EmpolyeeStatisticView>();
-
+                int numberCount = 1;
                 var result = await DeleteAsync();
 
                 if (search == "")
                 {
-                    var statisticResults = from statics in appDbContext.EmpolyeeStatistics.OrderBy(x => x.DateTime)
+
+                    var moon = MoonHelper.GetCurrentMoon();
+
+                    var statisticResults = from statics in appDbContext.EmpolyeeStatistics.Where(x => x.DateTime.StartsWith(moon)).OrderBy(x => x.DateTime)
                                            select statics;
                     var statisticResult = await PagedList<EmpolyeeStatistic>.ToPageListAsync(statisticResults, @params);
 
@@ -233,6 +235,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
 
 
                             EmpolyeeStatisticView empolyeeStatisticView = new EmpolyeeStatisticView();
+                            empolyeeStatisticView.NumberCount = $"{numberCount}.";
                             empolyeeStatisticView.UserName = user.Name;
                             empolyeeStatisticView.VipCardSum = statistic.VipCardSum;
                             empolyeeStatisticView.SportSum = statistic.SportSum;
@@ -248,10 +251,10 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 else
                 {
                     var userQuery = (from user in appDbContext.Users.Where(x => x.Name.ToLower().Contains(search))
-                                    select user.Id).ToList();
+                                     select user.Id).ToList();
 
-                    var statisticResults = from statics in appDbContext.EmpolyeeStatistics.Where(x => x.DateTime.ToLower().Contains(search) || userQuery.Contains(x.UserId)).OrderBy(x => x.DateTime)              
-                                            select statics;
+                    var statisticResults = from statics in appDbContext.EmpolyeeStatistics.Where(x => x.DateTime.ToLower().Contains(search) || userQuery.Contains(x.UserId)).OrderBy(x => x.DateTime)
+                                           select statics;
 
                     var statisticResult = await PagedList<EmpolyeeStatistic>.ToPageListAsync(statisticResults, @params);
                     if (statisticResult is not null)
@@ -263,6 +266,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                             appDbContext.Entry(user).State = EntityState.Detached;
 
                             EmpolyeeStatisticView empolyeeStatisticView = new EmpolyeeStatisticView();
+                            empolyeeStatisticView.NumberCount = $"{numberCount}.";
                             empolyeeStatisticView.UserName = user.Name;
                             empolyeeStatisticView.VipCardSum = statistic.VipCardSum;
                             empolyeeStatisticView.SportSum = statistic.SportSum;

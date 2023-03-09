@@ -2,6 +2,7 @@
 {
     public class EmpolyeeStatisticView
     {
+        public string NumberCount { get; set; }
         public string UserName { get; set; } = String.Empty;
         public string DateTime { get; set; } = String.Empty;
         public double BarSum { get; set; }

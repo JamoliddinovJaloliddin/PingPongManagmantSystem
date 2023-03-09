@@ -29,6 +29,7 @@
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
                           Grid.Row="1" x:Name="barStatisticDataGrid">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding NumberCount}"  Header="N" IsReadOnly="True" Width="43"/>
                         <DataGridTextColumn Binding="{Binding NumberOfSaleBar}" Header="Sotuv soni" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Binding="{Binding BarSum}" Header="Summa" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Binding="{Binding DateTime}" Header="Sana" IsReadOnly="True" Width="*"/>

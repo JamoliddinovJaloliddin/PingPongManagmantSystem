@@ -16,21 +16,24 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             try
             {
                 IList<BarStatisticView> barStatisticViews = new List<BarStatisticView>();
-
+                int numberCount = 1;
                 if (search == "")
                 {
-                    var statisticResults = from statics in appDbContext.BarStatistics.OrderBy(x => x.DateTime)
+                    var moon = MoonHelper.GetCurrentMoon();
+
+                    var statisticResults = from statics in appDbContext.BarStatistics.Where(x => x.DateTime.StartsWith(moon)).OrderBy(x => x.DateTime)
                                            select statics;
                     var statisticResult = await PagedList<BarStatistic>.ToPageListAsync(statisticResults, @params);
                     foreach (var statistic in statisticResult)
                     {
                         BarStatisticView barStatisticView = new BarStatisticView();
 
-
+                        barStatisticView.NumberCount = $"{numberCount}.";
                         barStatisticView.NumberOfSaleBar = statistic.NumberOfSaleBar;
                         barStatisticView.DateTime = statistic.DateTime;
                         barStatisticView.BarSum = statistic.BarSum;
                         barStatisticViews.Add(barStatisticView);
+                        numberCount++;
                     }
                 }
                 else
@@ -42,10 +45,13 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     {
                         BarStatisticView barStatisticView = new BarStatisticView();
 
+
+                        barStatisticView.NumberCount = $"{numberCount}.";
                         barStatisticView.NumberOfSaleBar = statistic.NumberOfSaleBar;
                         barStatisticView.DateTime = statistic.DateTime;
                         barStatisticView.BarSum = statistic.BarSum;
                         barStatisticViews.Add(barStatisticView);
+                        numberCount++;
                     }
                 }
                 return barStatisticViews;

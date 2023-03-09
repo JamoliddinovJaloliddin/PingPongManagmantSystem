@@ -51,10 +51,15 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             {
                 IList<TableStatisticView> tableStatisticViews = new List<TableStatisticView>();
 
+                int numberCount = 1;
+
                 if (search == "")
                 {
-                    var tableStatistics = from statics in appDbContext.TableStatistics.OrderBy(x => x.DateTime)
+                    var moon = MoonHelper.GetCurrentMoon();
+
+                    var tableStatistics = from statics in appDbContext.TableStatistics.Where(x => x.DateTime.StartsWith(moon)).OrderBy(x => x.DateTime)
                                           select statics;
+
                     var tableStatistic = await PagedList<TableStatistic>.ToPageListAsync(tableStatistics, @params);
 
 
@@ -62,7 +67,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     {
                         foreach (var item in tableStatistic)
                         {
+
                             TableStatisticView tableStatisticView = new TableStatisticView();
+                            tableStatisticView.NumberCount = $"{numberCount}.";
                             tableStatisticView.DateTime = item.DateTime;
                             tableStatisticView.TotalSum += item.TableSum;
                             tableStatisticView.TableSum += item.TableSum;
@@ -93,6 +100,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                                 tableStatisticView.ViCardToSell += cardStatistic.Price;
                             }
                             tableStatisticViews.Add(tableStatisticView);
+                            numberCount++;
                         }
                     }
                     else
@@ -113,6 +121,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         foreach (var item in tableStatistic)
                         {
                             TableStatisticView tableStatisticView = new TableStatisticView();
+                            tableStatisticView.NumberCount = $"{numberCount}.";
                             tableStatisticView.DateTime = item.DateTime;
                             tableStatisticView.TotalSum += item.TableSum;
                             tableStatisticView.TableSum += item.TableSum;
@@ -143,6 +152,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                                 tableStatisticView.ViCardToSell += cardStatistic.Price;
                             }
                             tableStatisticViews.Add(tableStatisticView);
+                            numberCount++;
                         }
                     }
                     else
