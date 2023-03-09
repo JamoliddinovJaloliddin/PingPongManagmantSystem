@@ -23,8 +23,12 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                     pingPongTable.Number = int.Parse(status.Text);
                     pingPongTable.PriceCheap = double.Parse(priceCheap.Text);
                     pingPongTable.PriceExpensive = double.Parse(priceExpires.Text);
-                    await pingPongTableService.CreateAsync(pingPongTable);
-                    this.Close();
+                    
+                    var result = await pingPongTableService.CreateAsync(pingPongTable);
+                    if (result)
+                    {
+                        this.Close();
+                    }
                 }
                 else
                 {
@@ -64,7 +68,14 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
 
         private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch 
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }

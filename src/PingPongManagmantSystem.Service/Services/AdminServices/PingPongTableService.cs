@@ -116,9 +116,18 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
-                appDbContext.PingPongTables.Update(user);
-                var res = await appDbContext.SaveChangesAsync();
-                return res > 0;
+                var resultTable = await appDbContext.PingPongTables.FindAsync(user.Id);
+
+                appDbContext.Entry(resultTable).State = EntityState.Detached;
+
+                if (resultTable is not null)
+                {
+                    user.Id = resultTable.Id;
+                    appDbContext.PingPongTables.Update(user);
+                    var res = await appDbContext.SaveChangesAsync();
+                    return res > 0;
+                }
+                return false;
             }
             catch
             {

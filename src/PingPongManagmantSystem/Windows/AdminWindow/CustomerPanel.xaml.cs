@@ -39,8 +39,9 @@ namespace PingPongManagmantSystem.Desktop.Windows
                 CustomerAddPanel customerAddPanel = new CustomerAddPanel();
                 customerAddPanel.add_btn.IsEnabled = true;
                 customerAddPanel.upd_btn.IsEnabled = false;
-                //customerAddPanel.ShowDialog();
-                //RefreshDataCustomer();
+                this.Close();
+                customerAddPanel.ShowDialog();
+                RefreshDataCustomer();
             }
             catch
             {
@@ -63,7 +64,8 @@ namespace PingPongManagmantSystem.Desktop.Windows
                 customerPanel.percest.Text = cutomers.Percent.ToString();
                 customerPanel.status.IsEnabled = false;
                 this.Close();
-                customerPanel.Show();
+                customerPanel.ShowDialog();
+                RefreshDataCustomer();
             }
             catch
             {
@@ -75,9 +77,12 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
-                //var item = (Customer)customerDataGrid.SelectedItem;
-                //await customer.DeleteAsync(item.Id);
-                //RefreshDataCustomer();
+                var item = (Customer)customerDataGrid.SelectedItem;
+                var result = await customer.DeleteAsync(item.Id);
+                if (result)
+                {
+                    RefreshDataCustomer();
+                }
             }
             catch
             {
@@ -87,7 +92,14 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }
