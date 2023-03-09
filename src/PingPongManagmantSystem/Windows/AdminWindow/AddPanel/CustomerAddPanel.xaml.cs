@@ -22,7 +22,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                     Customer customer = new Customer();
                     customer.Status = status.Text;
                     customer.Percent = float.Parse(percest.Text.ToString());
-                    var result =  await customerService.CreateAsync(customer);
+                    var result = await customerService.CreateAsync(customer);
                     if (result)
                     {
                         this.Close();

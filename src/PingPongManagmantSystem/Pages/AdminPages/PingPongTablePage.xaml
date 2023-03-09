@@ -75,8 +75,8 @@
             </Border>
             <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin="0 22 10 0" Click="UserAdd_Button" Height="36" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal">
-                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
-                    <TextBlock Text="Yangi yaratish" Foreground="#CDBAFF"/>
+
+                    <TextBlock Text="" Foreground="#CDBAFF"/>
                 </StackPanel>
             </Button>
         </Grid>

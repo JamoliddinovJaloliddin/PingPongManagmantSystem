@@ -23,7 +23,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
                     pingPongTable.Number = int.Parse(status.Text);
                     pingPongTable.PriceCheap = double.Parse(priceCheap.Text);
                     pingPongTable.PriceExpensive = double.Parse(priceExpires.Text);
-                    
+
                     var result = await pingPongTableService.CreateAsync(pingPongTable);
                     if (result)
                     {
@@ -72,7 +72,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
             {
                 this.Close();
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Error");
             }

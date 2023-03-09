@@ -1,0 +1,34 @@
+﻿<Window x:Class="PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel.CloudPanel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel"
+        mc:Ignorable="d"
+        Title="CloudPanel" Height="230" Width="250" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" >
+            <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 3 0" MouseDown="Exit_Button" BorderThickness="0">
+                <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top">
+                    <Label Content="Dan" Margin="16 6 6 6"/>
+                    <TextBox x:Name="from_txt" Height="30" Width="210" HorizontalAlignment="Center"/>
+                    <Label Content="Gacha" Margin="16 6 6 6"/>
+                    <TextBox x:Name="upTo_txt" Height="30" Width="210" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button Width="210" HorizontalAlignment="Center" VerticalAlignment="Center" Height="27"  Content="Jo'natish" Click="ToSend_Button"/>
+        </Grid>
+    </Grid>
+</Window>

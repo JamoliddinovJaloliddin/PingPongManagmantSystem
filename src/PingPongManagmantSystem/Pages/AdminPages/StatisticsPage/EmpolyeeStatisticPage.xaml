@@ -41,8 +41,8 @@
                 </DataGrid>
             </Grid>
             <Grid Grid.Row="2">
-                <Border  HorizontalAlignment="Left"  BorderBrush="#dee4ec" BorderThickness="1" CornerRadius="5" 
-                        Padding="5" Background="White" Margin="0 20 10 0"  VerticalAlignment="Center">
+                <Border x:Name="next_button" HorizontalAlignment="Left"  BorderBrush="#dee4ec" BorderThickness="1" CornerRadius="5" 
+                        Padding="5" Background="White" Margin="10 20 10 0"  VerticalAlignment="Center">
 
                     <StackPanel Orientation="Horizontal" >
                         <Button Style="{StaticResource paginationButton}" Click="Prewiew_Button">
@@ -64,10 +64,10 @@
 
                     </StackPanel>
                 </Border>
-                <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin="0 22 0 0" Click="UserAdd_Button" Height="36" VerticalAlignment="Top">
+                <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin="0 22 10 0" Click="Cloud_Button" Height="36" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
-                        <TextBlock Text="Yangi yaratish" Foreground="#CDBAFF"/>
+                        <Icon:PackIconMaterial Kind="Cloud" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                        <TextBlock Text="Cloud" Foreground="#CDBAFF"/>
                     </StackPanel>
                 </Button>
             </Grid>

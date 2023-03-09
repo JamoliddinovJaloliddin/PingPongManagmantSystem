@@ -1,5 +1,4 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows.AddPanel;
-using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
