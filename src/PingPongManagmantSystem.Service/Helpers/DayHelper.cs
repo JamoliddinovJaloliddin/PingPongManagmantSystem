@@ -10,5 +10,11 @@ namespace PingPongManagmantSystem.Service.Helpers
             return res;
         }
 
+        public static string GetCurrentDay()
+        {
+            var res = DateTime.UtcNow.AddHours(TimeConstans.UTC).ToString("/dd/");
+            return res;
+        }
+
     }
 }

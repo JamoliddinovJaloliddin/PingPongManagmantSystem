@@ -56,6 +56,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 List<UserView> list = new List<UserView>();
                 if (search == "")
                 {
+
                     var resaultt = from user in appDbContext.Users.Where(u => u.IsAdmin == 0).OrderBy(u => u.Name)
                                    select user;
 

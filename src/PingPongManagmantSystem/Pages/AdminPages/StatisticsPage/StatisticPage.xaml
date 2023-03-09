@@ -32,6 +32,7 @@
                           ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}"
                           Grid.Row="1" x:Name="tableStatisticDataGrid">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding NumberCount}"  Header="N" IsReadOnly="True" Width="43"/>
                         <DataGridTextColumn Binding="{Binding BarSum}"  Header="Bar" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Binding="{Binding SportSum}" Header="Sport" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Binding="{Binding TableSum}" Header="Stol" IsReadOnly="True" Width="*"/>

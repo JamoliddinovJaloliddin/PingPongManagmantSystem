@@ -2,6 +2,7 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
+using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 
 namespace PingPongManagmantSystem.Service.Services.AdminService
@@ -37,7 +38,9 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 List<Cassa> cassas = new List<Cassa>();
                 if (search == "")
                 {
-                    var cassaPages = from cassa in appDbContext.Cassas.OrderBy(x => x.DateTime)
+                    var day = DayHelper.GetCurrentDay();
+
+                    var cassaPages = from cassa in appDbContext.Cassas.Where(x => x.DateTime.Contains(day)).OrderBy(x => x.DateTime)
                                      select cassa;
 
                     var cassaPage = await PagedList<Cassa>.ToPageListAsync(cassaPages, @params);

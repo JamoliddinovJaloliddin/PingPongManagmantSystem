@@ -2,6 +2,7 @@
 {
     public class TableStatisticView
     {
+        public string NumberCount { get; set; }
         public string DateTime { get; set; } = String.Empty;
         public double BarSum { get; set; }
         public double SportSum { get; set; }

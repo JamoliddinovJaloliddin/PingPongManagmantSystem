@@ -16,10 +16,12 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             try
             {
                 IList<SportStatisticView> sportStatisticViews = new List<SportStatisticView>();
+                int numberCount = 1;
 
                 if (search == "")
                 {
-                    var statisticResults = from statics in appDbContext.SportStatistics.OrderBy(x => x.DateTime)
+                    var moon = MoonHelper.GetCurrentMoon();
+                    var statisticResults = from statics in appDbContext.SportStatistics.Where(x => x.DateTime.StartsWith(moon)).OrderBy(x => x.DateTime)
                                            select statics;
                     var statisticResult = await PagedList<SportStatistic>.ToPageListAsync(statisticResults, @params);
 
@@ -27,11 +29,13 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     {
                         SportStatisticView sportStatisticView = new SportStatisticView();
 
+                        sportStatisticView.NumberCount = $"{numberCount}.";
                         sportStatisticView.SportSum = statistic.SportSum;
                         sportStatisticView.NumberOfSaleSport = statistic.NumberOfSaleSport;
                         sportStatisticView.DateTime = statistic.DateTime;
 
                         sportStatisticViews.Add(sportStatisticView);
+                        numberCount++;
                     }
                 }
                 else
@@ -44,13 +48,16 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     {
                         SportStatisticView sportStatisticView = new SportStatisticView();
 
+                        sportStatisticView.NumberCount = $"{numberCount}.";
                         sportStatisticView.SportSum = statistic.SportSum;
                         sportStatisticView.NumberOfSaleSport = statistic.NumberOfSaleSport;
                         sportStatisticView.DateTime = statistic.DateTime;
 
                         sportStatisticViews.Add(sportStatisticView);
+                        numberCount++;
                     }
                 }
+
                 return sportStatisticViews;
             }
             catch
