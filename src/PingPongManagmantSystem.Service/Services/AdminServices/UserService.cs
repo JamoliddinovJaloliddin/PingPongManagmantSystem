@@ -118,6 +118,32 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
         }
 
+        public async Task<bool> UpdateAdminAsync(string password)
+        {
+            try
+            {
+                var resultUser = (User)await appDbContext.Users.FirstOrDefaultAsync(x => x.IsAdmin == 1);
+
+                if (resultUser is not null)
+                {
+                    appDbContext.Entry(resultUser).State = EntityState.Detached;
+
+                    var newPassword = PassowrdHash.Hash(password);
+                    resultUser.PasswordHasher = newPassword.Hash;
+                    resultUser.Salt = newPassword.Salt;
+
+                    appDbContext.Users.Update(resultUser);
+                    var result = await appDbContext.SaveChangesAsync();
+                    return result > 0;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> UpdateAsync(User user)
         {
             try
