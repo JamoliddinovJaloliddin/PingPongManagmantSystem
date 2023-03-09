@@ -28,7 +28,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     empolyeeStatistic.UserId = GlobalVariable.UserId;
 
                     appDbContext.EmpolyeeStatistics.Add(empolyeeStatistic);
-                    numberCount++;
+
                 }
                 else
                 {
@@ -49,7 +49,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         empolyeeStatistic.UserId = GlobalVariable.UserId;
 
                         appDbContext.EmpolyeeStatistics.Add(empolyeeStatistic);
-                        numberCount++;
+
                     }
                 }
 
@@ -133,6 +133,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         empolyeeStatistic.UserId = GlobalVariable.UserId;
                     }
                     appDbContext.EmpolyeeStatistics.Add(empolyeeStatistic);
+
                 }
                 else
                 {
@@ -172,6 +173,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         }
 
                         appDbContext.EmpolyeeStatistics.Add(empolyeeStatistic);
+
                     }
                 }
 
@@ -245,6 +247,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                             empolyeeStatisticView.ViCardToSell = statistic.ViCardToSell;
 
                             empolyeeStatisticViews.Add(empolyeeStatisticView);
+                            numberCount++;
                         }
                     }
                 }
@@ -276,6 +279,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                             empolyeeStatisticView.ViCardToSell = statistic.ViCardToSell;
 
                             empolyeeStatisticViews.Add(empolyeeStatisticView);
+                            numberCount++;
                         }
                     }
                 }

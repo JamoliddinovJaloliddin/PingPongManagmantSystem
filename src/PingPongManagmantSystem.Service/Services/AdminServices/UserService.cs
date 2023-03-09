@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Security;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.ViewModels;
@@ -14,14 +15,30 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
-                var resultUser = await appDbContext.Users.FirstOrDefaultAsync(x => x.Password == user.Password);
+                int countNumber = 0;
+                var resultUser = await appDbContext.Users.Where(x => x.IsAdmin == 0).AsNoTracking().ToListAsync();
 
-                if (resultUser is null)
+                foreach (var item in resultUser)
                 {
+                    var result = PassowrdHash.Verify(password: user.PasswordHasher, hash: item.PasswordHasher, salt: item.Salt);
+                    if (result)
+                    {
+                        countNumber++;
+                    }
+                }
+
+                if (countNumber == 0)
+                {
+                    var result = PassowrdHash.Hash(user.PasswordHasher);
+                    user.PasswordHasher = result.Hash;
+                    user.Salt = result.Salt;
+                    user.IsAdmin = 0;
                     appDbContext.Users.Add(user);
                     var res = await appDbContext.SaveChangesAsync();
+                    countNumber = 0;
                     return res > 0;
                 }
+                countNumber = 0;
                 return false;
             }
             catch
@@ -68,7 +85,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                         userView.Id = user.Id;
                         userView.Name = user.Name;
                         userView.Passport = user.PassportInfo;
-                        userView.Password = user.Password;
                         list.Add(userView);
                     }
                 }
@@ -76,7 +92,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 {
                     var resaultt = from user in appDbContext.Users.Where(u => u.IsAdmin == 0 && u.Name.ToLower().Contains(search.ToString())
                     || u.PassportInfo.Contains(search.ToString())
-                    || u.Password.Contains(search.ToString())).OrderBy(x => x.Name)
+                    ).OrderBy(x => x.Name)
                                    select user;
 
                     var resault = await PagedList<User>.ToPageListAsync(resaultt, @params);
@@ -87,7 +103,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                         userView.Id = user.Id;
                         userView.Name = user.Name;
                         userView.Passport = user.PassportInfo;
-                        userView.Password = user.Password;
                         list.Add(userView);
                     }
                 }
@@ -107,25 +122,43 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
-                var result = await appDbContext.Users.FindAsync(user.Id);
+                int countNumber = 0;
+                var resultUser = await appDbContext.Users.Where(x => x.IsAdmin == 0).AsNoTracking().ToListAsync();
 
-                appDbContext.Entry(result).State = EntityState.Detached;
-
-                if (result is not null)
+                foreach (var item in resultUser)
                 {
-                    var passwordResult = await appDbContext.Users.FirstOrDefaultAsync(x => x.Password == user.Password && x.Id != user.Id);
-                    if (passwordResult is null)
+                    var results = PassowrdHash.Verify(password: user.PasswordHasher, hash: item.PasswordHasher, salt: item.Salt);
+                    if (results)
                     {
+                        countNumber++;
+                    }
+                }
+
+                if (countNumber == 0)
+                {
+                    var result = await appDbContext.Users.FindAsync(user.Id);
+
+                    appDbContext.Entry(result).State = EntityState.Detached;
+
+                    if (result is not null)
+                    {
+                        var userPassowrd = PassowrdHash.Hash(user.PasswordHasher);
+
+
                         user.Id = result.Id;
                         user.IsAdmin = 0;
+                        user.PasswordHasher = userPassowrd.Hash;
+                        user.Salt = userPassowrd.Salt;
                         appDbContext.Users.Update(user);
                         var res = await appDbContext.SaveChangesAsync();
                         if (res > 0)
                         {
+                            countNumber = 0;
                             return true;
                         }
                     }
                 }
+                countNumber = 0;
                 return false;
             }
             catch

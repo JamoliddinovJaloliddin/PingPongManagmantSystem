@@ -10,7 +10,7 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230302140542_CreateDatabase2")]
+    [Migration("20230309111226_CreateDatabase2")]
     partial class CreateDatabase2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,33 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BarProducts");
+                });
+
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.BarStatistic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("BarSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Card")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Cash")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("DateTime")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("NumberOfSaleBar")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BarStatistics");
                 });
 
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.Card", b =>
@@ -212,6 +239,39 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.ToTable("DesktopCassas");
                 });
 
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.EmpolyeeStatistic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("BarSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("DateTime")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("SportSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TableSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("ViCardToSell")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("VipCardSum")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EmpolyeeStatistics");
+                });
+
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.PingPongTable", b =>
                 {
                     b.Property<int>("Id")
@@ -281,6 +341,60 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.ToTable("SportProducts");
                 });
 
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.SportStatistic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Card")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Cash")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("DateTime")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("NumberOfSaleSport")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("SportSum")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SportStatistics");
+                });
+
+            modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.TableStatistic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Card")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Cash")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("DateTime")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TableSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("VipCard")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TableStatistics");
+                });
+
             modelBuilder.Entity("PingPongManagmantSystem.Domain.Entities.Time", b =>
                 {
                     b.Property<int>("Id")
@@ -335,7 +449,11 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("PasswordHasher")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Salt")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

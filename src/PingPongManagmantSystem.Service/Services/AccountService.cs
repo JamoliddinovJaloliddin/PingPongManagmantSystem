@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
-using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Common.Security;
 using PingPongManagmantSystem.Service.Interfaces;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
+using PingPongManagmantSystem.Service.ViewModels;
 
 namespace PingPongManagmantSystem.Service.Services
 {
@@ -11,31 +12,29 @@ namespace PingPongManagmantSystem.Service.Services
     {
         AppDbContext _appDbContext = new AppDbContext();
         ITableStatisticService tableStatistic = new TableStatisticService();
-        public async Task<bool> LoginAsync(string password)
+        public async Task<int> LoginAsync(string password)
         {
             try
             {
-                var user = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Password == password);
-                if (user is null)
+                var resultUser = await _appDbContext.Users.AsNoTracking().ToListAsync();
+                foreach (var user in resultUser)
                 {
-                    return false;
+                    var result = PassowrdHash.Verify(password: password, salt: user.Salt, hash: user.PasswordHasher);
+                    if (result)
+                    {
+                        if (user.IsAdmin == 0)
+                        {
+                            GlobalVariable.UserId = user.Id;
+                        }
+                        return user.IsAdmin;
+                    }
                 }
-                return true;
+                return 2;
             }
             catch
             {
-                return false;
+                return 2;
             }
-        }
-
-        public async Task<User> WindowtAsync(string count)
-        {
-            var user = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Password == count);
-            if (user is not null)
-            {
-                var result = await tableStatistic.CreateAsync();
-            }
-            return user;
         }
     }
 }

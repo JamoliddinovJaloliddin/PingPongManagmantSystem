@@ -8,9 +8,14 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "Password",
+                table: "Users",
+                newName: "Salt");
+
             migrationBuilder.AddColumn<string>(
-                name: "DateTime",
-                table: "Cassas",
+                name: "PasswordHasher",
+                table: "Users",
                 type: "TEXT",
                 nullable: false,
                 defaultValue: "");
@@ -19,8 +24,13 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "DateTime",
-                table: "Cassas");
+                name: "PasswordHasher",
+                table: "Users");
+
+            migrationBuilder.RenameColumn(
+                name: "Salt",
+                table: "Users",
+                newName: "Password");
         }
     }
 }

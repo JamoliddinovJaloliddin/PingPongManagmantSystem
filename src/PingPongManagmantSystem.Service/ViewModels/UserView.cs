@@ -16,7 +16,7 @@ namespace PingPongManagmantSystem.Service.ViewModels
                 Id = userView.Id,
                 Name = userView.Name,
                 PassportInfo = userView.Passport,
-                Password = userView.Password
+                //Password = userView.Password
             };
         }
     }

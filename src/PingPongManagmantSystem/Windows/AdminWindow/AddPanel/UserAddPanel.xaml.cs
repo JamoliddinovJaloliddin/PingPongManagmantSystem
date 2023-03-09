@@ -23,7 +23,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                     User user = new User();
                     user.Name = name.Text.ToString();
                     user.PassportInfo = passportinfo.Text.ToString();
-                    user.Password = password.Text.ToString();
+                    user.PasswordHasher = password.Text.ToString();
                     user.IsAdmin = 0;
 
                     var resault = await userService.CreateAsync(user);
@@ -57,7 +57,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                     user.Id = int.Parse(id.Content.ToString());
                     user.Name = name.Text;
                     user.PassportInfo = passportinfo.Text;
-                    user.Password = password.Text;
+                    //user.Password = password.Text;
                     user.IsAdmin = 0;
                     var res = await userService.UpdateAsync(user);
                     if (res)
