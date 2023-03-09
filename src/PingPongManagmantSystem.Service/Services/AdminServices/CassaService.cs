@@ -18,7 +18,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 if (cassa is not null)
                 {
                     appDbContext.Cassas.Remove(cassa);
-                    var res =  await appDbContext.SaveChangesAsync();
+                    var res = await appDbContext.SaveChangesAsync();
                     return res > 0;
                 }
 
@@ -68,6 +68,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                     || x.TypeOfPrice.Contains(search.ToLower())
                     || x.TablePrice.ToString().Contains(search)
                     || x.UserName.Contains(search.ToLower())
+                    || x.DateTime.Contains(search.ToLower())
                     ).OrderBy(x => x.Id)
                                      select cass;
 
@@ -84,6 +85,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                         cassa.TablePrice = item.TablePrice;
                         cassa.Check = item.Check;
                         cassa.UserName = item.UserName;
+                        cassa.DateTime = item.DateTime;
                         cassas.Add(cassa);
                     }
                 }
