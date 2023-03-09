@@ -22,8 +22,15 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                     Customer customer = new Customer();
                     customer.Status = status.Text;
                     customer.Percent = float.Parse(percest.Text.ToString());
-                    await customerService.CreateAsync(customer);
-                    this.Close();
+                    var result =  await customerService.CreateAsync(customer);
+                    if (result)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bu nomdagi mijoz mavjud");
+                    }
                 }
                 else
                 {
@@ -46,10 +53,17 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                     customer.Id = int.Parse(id.Content.ToString());
                     customer.Status = status.Text;
                     customer.Percent = float.Parse(percest.Text.ToString());
-                    await customerService.UpdateAsync(customer);
-                    this.Close();
-                    CustomerPanel customerPanel = new CustomerPanel();
-                    customerPanel.Show();
+                    var res = await customerService.UpdateAsync(customer);
+                    if (res)
+                    {
+                        this.Close();
+                        CustomerPanel customerPanel = new CustomerPanel();
+                        customerPanel.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bu nomdagi mijoz mavjud");
+                    }
                 }
                 else
                 {

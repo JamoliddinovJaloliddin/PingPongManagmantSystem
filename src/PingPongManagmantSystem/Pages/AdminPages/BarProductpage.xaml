@@ -32,7 +32,7 @@
                 <DataGridTextColumn Header="Kelgan narxi" Binding="{Binding ArrivalPrice}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Sotuv narxi" Binding="{Binding SalePrice}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="Soni" Binding="{Binding Count}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header="  +  /   -" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

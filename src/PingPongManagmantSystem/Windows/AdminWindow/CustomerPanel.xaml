@@ -31,7 +31,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="status" Binding="{Binding Status}" Header="Status" IsReadOnly="True" Width="*"/>
                     <DataGridTextColumn x:Name="percent" Binding="{Binding Percent}" Header="Foiz" IsReadOnly="True" Width="*"/>
-                    <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header="  +  /   -" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

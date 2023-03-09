@@ -70,7 +70,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages
             }
         }
 
-        private void Prewiew_Button(object sender, RoutedEventArgs e)
+        private async void Prewiew_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages
             }
         }
 
-        private void Next_Button(object sender, RoutedEventArgs e)
+        private async void Next_Button(object sender, RoutedEventArgs e)
         {
             try
             {

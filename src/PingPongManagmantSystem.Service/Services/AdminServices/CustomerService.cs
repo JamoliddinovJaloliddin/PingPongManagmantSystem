@@ -11,9 +11,22 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         AppDbContext appDbContext = new AppDbContext();
         public async Task<bool> CreateAsync(Customer customer)
         {
-            appDbContext.Customers.Add(customer);
-            var res = await appDbContext.SaveChangesAsync();
-            return res > 0;
+            try
+            {
+                var resultCustomer = await appDbContext.Customers.FirstOrDefaultAsync(x => x.Status == customer.Status);
+
+                if (resultCustomer is null)
+                {
+                    appDbContext.Customers.Add(customer);
+                    var res = await appDbContext.SaveChangesAsync();
+                    return res > 0;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -97,9 +110,28 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 
         public async Task<bool> UpdateAsync(Customer customer)
         {
-            appDbContext.Update(customer);
-            var resault = await appDbContext.SaveChangesAsync();
-            return resault > 0;
+            try
+            {
+                var resultCustomer = await appDbContext.Customers.FindAsync(customer.Id);
+                appDbContext.Entry(resultCustomer).State = EntityState.Detached;
+
+                if (resultCustomer is not null)
+                {
+                    var customerOld = await appDbContext.Customers.FirstOrDefaultAsync(x => x.Status == customer.Status && x.Id != customer.Id);
+
+                    if (customerOld is null)
+                    {
+                        appDbContext.Update(customer);
+                        var resault = await appDbContext.SaveChangesAsync();
+                        return resault > 0;
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

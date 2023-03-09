@@ -18,7 +18,6 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
         int pageSize = 1;
 
-
         public EmpolyeeStop()
         {
             InitializeComponent();
@@ -48,7 +47,14 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 
         private void Exit_Button(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private async void Account_button(object sender, RoutedEventArgs e)

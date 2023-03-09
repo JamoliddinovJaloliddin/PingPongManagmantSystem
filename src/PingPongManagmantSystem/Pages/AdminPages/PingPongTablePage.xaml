@@ -34,7 +34,7 @@
                     <DataGridTextColumn Binding="{Binding Number}" Header="Raqam" IsReadOnly="True" Width="*"/>
                     <DataGridTextColumn Binding="{Binding PriceCheap}" Header="Arzon Vaqt" IsReadOnly="True" Width="*"/>
                     <DataGridTextColumn Binding="{Binding PriceExpensive}" Header="Qimmat Narx" IsReadOnly="True" Width="*"/>
-                    <DataGridTemplateColumn Header="--" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header="  -" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -51,10 +51,10 @@
 
         <Grid Grid.Row="2">
             <Border  HorizontalAlignment="Left"  BorderBrush="#dee4ec" BorderThickness="1" CornerRadius="5" 
-                        Padding="5" Background="White" Margin="0 20 10 0" >
+                        Padding="5" Background="White" Margin="10 20 10 0" >
 
                 <StackPanel Orientation="Horizontal" >
-                    <Button Style="{StaticResource paginationButton}" Click="Prewiew_Button">
+                    <Button Style="{StaticResource paginationButton}" Click="Prewiew_Button" >
                         <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
 
                     </Button>
@@ -66,14 +66,14 @@
 
                     <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
 
-                    <Button Style="{StaticResource paginationButton}" Click="Next_Button">
+                    <Button x:Name="next_button" Style="{StaticResource paginationButton}" Click="Next_Button">
                         <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
                     </Button>
 
 
                 </StackPanel>
             </Border>
-            <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin="0 22 0 0" Click="UserAdd_Button" Height="36" VerticalAlignment="Top">
+            <Button x:Name="addbutton" Style="{StaticResource addButton}" Margin="0 22 10 0" Click="UserAdd_Button" Height="36" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                     <TextBlock Text="Yangi yaratish" Foreground="#CDBAFF"/>

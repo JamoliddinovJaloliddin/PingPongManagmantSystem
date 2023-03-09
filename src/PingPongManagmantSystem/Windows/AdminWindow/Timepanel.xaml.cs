@@ -5,9 +5,6 @@ using System.Windows;
 
 namespace PingPongManagmantSystem.Desktop.Windows
 {
-    /// <summary>
-    /// Interaction logic for Timepanel.xaml
-    /// </summary>
     public partial class Timepanel : Window
     {
         ITimeService timeService = new TimeService();
@@ -19,7 +16,6 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         public async void RefreshDataTime()
         {
-
             try
             {
                 var res = await timeService.GetAll();
@@ -63,7 +59,14 @@ namespace PingPongManagmantSystem.Desktop.Windows
 
         private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }

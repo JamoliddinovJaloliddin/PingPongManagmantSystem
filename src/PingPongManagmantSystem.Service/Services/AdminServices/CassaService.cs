@@ -10,11 +10,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
     {
         AppDbContext appDbContext = new AppDbContext();
 
-        public Task<bool> CreateAsync(Cassa cassa)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<bool> DeleteAsync(int id)
         {
             try
@@ -23,7 +18,8 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 if (cassa is not null)
                 {
                     appDbContext.Cassas.Remove(cassa);
-                    await appDbContext.SaveChangesAsync();
+                    var res =  await appDbContext.SaveChangesAsync();
+                    return res > 0;
                 }
 
                 return false;
@@ -64,7 +60,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 }
                 else
                 {
-
                     var cassaPages = from cass in appDbContext.Cassas.Where(x =>
                        x.SumPrice.Contains(search.ToLower())
                     || x.TypeOfPrice.Contains(search.ToLower())
@@ -97,7 +92,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             }
             catch
             {
-
                 return null;
             }
 
@@ -118,11 +112,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             {
                 return "";
             }
-        }
-
-        public Task<bool> UpdateAsync(Cassa cassa)
-        {
-            throw new NotImplementedException();
         }
     }
 }
