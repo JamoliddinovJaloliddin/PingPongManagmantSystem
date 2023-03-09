@@ -1,4 +1,4 @@
-﻿namespace PingPongManagmantSystem.Service.Interfaces
+﻿namespace PingPongManagmantSystem.Service.Interfaces.AccountServices
 {
     public interface IAccountService
     {
