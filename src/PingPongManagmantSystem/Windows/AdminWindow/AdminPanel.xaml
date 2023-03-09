@@ -30,9 +30,9 @@
                         <!--Menu Logo-->
 
 
-                        <Border Width="40" Height="40" Padding="0" Background="White" CornerRadius="7" 
+                        <Border Width="40" Height="40" Padding="0" Background="Transparent" CornerRadius="7" 
                                 DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="30">
-                            <Image Source="/Images/xPro.png"/>
+                            <Image Source="/Images/xPro.png" />
                         </Border>
                         <!--Menu Titles-->
                         <TextBlock Text="Admin" Foreground="#CDBAFF" FontSize="20" FontWeight="SemiBold"
