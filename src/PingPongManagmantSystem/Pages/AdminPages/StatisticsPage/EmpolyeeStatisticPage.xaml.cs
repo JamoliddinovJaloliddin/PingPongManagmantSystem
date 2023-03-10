@@ -203,6 +203,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
             try
             {
                 CloudPanel cloudPanel = new CloudPanel();
+                cloudPanel.type_lbl.Content = "Empolyee";
                 cloudPanel.ShowDialog();
                 this.NavigationService.Refresh();
             }

@@ -4,7 +4,7 @@ namespace PingPongManagmantSystem.Service.Common
 {
     public static class SendGoogle
     {
-        public static void SendFileGoogle()
+        public static async Task<bool> SendFileGoogle(string statistic)
         {
             try
             {
@@ -13,28 +13,18 @@ namespace PingPongManagmantSystem.Service.Common
                 client.Login("saparbaevazulaykho18@gmail.com", "GoodLuck18041388");
                 IEnumerable<INode> nodes = client.GetNodes();
 
-                INode root = nodes.Single(x => x.Type ==NodeType.Root);
-                INode myFolder = client.CreateFolder($"{DateTime.Now.ToString("dd/MM/yyyy")}", root);
+                INode root = nodes.Single(x => x.Type == NodeType.Root);
+                INode myFolder = await client.CreateFolderAsync($"{statistic}   {DateTime.Now.ToString("dd/MM/yyyy")}", root);
 
-                string Hello = "Hello word";
-
-                INode myFile = client.UploadFile(@"../../../../../database/database.db", myFolder);
+                INode myFile = await client.UploadFileAsync(@"files/file.json", myFolder);
                 Uri downloadLinkImage = client.GetDownloadLink(myFile);
                 client.Logout();
+                return true;
             }
             catch
             {
-                
+                return false;
             }
         }
     }
 }
-
-
-
-//    INode myFile = client.UploadFile(@"../../../../../database/fresh-market.db", myFolder);
-//    Uri downloadLinkImage = client.GetDownloadLink(myFile);
-
-//    MessageBox.Show("Added successfully!");
-//    client.Logout();
-

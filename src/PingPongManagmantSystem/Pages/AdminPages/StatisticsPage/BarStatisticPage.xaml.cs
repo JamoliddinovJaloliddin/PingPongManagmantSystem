@@ -204,6 +204,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
             try
             {
                 CloudPanel cloudPanel = new CloudPanel();
+                cloudPanel.type_lbl.Content = "Bar";
                 cloudPanel.ShowDialog();
                 this.NavigationService.Refresh();
             }

@@ -13,17 +13,18 @@
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
-            <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 3 0" MouseDown="Exit_Button" BorderThickness="0">
+            
+                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 3 0" MouseDown="Exit_Button" BorderThickness="0">
                 <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+               
             </Border>
+            <Label x:Name="type_lbl" Content="" Visibility="Collapsed" HorizontalAlignment="Left"/>
         </Grid>
         <Grid Grid.Row="1">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top">
-                    <Label Content="Dan" Margin="16 6 6 6"/>
+                    <Label Content="Oy" Margin="16 6 6 6"/>
                     <TextBox x:Name="from_txt" Height="30" Width="210" HorizontalAlignment="Center"/>
-                    <Label Content="Gacha" Margin="16 6 6 6"/>
-                    <TextBox x:Name="upTo_txt" Height="30" Width="210" HorizontalAlignment="Center"/>
                 </StackPanel>
             </DockPanel>
         </Grid>

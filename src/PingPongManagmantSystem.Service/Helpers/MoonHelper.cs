@@ -7,7 +7,7 @@ namespace PingPongManagmantSystem.Service.Helpers
         public static string GetCurrentMoon()
         {
             var res = DateTime.UtcNow.AddHours(TimeConstans.UTC).ToString("MM");
-            res = $"{res}";
+            res = $"/{res}/";
             return res;
         }
     }
