@@ -130,7 +130,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Exit_Button(object sender, RoutedEventArgs e)
+        private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             try
             {

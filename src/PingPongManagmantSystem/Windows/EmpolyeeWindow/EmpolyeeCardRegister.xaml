@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
-        Title="EmpolyeeCardRegister" Height="450" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="EmpolyeeCardRegister" Height="420" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Border>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="80" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
-
-                </Button>
+                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 8 0" MouseDown="Exit_Button" BorderThickness="0">
+                    <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+                </Border>
             </Grid >
 
             <Grid Grid.Row="1">
@@ -31,7 +31,7 @@
                         <Label Content="Telefon" Margin="14 6 6 6"/>
                         <TextBox x:Name="phone_card" Height="30" Width="260" HorizontalAlignment="Center"/>
                         <Label Content="To'lov turi" Margin="14 6 6 6"/>
-                        <ComboBox x:Name="combo_card" Height="28"  Width="260" HorizontalAlignment="Center">
+                        <ComboBox x:Name="combo_card" Height="26"  Width="260" HorizontalAlignment="Center">
                             <ComboBoxItem Content="Naxt"/>
                             <ComboBoxItem Content="Karta"/>
                         </ComboBox>
@@ -39,7 +39,7 @@
                 </DockPanel>
             </Grid>
             <Grid Grid.Row="2">
-                <Button x:Name="add_btn" Click="Add_Button" Width="260" Height="27" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Qo'shish"/>
+                <Button x:Name="add_btn" Click="Add_Button" Width="260" Height="27" Margin="0 0 0 10" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Qo'shish"/>
             </Grid>
         </Grid>
     </Border>

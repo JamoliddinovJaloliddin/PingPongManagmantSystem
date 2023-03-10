@@ -14,7 +14,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn  Header="Ism" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
                 <DataGridTextColumn Header="PassportRaqam" Binding="{Binding Passport}" IsReadOnly="True" Width="*"/>
-                <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
+                <DataGridTemplateColumn Header="   +  /   -" IsReadOnly="True" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
