@@ -47,7 +47,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                 {
 
 
-
                     //secondCheap and secondExpencive
                     if (TimeStop > secondExpenciveFrom && pingPongTable.PlayTime < secondCheapUpTo &&
                         pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0)
@@ -353,13 +352,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 
                     appDbContext.Cassas.Add(cassa);
                     var resault = await appDbContext.SaveChangesAsync();
-                }
 
+                }
+                return (Resault: true, Text: accountBook, cassa: pingPongTable, totalSum: totalSum);
                 accountBook = "";
                 totalSum = 0;
                 tablePrice = 0;
-
-                return (Resault: true, Text: accountBook, cassa: pingPongTable, totalSum: totalSum);
             }
             catch
             {

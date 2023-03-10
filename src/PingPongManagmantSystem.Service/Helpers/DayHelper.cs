@@ -6,13 +6,13 @@ namespace PingPongManagmantSystem.Service.Helpers
     {
         public static string GetCurrentServerDay()
         {
-            var res = DateTime.UtcNow.AddHours(TimeConstans.UTC).ToString("MM/dd/yyyy");
+            var res = DateTime.UtcNow.AddHours(TimeConstans.UTC).ToString("dd/MM/yyyy");
             return res;
         }
 
         public static string GetCurrentDay()
         {
-            var res = DateTime.UtcNow.AddHours(TimeConstans.UTC).ToString("/dd/");
+            var res = DateTime.UtcNow.AddHours(TimeConstans.UTC).ToString("dd/");
             return res;
         }
 

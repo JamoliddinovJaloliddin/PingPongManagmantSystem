@@ -1,5 +1,4 @@
 ﻿using PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel;
-using PingPongManagmantSystem.Service.Common;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
@@ -202,8 +201,8 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
         {
             try
             {
-                SendGoogle.SendFileGoogle();
                 CloudPanel cloudPanel = new CloudPanel();
+                cloudPanel.type_lbl.Content = "Sport";
                 cloudPanel.ShowDialog();
                 this.NavigationService.Refresh();
             }
