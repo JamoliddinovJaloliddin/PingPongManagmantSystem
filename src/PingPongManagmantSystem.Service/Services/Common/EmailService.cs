@@ -1,11 +1,11 @@
-﻿using PingPongManagmantSystem.Service.Interfaces.Common;
-using MailKit.Net.Smtp;
+﻿using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.EntityFrameworkCore;
 using MimeKit;
 using MimeKit.Text;
 using PingPongManagmantSystem.DataAccess.Constans;
-using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces.Common;
 
 namespace PingPongManagmantSystem.Service.Services.Common
 {
@@ -20,7 +20,7 @@ namespace PingPongManagmantSystem.Service.Services.Common
                 var resultUser = (User)await appDbContext.Users.FirstOrDefaultAsync(x => x.IsAdmin == 1);
                 if (resultUser is not null)
                 {
-                    email = resultUser.Email;   
+                    email = resultUser.Email;
                     Random random = new Random();
 
                     var resultRandom = random.Next(1000, 9999);

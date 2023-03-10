@@ -22,10 +22,17 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 
         private async void ComboBox_Refresh()
         {
-            var resault = await empolyeeTransfer.GetAllAsync();
-            foreach (var item in resault)
+            try
             {
-                combo_trn.Items.Add(item);
+                var resault = await empolyeeTransfer.GetAllAsync();
+                foreach (var item in resault)
+                {
+                    combo_trn.Items.Add(item);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error");
             }
         }
 
@@ -41,14 +48,20 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
             catch
             {
-
+                MessageBox.Show("Error");
             }
-
         }
 
         private void Exit_Button(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }

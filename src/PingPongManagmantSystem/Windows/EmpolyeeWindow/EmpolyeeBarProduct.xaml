@@ -6,19 +6,19 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
-        Title="EmpolyeeBarProduct" Height="500" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="EmpolyeeBarProduct" Height="600" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Border CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="15" />
+                <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="120" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
-
-                </Button>
+                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 -6 6 0" MouseDown="Exit_Button" BorderThickness="0">
+                    <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+                </Border>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -29,7 +29,7 @@
                         <DataGridTextColumn x:Name="name" Header="Nomi" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn x:Name="salePrice" Header="Narxi" Binding="{Binding Price}" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn x:Name="count" Header="Soni" Binding="{Binding Count}" IsReadOnly="True" Width="*"/>
-                        <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn Header="  +  /   -" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -48,11 +48,11 @@
             </Grid>
 
             <Grid Grid.Row="2">
-                <ComboBox x:Name="combo_CardCash" Height="30" Width="560" VerticalAlignment="Top">
+                <ComboBox x:Name="combo_CardCash" Height="27" Width="560" VerticalAlignment="Top">
                     <ComboBoxItem Content="Naxt"/>
                     <ComboBoxItem Content="Karta"/>
                 </ComboBox>
-                <Button x:Name="btnSum" Click="Sum" Width="560" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"  Content="Hisob"/>
+                <Button x:Name="btnSum" Click="Sum" Width="560" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"  Content="Hisob"/>
                 <Label x:Name="grid_lbl" Content="asassa" Margin="0 50 0 0" Visibility="Collapsed"/>
                 <Label x:Name="gridBar_lbl" Content="asas" Margin="480 0 0 0" Visibility="Collapsed"/>
             </Grid>

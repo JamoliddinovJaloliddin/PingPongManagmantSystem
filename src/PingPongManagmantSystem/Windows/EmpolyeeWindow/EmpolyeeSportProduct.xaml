@@ -6,18 +6,19 @@
          xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow"
         mc:Ignorable="d"
-        Title="EmpolyeeSportProduct" Height="450" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="EmpolyeeSportProduct" Height="550" Width="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Border CornerRadius="10">
         <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="15" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
             <RowDefinition Height="120" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 10 0" Click="Exit_Button">
-                </Button>
+                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 -6 6 0" MouseDown="Exit_Button" BorderThickness="0">
+                    <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+                </Border>
             </Grid>
 
         <Grid Grid.Row="1">
@@ -28,7 +29,7 @@
                         <DataGridTextColumn Header="Nomi" IsReadOnly="True" Binding="{Binding Name}" Width="*"/>
                         <DataGridTextColumn Header="Narxi" IsReadOnly="True" Binding="{Binding Price}" Width="*"/>
                         <DataGridTextColumn Header="Soni" IsReadOnly="True" Binding="{Binding Count}" Width="*" />
-                        <DataGridTemplateColumn Header=" +   /  --" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn Header="   +  /   -" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -47,11 +48,11 @@
         </Grid>
 
         <Grid Grid.Row="2">
-                <ComboBox Margin="0 20" x:Name="combo_CardCash" Height="30" Width="560" VerticalAlignment="Top">
+                <ComboBox Margin="0 20" x:Name="combo_CardCash" Height="27" Width="560" VerticalAlignment="Top">
                     <ComboBoxItem Content="Naxt"/>
                     <ComboBoxItem Content="Karta"/>
                 </ComboBox>
-                <Button Click="Buy_Button" Width="560" Height="35" VerticalAlignment="Bottom" Margin="0 15" HorizontalAlignment="Center" Content="Hisob" />
+                <Button Click="Buy_Button" Width="560" Height="30" VerticalAlignment="Bottom" Margin="0 15" HorizontalAlignment="Center" Content="Hisob" />
             </Grid>
     </Grid>
     </Border>

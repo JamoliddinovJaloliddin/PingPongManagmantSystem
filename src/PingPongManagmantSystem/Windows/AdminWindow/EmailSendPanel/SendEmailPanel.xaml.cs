@@ -46,24 +46,30 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.EmailSendPanel
         {
             try
             {
-                if (emailpassoword.Text.ToString() == code.ToString())
+                if (emailpassoword.Text.ToString() != "")
                 {
-                    emailpassoword.IsEnabled = false;
-                    txtpassoword.IsEnabled = true;
-                    if (txtpassoword.Password.ToString().Count() > 0)
+                    if (emailpassoword.Text.ToString() == code.ToString())
                     {
-                        var result = await userService.UpdateAdminAsync(txtpassoword.Password.ToString());
-                        if (result)
+                        emailpassoword.IsEnabled = false;
+                        txtpassoword.IsEnabled = true;
+                        if (txtpassoword.Password.ToString().Count() > 0)
                         {
-                            this.Close();
-                            MessageBox.Show("Login o'zgartirildi");
-                           
+                            var result = await userService.UpdateAdminAsync(txtpassoword.Password.ToString());
+                            if (result)
+                            {
+                                this.Close();
+                                MessageBox.Show("Login o'zgartirildi");
+
+                            }
                         }
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Parol to'g'ri kelmadi");
+                    else
+                    {
+                        MessageBox.Show("Parol to'g'ri kelmadi");
+                        emailpassoword.Text = null;
+                        emailpassoword.IsEnabled = false;
+                        txtpassoword.IsEnabled = false;
+                    }
                 }
             }
             catch
@@ -76,6 +82,9 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.EmailSendPanel
         {
             try
             {
+                emailpassoword.Text = null;
+                emailpassoword.IsEnabled = true;
+                txtpassoword.IsEnabled = false;
                 SendEmail();
             }
             catch

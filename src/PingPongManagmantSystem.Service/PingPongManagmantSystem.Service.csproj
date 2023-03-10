@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.60.0.2986" />
     <PackageReference Include="MailKit" Version="3.6.0" />
+    <PackageReference Include="MegaApiClient" Version="1.10.3" />
     <PackageReference Include="MimeKit" Version="3.6.0" />
   </ItemGroup>
 

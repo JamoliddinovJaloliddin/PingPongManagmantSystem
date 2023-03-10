@@ -14,9 +14,9 @@
                 <RowDefinition Height="60" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Height="15">
-                <Button Height="15" Width="15" HorizontalAlignment="Right" VerticalAlignment="Center" Background="Red" Margin="0 0 4 0" Click="Exit_Button">
-
-                </Button>
+                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 8 0" MouseDown="Exit_Button" BorderThickness="0">
+                    <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
+                </Border>
             </Grid>
             <Grid Grid.Row="1">
                 <DockPanel>

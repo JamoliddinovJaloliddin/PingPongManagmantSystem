@@ -7,15 +7,15 @@
         mc:Ignorable="d"
           Title="Login" Height="200" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Border CornerRadius="5">
-        <Grid Background="#3E5B7D">
+        <Grid Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="80" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" >
-                <Border CornerRadius="2" Height="15" Width="15"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 6 4 1" MouseDown="Exit_Button" BorderThickness="0">
-                    <Label Content="X" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#CDBAFF" Margin="-9 -7.5 -9 0"/>
+                <Border CornerRadius="2" Height="15" Width="15" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 6 0" MouseDown="Exit_Button" BorderThickness="0">
+                    <Label Content="x" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Blue" Margin="-9 -7.5 -9 0"/>
                 </Border>
             </Grid>
             <Grid Grid.Row="1">
@@ -23,7 +23,7 @@
                     <StackPanel  DockPanel.Dock="Top">
                         <Label Content="Parol" Margin="16 0 6 6" Foreground="#CDBAFF"/>
                         <Border Width="266" Height="25" CornerRadius="4" Background="White">
-                            <PasswordBox BorderThickness="0" x:Name="txtpassoword" Height="27" Width="260" Padding="3" HorizontalAlignment="Center"/>
+                            <PasswordBox Background="AliceBlue" BorderThickness="0" x:Name="txtpassoword" Height="27" Width="260" Padding="3" HorizontalAlignment="Center"/>
                         </Border>
                     </StackPanel>
                 </DockPanel>

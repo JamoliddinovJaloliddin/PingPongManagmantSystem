@@ -2,12 +2,7 @@
 using PingPongManagmantSystem.Desktop.Windows.AdminWindow.EmailSendPanel;
 using PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow;
 using PingPongManagmantSystem.Service.Interfaces.AccountServices;
-using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
-using PingPongManagmantSystem.Service.Interfaces.Common;
-using PingPongManagmantSystem.Service.Services;
 using PingPongManagmantSystem.Service.Services.AccountServices;
-using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
-using PingPongManagmantSystem.Service.Services.Common;
 using System.Windows;
 using System.Windows.Input;
 
@@ -15,7 +10,7 @@ namespace PingPongManagmantSystem
 {
     public partial class MainWindow : Window
     {
-        
+
         IAccountService accountService = new AccountService();
 
         public MainWindow()
@@ -45,11 +40,13 @@ namespace PingPongManagmantSystem
                     if (resault == 0)
                     {
                         CassaPanelDesktop cassaPanelDesktop = new CassaPanelDesktop();
+                        this.Close();
                         cassaPanelDesktop.ShowDialog();
                     }
                     else if (resault == 1)
                     {
                         AdminPanel adminPanel = new AdminPanel();
+                        this.Close();
                         adminPanel.ShowDialog();
                     }
                     else
@@ -67,7 +64,7 @@ namespace PingPongManagmantSystem
         private async void btn_EmailSend(object sender, RoutedEventArgs e)
         {
             try
-            { 
+            {
                 SendEmailPanel sendEmailPanel = new SendEmailPanel();
                 this.Close();
                 sendEmailPanel.ShowDialog();
