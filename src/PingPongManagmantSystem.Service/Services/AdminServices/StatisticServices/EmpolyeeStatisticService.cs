@@ -224,7 +224,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
 
                     var moon = MoonHelper.GetCurrentMoon();
 
-                    var statisticResults = from statics in appDbContext.EmpolyeeStatistics.Where(x => x.DateTime.StartsWith(moon)).OrderBy(x => x.DateTime)
+                    var statisticResults = from statics in appDbContext.EmpolyeeStatistics.Where(x => x.DateTime.Contains(moon)).OrderByDescending(x => x.DateTime)
                                            select statics;
                     var statisticResult = await PagedList<EmpolyeeStatistic>.ToPageListAsync(statisticResults, @params);
 

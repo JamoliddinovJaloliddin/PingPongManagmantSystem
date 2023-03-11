@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230310080217_CreateDatabase")]
-    partial class CreateDatabase
+    [Migration("20230311080341_CreateDatabase1")]
+    partial class CreateDatabase1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -143,9 +143,6 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<string>("DateTime")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<double>("SportProductPrice")
-                        .HasColumnType("REAL");
 
                     b.Property<string>("SumPrice")
                         .IsRequired()

@@ -6,7 +6,6 @@ namespace PingPongManagmantSystem.Domain.Entities
     {
         public string UserName { get; set; } = "";
         public double BarProductPrice { get; set; } = 0;
-        public double SportProductPrice { get; set; } = 0;
         public double TablePrice { get; set; } = 0;
         public string SumPrice { get; set; } = "";
         public string Check { get; set; } = "";

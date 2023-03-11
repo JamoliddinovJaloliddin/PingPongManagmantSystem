@@ -3,6 +3,7 @@
     public class GlobalVariable
     {
         public static int UserId { get; set; }
+        public static string UserName { get; set; } = String.Empty;
         public static int TransferId { get; set; }
         public static int StopId { get; set; }
         public static int Pause_Btn { get; set; }

@@ -9,6 +9,7 @@ using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface.ButtonService;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
+using PingPongManagmantSystem.Service.ViewModels;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 {
@@ -337,13 +338,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     }
                 }
 
-                var userEmpolyee = await appDbContext.Users.FirstOrDefaultAsync(x => x.Id == 1);
+                var userEmpolyee = await appDbContext.Users.FirstOrDefaultAsync(x => x.Id == GlobalVariable.UserId);
                 if (userEmpolyee is not null)
                 {
                     Cassa cassa = new Cassa();
                     cassa.UserName = userEmpolyee.Name;
                     cassa.BarProductPrice = pingPongTable.BarSum;
-                    cassa.SportProductPrice += 0;
                     cassa.SumPrice = totalSum.ToString();
                     cassa.TablePrice = totalSum - pingPongTable.BarSum;
                     cassa.Check = accountBook;

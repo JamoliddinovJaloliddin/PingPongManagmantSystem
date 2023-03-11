@@ -79,7 +79,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
             }
         }
 
-        private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private async void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             try
             {

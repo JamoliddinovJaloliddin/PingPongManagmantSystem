@@ -142,9 +142,6 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("SportProductPrice")
-                        .HasColumnType("REAL");
-
                     b.Property<string>("SumPrice")
                         .IsRequired()
                         .HasColumnType("TEXT");

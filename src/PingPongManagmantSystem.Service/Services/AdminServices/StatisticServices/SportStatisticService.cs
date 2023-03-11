@@ -21,7 +21,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 if (search == "")
                 {
                     var moon = MoonHelper.GetCurrentMoon();
-                    var statisticResults = from statics in appDbContext.SportStatistics.Where(x => x.DateTime.StartsWith(moon)).OrderBy(x => x.DateTime)
+                    var statisticResults = from statics in appDbContext.SportStatistics.Where(x => x.DateTime.Contains(moon)).OrderByDescending(x => x.DateTime)
                                            select statics;
                     var statisticResult = await PagedList<SportStatistic>.ToPageListAsync(statisticResults, @params);
 
