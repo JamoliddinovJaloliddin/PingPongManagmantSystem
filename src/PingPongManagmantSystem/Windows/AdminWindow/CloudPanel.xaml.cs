@@ -16,7 +16,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
             InitializeComponent();
         }
 
-        private async void Exit_Button(object sender, MouseButtonEventArgs e)
+        private void Exit_Button(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                             var resultWord = await cloudService.GetAllBarAsync(from);
                             if (resultWord != "")
                             {
-                               
+                                this.Close();
                                 var result = await SendGoogle.SendFileGoogle("Bar");
                                 if (result)
                                 {
@@ -63,6 +63,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                             var resultWord = await cloudService.GetAllEmpolyeeAsync(from);
                             if (resultWord != "")
                             {
+                                this.Close();
                                 var result = await SendGoogle.SendFileGoogle("Ishchi");
                                 if (result)
                                 {
@@ -79,6 +80,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                             var resultWord = await cloudService.GetAllSportAsync(from);
                             if (resultWord != "")
                             {
+                                this.Close();
                                 var result = await SendGoogle.SendFileGoogle("Sport");
                                 if (result)
                                 {
@@ -95,6 +97,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                             var resultWord = await cloudService.GetAllTableAsync(from);
                             if (resultWord != "")
                             {
+                                this.Close();
                                 var result = await SendGoogle.SendFileGoogle("Zal");
 
                                 if (result)

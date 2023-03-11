@@ -57,7 +57,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 {
                     var moon = MoonHelper.GetCurrentMoon();
 
-                    var tableStatistics = from statics in appDbContext.TableStatistics.Where(x => x.DateTime.StartsWith(moon)).OrderBy(x => x.DateTime)
+                    var tableStatistics = from statics in appDbContext.TableStatistics.Where(x => x.DateTime.Contains(moon)).OrderBy(x => x.DateTime)
                                           select statics;
 
                     var tableStatistic = await PagedList<TableStatistic>.ToPageListAsync(tableStatistics, @params);
@@ -111,7 +111,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 else
                 {
                     var tableStatistics = from statiscs in
-                            appDbContext.TableStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderBy(x => x.DateTime)
+                            appDbContext.TableStatistics.Where(x => x.DateTime.ToLower().Contains(search)).OrderByDescending(x => x.DateTime)
                                           select statiscs;
 
                     var tableStatistic = await PagedList<TableStatistic>.ToPageListAsync(tableStatistics, @params);

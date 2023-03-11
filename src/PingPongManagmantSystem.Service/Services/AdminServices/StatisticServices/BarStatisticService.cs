@@ -21,7 +21,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 {
                     var moon = MoonHelper.GetCurrentMoon();
 
-                    var statisticResults = from statics in appDbContext.BarStatistics.Where(x => x.DateTime.Contains(moon)).OrderBy(x => x.DateTime)
+                    var statisticResults = from statics in appDbContext.BarStatistics.Where(x => x.DateTime.Contains(moon)).OrderByDescending(x => x.DateTime)
                                            select statics;
                     var statisticResult = await PagedList<BarStatistic>.ToPageListAsync(statisticResults, @params);
                     foreach (var statistic in statisticResult)

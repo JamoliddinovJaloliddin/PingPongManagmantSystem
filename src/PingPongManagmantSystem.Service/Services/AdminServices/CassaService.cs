@@ -4,12 +4,40 @@ using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
+using PingPongManagmantSystem.Service.ViewModels;
 
 namespace PingPongManagmantSystem.Service.Services.AdminService
 {
     public class CassaService : ICassaService
     {
         AppDbContext appDbContext = new AppDbContext();
+
+
+        //public async Task<bool> CreateAsync(Cassa cassa)
+        //{
+        //    try
+        //    {
+        //        var dateTime = DayHelper.GetCurrentServerDay();
+
+        //        var resultCassa = await appDbContext.Cassas.FirstOrDefaultAsync(x => x.DateTime == dateTime);
+        //        if (resultCassa is null)
+        //        {
+        //            cassa.DateTime = dateTime;
+        //            cassa.UserName = GlobalVariable.UserName;
+        //        }
+        //        else
+        //        { 
+                
+        //        }
+
+
+        //        return false;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public async Task<bool> DeleteAsync(int id)
         {
@@ -22,7 +50,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                     var res = await appDbContext.SaveChangesAsync();
                     return res > 0;
                 }
-
                 return false;
             }
             catch
@@ -39,7 +66,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                 if (search == "")
                 {
                     var day = DayHelper.GetCurrentDay();
-
                     var cassaPages = from cassa in appDbContext.Cassas.Where(x => x.DateTime.Contains(day)).OrderBy(x => x.DateTime)
                                      select cassa;
 
@@ -51,7 +77,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                         appDbContext.Entry<Cassa>(cassa).State = EntityState.Detached;
                         cassa.Id = item.Id;
                         cassa.SumPrice = item.SumPrice;
-                        cassa.SportProductPrice = item.SportProductPrice;
                         cassa.BarProductPrice = item.BarProductPrice;
                         cassa.TypeOfPrice = item.TypeOfPrice;
                         cassa.TablePrice = item.TablePrice;
@@ -67,7 +92,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                        x.SumPrice.Contains(search.ToLower())
                     || x.TypeOfPrice.Contains(search.ToLower())
                     || x.BarProductPrice.ToString().Contains(search)
-                    || x.SportProductPrice.ToString().Contains(search)
                     || x.TypeOfPrice.Contains(search.ToLower())
                     || x.TablePrice.ToString().Contains(search)
                     || x.UserName.Contains(search.ToLower())
@@ -82,7 +106,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
                     {
                         cassa.Id = item.Id;
                         cassa.SumPrice = item.SumPrice;
-                        cassa.SportProductPrice = item.SportProductPrice;
                         cassa.BarProductPrice = item.BarProductPrice;
                         cassa.TypeOfPrice = item.TypeOfPrice;
                         cassa.TablePrice = item.TablePrice;
@@ -99,7 +122,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             {
                 return null;
             }
-
         }
 
         public async Task<string> GetByIdAsync(int id)

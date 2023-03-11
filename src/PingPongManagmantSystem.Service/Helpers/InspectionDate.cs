@@ -6,8 +6,8 @@
         {
             try
             {
-                string word = from[0].ToString(); 
-                word += from[1].ToString(); 
+                string word = from[0].ToString();
+                word += from[1].ToString();
                 int moon = int.Parse(word);
 
                 if (from[2].ToString() == "/" && moon > 0 && moon < 13)

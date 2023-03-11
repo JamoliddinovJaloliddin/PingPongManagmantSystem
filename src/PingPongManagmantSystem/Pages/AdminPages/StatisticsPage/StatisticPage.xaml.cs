@@ -7,8 +7,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+
 namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
 {
+
     public partial class StatisticPage : Page
     {
         ITableStatisticService tableStatisticService = new TableStatisticService();
