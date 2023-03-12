@@ -15,7 +15,30 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         IEmpolyeeStatsiticService empolyeeStatsiticService = new EmpolyeeStatisticService();
         ISportStatisticService sportStatisticService = new SportStatisticService();
 
+        public async Task<bool> CheckSportProductAsync(Dictionary<string, int> keyValuePairs)
+        {
+            try
+            {
+                foreach (var product in keyValuePairs)
+                {
+                    var res = await appDbContext.SportProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
 
+                    if (res is not null)
+                    {
+                        appDbContext.Entry(res).State = EntityState.Detached;
+                        if ((res.Count -= product.Value) < 0) 
+                        { 
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public async Task<bool> CreateAsync(int number, SportCount sportCount)
         {
@@ -78,11 +101,13 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 
                     if (res is not null)
                     {
-
-                        appDbContext.Entry(res).State = EntityState.Detached;
-                        res.Count -= product.Value;
-                        totalSum += product.Value * res.SalePrice;
-                        appDbContext.SportProducts.Update(res);
+                        if ((res.Count -= product.Value) > 0)
+                        {
+                            appDbContext.Entry(res).State = EntityState.Detached;
+                            res.Count -= product.Value;
+                            totalSum += product.Value * res.SalePrice;
+                            appDbContext.SportProducts.Update(res);
+                        }
                     }
                 }
                 var resault = await appDbContext.SaveChangesAsync();

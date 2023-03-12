@@ -1,5 +1,7 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
+using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using System;
 using System.Collections.Generic;
@@ -47,6 +49,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             try
             {
+
                 if (sportDataGrid.Items.Count > 0 && combo_CardCash.Text == "Naxt" || combo_CardCash.Text == "Karta")
                 {
                     foreach (SportCount bar in sportDataGrid.Items)
@@ -55,22 +58,44 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                         {
                             sumPrice += bar.Price * bar.Count;
 
-                            accountBook += (String.Format("{0, -20}{1,-20}{2, -20}{3,-20}\n\n", bar.Name, bar.Price, bar.Count, bar.Count * bar.Price));
+                            accountBook += (accountBook += $"{bar.Name}  {bar.Price}   {bar.Count}   {bar.Price * bar.Count}\n");
                             keyValuePairs.Add(key: bar.Name, value: bar.Count);
                         }
                     }
                     if (keyValuePairs.Count > 0)
                     {
-                        var res = await sportService.DeleteSportProductAsync(keyValuePairs, combo_CardCash.Text.ToString());
-                        this.Close();
-                        var result = await sportService.DeleteSportCountAsync();
-                        MessageBox.Show($"{accountBook} \nUmumiy:   {sumPrice}");
-                        sumPrice = 0;
-                        countNumber = 0;
-                        accountBook = "";
-                        keyValuePairs.Clear();
+                        var resultSport = await sportService.CheckSportProductAsync(keyValuePairs);
+
+                        if (resultSport)
+                        {
+                            this.Close();
+                            var res = await sportService.DeleteSportProductAsync(keyValuePairs, combo_CardCash.Text.ToString());
+                            var result = await sportService.DeleteSportCountAsync();
+                            MessageBox.Show($"{accountBook} \nUmumiy:   {sumPrice} so'm");
+                            keyValuePairs.Clear();
+                            await sportService.DeleteSportCountAsync();
+                            sumPrice = 0;
+                            countNumber = 0;
+                            accountBook = "";
+                           
+                        }
+                        else
+                        {
+                            MessageBox.Show("Mahsulot soni yetarli emas");
+                            keyValuePairs.Clear();
+                            await sportService.DeleteSportCountAsync();
+                            sumPrice = 0;
+                            countNumber = 0;
+                            accountBook = "";
+                            GridRefresh();
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Ma'lumot to'liq kiritilmadi");
+                }
+
             }
             catch
             {

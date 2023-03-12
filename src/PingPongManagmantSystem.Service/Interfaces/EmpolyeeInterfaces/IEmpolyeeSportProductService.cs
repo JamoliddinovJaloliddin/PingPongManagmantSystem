@@ -9,5 +9,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface
         public Task<bool> CreateAsync(int id, SportCount sportCount);
         public Task<bool> DeleteSportCountAsync();
         public Task<bool> DeleteSportProductAsync(Dictionary<string, int> keyValuePairs, string paymentType);
+        Task<bool> CheckSportProductAsync(Dictionary<string, int> keyValuePairs);
     }
 }

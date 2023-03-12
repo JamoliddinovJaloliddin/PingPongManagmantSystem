@@ -9,5 +9,6 @@ namespace PingPongManagmantSystem.Domain.Entities
         public double Cash { get; set; }
         public double SportSum { get; set; }
         public double NumberOfSaleSport { get; set; }
+        public string Check { get; set; }
     }
 }

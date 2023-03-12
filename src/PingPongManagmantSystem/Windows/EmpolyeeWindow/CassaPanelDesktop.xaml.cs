@@ -181,6 +181,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         private void Bar_Click(object sender, RoutedEventArgs e)
         {
             EmpolyeeBarProduct product = new EmpolyeeBarProduct();
+
             product.ShowDialog();
             Button_Inspection();
         }

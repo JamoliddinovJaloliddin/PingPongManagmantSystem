@@ -4,6 +4,7 @@ using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
+using PingPongManagmantSystem.Service.ViewModels;
 using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
 
 namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices
@@ -73,12 +74,14 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 {
                     BarStatistic barStatistic = new BarStatistic();
                     barStatistic.DateTime = dateDay;
+                    barStatistic.Check = $"\n\n{GlobalVariable.UserName}\n\n";
                     foreach (var keyValue in keyValuePairs)
                     {
                         var barPrice = await appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == keyValue.Key);
                         double barSum = keyValue.Value * barPrice.SalePrice;
                         barStatistic.BarSum += barSum;
                         barStatistic.NumberOfSaleBar += keyValue.Value;
+                        barStatistic.Check += $"{keyValue.Key} - {keyValue.Value}\n";
                         if (paymentType == "Naxt")
                         {
                             barStatistic.Cash += barSum;
@@ -92,12 +95,14 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
+                    barCount.Check += $"\n\n{GlobalVariable.UserName}\n\n";
                     foreach (var keyValue in keyValuePairs)
                     {
                         var barPrice = await appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == keyValue.Key);
                         double barSum = keyValue.Value * barPrice.SalePrice;
                         barCount.BarSum += barSum;
                         barCount.NumberOfSaleBar += keyValue.Value;
+                        barCount.Check += $"{keyValue.Key} - {keyValue.Value}\n";
                         if (paymentType == "Naxt")
                         {
                             barCount.Cash += barSum;

@@ -98,7 +98,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                         var res = empolyeeStop.TransferCreateAsync(GlobalVariable.TransferId, resault.cassa);
                     }
                 }
-                this.Close();
+
             }
             catch
             {
