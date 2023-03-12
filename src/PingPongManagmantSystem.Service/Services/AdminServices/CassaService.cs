@@ -4,7 +4,6 @@ using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
-using PingPongManagmantSystem.Service.ViewModels;
 
 namespace PingPongManagmantSystem.Service.Services.AdminService
 {
@@ -27,7 +26,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         //        }
         //        else
         //        { 
-                
+
         //        }
 
 

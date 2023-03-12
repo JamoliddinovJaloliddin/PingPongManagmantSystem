@@ -4,6 +4,7 @@ using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
+using PingPongManagmantSystem.Service.ViewModels;
 using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
 
 namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices
@@ -75,14 +76,19 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
 
                 if (sportCount is null)
                 {
+
+
                     SportStatistic sportStatistic = new SportStatistic();
                     sportStatistic.DateTime = dateDay;
+                    sportStatistic.Check = $"\n\n{GlobalVariable.UserName}\n\n";
+
                     foreach (var keyValue in keyValuePairs)
                     {
                         var sportPrice = await appDbContext.SportProducts.FirstOrDefaultAsync(x => x.Name == keyValue.Key);
                         double sportSum = keyValue.Value * sportPrice.SalePrice;
                         sportStatistic.SportSum += sportSum;
                         sportStatistic.NumberOfSaleSport += keyValue.Value;
+                        sportStatistic.Check += $"{keyValue.Key} - {keyValue.Value}\n";
                         if (paymentType == "Naxt")
                         {
                             sportStatistic.Cash += sportSum;
@@ -96,12 +102,14 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
+                    sportCount.Check += $"\n\n{GlobalVariable.UserName}\n\n";
                     foreach (var keyValue in keyValuePairs)
                     {
                         var sportPrice = await appDbContext.SportProducts.FirstOrDefaultAsync(x => x.Name == keyValue.Key);
                         double barSum = keyValue.Value * sportPrice.SalePrice;
                         sportCount.SportSum += barSum;
                         sportCount.NumberOfSaleSport += keyValue.Value;
+                        sportCount.Check += $"{keyValue.Key} - {keyValue.Value}\n";
                         if (paymentType == "Naxt")
                         {
                             sportCount.Cash += barSum;

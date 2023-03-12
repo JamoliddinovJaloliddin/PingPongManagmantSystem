@@ -80,6 +80,10 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<double>("Cash")
                         .HasColumnType("REAL");
 
+                    b.Property<string>("Check")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("DateTime")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -347,6 +351,10 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
 
                     b.Property<double>("Cash")
                         .HasColumnType("REAL");
+
+                    b.Property<string>("Check")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("DateTime")
                         .IsRequired()

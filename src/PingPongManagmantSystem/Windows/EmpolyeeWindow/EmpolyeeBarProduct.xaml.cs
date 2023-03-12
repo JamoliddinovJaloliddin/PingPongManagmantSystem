@@ -62,37 +62,61 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             keyValuePairs.Add(key: bar.Name, value: bar.Count);
                         }
                     }
-                    bool res = false;
-                    if (gridBar_lbl.Content.ToString() == "Button")
-                    {
-                        res = await barProductService.DeleteBarCountAsync(int.Parse(grid_lbl.Content.ToString()), accountBook, sumPrice);
-                        this.Close();
-                    }
-                    else
-                    {
-                        string word = "NotButton";
-                        res = await barProductService.DeleteBarCountAsync(1, word, sumPrice);
-                        this.Close();
-                        MessageBox.Show($"{accountBook} \nUmumiy: {sumPrice}");
-                    }
 
-                    if (res)
+                    if (keyValuePairs.Count > 0)
                     {
-                        var resault = await barProductService.DeleteBarProductAsync(keyValuePairs, combo_CardCash.Text);
-                        if (resault)
+                        var resultProduct = await barProductService.CheckProductAsync(keyValuePairs);
+
+                        if (resultProduct)
                         {
+                            bool res = false;
+                            if (gridBar_lbl.Content.ToString() == "Button")
+                            {
+
+                                res = await barProductService.DeleteBarCountAsync(int.Parse(grid_lbl.Content.ToString()), accountBook, sumPrice);
+                                this.Close();
+                            }
+                            else
+                            {
+                                string word = "NotButton";
+                                res = await barProductService.DeleteBarCountAsync(1, word, sumPrice);
+                                this.Close();
+                                MessageBox.Show($"{accountBook} \nUmumiy: {sumPrice} so'm");
+                            }
+
+                            if (res)
+                            {
+                                var resault = await barProductService.DeleteBarProductAsync(keyValuePairs, combo_CardCash.Text);
+                                if (resault)
+                                {
+                                    keyValuePairs.Clear();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Xatolik");
+                            }
+
+                            sumPrice = 0;
+                            countNumber = 0;
+                            accountBook = "";
                             keyValuePairs.Clear();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Mahsulot soni yetarli emas");
+                            keyValuePairs.Clear();
+                            await barProductService.DeleteBarCountAsync(1, "NotButton", 2);
+                            countNumber = 0;
+                            accountBook = "";
+                            RefreshDataBar();
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Xatolik");
-                    }
-
-                    sumPrice = 0;
-                    countNumber = 0;
-                    accountBook = "";
-                    keyValuePairs.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Ma'lumot to'liq emas");
                 }
             }
             catch

@@ -22,7 +22,6 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
-
                 var countResult = await _appDbContext.BarCounts.FindAsync(barCount.Id);
 
                 if (number == 1)
@@ -154,9 +153,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     if (barProduct is not null)
                     {
                         _appDbContext.Entry(barProduct).State = EntityState.Detached;
-                        barProduct.Count -= product.Value;
-                        totalSum += product.Value * barProduct.SalePrice;
-                        _appDbContext.BarProducts.Update(barProduct);
+                        if ((barProduct.Count -= product.Value) > 0)
+                        {
+                            barProduct.Count -= product.Value;
+                            totalSum += product.Value * barProduct.SalePrice;
+                            _appDbContext.BarProducts.Update(barProduct);
+                        }
                     }
                     else
                     {
@@ -170,6 +172,31 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 }
                 totalSum = 0;
                 return result > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> CheckProductAsync(Dictionary<string, int> keyValuePairs)
+        {
+            try
+            {
+                foreach (var product in keyValuePairs)
+                {
+                    var barProduct = (BarProduct)await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
+
+                    if (barProduct is not null)
+                    {
+                        _appDbContext.Entry(barProduct).State = EntityState.Detached;
+                        if ((barProduct.Count -= product.Value) < 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
             }
             catch
             {

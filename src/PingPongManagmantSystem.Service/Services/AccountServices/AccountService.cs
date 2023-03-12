@@ -25,6 +25,7 @@ namespace PingPongManagmantSystem.Service.Services.AccountServices
                         if (user.IsAdmin == 0)
                         {
                             GlobalVariable.UserId = user.Id;
+                            GlobalVariable.UserName = user.Name;
                         }
                         return user.IsAdmin;
                     }
