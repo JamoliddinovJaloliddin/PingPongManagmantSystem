@@ -7,5 +7,7 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrv
     {
         Task<IList<BarStatisticView>> GetAllBarStatistic(string search, PaginationParams @params);
         Task<bool> UpdateAsync(Dictionary<string, int> keyValuePairs, string paymentType);
+
+
     }
 }

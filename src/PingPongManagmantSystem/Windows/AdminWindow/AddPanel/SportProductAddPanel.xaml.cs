@@ -3,6 +3,8 @@ using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Windows;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Desktop.Windows.AddPanel
 {
     public partial class SportProductAddPanel : Window

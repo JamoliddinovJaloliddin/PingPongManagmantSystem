@@ -6,6 +6,8 @@ using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
     public class EmpolyeeBarProductService : IEmpolyeeBarProductService
@@ -144,11 +146,11 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 double totalSum = 0;
-
+                var barStatistic = await barStatisticService.UpdateAsync(keyValuePairs, paymentType);
                 foreach (var product in keyValuePairs)
                 {
                     var barProduct = (BarProduct)await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
-                    var barStatistic = await barStatisticService.UpdateAsync(keyValuePairs, paymentType);
+
 
                     if (barProduct is not null)
                     {

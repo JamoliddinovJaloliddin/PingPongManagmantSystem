@@ -6,6 +6,9 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
+#pragma warning disable
+
+
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 {
     public partial class CassaPanelDesktop : Window

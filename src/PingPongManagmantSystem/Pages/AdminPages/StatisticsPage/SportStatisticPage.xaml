@@ -36,6 +36,17 @@
                         <DataGridTextColumn Binding="{Binding NumberOfSaleSport}" Header="Sotuv soni" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Binding="{Binding SportSum}" Header="Summa" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Binding="{Binding DateTime}" Header="Sana" IsReadOnly="True" Width="*"/>
+                        <DataGridTemplateColumn Header="" IsReadOnly="True" Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Click="Check_Button" Style="{StaticResource gridEditdButton}" Margin="5 0 0 0">
+                                            <Icon:PackIconMaterial Kind="Checkbook" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

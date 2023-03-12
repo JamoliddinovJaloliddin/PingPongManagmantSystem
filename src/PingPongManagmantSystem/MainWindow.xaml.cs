@@ -6,6 +6,8 @@ using PingPongManagmantSystem.Service.Services.AccountServices;
 using System.Windows;
 using System.Windows.Input;
 
+
+#pragma warning disable
 namespace PingPongManagmantSystem
 {
     public partial class MainWindow : Window

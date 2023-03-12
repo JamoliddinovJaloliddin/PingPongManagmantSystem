@@ -3,6 +3,8 @@ using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
 using System.Windows;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
 {
     public partial class UserAddPanel : Window

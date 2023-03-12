@@ -6,6 +6,8 @@ using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.ViewModels;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Service.Services.AdminService
 {
     public class UserService : IUserService
