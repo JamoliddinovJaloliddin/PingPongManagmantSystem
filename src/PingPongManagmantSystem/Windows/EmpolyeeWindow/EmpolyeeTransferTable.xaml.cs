@@ -5,6 +5,8 @@ using PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System.Windows;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 {
     public partial class EmpolyeeTransferTable : Window

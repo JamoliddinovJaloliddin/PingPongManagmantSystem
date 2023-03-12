@@ -9,6 +9,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+
+#pragma warning disable
 namespace PingPongManagmantSystem.Desktop.Pages
 {
     public partial class BarProductpage : Page

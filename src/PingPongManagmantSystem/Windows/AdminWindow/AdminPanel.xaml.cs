@@ -5,6 +5,8 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Desktop.Windows
 {
     public partial class AdminPanel : Window

@@ -6,6 +6,8 @@ using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
     public class EmpolyeeSportProductService : IEmpolyeeSportProductService
@@ -26,8 +28,8 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     if (res is not null)
                     {
                         appDbContext.Entry(res).State = EntityState.Detached;
-                        if ((res.Count -= product.Value) < 0) 
-                        { 
+                        if ((res.Count -= product.Value) < 0)
+                        {
                             return false;
                         }
                     }

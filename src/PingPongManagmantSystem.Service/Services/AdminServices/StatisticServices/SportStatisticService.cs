@@ -34,7 +34,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         sportStatisticView.SportSum = statistic.SportSum;
                         sportStatisticView.NumberOfSaleSport = statistic.NumberOfSaleSport;
                         sportStatisticView.DateTime = statistic.DateTime;
-
+                        sportStatisticView.Check = statistic.Check;
                         sportStatisticViews.Add(sportStatisticView);
                         numberCount++;
                     }
@@ -52,6 +52,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         sportStatisticView.NumberCount = $"{numberCount}.";
                         sportStatisticView.SportSum = statistic.SportSum;
                         sportStatisticView.NumberOfSaleSport = statistic.NumberOfSaleSport;
+                        sportStatisticView.Check = statistic.Check;
                         sportStatisticView.DateTime = statistic.DateTime;
 
                         sportStatisticViews.Add(sportStatisticView);

@@ -8,6 +8,8 @@ using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices
 {
     public class TableStatisticService : ITableStatisticService

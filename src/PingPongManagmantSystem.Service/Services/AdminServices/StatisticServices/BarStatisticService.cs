@@ -33,6 +33,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         barStatisticView.NumberOfSaleBar = statistic.NumberOfSaleBar;
                         barStatisticView.DateTime = statistic.DateTime;
                         barStatisticView.BarSum = statistic.BarSum;
+                        barStatisticView.Check = statistic.Check;
                         barStatisticViews.Add(barStatisticView);
                         numberCount++;
                     }
@@ -51,6 +52,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                         barStatisticView.NumberOfSaleBar = statistic.NumberOfSaleBar;
                         barStatisticView.DateTime = statistic.DateTime;
                         barStatisticView.BarSum = statistic.BarSum;
+                        barStatisticView.Check = statistic.Check;
                         barStatisticViews.Add(barStatisticView);
                         numberCount++;
                     }

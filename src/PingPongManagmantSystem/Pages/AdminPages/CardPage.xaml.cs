@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
 {
     public partial class CardPage : Page

@@ -1,9 +1,6 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
-using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
-using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
-using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -77,7 +74,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             sumPrice = 0;
                             countNumber = 0;
                             accountBook = "";
-                           
+
                         }
                         else
                         {

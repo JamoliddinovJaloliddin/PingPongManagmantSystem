@@ -3,10 +3,13 @@ using PingPongManagmantSystem.Service.Common.Utils;
 using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 using PingPongManagmantSystem.Service.ViewModels;
+using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
+
+#pragma warning disable
 namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
 {
 
@@ -207,6 +210,19 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
                 cloudPanel.type_lbl.Content = "Bar";
                 cloudPanel.ShowDialog();
                 this.NavigationService.Refresh();
+            }
+            catch
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private async void Check_Button(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var resultChesk = (BarStatisticView)barStatisticDataGrid.SelectedItem;
+                MessageBox.Show(resultChesk.Check);
             }
             catch
             {
