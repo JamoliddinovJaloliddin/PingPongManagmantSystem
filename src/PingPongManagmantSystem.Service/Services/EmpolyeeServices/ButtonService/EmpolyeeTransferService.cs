@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Crypto.Engines;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
@@ -13,6 +14,23 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
         IDesktopCassaService desktopCassaService = new DesktopCassaService();
         ITimeService timeService = new TimeService();
         IPingPongTableService pingPongTableService = new PingPongTableService();
+
+        public async Task<bool> CheckTransfer()
+        {
+            try
+            {
+                var result = await appDbContext.DesktopCassas.FirstOrDefaultAsync(x => x.Stop == false);
+                if (result is not null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            { 
+                return false;
+            }
+        }
 
         public async Task<IList<int>> GetAllAsync()
         {

@@ -17,7 +17,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
     public partial class SportProductPage : Page
     {
         ISportProductService sportProductService = new SportProductService();
-        int pageSize = 2;
+        int pageSize = 30;
         int pagination = (int)GlobalVariable.Page;
         public SportProductPage()
         {

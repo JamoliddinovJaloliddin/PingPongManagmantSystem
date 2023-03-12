@@ -53,7 +53,6 @@ namespace PingPongManagmantSystem.Desktop.Windows
         {
             try
             {
-
                 CustomerAddPanel customerPanel = new CustomerAddPanel();
                 customerPanel.add_btn.IsEnabled = false;
                 customerPanel.upd_btn.IsEnabled = true;

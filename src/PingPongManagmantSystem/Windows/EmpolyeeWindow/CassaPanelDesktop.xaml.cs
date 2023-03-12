@@ -1,6 +1,8 @@
 ﻿using PingPongManagmantSystem.Service.Common;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
+using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface.ButtonService;
 using PingPongManagmantSystem.Service.Services.EmpolyeeService;
+using PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System.Windows;
 using System.Windows.Input;
@@ -14,6 +16,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
     public partial class CassaPanelDesktop : Window
     {
         private readonly IDesktopCassaService desktopCassaService = new DesktopCassaService();
+        private readonly IEmpolyeeTransferService empolyeeTransferService = new EmpolyeeTransferService();
         private readonly CountTheTime countTheTime;
         private bool IsMaximized = false;
         public CassaPanelDesktop()
@@ -181,7 +184,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 
         }
 
-        private void Bar_Click(object sender, RoutedEventArgs e)
+        private async void Bar_Click(object sender, RoutedEventArgs e)
         {
             EmpolyeeBarProduct product = new EmpolyeeBarProduct();
 
@@ -189,7 +192,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             Button_Inspection();
         }
 
-        private void Sport_Click(object sender, RoutedEventArgs e)
+        private async void Sport_Click(object sender, RoutedEventArgs e)
         {
             EmpolyeeSportProduct product = new EmpolyeeSportProduct();
             product.ShowDialog();
@@ -197,7 +200,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 
         }
 
-        private void Card_Click(object sender, RoutedEventArgs e)
+        private async void Card_Click(object sender, RoutedEventArgs e)
         {
             EmpolyeeCardRegister empolyeeCardRegister = new EmpolyeeCardRegister();
             empolyeeCardRegister.Show();
@@ -296,56 +299,61 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Transfer_Button(object sender, RoutedEventArgs e)
+        private async void Transfer_Button(object sender, RoutedEventArgs e)
         {
-            int number = 0;
-            EmpolyeeStop empolyeeStop = new EmpolyeeStop();
-            empolyeeStop.lbl_stop.Content = "Transfer";
-            if (transfer_btn1.IsMouseOver)
+
+            var result = await empolyeeTransferService.CheckTransfer();
+            if (result)
             {
-                empolyeeStop.lb_id.Content = 1;
-                GlobalVariable.StopId = 1;
+                int number = 0;
+                EmpolyeeStop empolyeeStop = new EmpolyeeStop();
+                empolyeeStop.lbl_stop.Content = "Transfer";
+                if (transfer_btn1.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 1;
+                    GlobalVariable.StopId = 1;
+                }
+                else if (transfer_btn2.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 2;
+                    GlobalVariable.StopId = 2;
+                }
+                else if (transfer_btn3.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 3;
+                    GlobalVariable.StopId = 3;
+                }
+                else if (transfer_btn4.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 4;
+                    GlobalVariable.StopId = 4;
+                }
+                else if (transfer_btn5.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 5;
+                    GlobalVariable.StopId = 5;
+                }
+                else if (transfer_btn6.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 6;
+                    GlobalVariable.StopId = 6;
+                }
+                else if (transfer_btn7.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 7;
+                    GlobalVariable.StopId = 7;
+                }
+                else if (transfer_btn8.IsMouseOver)
+                {
+                    empolyeeStop.lb_id.Content = 8;
+                    GlobalVariable.StopId = 8;
+                }
+                empolyeeStop.ShowDialog();
+                Button_Inspection();
             }
-            else if (transfer_btn2.IsMouseOver)
-            {
-                empolyeeStop.lb_id.Content = 2;
-                GlobalVariable.StopId = 2;
-            }
-            else if (transfer_btn3.IsMouseOver)
-            {
-                empolyeeStop.lb_id.Content = 3;
-                GlobalVariable.StopId = 3;
-            }
-            else if (transfer_btn4.IsMouseOver)
-            {
-                empolyeeStop.lb_id.Content = 4;
-                GlobalVariable.StopId = 4;
-            }
-            else if (transfer_btn5.IsMouseOver)
-            {
-                empolyeeStop.lb_id.Content = 5;
-                GlobalVariable.StopId = 5;
-            }
-            else if (transfer_btn6.IsMouseOver)
-            {
-                empolyeeStop.lb_id.Content = 6;
-                GlobalVariable.StopId = 6;
-            }
-            else if (transfer_btn7.IsMouseOver)
-            {
-                empolyeeStop.lb_id.Content = 7;
-                GlobalVariable.StopId = 7;
-            }
-            else if (transfer_btn8.IsMouseOver)
-            {
-                empolyeeStop.lb_id.Content = 8;
-                GlobalVariable.StopId = 8;
-            }
-            empolyeeStop.ShowDialog();
-            Button_Inspection();
         }
 
-        private void Bar_Button(object sender, RoutedEventArgs e)
+        private async void Bar_Button(object sender, RoutedEventArgs e)
         {
             EmpolyeeBarProduct product = new EmpolyeeBarProduct();
 
@@ -434,7 +442,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             MessageBox.Show(resault);
         }
 
-        private void Exit_Button(object sender, RoutedEventArgs e)
+        private async void Exit_Button(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
@@ -487,7 +495,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private  async void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -513,7 +521,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
+        private async void Exit_Click(object sender, RoutedEventArgs e)
         {
             try
             {

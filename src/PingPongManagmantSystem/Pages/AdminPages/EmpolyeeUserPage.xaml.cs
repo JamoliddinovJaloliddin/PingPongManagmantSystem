@@ -16,7 +16,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages
     public partial class EmpolyeeUserPage : Page
     {
         IUserService userService = new UserService();
-        int pageSize = 2;
+        int pageSize = 16;
         int pagination = (int)GlobalVariable.Page;
 
 

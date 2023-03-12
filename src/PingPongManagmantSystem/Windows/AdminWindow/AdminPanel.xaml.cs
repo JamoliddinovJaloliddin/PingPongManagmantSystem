@@ -43,9 +43,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/EmpolyeeUserPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-
-
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private  async void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -71,7 +69,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -86,7 +84,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-        private void SpotProduct_Button(object sender, RoutedEventArgs e)
+        private async void SpotProduct_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -113,7 +111,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-        private void Cassa_Button(object sender, RoutedEventArgs e)
+        private async void Cassa_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -127,7 +125,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-        private void Exit_Button(object sender, RoutedEventArgs e)
+        private async void Exit_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -144,7 +142,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-        private void PingPongTable_Button(object sender, RoutedEventArgs e)
+        private async void PingPongTable_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -164,7 +162,6 @@ namespace PingPongManagmantSystem.Desktop.Windows
             {
                 Page();
                 PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/CardPage.xaml", UriKind.RelativeOrAbsolute));
-
             }
             catch
             {
@@ -172,7 +169,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-        private void Empolyee_Button(object sender, RoutedEventArgs e)
+        private async void Empolyee_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -185,7 +182,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-        private void MenuEmpolye_Button(object sender, RoutedEventArgs e)
+        private async void MenuEmpolye_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -199,7 +196,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-        private void MenuTime_Button(object sender, RoutedEventArgs e)
+        private async void MenuTime_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -213,26 +210,25 @@ namespace PingPongManagmantSystem.Desktop.Windows
             }
         }
 
-
-        private void Table_Button(object sender, RoutedEventArgs e)
+        private async void Table_Button(object sender, RoutedEventArgs e)
         {
             Page();
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void Bar_Button(object sender, RoutedEventArgs e)
+        private  async void Bar_Button(object sender, RoutedEventArgs e)
         {
             Page();
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/BarStatisticPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void Sport_Button(object sender, RoutedEventArgs e)
+        private async void Sport_Button(object sender, RoutedEventArgs e)
         {
             Page();
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/SportStatisticPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void EmpolyeeStatistic_Button(object sender, RoutedEventArgs e)
+        private async void EmpolyeeStatistic_Button(object sender, RoutedEventArgs e)
         {
             Page();
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/EmpolyeeStatisticPage.xaml", UriKind.RelativeOrAbsolute));

@@ -14,7 +14,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
     public partial class CardPage : Page
     {
         ICardAdminService cardService = new CardAdminService();
-        int pageSize = 2;
+        int pageSize = 30;
         int pagination = (int)GlobalVariable.Page;
         public CardPage()
         {

@@ -55,7 +55,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                         {
                             sumPrice += bar.Price * bar.Count;
 
-                            accountBook += (accountBook += $"{bar.Name}  {bar.Price}   {bar.Count}   {bar.Price * bar.Count}\n");
+                            accountBook += $"{bar.Name}  {bar.Price}   {bar.Count}   {bar.Price * bar.Count}\n";
                             keyValuePairs.Add(key: bar.Name, value: bar.Count);
                         }
                     }

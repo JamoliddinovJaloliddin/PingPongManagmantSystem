@@ -14,7 +14,7 @@ namespace PingPongManagmantSystem.Service.Common.Utils
 
         public static async Task<PagedList<T>> ToPageListAsync(IQueryable<T> source, PaginationParams @params)
         {
-            PaginationCount.PaginationCountDate(source.Count());
+            PaginationCount.PaginationCountDate(source.Count(), @params.PageSize);
             int totalItems = source.Count();
             var resault = await source.Skip((@params.PageNumber - 1) * @params.PageSize)
                 .Take(@params.PageSize).ToListAsync();

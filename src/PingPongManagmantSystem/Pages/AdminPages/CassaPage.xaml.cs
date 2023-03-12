@@ -14,7 +14,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
     public partial class CassaPage : Page
     {
         ICassaService cassa = new CassaService();
-        int pageSize = 2;
+        int pageSize = 30;
         int pagination = (int)GlobalVariable.Page;
         public CassaPage()
         {

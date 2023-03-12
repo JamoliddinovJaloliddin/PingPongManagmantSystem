@@ -18,7 +18,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             try
             {
                 int countNumber = 0;
-                var resultUser = await appDbContext.Users.Where(x => x.IsAdmin == 0).AsNoTracking().ToListAsync();
+                var resultUser = await appDbContext.Users.AsNoTracking().ToListAsync();
 
                 foreach (var item in resultUser)
                 {
@@ -151,38 +151,60 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
             try
             {
                 int countNumber = 0;
-                var resultUser = await appDbContext.Users.Where(x => x.IsAdmin == 0).AsNoTracking().ToListAsync();
+                
 
-                foreach (var item in resultUser)
+
+                if (user.PasswordHasher.Count() == 0)
                 {
-                    var results = PassowrdHash.Verify(password: user.PasswordHasher, hash: item.PasswordHasher, salt: item.Salt);
-                    if (results)
+                    var resultUser = await appDbContext.Users.FirstOrDefaultAsync(x => x.Id == user.Id);
+                    appDbContext.Entry(resultUser).State = EntityState.Detached;
+                    if (resultUser is not null)
                     {
-                        countNumber++;
+                        resultUser.Name = user.Name;
+                        resultUser.PassportInfo = user.PassportInfo;
+                        appDbContext.Update(user);
+                    }
+                    var res = await appDbContext.SaveChangesAsync();
+                    if (res > 0)
+                    {
+                        countNumber = 0;
+                        return true;
                     }
                 }
-
-                if (countNumber == 0)
+                else
                 {
-                    var result = await appDbContext.Users.FindAsync(user.Id);
-
-                    appDbContext.Entry(result).State = EntityState.Detached;
-
-                    if (result is not null)
+                    var resultUser = await appDbContext.Users.Where(x => x.Id != user.Id).AsNoTracking().ToListAsync();
+                    foreach (var item in resultUser)
                     {
-                        var userPassowrd = PassowrdHash.Hash(user.PasswordHasher);
-
-
-                        user.Id = result.Id;
-                        user.IsAdmin = 0;
-                        user.PasswordHasher = userPassowrd.Hash;
-                        user.Salt = userPassowrd.Salt;
-                        appDbContext.Users.Update(user);
-                        var res = await appDbContext.SaveChangesAsync();
-                        if (res > 0)
+                        var results = PassowrdHash.Verify(password: user.PasswordHasher, hash: item.PasswordHasher, salt: item.Salt);
+                        if (results)
                         {
-                            countNumber = 0;
-                            return true;
+                            countNumber++;
+                        }
+                    }
+
+                    if (countNumber == 0)
+                    {
+                        var result = await appDbContext.Users.FindAsync(user.Id);
+
+                        appDbContext.Entry(result).State = EntityState.Detached;
+
+                        if (result is not null)
+                        {
+                            var userPassowrd = PassowrdHash.Hash(user.PasswordHasher);
+
+
+                            user.Id = result.Id;
+                            user.IsAdmin = 0;
+                            user.PasswordHasher = userPassowrd.Hash;
+                            user.Salt = userPassowrd.Salt;
+                            appDbContext.Users.Update(user);
+                            var res = await appDbContext.SaveChangesAsync();
+                            if (res > 0)
+                            {
+                                countNumber = 0;
+                                return true;
+                            }
                         }
                     }
                 }

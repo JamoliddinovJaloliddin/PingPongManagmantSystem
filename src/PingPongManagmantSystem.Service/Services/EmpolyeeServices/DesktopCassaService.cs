@@ -179,10 +179,35 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             {
                 var timeStop = (double)TimeHelper.GetCurrentServerTimeParseFloat();
 
-                var resault = await _appDbContext.DesktopCassas.FirstOrDefaultAsync(x => x.StolNumber == number);
-                string accountBook = $"Vaqt: {resault.TimeAccount + ((timeStop - resault.PlayTime)) / 60}";
+                var result = await _appDbContext.DesktopCassas.FirstOrDefaultAsync(x => x.StolNumber == number);
+                double time = 0;
+                if (result.PlayTime > 0)
+                {
+                    if (result.PlayTime <= 86400 && timeStop > 0 && timeStop < 14400)
+                    {
+                        time = (86400 - result.PlayTime) + timeStop + result.TimeAccount;
+                    }
+                    else
+                    {
+                        time = timeStop - result.PlayTime + result.TimeAccount;
+                    }
+                }
+                else
+                {
+                    time = result.TimeAccount;
+                }
 
-                return accountBook;
+                if (time >= 3600)
+                {
+                    time = Math.Round(time / 3600, 2);
+                    return $"{time.ToString()} soat";
+                }
+                else
+                {
+                    time = Math.Floor(time / 60);
+                    return $"{time.ToString()} daqiqa";
+                }
+                return "";
             }
             catch
             {
