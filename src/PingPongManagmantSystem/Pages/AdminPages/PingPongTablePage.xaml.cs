@@ -15,7 +15,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
     public partial class PingPongTablePage : Page
     {
         IPingPongTableService pingPongTableService = new PingPongTableService();
-        int pageSize = 2;
+        int pageSize = 16;
         int pagination = (int)GlobalVariable.Page;
         public PingPongTablePage()
         {

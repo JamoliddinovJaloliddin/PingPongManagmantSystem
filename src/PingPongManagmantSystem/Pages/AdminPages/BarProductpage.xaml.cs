@@ -16,7 +16,7 @@ namespace PingPongManagmantSystem.Desktop.Pages
     public partial class BarProductpage : Page
     {
         IBarProductService barProductService = new BarProductService();
-        int pageSize = 2;
+        int pageSize = 30;
         int pagination = (int)GlobalVariable.Page;
         public BarProductpage()
         {

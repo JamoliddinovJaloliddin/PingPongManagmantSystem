@@ -15,7 +15,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
     public partial class StatisticPage : Page
     {
         ITableStatisticService tableStatisticService = new TableStatisticService();
-        int pageSize = 2;
+        int pageSize = 16;
         int pagination = (int)GlobalVariable.Page;
 
         public StatisticPage()

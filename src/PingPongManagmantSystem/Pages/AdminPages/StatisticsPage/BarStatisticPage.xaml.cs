@@ -17,7 +17,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
     public partial class BarStatisticPage : Page
     {
         IBarStatisticService barStatisticService = new BarStatisticService();
-        int pageSize = 2;
+        int pageSize = 16;
         int pagination = (int)GlobalVariable.Page;
 
         public BarStatisticPage()

@@ -1,6 +1,7 @@
 ﻿using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Interfaces.AdminInteface;
 using PingPongManagmantSystem.Service.Services.AdminService;
+using System.Linq;
 using System.Windows;
 
 #pragma warning disable
@@ -52,14 +53,17 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
         {
             try
             {
-                if (name.Text != "" && passportinfo.Text != "" && password.Text != "")
+                if (name.Text != "" && passportinfo.Text != "")
                 {
                     User user = new User();
 
                     user.Id = int.Parse(id.Content.ToString());
                     user.Name = name.Text;
                     user.PassportInfo = passportinfo.Text;
-                    //user.Password = password.Text;
+                    if (password.Text.ToString().Count() > 0)
+                    {
+                        user.PasswordHasher = password.Text.ToString();
+                    }
                     user.IsAdmin = 0;
                     var res = await userService.UpdateAsync(user);
                     if (res)
@@ -75,6 +79,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.AdminWindow.AddPanel
                 {
                     MessageBox.Show("Ma'lumotlar to'liq kiritilmadi");
                 }
+
             }
             catch
             {

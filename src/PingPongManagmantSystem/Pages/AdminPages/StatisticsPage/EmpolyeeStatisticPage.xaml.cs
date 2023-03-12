@@ -15,7 +15,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdminPages.StatisticsPage
     public partial class EmpolyeeStatisticPage : Page
     {
         IEmpolyeeStatsiticService empolyeeStatsiticService = new EmpolyeeStatisticService();
-        int pageSize = 2;
+        int pageSize = 16;
         int pagination = (int)GlobalVariable.Page;
 
         public EmpolyeeStatisticPage()

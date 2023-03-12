@@ -4,5 +4,7 @@
     {
         public Task<IList<int>> GetAllAsync();
 
+        public Task<bool> CheckTransfer();
+
     }
 }

@@ -15,7 +15,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
     public partial class SportStatisticPage : Page
     {
         ISportStatisticService sportStatisticService = new SportStatisticService();
-        int pageSize = 2;
+        int pageSize = 16;
         int pagination = (int)GlobalVariable.Page;
 
         public SportStatisticPage()
@@ -219,7 +219,7 @@ namespace PingPongManagmantSystem.Desktop.Pages.AdmiPages.StatisticsPage
         {
             try
             {
-                var resultSport = (SportStatisticView)sportStatisticDataGrid.ItemsSource;
+                var resultSport = (SportStatisticView)sportStatisticDataGrid.SelectedItem;
                 MessageBox.Show(resultSport.Check);
             }
             catch
