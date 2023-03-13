@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
+using PingPongManagmantSystem.Service.Helpers;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
@@ -14,11 +15,13 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
+                var date = DayHelper.GetCurrentServerDay();
                 var res = await appDbContext.Cards.FirstOrDefaultAsync(x => x.CardNumber == card.CardNumber);
-                if (res is not null && res.CardNumber == card.CardNumber)
+                if (res is not null)
                 {
                     return false;
                 }
+                card.DateTime = date;
                 appDbContext.Cards.Add(card);
                 var resault = await appDbContext.SaveChangesAsync();
                 return resault > 0;

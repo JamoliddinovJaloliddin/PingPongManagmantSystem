@@ -31,6 +31,8 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     var resault = await cardService.CreateAsync(card);
                     if (resault)
                     {
+
+
                         password_card.Text = null;
                         limit_card.Text = null;
                         price_card.Text = null;
@@ -43,7 +45,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                     }
                     else
                     {
-                        MessageBox.Show("Passvord no'to'g'ri kiritildi");
+                        MessageBox.Show("Parolni o'zgartiring");
                     }
                 }
                 else

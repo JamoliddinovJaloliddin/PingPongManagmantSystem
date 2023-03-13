@@ -103,10 +103,10 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 
                     if (res is not null)
                     {
-                        if ((res.Count -= product.Value) > 0)
+                        if ((res.Count - (int)product.Value) > 0)
                         {
                             appDbContext.Entry(res).State = EntityState.Detached;
-                            res.Count -= product.Value;
+                            res.Count -= (int)product.Value;
                             totalSum += product.Value * res.SalePrice;
                             appDbContext.SportProducts.Update(res);
                         }

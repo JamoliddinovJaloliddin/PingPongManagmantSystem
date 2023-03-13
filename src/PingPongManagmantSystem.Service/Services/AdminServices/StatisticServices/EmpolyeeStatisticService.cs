@@ -22,6 +22,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             {
                 string dateDay = DayHelper.GetCurrentServerDay();
                 var empolyeeStatisticResult = await appDbContext.EmpolyeeStatistics.FirstOrDefaultAsync(x => x.DateTime == dateDay);
+                
                 if (empolyeeStatisticResult is null)
                 {
                     EmpolyeeStatistic empolyeeStatistic = new EmpolyeeStatistic();
@@ -34,8 +35,11 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
+                    appDbContext.Entry(empolyeeStatisticResult).State = EntityState.Detached;
                     var empolyeeStatisticUserId = await appDbContext.EmpolyeeStatistics.FirstOrDefaultAsync(
                         x => x.UserId == GlobalVariable.UserId && x.DateTime == dateDay);
+
+                    appDbContext.Entry(empolyeeStatisticUserId).State = EntityState.Detached;
 
                     if (empolyeeStatisticUserId is not null)
                     {
@@ -71,6 +75,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 var dateDay = DayHelper.GetCurrentServerDay();
                 var empolyeeStatisticResult = await appDbContext.EmpolyeeStatistics.FirstOrDefaultAsync(x => x.DateTime == dateDay);
 
+
                 if (empolyeeStatisticResult is null)
                 {
                     EmpolyeeStatistic empolyeeStatistic = new EmpolyeeStatistic();
@@ -82,11 +87,13 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
+                    appDbContext.Entry(empolyeeStatisticResult).State = EntityState.Detached;
                     var empolyeeStatisticUserId = await appDbContext.EmpolyeeStatistics.FirstOrDefaultAsync
                         (x => x.DateTime == dateDay && x.UserId == GlobalVariable.UserId);
 
                     if (empolyeeStatisticUserId is not null)
                     {
+                        
                         appDbContext.Entry(empolyeeStatisticUserId).State = EntityState.Detached;
                         empolyeeStatisticUserId.SportSum += totalPrice;
                         appDbContext.EmpolyeeStatistics.Update(empolyeeStatisticUserId);
@@ -139,6 +146,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
+                    appDbContext.Entry(empolyeeStatisticResult).State = EntityState.Detached;
                     var empolyeeStatisticUserId = await appDbContext.EmpolyeeStatistics.FirstOrDefaultAsync
                         (x => x.DateTime == dateDay && x.UserId == GlobalVariable.UserId);
 

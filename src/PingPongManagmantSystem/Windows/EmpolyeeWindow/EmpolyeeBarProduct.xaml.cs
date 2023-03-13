@@ -75,6 +75,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                             if (gridBar_lbl.Content.ToString() == "Button")
                             {
                                 res = await barProductService.DeleteBarCountAsync(int.Parse(grid_lbl.Content.ToString()), accountBook, sumPrice);
+
                                 this.Close();
                             }
                             else

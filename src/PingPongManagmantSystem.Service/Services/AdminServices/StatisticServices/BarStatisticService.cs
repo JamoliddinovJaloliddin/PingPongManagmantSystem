@@ -7,6 +7,8 @@ using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices
 using PingPongManagmantSystem.Service.ViewModels;
 using PingPongManagmantSystem.Service.ViewModels.StatisticViews;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices
 {
     public class BarStatisticService : IBarStatisticService
@@ -71,6 +73,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             {
                 var dateDay = DayHelper.GetCurrentServerDay();
                 var barCount = await appDbContext.BarStatistics.FirstOrDefaultAsync(x => x.DateTime == dateDay);
+               
 
                 if (barCount is null)
                 {
@@ -80,6 +83,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     foreach (var keyValue in keyValuePairs)
                     {
                         var barPrice = await appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == keyValue.Key);
+                        appDbContext.Entry(barPrice).State = EntityState.Detached;
                         double barSum = keyValue.Value * barPrice.SalePrice;
                         barStatistic.BarSum += barSum;
                         barStatistic.NumberOfSaleBar += keyValue.Value;
@@ -97,10 +101,12 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
                 else
                 {
+                    appDbContext.Entry(barCount).State = EntityState.Detached;
                     barCount.Check += $"\n\n{GlobalVariable.UserName}\n\n";
                     foreach (var keyValue in keyValuePairs)
                     {
                         var barPrice = await appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == keyValue.Key);
+                        appDbContext.Entry(barPrice).State = EntityState.Detached;
                         double barSum = keyValue.Value * barPrice.SalePrice;
                         barCount.BarSum += barSum;
                         barCount.NumberOfSaleBar += keyValue.Value;

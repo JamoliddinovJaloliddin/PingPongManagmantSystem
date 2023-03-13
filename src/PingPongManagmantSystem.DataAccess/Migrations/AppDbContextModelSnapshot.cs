@@ -49,10 +49,6 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("DateTime")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -326,10 +322,6 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
 
                     b.Property<int>("Count")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("DateTime")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
