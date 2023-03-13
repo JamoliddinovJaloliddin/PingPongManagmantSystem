@@ -147,6 +147,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             {
                 double totalSum = 0;
                 var barStatistic = await barStatisticService.UpdateAsync(keyValuePairs, paymentType);
+               
                 foreach (var product in keyValuePairs)
                 {
                     var barProduct = (BarProduct)await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);
@@ -155,9 +156,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     if (barProduct is not null)
                     {
                         _appDbContext.Entry(barProduct).State = EntityState.Detached;
-                        if ((barProduct.Count -= product.Value) > 0)
+                        if ((barProduct.Count - (int)product.Value) > 0)
                         {
-                            barProduct.Count -= product.Value;
+                            barProduct.Count = barProduct.Count - (int)product.Value;
                             totalSum += product.Value * barProduct.SalePrice;
                             _appDbContext.BarProducts.Update(barProduct);
                         }
@@ -167,6 +168,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                         return false;
                     }
                 }
+
                 var result = await _appDbContext.SaveChangesAsync();
                 if (result > 0)
                 {
