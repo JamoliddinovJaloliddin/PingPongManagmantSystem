@@ -23,6 +23,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
         {
             InitializeComponent();
             Button_Inspection();
+            GlobalVariable.StopId = 0;
         }
 
         public async void Button_Inspection()
@@ -252,7 +253,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Stop_Button(object sender, RoutedEventArgs e)
+        private async void Stop_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -495,7 +496,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private  async void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             try
             {

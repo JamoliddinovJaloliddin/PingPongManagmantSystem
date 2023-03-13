@@ -43,7 +43,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/EmpolyeeUserPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private  async void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private async void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             try
             {
@@ -216,7 +216,7 @@ namespace PingPongManagmantSystem.Desktop.Windows
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/StatisticPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private  async void Bar_Button(object sender, RoutedEventArgs e)
+        private async void Bar_Button(object sender, RoutedEventArgs e)
         {
             Page();
             PagesNavigation.Navigate(new System.Uri("Pages/AdminPages/StatisticsPage/BarStatisticPage.xaml", UriKind.RelativeOrAbsolute));

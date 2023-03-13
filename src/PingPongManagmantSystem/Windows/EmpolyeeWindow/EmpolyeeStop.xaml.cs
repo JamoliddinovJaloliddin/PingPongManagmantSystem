@@ -9,6 +9,8 @@ using PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService;
 using PingPongManagmantSystem.Service.ViewModels;
 using System.Windows;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 {
     public partial class EmpolyeeStop : Window
@@ -45,7 +47,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Exit_Button(object sender, RoutedEventArgs e)
+        private async void Exit_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -69,17 +71,20 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                         customer = txt_vipCart.Text.ToString();
                         var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
                         var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()), resault.totalSum);
+                        this.Close();
                         MessageBox.Show(resault.Text);
                     }
                     else
                     {
                         var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
                         var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()), resault.totalSum);
+                        this.Close();
                         MessageBox.Show(resault.Text);
                     }
                 }
                 else if (lbl_stop.Content.ToString() == "Transfer")
                 {
+                    this.Close();
                     EmpolyeeTransferTable transferTable = new EmpolyeeTransferTable();
                     var customer = cb_client.Text.ToString();
                     if (customer == Payment.VipKarta.ToString())
@@ -88,14 +93,13 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                         var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
                         transferTable.ShowDialog();
                         this.Close();
-                        var res = empolyeeStop.TransferCreateAsync(int.Parse(lb_id.Content.ToString()), resault.cassa);
+                        var res = empolyeeStop.TransferCreateAsync(int.Parse(lb_id.Content.ToString()), resault.cassa, resault.totalSum);
                     }
                     else
                     {
                         var resault = await empolyeeStop.TotalPrice(int.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
-                        this.Close();
                         transferTable.ShowDialog();
-                        var res = empolyeeStop.TransferCreateAsync(GlobalVariable.TransferId, resault.cassa);
+                        var res = empolyeeStop.TransferCreateAsync(GlobalVariable.TransferId, resault.cassa, resault.totalSum);
                     }
                 }
             }
@@ -105,7 +109,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void btn_txt(object sender, DependencyPropertyChangedEventArgs e)
+        private async void btn_txt(object sender, DependencyPropertyChangedEventArgs e)
         {
             try
             {

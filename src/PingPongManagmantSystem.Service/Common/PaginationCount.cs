@@ -14,7 +14,7 @@ namespace PingPongManagmantSystem.Service.Common
             {
                 GlobalVariable.Pagination = 1;
             }
-           
+
         }
     }
 }

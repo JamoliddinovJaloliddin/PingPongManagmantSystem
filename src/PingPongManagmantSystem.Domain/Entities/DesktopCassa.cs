@@ -18,5 +18,6 @@ namespace PingPongManagmantSystem.Domain.Entities
         public double TimeAccount { get; set; }
         public string AccountBook { get; set; } = "";
         public double TransferSum { get; set; } = 0;
+        public double TransferTime { get; set; } = 0;
     }
 }

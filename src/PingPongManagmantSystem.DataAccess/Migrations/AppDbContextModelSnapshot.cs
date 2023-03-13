@@ -230,6 +230,9 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                     b.Property<double>("TransferSum")
                         .HasColumnType("REAL");
 
+                    b.Property<double>("TransferTime")
+                        .HasColumnType("REAL");
+
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 

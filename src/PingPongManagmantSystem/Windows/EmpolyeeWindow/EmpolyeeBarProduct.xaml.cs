@@ -5,6 +5,8 @@ using PingPongManagmantSystem.Service.Services.EmpolyeeService;
 using System.Collections.Generic;
 using System.Windows;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
 {
 
@@ -124,7 +126,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Add_Button(object sender, RoutedEventArgs e)
+        private async void Add_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -139,7 +141,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Delete_Button(object sender, RoutedEventArgs e)
+        private async void Delete_Button(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -153,7 +155,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
             }
         }
 
-        private void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private async void Exit_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             try
             {
