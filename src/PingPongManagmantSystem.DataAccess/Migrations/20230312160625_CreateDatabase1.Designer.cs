@@ -10,8 +10,8 @@ using PingPongManagmantSystem.DataAccess.Constans;
 namespace PingPongManagmantSystem.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230312094129_CretaeDatabase")]
-    partial class CretaeDatabase
+    [Migration("20230312160625_CreateDatabase1")]
+    partial class CreateDatabase1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -230,6 +230,9 @@ namespace PingPongManagmantSystem.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("TransferSum")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TransferTime")
                         .HasColumnType("REAL");
 
                     b.Property<int>("UserId")

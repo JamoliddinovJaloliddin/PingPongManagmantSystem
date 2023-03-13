@@ -11,6 +11,8 @@ using PingPongManagmantSystem.Service.Services.AdminService;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 using PingPongManagmantSystem.Service.ViewModels;
 
+#pragma warning disable
+
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 {
     public class EmpolyeeStopService : IEmpolyeeStopService
@@ -41,7 +43,8 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                 string accountBook = "";
                 double totalSum = 0;
                 double tablePrice = 0;
-
+                double time = 0;
+                double transferTime = 0;
 
                 //NotVipKart, NotTrener
                 if (customerPercent.Status != "VipKarta" && customer != Payment.Trener_Kattalar.ToString() || customer != Payment.Trener_Kichik.ToString())
@@ -50,8 +53,10 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 
                     //secondCheap and secondExpencive
                     if (TimeStop > secondExpenciveFrom && pingPongTable.PlayTime < secondCheapUpTo &&
-                        pingPongTable.TimeAccount == 0 && pingPongTable.PlayTime > 0)
+                       pingPongTable.PlayTime > 0)
                     {
+
+                        transferTime = pingPongTable.TimeAccount + TimeStop - pingPongTable.PlayTime;
                         var secondCheapExpencive = (secondCheapUpTo - pingPongTable.PlayTime) / 3600 *
                             (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                         secondCheapExpencive += (TimeStop - secondExpenciveFrom) / 3600 *
@@ -60,82 +65,99 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
 
                         totalSum += tablePrice + pingPongTable.BarSum + pingPongTable.TransferSum;
                         totalSum = Math.Floor(totalSum);
-                        var time = (TimeStop - pingPongTable.PlayTime);
+                        time = (TimeStop - pingPongTable.PlayTime) + pingPongTable.TransferTime;
                         if (time >= 3600)
                         {
-                            time = Math.Round(time / 3600);
-                            accountBook += $"Vaqt: {time} soat  - {tablePrice}\n\n Summa: {totalSum} so'm";
+                            time = Math.Round(time / 3600, 2);
+                            string resultTime = (time.ToString().Split(".")[0]);
+                            double resultMinut = double.Parse(time.ToString().Split(".")[1]);
+                            resultMinut = Math.Floor(36 * resultMinut / 60);
+                            accountBook += $"Vaqt: {resultTime}.{resultMinut} soat  \n\n Summa: {totalSum} so'm";
                         }
                         else
                         {
-                            accountBook += $"Vaqt: {Math.Floor(time / 60)} daqiqa  - {tablePrice}\n\n Summa: {totalSum} so'm";
+                            accountBook += $"Vaqt: {Math.Floor(time / 60)} daqiqa \n\n Summa: {totalSum} so'm";
                         }
-                        var tableResult = await tableStatisticService.UpdateAsync(double.Parse(secondCheapExpencive.ToString().Split(".")[0]), typeOfPey);
+                        var tableResult = await tableStatisticService.UpdateAsync(Math.Floor(secondCheapExpencive), typeOfPey);
                     }
+
 
 
 
                     //secondCheap
                     else if (TimeStop <= secondCheapUpTo)
                     {
+
                         if (pingPongTable.TimeAccount == 0)
                         {
+                            transferTime = TimeStop - pingPongTable.PlayTime;
                             var secondCheap = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                             tablePrice += Math.Floor(secondCheap);
 
                             totalSum = secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                             totalSum = Math.Floor(totalSum);
-                            var time = (TimeStop - pingPongTable.PlayTime);
+                            time = (TimeStop - pingPongTable.PlayTime) + pingPongTable.TransferTime;
                             if (time >= 3600)
                             {
-                                time = Math.Round(time / 3600);
-                                accountBook += $"Vaqt: {time}  soat  - {tablePrice}\n\n Summa: {totalSum} so'm";
+                                time = Math.Round(time / 3600, 2);
+                                string resultTime = (time.ToString().Split(".")[0]);
+                                double resultMinut = double.Parse(time.ToString().Split(".")[1]);
+                                resultMinut = Math.Floor(36 * resultMinut / 60);
+                                accountBook += $"Vaqt: {resultTime}.{resultMinut} soat  \n\n Summa: {totalSum} so'm";
                             }
                             else
                             {
-                                accountBook += $"Vaqt: {Math.Floor(time / 60)} daqiqa  - {tablePrice} \n\n Summa: {totalSum} so'm";
+                                accountBook += $"Vaqt: {Math.Floor(time / 60)} daqiqa  \n\n Summa: {totalSum} so'm";
                             }
-                            var tableResult = await tableStatisticService.UpdateAsync(secondCheap, typeOfPey);
+                            var tableResult = await tableStatisticService.UpdateAsync(Math.Floor(secondCheap), typeOfPey);
                         }
 
                         else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0)
                         {
+                            transferTime = TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount;
                             var secondCheap = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) /
                                 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                             tablePrice += Math.Floor(secondCheap);
 
                             totalSum += secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                             totalSum = Math.Floor(totalSum);
-                            var time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount);
+                            time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) + pingPongTable.TransferTime;
                             if (time >= 3600)
                             {
                                 time = Math.Round(time / 3600, 2);
-                                accountBook += $"Vaqt: {time} soat  - {tablePrice} \n\n Summa: {totalSum} so'm";
+                                string resultTime = (time.ToString().Split(".")[0]);
+                                double resultMinut = double.Parse(time.ToString().Split(".")[1]);
+                                resultMinut = Math.Floor(36 * resultMinut / 60);
+                                accountBook += $"Vaqt: {resultTime}.{resultMinut} soat \n\n Summa: {totalSum} so'm";
                             }
                             else
                             {
-                                accountBook += $"Vaqt: {Math.Floor(time / 60)} daqiqa  - {tablePrice} \n\n Summa: {totalSum} so'm";
+                                accountBook += $"Vaqt: {Math.Floor(time / 60)} daqiqa   \n\n Summa: {totalSum} so'm";
                             }
-                            var tableResult = await tableStatisticService.UpdateAsync(secondCheap, typeOfPey);
+                            var tableResult = await tableStatisticService.UpdateAsync(Math.Floor(secondCheap), typeOfPey);
                         }
 
                         else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0)
                         {
+                            transferTime = pingPongTable.TimeAccount;
                             var secondCheap = pingPongTable.TimeAccount / 3600 * (pingPongTablePrice.PriceCheap * customerPercent.Percent / 100);
                             tablePrice += Math.Floor(secondCheap);
                             totalSum += secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
                             totalSum = Math.Floor(totalSum);
 
-
-                            if (pingPongTable.TimeAccount >= 3600)
+                            if (pingPongTable.TimeAccount + pingPongTable.TransferTime >= 3600)
                             {
-                                accountBook += $"Vaqt: {Math.Round(pingPongTable.TimeAccount / 3600, 2)}  soat  - {tablePrice}  \n\n Summa: {totalSum} so'm";
+                                time = Math.Round(time / 3600, 2);
+                                string resultTime = (time.ToString().Split(".")[0]);
+                                double resultMinut = double.Parse(time.ToString().Split(".")[1]);
+                                resultMinut = Math.Floor(36 * resultMinut / 60);
+                                accountBook += $"Vaqt: {resultTime}.{resultMinut} soat \n\n Summa: {totalSum} so'm";
                             }
                             else
                             {
-                                accountBook += $"Vaqt: {(Math.Floor(pingPongTable.TimeAccount / 60))} daqiqa  - {tablePrice}\n\n Summa: {totalSum} so'm";
+                                accountBook += $"Vaqt: {(Math.Floor(pingPongTable.TimeAccount / 60))} \n\n Summa: {totalSum} so'm";
                             }
-                            var tableResult = await tableStatisticService.UpdateAsync(secondCheap, typeOfPey);
+                            var tableResult = await tableStatisticService.UpdateAsync(Math.Floor(secondCheap), typeOfPey);
                         }
                     }
 
@@ -144,17 +166,21 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     //secondExpencive
                     else if (TimeStop >= secondExpenciveFrom && TimeStop <= 86400 || TimeStop >= 0 && TimeStop < secondExpenciveUpTo)
                     {
-                        if (pingPongTable.TimeAccount == 0)
+                        if (pingPongTable.PlayTime != 0 && pingPongTable.PlayTime < 86400 && TimeStop > 0 && TimeStop < 14400)
                         {
-                            var secondExpensive = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
-                            totalSum += secondExpensive + pingPongTable.BarSum + pingPongTable.TransferSum;
-                            tablePrice += Math.Floor(secondExpensive);
+                            transferTime = pingPongTable.TimeAccount + (86400 - pingPongTable.PlayTime) + TimeStop;
+                            var secondExpensive = transferTime / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
+                            totalSum = secondExpensive + pingPongTable.BarSum + pingPongTable.TransferSum;
+                            tablePrice = Math.Floor(secondExpensive);
                             totalSum = Math.Floor(totalSum);
-                            var time = (TimeStop - pingPongTable.PlayTime);
+                            time = transferTime + pingPongTable.TransferSum;
                             if (time >= 3600)
                             {
                                 time = Math.Round(time / 3600, 2);
-                                accountBook += $"Vaqt: {time} soat  - {tablePrice} \n\n Summa: {totalSum} so'm";
+                                string resultTime = (time.ToString().Split(".")[0]);
+                                double resultMinut = double.Parse(time.ToString().Split(".")[1]);
+                                resultMinut = Math.Floor(36 * resultMinut / 60);
+                                accountBook += $"Vaqt: {resultTime}.{resultMinut} soat - {tablePrice} \n\n Summa: {totalSum} so'm";
                             }
                             else
                             {
@@ -163,49 +189,82 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                             }
                             var tableResult = await tableStatisticService.UpdateAsync(secondExpensive, typeOfPey);
                         }
-
-                        else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0)
+                        else if (pingPongTable.TimeAccount == 0)
                         {
-                            var secondExpensive = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) /
-                                3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
-
-
+                            transferTime = TimeStop - pingPongTable.PlayTime;
+                            var secondExpensive = (TimeStop - pingPongTable.PlayTime) / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
                             totalSum += secondExpensive + pingPongTable.BarSum + pingPongTable.TransferSum;
                             tablePrice += Math.Floor(secondExpensive);
                             totalSum = Math.Floor(totalSum);
-                            var time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount);
+                            time = (TimeStop - pingPongTable.PlayTime) + pingPongTable.TransferTime;
                             if (time >= 3600)
                             {
                                 time = Math.Round(time / 3600, 2);
-                                accountBook += $"Vaqt: {time} soat  - {tablePrice}\n\n Summa: {totalSum} so'm";
+                                string resultTime = (time.ToString().Split(".")[0]);
+                                double resultMinut = double.Parse(time.ToString().Split(".")[1]);
+                                resultMinut = Math.Floor(36 * resultMinut / 60);
+                                accountBook += $"Vaqt: {resultTime}.{resultMinut} soat  \n\n Summa: {totalSum} so'm";
                             }
                             else
                             {
                                 time = Math.Floor(time / 60);
-                                accountBook += $"Vaqt: {time} daqiqa - {tablePrice}\n\n Summa: {totalSum} so'm";
+                                accountBook += $"Vaqt: {time} daqiqa \n\n Summa: {totalSum} so'm";
                             }
                             var tableResult = await tableStatisticService.UpdateAsync(secondExpensive, typeOfPey);
                         }
 
-                        else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0)
+                        else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime > 0)
                         {
-                            var secondCheap = pingPongTable.TimeAccount / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
-                            totalSum += secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
-                            tablePrice += Math.Floor(secondCheap);
-                            totalSum = Math.Floor(totalSum);
-                            var time = pingPongTable.TimeAccount;
+                            transferTime = pingPongTable.TimeAccount + TimeStop - pingPongTable.PlayTime;
 
-                            if (pingPongTable.TimeAccount >= 3600)
+                            var secondExpensive = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) /
+                                3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
+
+                            totalSum += secondExpensive + pingPongTable.BarSum + pingPongTable.TransferSum;
+                            tablePrice += Math.Floor(secondExpensive);
+                            totalSum = Math.Floor(totalSum);
+                            time = (TimeStop - pingPongTable.PlayTime + pingPongTable.TimeAccount) + pingPongTable.TransferTime;
+                            if (time >= 3600)
                             {
                                 time = Math.Round(time / 3600, 2);
-                                accountBook += $"Vaqt: {time} soat - {tablePrice} \n\n Summa: {totalSum} so'm";
+                                string resultTime = (time.ToString().Split(".")[0]);
+                                double resultMinut = double.Parse(time.ToString().Split(".")[1]);
+                                resultMinut = Math.Floor(36 * resultMinut / 60);
+                                accountBook += $"Vaqt: {resultTime}.{resultMinut} soat \n\n Summa: {totalSum} so'm";
                             }
                             else
                             {
                                 time = Math.Floor(time / 60);
-                                accountBook += $"Vaqt: {time} daqiqa - {tablePrice} \n\n Summa: {totalSum} so'm";
+                                accountBook += $"Vaqt: {time} daqiqa  \n\n Summa: {totalSum} so'm";
                             }
-                            var tableResult = await tableStatisticService.UpdateAsync(secondCheap, typeOfPey);
+                            var tableResult = await tableStatisticService.UpdateAsync(Math.Floor(secondExpensive), typeOfPey);
+                        }
+
+                        else if (pingPongTable.TimeAccount > 0 && pingPongTable.PlayTime == 0)
+                        {
+                            transferTime = pingPongTable.TimeAccount;
+
+                            var secondCheap = pingPongTable.TimeAccount / 3600 * (pingPongTablePrice.PriceExpensive * customerPercent.Percent / 100);
+                            totalSum += secondCheap + pingPongTable.BarSum + pingPongTable.TransferSum;
+                            tablePrice += Math.Floor(secondCheap);
+                            totalSum = Math.Floor(totalSum);
+                            time = pingPongTable.TimeAccount + pingPongTable.TransferTime;
+
+                            if (pingPongTable.TimeAccount >= 3600)
+                            {
+                                time = Math.Round(time / 3600, 2);
+                                string resultTime = (time.ToString().Split(".")[0]);
+                                double resultMinut = double.Parse(time.ToString().Split(".")[1]);
+                                resultMinut = Math.Floor(36 * resultMinut / 60);
+                                accountBook += $"Vaqt: {resultTime}.{resultMinut} soat  \n\n Summa: {totalSum} so'm";
+
+                            }
+                            else
+                            {
+                                time = Math.Floor(time / 60);
+                                accountBook += $"Vaqt: {time} daqiqa  \n\n Summa: {totalSum} so'm";
+                            }
+                            var tableResult = await tableStatisticService.UpdateAsync(Math.Floor(secondCheap), typeOfPey);
                         }
                     }
                 }
@@ -369,29 +428,34 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                     }
                 }
 
-                var userEmpolyee = await appDbContext.Users.FirstOrDefaultAsync(x => x.Id == GlobalVariable.UserId);
-                if (userEmpolyee is not null)
+                if (GlobalVariable.StopId == 0)
                 {
-                    Cassa cassa = new Cassa();
-                    cassa.UserName = userEmpolyee.Name;
-                    cassa.BarProductPrice = pingPongTable.BarSum;
-                    cassa.SumPrice = totalSum.ToString();
-                    cassa.TablePrice = totalSum - pingPongTable.BarSum;
-                    cassa.Check = $"{pingPongTable.AccountBook}\n";
-                    cassa.Check += accountBook;
-                    cassa.TypeOfPrice = typeOfPey;
-                    cassa.DateTime = DayHelper.GetCurrentServerDay();
+                    var userEmpolyee = await appDbContext.Users.FirstOrDefaultAsync(x => x.Id == GlobalVariable.UserId);
+
+                    if (userEmpolyee is not null)
+                    {
+                        Cassa cassa = new Cassa();
+                        cassa.UserName = userEmpolyee.Name;
+                        cassa.BarProductPrice = pingPongTable.BarSum;
+                        cassa.SumPrice = totalSum.ToString();
+                        cassa.TablePrice = totalSum - pingPongTable.BarSum;
+                        cassa.Check = $"{pingPongTable.AccountBook}\n";
+                        cassa.Check += accountBook;
+                        cassa.TypeOfPrice = typeOfPey;
+                        cassa.DateTime = DayHelper.GetCurrentServerDay();
 
 
-                    accountBook = cassa.Check;
-                    appDbContext.Cassas.Add(cassa);
-                    var resault = await appDbContext.SaveChangesAsync();
+                        accountBook = cassa.Check;
+                        appDbContext.Cassas.Add(cassa);
+                        var resault = await appDbContext.SaveChangesAsync();
 
+                    }
+                }
+                else
+                {
+                    pingPongTable.TransferTime += transferTime;
                 }
                 return (Resault: true, Text: accountBook, cassa: pingPongTable, totalSum: totalSum);
-                accountBook = "";
-                totalSum = 0;
-                tablePrice = 0;
             }
             catch
             {
@@ -399,7 +463,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
             }
         }
 
-        public async Task<bool> TransferCreateAsync(int id, DesktopCassa cassa)
+        public async Task<bool> TransferCreateAsync(int id, DesktopCassa cassa, double totalPrice)
         {
             try
             {
@@ -413,10 +477,11 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                 resaultId.Bar = true;
                 resaultId.Calc = true;
                 resaultId.AccountBook = cassa.AccountBook;
-                resaultId.BarSum = cassa.BarSum;
-                resaultId.TransferSum = cassa.TransferSum;
+                resaultId.BarSum = 0;
+                resaultId.TransferSum = totalPrice;
                 resaultId.TimeAccount = 0;
                 resaultId.UserId = cassa.UserId;
+                resaultId.TransferTime = cassa.TransferTime;
                 resaultId.PlayTime = TimeHelper.GetCurrentServerTimeParseFloat();
                 appDbContext.DesktopCassas.Update(resaultId);
                 var resa = await appDbContext.SaveChangesAsync();
@@ -436,6 +501,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService.ButtonService
                 cassa.TimeAccount = 0;
                 cassa.UserId = 0;
                 cassa.TransferSum = 0;
+                cassa.TransferTime = 0;
 
                 appDbContext.DesktopCassas.Update(cassa);
                 var res = await appDbContext.SaveChangesAsync();

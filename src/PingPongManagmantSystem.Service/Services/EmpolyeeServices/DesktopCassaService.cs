@@ -38,6 +38,8 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 pingPongTable.PlayTime = 0;
                 pingPongTable.BarSum = 0;
                 pingPongTable.UserId = GlobalVariable.UserId;
+                pingPongTable.TransferSum = 0;
+                pingPongTable.TransferTime = 0;
                 _appDbContext.DesktopCassas.Update(pingPongTable);
                 var resault = await _appDbContext.SaveChangesAsync();
                 return resault > 0;
@@ -87,6 +89,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     desktopCassa.Play = result.Play;
                     desktopCassa.Pause = result.Pause;
                     desktopCassa.TransferSum = result.TransferSum;
+                    desktopCassa.TransferTime = result.TransferTime;
                     return desktopCassa;
                 }
                 return null;
@@ -113,13 +116,17 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                     resault = (pingPongTablePrice.PriceCheap / 3600) * (timePrice.TimeExpensiveFrom * 3600 / 100 - pingPongTable.PlayTime)
                     / (pingPongTablePrice.PriceExpensive / 3600);
                 }
+                else if (res > 0 && res < 14400 && pingPongTable.PlayTime <= 86400 && pingPongTable.PlayTime >= timePrice.TimeExpensiveUpTo)
+                {
+                    resault = (86400 - pingPongTable.PlayTime) + res;
+                }
                 else
                 {
                     resault = res - pingPongTable.PlayTime;
                 }
                 pingPongTable.Id = StolNumber;
                 pingPongTable.StolNumber = StolNumber;
-                pingPongTable.TimeAccount += resault;
+                pingPongTable.TimeAccount += Math.Floor(resault);
                 pingPongTable.Pause = false;
                 pingPongTable.Play = true;
                 pingPongTable.PlayTime = 0;
@@ -200,7 +207,10 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 if (time >= 3600)
                 {
                     time = Math.Round(time / 3600, 2);
-                    return $"{time.ToString()} soat";
+                    string resultTime = (time.ToString().Split(".")[0]);
+                    double resultMinut = double.Parse(time.ToString().Split(".")[1]);
+                    resultMinut = Math.Floor(36 * resultMinut / 60);
+                    return $"{resultTime}.{resultMinut} soat";
                 }
                 else
                 {
