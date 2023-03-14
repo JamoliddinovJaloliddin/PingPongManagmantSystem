@@ -11,7 +11,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
     public class DesktopCassaService : IDesktopCassaService
     {
-        AppDbContext _appDbContext = new AppDbContext();
+    
         ITimeService timeService = new TimeService();
         IPingPongTableService pingPongTableService = new PingPongTableService();
         ICustomerService customerService = new CustomerService();
@@ -22,6 +22,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 Cassa cassa = new Cassa();
+                AppDbContext _appDbContext = new AppDbContext();
                 _appDbContext.Entry<Cassa>(cassa).State = EntityState.Detached;
 
                 var pingPongTable = (DesktopCassa)await GetByIdAsync(id);
@@ -54,6 +55,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
+                AppDbContext _appDbContext = new AppDbContext();
                 var res = await _appDbContext.DesktopCassas.OrderBy(x => x.StolNumber).AsNoTracking().ToListAsync();
                 return res;
             }
@@ -68,12 +70,15 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 DesktopCassa desktopCassa = new DesktopCassa();
-                _appDbContext.Entry(desktopCassa).State = EntityState.Detached;
+                AppDbContext _appDbContext = new AppDbContext();
 
-                var result = await _appDbContext.DesktopCassas.FirstOrDefaultAsync(x => x.StolNumber == id);
+                var result = await _appDbContext.DesktopCassas.FindAsync(id);
                 if (result != null)
                 {
+
+
                     _appDbContext.Entry(result).State = EntityState.Detached;
+
                     desktopCassa.Id = result.Id;
                     desktopCassa.StolNumber = result.StolNumber;
                     desktopCassa.BarSum = result.BarSum;
@@ -104,29 +109,28 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
+                AppDbContext _appDbContext = new AppDbContext();
                 var res = TimeHelper.GetCurrentServerTimeParseFloat();
                 var pingPongTable = (DesktopCassa)await GetByIdAsync(StolNumber);
-                _appDbContext.Entry(pingPongTable).State = EntityState.Detached;
+
                 var timePrice = (Time)await timeService.GetAll();
                 var pingPongTablePrice = (PingPongTable)await pingPongTableService.GetByIdAsync(StolNumber);
                 double resault = 0;
 
                 if (res > timePrice.TimeExpensiveFrom * 3600 / 100 && pingPongTable.PlayTime < timePrice.TimeExpensiveFrom * 3600 / 100)
                 {
-                    resault = (pingPongTablePrice.PriceCheap / 3600) * (timePrice.TimeExpensiveFrom * 3600 / 100 - pingPongTable.PlayTime)
-                    / (pingPongTablePrice.PriceExpensive / 3600);
+                    resault = Math.Floor((pingPongTablePrice.PriceCheap / 3600) * (timePrice.TimeExpensiveFrom * 3600 / 100 - pingPongTable.PlayTime)
+                    / (pingPongTablePrice.PriceExpensive / 3600));
                 }
-                else if (res > 0 && res < 14400 && pingPongTable.PlayTime <= 86400 && pingPongTable.PlayTime >= timePrice.TimeExpensiveUpTo)
+                else if (res > 0 && res < 14400 && pingPongTable.PlayTime <= 86400 && pingPongTable.PlayTime >= timePrice.TimeExpensiveUpTo * 3600 / 100)
                 {
-                    resault = (86400 - pingPongTable.PlayTime) + res;
+                    resault = Math.Floor((86400 - pingPongTable.PlayTime) + res);
                 }
                 else
                 {
-                    resault = res - pingPongTable.PlayTime;
+                    resault = Math.Floor(res - pingPongTable.PlayTime);
                 }
-                pingPongTable.Id = StolNumber;
-                pingPongTable.StolNumber = StolNumber;
-                pingPongTable.TimeAccount += Math.Floor(resault);
+                pingPongTable.TimeAccount += resault;
                 pingPongTable.Pause = false;
                 pingPongTable.Play = true;
                 pingPongTable.PlayTime = 0;
@@ -144,13 +148,12 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
+                AppDbContext _appDbContext = new AppDbContext();
                 var res = (DesktopCassa)await GetByIdAsync(StolNumber);
 
 
                 if (res.Stop != true && res.Pause != true && res.Play == true)
                 {
-
-                    _appDbContext.Entry(res).State = EntityState.Detached;
                     res.Pause = true;
                     res.Stop = true;
                     res.Bar = true;
@@ -163,12 +166,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 }
                 else if (res.Stop == true && res.Pause == false && res.Play == true)
                 {
-                    _appDbContext.Entry(res).State = EntityState.Detached;
                     res.PlayTime = TimeHelper.GetCurrentServerTimeParseFloat();
-                    res.Id = StolNumber;
                     res.Play = false;
                     res.Pause = true;
-                    _appDbContext.Entry(res).State = EntityState.Detached;
                     _appDbContext.DesktopCassas.Update(res);
                 }
                 var resault = await _appDbContext.SaveChangesAsync();
@@ -184,24 +184,33 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
         {
             try
             {
+                AppDbContext _appDbContext = new AppDbContext();
                 var timeStop = (double)TimeHelper.GetCurrentServerTimeParseFloat();
 
                 var result = await _appDbContext.DesktopCassas.FirstOrDefaultAsync(x => x.StolNumber == number);
                 double time = 0;
                 if (result.PlayTime > 0)
                 {
-                    if (result.PlayTime <= 86400 && timeStop > 0 && timeStop < 14400)
+                    if (result.PlayTime < 14400 && timeStop < 14400)
                     {
-                        time = (86400 - result.PlayTime) + timeStop + result.TimeAccount;
+                        time = (timeStop - result.PlayTime) + result.TimeAccount + result.TransferTime;
+                    }
+                    else if (result.PlayTime > 14400 && timeStop <= 86400)
+                    {
+                        time = timeStop - result.PlayTime + result.TimeAccount + result.TransferTime;
+                    }
+                    else if (result.PlayTime <= 86400 && timeStop < 14400)
+                    {
+                        time = 86400 - result.PlayTime + timeStop + result.TimeAccount + result.TransferTime;
                     }
                     else
                     {
-                        time = timeStop - result.PlayTime + result.TimeAccount;
+                        time = timeStop - result.PlayTime + result.TimeAccount + result.TransferTime;
                     }
                 }
                 else
                 {
-                    time = result.TimeAccount;
+                    time = result.TimeAccount + result.TransferTime;
                 }
 
                 if (time >= 3600)

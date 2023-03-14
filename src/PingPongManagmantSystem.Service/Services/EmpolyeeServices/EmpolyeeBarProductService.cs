@@ -117,19 +117,31 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             try
             {
                 var barCount = await _appDbContext.BarCounts.AsNoTracking().ToListAsync();
+              
                 foreach (var item in barCount)
                 {
                     var itemCount = (BarCount)await _appDbContext.BarCounts.FindAsync(item.Id);
-                    _appDbContext.Entry(itemCount).State = EntityState.Detached;
-                    _appDbContext.BarCounts.Remove(itemCount);
+                    if (itemCount is not null)
+                    {
+
+                        _appDbContext.Entry(itemCount).State = EntityState.Detached;
+                        _appDbContext.BarCounts.Remove(itemCount);
+                    }
                 }
 
                 if (account != "NotButton")
                 {
                     var barUser = (DesktopCassa)await desktopCassaService.GetByIdAsync(id);
-                    barUser.AccountBook += $"{account}";
-                    barUser.BarSum += sum;
-                    _appDbContext.DesktopCassas.Update(barUser);
+                  
+                    if (barUser is not null)
+                    {
+                        barUser.AccountBook += $"{account}";
+                        barUser.BarSum += sum;
+
+                      
+
+                        _appDbContext.DesktopCassas.Update(barUser);
+                    }
                 }
 
                 var resa = await _appDbContext.SaveChangesAsync();
@@ -147,7 +159,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             {
                 double totalSum = 0;
                 var barStatistic = await barStatisticService.UpdateAsync(keyValuePairs, paymentType);
-               
+
                 foreach (var product in keyValuePairs)
                 {
                     var barProduct = (BarProduct)await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == product.Key);

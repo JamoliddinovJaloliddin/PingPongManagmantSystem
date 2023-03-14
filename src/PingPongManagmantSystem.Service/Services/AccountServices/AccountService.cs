@@ -2,7 +2,7 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Service.Common.Security;
 using PingPongManagmantSystem.Service.Interfaces.AccountServices;
-using PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvices;
+using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
 using PingPongManagmantSystem.Service.ViewModels;
 
@@ -11,7 +11,7 @@ namespace PingPongManagmantSystem.Service.Services.AccountServices
     public class AccountService : IAccountService
     {
         AppDbContext _appDbContext = new AppDbContext();
-        ITableStatisticService tableStatistic = new TableStatisticService();
+        IEmpolyeeStatsiticService empolyeeStatsiticService = new EmpolyeeStatisticService();
         public async Task<int> LoginAsync(string password)
         {
             try
@@ -27,6 +27,9 @@ namespace PingPongManagmantSystem.Service.Services.AccountServices
                             GlobalVariable.UserId = user.Id;
                             GlobalVariable.UserName = user.Name;
                         }
+
+
+
                         return user.IsAdmin;
                     }
                 }

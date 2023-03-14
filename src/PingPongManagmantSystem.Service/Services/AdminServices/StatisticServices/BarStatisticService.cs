@@ -73,7 +73,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             {
                 var dateDay = DayHelper.GetCurrentServerDay();
                 var barCount = await appDbContext.BarStatistics.FirstOrDefaultAsync(x => x.DateTime == dateDay);
-               
+
 
                 if (barCount is null)
                 {
@@ -105,12 +105,16 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     barCount.Check += $"\n\n{GlobalVariable.UserName}\n\n";
                     foreach (var keyValue in keyValuePairs)
                     {
+                        double barSum = 0;
                         var barPrice = await appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == keyValue.Key);
-                        appDbContext.Entry(barPrice).State = EntityState.Detached;
-                        double barSum = keyValue.Value * barPrice.SalePrice;
-                        barCount.BarSum += barSum;
-                        barCount.NumberOfSaleBar += keyValue.Value;
-                        barCount.Check += $"{keyValue.Key} - {keyValue.Value}\n";
+                        if (barPrice is not null)
+                        {
+                            appDbContext.Entry(barPrice).State = EntityState.Detached;
+                            barSum = keyValue.Value * barPrice.SalePrice;
+                            barCount.BarSum += barSum;
+                            barCount.NumberOfSaleBar += keyValue.Value;
+                            barCount.Check += $"{keyValue.Key} - {keyValue.Value}\n";
+                        }
                         if (paymentType == "Naxt")
                         {
                             barCount.Cash += barSum;

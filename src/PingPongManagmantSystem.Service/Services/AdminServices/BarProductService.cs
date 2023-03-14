@@ -8,11 +8,12 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 {
     public class BarProductService : IBarProductService
     {
-        AppDbContext _appDbContext = new AppDbContext();
+       
         public async Task<bool> CreateAsync(BarProduct barProduct)
         {
             try
             {
+                AppDbContext _appDbContext = new AppDbContext();
                 var resultBar = await _appDbContext.BarProducts.FirstOrDefaultAsync(x => x.Name == barProduct.Name);
                 if (resultBar is null)
                 {
@@ -32,6 +33,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
+                AppDbContext _appDbContext = new AppDbContext();
                 var barProduct = await _appDbContext.BarProducts.FindAsync(id);
                 if (barProduct is not null)
                 {
@@ -52,6 +54,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
+                AppDbContext _appDbContext = new AppDbContext();
                 IList<BarProduct> barProducts = new List<BarProduct>();
                 if (search == "")
                 {
@@ -112,6 +115,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
+                AppDbContext _appDbContext = new AppDbContext();
                 var result = await _appDbContext.BarProducts.FindAsync(barProduct.Id);
                 _appDbContext.Entry(result).State = EntityState.Detached;
 

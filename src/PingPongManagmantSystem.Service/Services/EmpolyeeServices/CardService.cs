@@ -2,7 +2,10 @@
 using PingPongManagmantSystem.DataAccess.Constans;
 using PingPongManagmantSystem.Domain.Entities;
 using PingPongManagmantSystem.Service.Helpers;
+using PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrvices;
 using PingPongManagmantSystem.Service.Interfaces.EmpolyeeInterface;
+using PingPongManagmantSystem.Service.Services.AdminServices.StatisticServices;
+using PingPongManagmantSystem.Service.ViewModels;
 
 namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
 {
@@ -10,7 +13,7 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
     public class CardService : ICardService
     {
         AppDbContext appDbContext = new AppDbContext();
-
+        IEmpolyeeStatsiticService empolyeeStatsiticService = new EmpolyeeStatisticService();
         public async Task<bool> CreateAsync(Card card)
         {
             try
@@ -24,6 +27,9 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
                 card.DateTime = date;
                 appDbContext.Cards.Add(card);
                 var resault = await appDbContext.SaveChangesAsync();
+
+                var ress = await empolyeeStatsiticService.CreateCardAsync(card.Price, card.Payment);
+
                 return resault > 0;
             }
             catch
@@ -32,24 +38,18 @@ namespace PingPongManagmantSystem.Service.Services.EmpolyeeService
             }
         }
 
-        public Task<bool> DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Card>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<Card> GetByIdAsync(string customer)
         {
             try
             {
-                var resault = await appDbContext.Cards.Where(x => x.CardNumber == customer).AsNoTracking().ToListAsync();
+
+                var resault = (Card)await appDbContext.Cards.FirstOrDefaultAsync(x => x.CardNumber == GlobalVariable.CardCheck);
+
                 if (resault != null)
                 {
-                    return (Card)resault;
+                    appDbContext.Entry(resault).State = EntityState.Detached;
+                    return resault;
                 }
                 return null;
             }

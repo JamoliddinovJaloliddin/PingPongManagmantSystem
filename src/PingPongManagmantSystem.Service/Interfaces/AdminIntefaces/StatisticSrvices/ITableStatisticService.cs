@@ -8,7 +8,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminInteface.StatisticSrvi
 
         Task<IList<TableStatisticView>> GetAllAsync(string search, PaginationParams @params);
         Task<bool> UpdateAsync(double totalPrice, string paymentType);
-
         Task<bool> CreateAsync();
 
     }
