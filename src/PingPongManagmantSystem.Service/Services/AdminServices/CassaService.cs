@@ -9,39 +9,12 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 {
     public class CassaService : ICassaService
     {
-        AppDbContext appDbContext = new AppDbContext();
-
-
-        //public async Task<bool> CreateAsync(Cassa cassa)
-        //{
-        //    try
-        //    {
-        //        var dateTime = DayHelper.GetCurrentServerDay();
-
-        //        var resultCassa = await appDbContext.Cassas.FirstOrDefaultAsync(x => x.DateTime == dateTime);
-        //        if (resultCassa is null)
-        //        {
-        //            cassa.DateTime = dateTime;
-        //            cassa.UserName = GlobalVariable.UserName;
-        //        }
-        //        else
-        //        { 
-
-        //        }
-
-
-        //        return false;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
-
+   
         public async Task<bool> DeleteAsync(int id)
         {
             try
             {
+                AppDbContext appDbContext = new AppDbContext();
                 var cassa = await appDbContext.Cassas.FirstOrDefaultAsync(x => x.Id == id);
                 if (cassa is not null)
                 {
@@ -61,6 +34,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
+                AppDbContext appDbContext = new AppDbContext();
                 List<Cassa> cassas = new List<Cassa>();
                 if (search == "")
                 {
@@ -127,6 +101,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
+                AppDbContext appDbContext = new AppDbContext();
                 var resault = await appDbContext.Cassas.FirstOrDefaultAsync(x => x.Id == id);
                 if (resault is not null)
                 {

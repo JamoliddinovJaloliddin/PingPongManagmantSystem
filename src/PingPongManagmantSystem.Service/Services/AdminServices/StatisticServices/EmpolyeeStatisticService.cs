@@ -22,7 +22,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
             {
                 string dateDay = DayHelper.GetCurrentServerDay();
                 var empolyeeStatisticResult = await appDbContext.EmpolyeeStatistics.FirstOrDefaultAsync(x => x.DateTime == dateDay);
-                
+
                 if (empolyeeStatisticResult is null)
                 {
                     EmpolyeeStatistic empolyeeStatistic = new EmpolyeeStatistic();
@@ -39,7 +39,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                     var empolyeeStatisticUserId = await appDbContext.EmpolyeeStatistics.FirstOrDefaultAsync(
                         x => x.UserId == GlobalVariable.UserId && x.DateTime == dateDay);
 
-                    appDbContext.Entry(empolyeeStatisticUserId).State = EntityState.Detached;
+
 
                     if (empolyeeStatisticUserId is not null)
                     {
@@ -60,6 +60,55 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 }
 
                 var result = await appDbContext.SaveChangesAsync();
+                return result > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> CreateCardAsync(double totalPrice, string paymentType)
+        {
+            try
+            {
+                string dateDay = DayHelper.GetCurrentServerDay();
+                var empolyeeStatisticResult = await appDbContext.EmpolyeeStatistics.FirstOrDefaultAsync(x => x.DateTime == dateDay);
+
+                if (empolyeeStatisticResult is null)
+                {
+                    EmpolyeeStatistic empolyeeStatistic = new EmpolyeeStatistic();
+                    empolyeeStatistic.DateTime = dateDay;
+                    empolyeeStatistic.ViCardToSell = totalPrice;
+
+                    appDbContext.EmpolyeeStatistics.Add(empolyeeStatistic);
+                }
+                else
+                {
+                    appDbContext.Entry(empolyeeStatisticResult).State = EntityState.Detached;
+
+                    var empolyeeStatisticUserId = await appDbContext.EmpolyeeStatistics.FirstOrDefaultAsync(
+                  x => x.UserId == GlobalVariable.UserId && x.DateTime == dateDay);
+
+                    if (empolyeeStatisticUserId is null)
+                    {
+                        EmpolyeeStatistic empolyeeStatistic = new EmpolyeeStatistic();
+                        empolyeeStatistic.DateTime = dateDay;
+                        empolyeeStatistic.ViCardToSell = totalPrice;
+                        empolyeeStatistic.UserId = GlobalVariable.UserId;
+
+                        appDbContext.EmpolyeeStatistics.Add(empolyeeStatistic);
+                    }
+                    else
+                    {
+                        appDbContext.Entry(empolyeeStatisticUserId).State = EntityState.Detached;
+                        empolyeeStatisticUserId.ViCardToSell += totalPrice;
+                        appDbContext.EmpolyeeStatistics.Update(empolyeeStatisticUserId);
+                    }
+                }
+                var result = await appDbContext.SaveChangesAsync();
+
+
                 return result > 0;
             }
             catch
@@ -93,7 +142,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
 
                     if (empolyeeStatisticUserId is not null)
                     {
-                        
+
                         appDbContext.Entry(empolyeeStatisticUserId).State = EntityState.Detached;
                         empolyeeStatisticUserId.SportSum += totalPrice;
                         appDbContext.EmpolyeeStatistics.Update(empolyeeStatisticUserId);

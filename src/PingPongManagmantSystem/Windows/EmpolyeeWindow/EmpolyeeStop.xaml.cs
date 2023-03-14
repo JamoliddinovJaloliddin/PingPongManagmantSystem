@@ -66,10 +66,11 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
                 if (lbl_stop.Content.ToString() == "Stop")
                 {
                     var customer = cb_client.Text.ToString();
-                    if (customer == Payment.VipKarta.ToString())
+                    if (txt_vipCart.Text.ToString() != "")
                     {
+                        GlobalVariable.CardCheck = "123";
                         customer = txt_vipCart.Text.ToString();
-                        var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: customer, typeOfPey: cb_typePrice.Text.ToString());
+                        var resault = await empolyeeStop.TotalPrice(tableNumbe: byte.Parse(lb_id.Content.ToString()), customer: "VipKarta", typeOfPey: cb_typePrice.Text.ToString());
                         var res = desktopCassaService.DeleteAsync(int.Parse(lb_id.Content.ToString()), resault.totalSum);
                         this.Close();
                         MessageBox.Show(resault.Text);

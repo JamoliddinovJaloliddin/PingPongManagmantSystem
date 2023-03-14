@@ -9,6 +9,7 @@ namespace PingPongManagmantSystem.Desktop.Windows.EmpolyeeWindow
     {
         ICardService cardService = new CardService();
 
+
         public EmpolyeeCardRegister()
         {
             InitializeComponent();

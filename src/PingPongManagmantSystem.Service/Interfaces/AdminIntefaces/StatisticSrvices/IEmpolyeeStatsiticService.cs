@@ -10,5 +10,6 @@ namespace PingPongManagmantSystem.Service.Interfaces.AdminIntefaces.StatisticSrv
         Task<bool> CreateBarAsync(double totalPrice, string paymentType);
         Task<bool> CreateSportAsync(double totalPrice, string paymentType);
         Task<bool> CreateTableAsync(double totalPrice, string paymentType);
+        Task<bool> CreateCardAsync(double totalPrice, string paymentType);
     }
 }

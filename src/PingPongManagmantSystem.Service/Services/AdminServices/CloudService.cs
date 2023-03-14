@@ -10,12 +10,12 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices
 {
     public class CloudService : ICloudService
     {
-        AppDbContext appContext = new AppDbContext();
         ITableStatisticService tableStatisticService = new TableStatisticService();
         public async Task<string> GetAllBarAsync(string from)
         {
             try
             {
+                AppDbContext appContext = new AppDbContext();
                 var resultBarStatistic = await appContext.BarStatistics.Where(x => x.DateTime.Contains(from)).
                     OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
 
@@ -48,6 +48,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices
         {
             try
             {
+                AppDbContext appContext = new AppDbContext();
                 var resultEmpolyeeStatistic = await appContext.EmpolyeeStatistics.
                     Where(x => x.DateTime.Contains(from)).OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
 
@@ -83,7 +84,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices
         {
             try
             {
-
+                AppDbContext appContext = new AppDbContext();
                 var resultSportStatistic = await appContext.SportStatistics.Where(x => x.DateTime.Contains(from)).
                     OrderBy(x => x.DateTime).AsNoTracking().ToListAsync();
 
@@ -116,6 +117,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices
         {
             try
             {
+               
                 var resultTable = await tableStatisticService.GetAllAsync(from, new PaginationParams(1, 31));
 
                 if (resultTable is null)

@@ -228,5 +228,6 @@ namespace PingPongManagmantSystem.Service.Services.AdminServices.StatisticServic
                 return false;
             }
         }
+
     }
 }

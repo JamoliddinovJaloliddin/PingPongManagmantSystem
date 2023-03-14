@@ -9,11 +9,12 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
 
     public class CardAdminService : ICardAdminService
     {
-        AppDbContext appDbContext = new AppDbContext();
+    
         public async Task<bool> DeleteAsync(int id)
         {
             try
             {
+                AppDbContext appDbContext = new AppDbContext();
                 var card = await appDbContext.Cards.FindAsync(id);
                 if (card is not null)
                 {
@@ -33,6 +34,7 @@ namespace PingPongManagmantSystem.Service.Services.AdminService
         {
             try
             {
+                AppDbContext appDbContext = new AppDbContext();
                 IList<Card> cardsList = new List<Card>();
                 if (search == "")
                 {
